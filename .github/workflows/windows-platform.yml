@@ -1,0 +1,62 @@
+name: windows-platform
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/desktop/**'
+      - 'aetheros_platform/**'
+      - 'aetheros_computer/**'
+      - 'scripts/windows_bench.py'
+      - '.github/workflows/windows-platform.yml'
+  pull_request:
+    paths:
+      - 'apps/desktop/**'
+      - 'aetheros_platform/**'
+      - 'aetheros_computer/**'
+  workflow_dispatch:
+
+jobs:
+  electron-unit:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Electron dependency-free unit tests
+        working-directory: apps/desktop
+        run: >
+          node --test electron/session-windows.test.cjs
+          electron/workspace-cwd.test.cjs electron/port-pool.test.cjs
+          electron/desktop-uninstall.test.cjs electron/hardening.test.cjs
+          electron/windows-child-process.test.cjs
+          electron/connection-config.test.cjs
+          electron/bootstrap-platform.test.cjs
+          electron/tray-menu.test.cjs
+          electron/update-manifest.test.cjs
+
+  python-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Windows platform + intelligence tests
+        run: >
+          python -m pytest tests/aetheros_platform/test_windows_capabilities.py
+          tests/aetheros_platform/test_toast_actions.py
+          tests/aetheros_platform/test_windows_native.py
+          tests/agent/test_operating_layer.py
+          tests/agent_network -q
+
+  bench:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Benchmark harness (informational)
+        run: python scripts/windows_bench.py

@@ -1,0 +1,8 @@
+Master-80 preflight under canonical Node v22.12.0 (actual output):
+[FAIL] A01 RELEASE_BUILD_BLOCKED_DIRTY_TREE (2783 paths)
+[PASS] A02 canonical Node 22
+[PASS] A03/A04/A05/A06/A09/A11/A12
+[INFORMATIONAL] A07/A08
+[FAIL] A10 OUTPUT_DIRECTORY_NOT_CLEAN (10 entries)
+PREFLIGHT_FAIL — proves the toolchain gate is environment-sensitive (A02 flipped
+PASS vs Node 25) while source/output gates still correctly block.

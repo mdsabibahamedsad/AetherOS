@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AetherOS — Autonomous AI Operating System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-deep: #050816;
+  --bg-surface: #0A1020;
+  --bg-panel: rgba(10, 16, 32, 0.85);
+  --bg-glass: rgba(10, 16, 32, 0.6);
+  --bg-glass-border: rgba(79, 209, 255, 0.08);
+  --accent: #4FD1FF;
+  --accent2: #7C5CFF;
+  --accent3: #00E5A8;
+  --secondary: #8AA4FF;
+  --secondary2: #B18CFF;
+  --warning: #FFC857;
+  --error: #FF5C7A;
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --text-tertiary: rgba(255, 255, 255, 0.32);
+  --border-subtle: rgba(79, 209, 255, 0.08);
+  --border-glass: rgba(79, 209, 255, 0.12);
+  --shadow-glow: 0 0 30px rgba(79, 209, 255, 0.06);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: local('SF Pro Display'), local('Helvetica Neue');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: local('SF Pro Display Medium'), local('Helvetica Neue Medium');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: local('SF Pro Display Semibold'), local('Helvetica Neue Bold');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: local('SF Pro Display Bold'), local('Helvetica Neue Bold');
+  font-weight: 700;
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'SF Pro Display', -apple-system, 'Helvetica Neue', sans-serif;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+/* Particle canvas behind everything */
+#particles-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* Main terminal container */
+.terminal {
+  position: relative;
+  z-index: 1;
+  width: 96vw;
+  max-width: 1600px;
+  height: 90vh;
+  max-height: 960px;
+  background: var(--bg-panel);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 0 80px rgba(79, 209, 255, 0.04), 0 25px 60px -12px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ===== TOP HEADER ===== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 52px;
+  min-height: 52px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(5, 8, 22, 0.5);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  width: 22px;
+  height: 22px;
+  position: relative;
+}
+
+.logo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.logo-sub {
+  font-size: 8px;
+  font-weight: 400;
+  color: var(--text-tertiary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.header-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border-subtle);
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+}
+
+.header-info-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-secondary);
+}
+
+.header-info-item .label {
+  color: var(--text-tertiary);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.header-info-item .value {
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.online {
+  background: var(--accent3);
+  box-shadow: 0 0 8px rgba(0, 229, 168, 0.5);
+}
+
+/* Header right - system metrics */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.metric-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.metric .icon {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.metric .bar {
+  width: 30px;
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.metric .bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+.metric .bar-fill.cpu { background: var(--accent); width: 23%; }
+.metric .bar-fill.ram { background: var(--accent2); width: 45%; }
+.metric .bar-fill.gpu { background: var(--accent3); width: 12%; }
+.metric .bar-fill.net { background: var(--secondary); width: 67%; }
+
+.metric .val {
+  font-size: 10px;
+  font-weight: 500;
+  min-width: 28px;
+  text-align: right;
+  color: var(--text-secondary);
+}
+
+.cluster-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  background: rgba(0, 229, 168, 0.08);
+  border: 1px solid rgba(0, 229, 168, 0.15);
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--accent3);
+  letter-spacing: 0.5px;
+}
+
+.cluster-badge .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent3);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px rgba(0,229,168,0.5); }
+  50% { opacity: 0.3; box-shadow: 0 0 8px rgba(0,229,168,0.2); }
+}
+
+/* ===== MAIN LAYOUT ===== */
+.main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ===== LEFT SIDEBAR ===== */
+.sidebar-left {
+  width: 220px;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-subtle);
+  padding: 12px 10px;
+  gap: 4px;
+  background: rgba(5, 8, 22, 0.3);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  position: relative;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,0.04);
+  color: var(--text-primary);
+}
+
+.nav-item.active {
+  background: rgba(79, 209, 255, 0.06);
+  color: var(--accent);
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  width: 2px;
+  height: 18px;
+  background: var(--accent);
+  border-radius: 1px;
+  box-shadow: 0 0 8px rgba(79, 209, 255, 0.4);
+}
+
+.nav-item .icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.nav-item.active .icon { opacity: 1; }
+
+.nav-item .badge {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.06);
+  color: var(--text-tertiary);
+}
+
+.nav-item.active .badge {
+  background: rgba(79, 209, 255, 0.1);
+  color: var(--accent);
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 6px 12px;
+}
+
+/* Session card */
+.session-card {
+  margin: 8px 10px 0;
+  padding: 12px;
+  background: var(--bg-glass);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-md);
+}
+
+.session-card .s-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+
+.session-card .s-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 0;
+  font-size: 10px;
+}
+
+.session-card .s-row .s-key {
+  color: var(--text-tertiary);
+}
+
+.session-card .s-row .s-val {
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+}
+
+.session-card .s-progress {
+  margin-top: 8px;
+  width: 100%;
+  height: 2px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.session-card .s-progress-fill {
+  height: 100%;
+  width: 67%;
+  background: linear-gradient(90deg, var(--accent2), var(--accent));
+  border-radius: 2px;
+}
+
+/* ===== CENTER DASHBOARD ===== */
+.center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px;
+  overflow-y: auto;
+  gap: 16px;
+  min-width: 0;
+}
+
+.center::-webkit-scrollbar {
+  width: 4px;
+}
+
+.center::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.center::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+}
+
+/* Welcome card */
+.welcome-card {
+  position: relative;
+  padding: 28px 32px;
+  background: linear-gradient(135deg, rgba(79, 209, 255, 0.04) 0%, rgba(124, 92, 255, 0.04) 50%, rgba(0, 229, 168, 0.02) 100%);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.welcome-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 40%, rgba(79, 209, 255, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(124, 92, 255, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.welcome-logo {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.welcome-logo svg {
+  width: 100%;
+  height: 100%;
+}
+
+.welcome-logo-glow {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: -12px;
+  left: -12px;
+  background: radial-gradient(circle, rgba(79, 209, 255, 0.15) 0%, transparent 70%);
+  animation: logo-pulse 4s ease-in-out infinite;
+}
+
+@keyframes logo-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.welcome-content {
+  position: relative;
+  z-index: 1;
+}
+
+.welcome-title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.welcome-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.welcome-pills {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  background: var(--bg-glass);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: 100px;
+  font-size: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-secondary);
+}
+
+.pill .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.pill .dot.green { background: var(--accent3); box-shadow: 0 0 6px rgba(0, 229, 168, 0.4); }
+.pill .dot.blue { background: var(--accent); box-shadow: 0 0 6px rgba(79, 209, 255, 0.4); }
+.pill .dot.purple { background: var(--accent2); box-shadow: 0 0 6px rgba(124, 92, 255, 0.4); }
+.pill .dot.yellow { background: var(--warning); box-shadow: 0 0 6px rgba(255, 200, 87, 0.3); }
+
+/* Stats row */
+.stats-row {
+  display: flex;
+  gap: 10px;
+}
+
+.stat-card {
+  flex: 1;
+  padding: 14px 16px;
+  background: var(--bg-glass);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.stat-card .stat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.stat-card .stat-label {
+  font-size: 10px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.stat-card .stat-num.accent { color: var(--accent); }
+.stat-card .stat-num.accent2 { color: var(--accent2); }
+.stat-card .stat-num.accent3 { color: var(--accent3); }
+.stat-card .stat-num.warning { color: var(--warning); }
+
+/* Section headers */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.section-header h3 {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.3px;
+}
+
+.section-header .see-all {
+  font-size: 10px;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.section-header .see-all:hover {
+  color: var(--accent);
+}
+
+/* Tools grid */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.tool-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-glass);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tool-card:hover {
+  background: rgba(79, 209, 255, 0.04);
+  border-color: rgba(79, 209, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.tool-card .t-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background: rgba(255,255,255,0.04);
+  flex-shrink: 0;
+}
+
+.tool-card .t-info {
+  min-width: 0;
+}
+
+.tool-card .t-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.tool-card .t-desc {
+  font-size: 9px;
+  color: var(--text-tertiary);
+  line-height: 1.2;
+}
+
+/* Skills grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.skill-card {
+  padding: 10px 14px;
+  background: var(--bg-glass);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.skill-card:hover {
+  background: rgba(124, 92, 255, 0.04);
+  border-color: rgba(124, 92, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.skill-card .s-icon {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.skill-card .s-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.skill-card .s-count {
+  font-size: 9px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ===== RIGHT SIDEBAR ===== */
+.sidebar-right {
+  width: 230px;
+  min-width: 230px;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--border-subtle);
+  padding: 12px;
+  gap: 10px;
+  background: rgba(5, 8, 22, 0.3);
+  overflow-y: auto;
+}
+
+.sidebar-right::-webkit-scrollbar {
+  width: 3px;
+}
+
+.sidebar-right::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+}
+
+.sb-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sb-title {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-tertiary);
+  margin-bottom: 2px;
+}
+
+/* System health */
+.health-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.health-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  color: var(--text-secondary);
+  transition: background 0.15s;
+}
+
+.health-item:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.health-item .h-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.health-item .h-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.health-item .h-dot.online { background: var(--accent3); box-shadow: 0 0 6px rgba(0, 229, 168, 0.3); }
+.health-item .h-dot.warning { background: var(--warning); box-shadow: 0 0 6px rgba(255, 200, 87, 0.3); }
+
+.health-item .h-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  color: var(--accent3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.health-item .h-status.warn { color: var(--warning); }
+
+/* Timeline */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 10px;
+  padding: 6px 8px;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 18px;
+  bottom: -6px;
+  width: 1px;
+  background: var(--border-subtle);
+}
+
+.timeline-item:last-child::before {
+  display: none;
+}
+
+.timeline-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-dot.blue { background: var(--accent); box-shadow: 0 0 6px rgba(79, 209, 255, 0.3); }
+.timeline-dot.purple { background: var(--accent2); box-shadow: 0 0 6px rgba(124, 92, 255, 0.3); }
+.timeline-dot.green { background: var(--accent3); box-shadow: 0 0 6px rgba(0, 229, 168, 0.3); }
+.timeline-dot.yellow { background: var(--warning); box-shadow: 0 0 6px rgba(255, 200, 87, 0.3); }
+.timeline-dot.red { background: var(--error); box-shadow: 0 0 6px rgba(255, 92, 122, 0.3); }
+
+.timeline-content {
+  min-width: 0;
+}
+
+.timeline-content .t-event {
+  font-size: 10px;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+.timeline-content .t-time {
+  font-size: 8px;
+  color: var(--text-tertiary);
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 1px;
+}
+
+/* Notifications */
+.notif-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.notif-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  color: var(--text-secondary);
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.notif-item:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.notif-item .n-icon {
+  font-size: 12px;
+  width: 16px;
+  text-align: center;
+}
+
+.notif-item .n-text {
+  flex: 1;
+  line-height: 1.3;
+}
+
+.notif-item .n-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--text-tertiary);
+}
+
+/* ===== BOTTOM COMMAND BAR ===== */
+.command-bar {
+  padding: 10px 20px;
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(5, 8, 22, 0.4);
+}
+
+.command-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-glass);
+  border: 1px solid rgba(79, 209, 255, 0.12);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+  transition: border-color 0.2s;
+}
+
+.command-input-wrapper:focus-within {
+  border-color: rgba(79, 209, 255, 0.3);
+  box-shadow: 0 0 20px rgba(79, 209, 255, 0.04);
+}
+
+.command-input-wrapper .prompt {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+.command-input-wrapper input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-primary);
+  caret-color: var(--accent);
+}
+
+.command-input-wrapper input::placeholder {
+  color: var(--text-tertiary);
+  font-family: 'SF Pro Display', -apple-system, sans-serif;
+}
+
+.command-input-wrapper .send-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(79, 209, 255, 0.1);
+  border: 1px solid rgba(79, 209, 255, 0.15);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 13px;
+}
+
+.command-input-wrapper .send-btn:hover {
+  background: rgba(79, 209, 255, 0.2);
+  border-color: rgba(79, 209, 255, 0.3);
+}
+
+/* Command suggestions */
+.command-suggestions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 0 4px;
+  flex-wrap: wrap;
+}
+
+.cmd-suggestion {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.cmd-suggestion:hover {
+  background: rgba(79, 209, 255, 0.06);
+  border-color: rgba(79, 209, 255, 0.15);
+  color: var(--text-secondary);
+}
+
+/* ===== DIAGNOSTICS PANEL (hidden by default) ===== */
+.diag-panel {
+  display: none;
+  padding: 12px 20px;
+  border-top: 1px solid rgba(255, 92, 122, 0.15);
+  background: rgba(255, 92, 122, 0.04);
+}
+
+.diag-panel.visible {
+  display: block;
+}
+
+.diag-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.diag-header .diag-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--error);
+}
+
+.diag-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.diag-btn {
+  padding: 4px 10px;
+  font-size: 9px;
+  font-family: 'JetBrains Mono', monospace;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.03);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.diag-btn:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+.diag-btn.primary {
+  background: rgba(79, 209, 255, 0.1);
+  border-color: rgba(79, 209, 255, 0.2);
+  color: var(--accent);
+}
+
+.diag-btn.primary:hover {
+  background: rgba(79, 209, 255, 0.2);
+}
+
+.diag-stack {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-tertiary);
+  line-height: 1.6;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.3);
+  border-radius: var(--radius-sm);
+  max-height: 80px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.welcome-card { animation: fadeIn 0.5s ease; }
+.stat-card { animation: fadeIn 0.5s ease; animation-fill-mode: both; }
+.stat-card:nth-child(1) { animation-delay: 0.05s; }
+.stat-card:nth-child(2) { animation-delay: 0.1s; }
+.stat-card:nth-child(3) { animation-delay: 0.15s; }
+.stat-card:nth-child(4) { animation-delay: 0.2s; }
+
+/* ===== SCROLLBAR GLOBAL ===== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 2px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1400px) {
+  .tools-grid { grid-template-columns: repeat(3, 1fr); }
+  .skills-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 1100px) {
+  .sidebar-right { display: none; }
+}
+@media (max-width: 900px) {
+  .sidebar-left { width: 56px; min-width: 56px; }
+  .sidebar-left .nav-item span, .sidebar-left .nav-item .badge,
+  .session-card, .sidebar-divider { display: none; }
+  .nav-item { justify-content: center; padding: 8px; }
+  .nav-item .icon { margin: 0; }
+  .header-right .metric-group { display: none; }
+  .tools-grid { grid-template-columns: repeat(2, 1fr); }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .terminal { width: 100vw; height: 100vh; border-radius: 0; }
+  .header-info { display: none; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<div class="terminal">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#4FD1FF" stroke-width="1.2" opacity="0.4"/>
+            <circle cx="12" cy="12" r="5" fill="#4FD1FF" opacity="0.15"/>
+            <circle cx="12" cy="12" r="2" fill="#4FD1FF"/>
+            <circle cx="6" cy="12" r="1.5" fill="#7C5CFF" opacity="0.6"/>
+            <circle cx="18" cy="12" r="1.5" fill="#00E5A8" opacity="0.6"/>
+            <circle cx="12" cy="6" r="1.5" fill="#8AA4FF" opacity="0.6"/>
+            <circle cx="12" cy="18" r="1.5" fill="#B18CFF" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">AETHEROS</span>
+          <span class="logo-sub">Autonomous AI Operating System</span>
+        </div>
+      </div>
+      <div class="header-divider"></div>
+      <div class="header-info">
+        <div class="header-info-item">
+          <span class="label">V</span>
+          <span class="value">0.18.0</span>
+        </div>
+        <div class="header-info-item">
+          <span class="label">Model</span>
+          <span class="value">aether-core-v3</span>
+        </div>
+        <div class="header-info-item">
+          <span class="label">Workspace</span>
+          <span class="value">~/aetheros</span>
+        </div>
+        <div class="header-info-item">
+          <span class="label">Profile</span>
+          <span class="value">primary</span>
+        </div>
+        <div class="header-info-item">
+          <span class="label">Mode</span>
+          <span class="value">autonomous</span>
+        </div>
+        <div class="header-info-item">
+          <span class="status-dot online"></span>
+          <span class="value" style="color: var(--accent3);">connected</span>
+        </div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="metric-group">
+        <div class="metric">
+          <span class="icon">⚡</span>
+          <div class="bar"><div class="bar-fill cpu"></div></div>
+          <span class="val" id="cpu-val">23%</span>
+        </div>
+        <div class="metric">
+          <span class="icon">⊞</span>
+          <div class="bar"><div class="bar-fill ram"></div></div>
+          <span class="val" id="ram-val">45%</span>
+        </div>
+        <div class="metric">
+          <span class="icon">◈</span>
+          <div class="bar"><div class="bar-fill gpu"></div></div>
+          <span class="val" id="gpu-val">12%</span>
+        </div>
+        <div class="metric">
+          <span class="icon">⇄</span>
+          <div class="bar"><div class="bar-fill net"></div></div>
+          <span class="val" id="net-val">67%</span>
+        </div>
+      </div>
+      <div class="cluster-badge">
+        <span class="dot"></span>
+        Cluster Alpha
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar-left">
+      <a class="nav-item active" data-nav="home">
+        <span class="icon">⬡</span>
+        <span>Home</span>
+      </a>
+      <a class="nav-item" data-nav="agents">
+        <span class="icon">◇</span>
+        <span>Agents</span>
+        <span class="badge">12</span>
+      </a>
+      <a class="nav-item" data-nav="tasks">
+        <span class="icon">○</span>
+        <span>Tasks</span>
+        <span class="badge">4</span>
+      </a>
+      <a class="nav-item" data-nav="memory">
+        <span class="icon">⊡</span>
+        <span>Memory</span>
+        <span class="badge">2.4k</span>
+      </a>
+      <a class="nav-item" data-nav="workspace">
+        <span class="icon">▦</span>
+        <span>Workspace</span>
+      </a>
+      <a class="nav-item" data-nav="engineering">
+        <span class="icon">⚙</span>
+        <span>Engineering</span>
+      </a>
+      <div class="sidebar-divider"></div>
+      <a class="nav-item" data-nav="plugins">
+        <span class="icon">⊕</span>
+        <span>Plugins</span>
+        <span class="badge">8</span>
+      </a>
+      <a class="nav-item" data-nav="cluster">
+        <span class="icon">◉</span>
+        <span>Cluster</span>
+        <span class="badge">3</span>
+      </a>
+      <a class="nav-item" data-nav="enterprise">
+        <span class="icon">◆</span>
+        <span>Enterprise</span>
+      </a>
+      <a class="nav-item" data-nav="settings">
+        <span class="icon">▤</span>
+        <span>Settings</span>
+      </a>
+
+      <div class="session-card">
+        <div class="s-label">Active Session</div>
+        <div class="s-row">
+          <span class="s-key">ID</span>
+          <span class="s-val">aeth-7f3a...c92b</span>
+        </div>
+        <div class="s-row">
+          <span class="s-key">Runtime</span>
+          <span class="s-val">2h 47m</span>
+        </div>
+        <div class="s-row">
+          <span class="s-key">Model</span>
+          <span class="s-val">aether-core-v3</span>
+        </div>
+        <div class="s-row">
+          <span class="s-key">Platform</span>
+          <span class="s-val">cluster-a-01</span>
+        </div>
+        <div class="s-row">
+          <span class="s-key">Memory</span>
+          <span class="s-val">341 / 512 MB</span>
+        </div>
+        <div class="s-progress">
+          <div class="s-progress-fill"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- CENTER -->
+    <main class="center">
+
+      <!-- Welcome Card -->
+      <div class="welcome-card">
+        <div style="position:relative; flex-shrink:0;">
+          <div class="welcome-logo-glow"></div>
+          <div class="welcome-logo">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="#4FD1FF" stroke-width="0.8" opacity="0.5"/>
+              <circle cx="12" cy="12" r="5" fill="#4FD1FF" opacity="0.1"/>
+              <circle cx="12" cy="12" r="2.5" fill="#4FD1FF"/>
+              <circle cx="6" cy="12" r="1.5" fill="#7C5CFF" opacity="0.8"/>
+              <circle cx="18" cy="12" r="1.5" fill="#00E5A8" opacity="0.8"/>
+              <circle cx="12" cy="6" r="1.5" fill="#8AA4FF" opacity="0.8"/>
+              <circle cx="12" cy="18" r="1.5" fill="#B18CFF" opacity="0.8"/>
+            </svg>
+          </div>
+        </div>
+        <div class="welcome-content">
+          <div class="welcome-title">Welcome to AetherOS</div>
+          <div class="welcome-sub">Autonomous AI Operating System — Modular. Distributed. Self-optimizing.</div>
+        </div>
+        <div class="welcome-pills">
+          <span class="pill"><span class="dot green"></span> Kernel Ready</span>
+          <span class="pill"><span class="dot blue"></span> Swarm Active</span>
+          <span class="pill"><span class="dot purple"></span> Memory Online</span>
+          <span class="pill"><span class="dot green"></span> Cluster Connected</span>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-num accent">28</div>
+          <div class="stat-label">Tools</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num accent2">62</div>
+          <div class="stat-label">Skills</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num accent3">12</div>
+          <div class="stat-label">Active Agents</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num warning">4</div>
+          <div class="stat-label">Running Tasks</div>
+        </div>
+      </div>
+
+      <!-- Available Tools -->
+      <div class="section-header">
+        <h3>Available Tools</h3>
+        <span class="see-all">See all 28 →</span>
+      </div>
+      <div class="tools-grid">
+        <div class="tool-card">
+          <div class="t-icon">🌐</div>
+          <div class="t-info"><div class="t-name">browser</div><div class="t-desc">Web navigation & extraction</div></div>
+        </div>
+        <div class="tool-card">
+          <div class="t-icon">▶</div>
+          <div class="t-info"><div class="t-name">execute-code</div><div class="t-desc">Run code in sandbox</div></div>
+        </div>
+        <div class="tool-card">
+          <div class="t-icon">🖥</div>
+          <div class="t-info"><div class="t-name">computer-use</div><div class="t-desc">Remote desktop control</div></div>
+        </div>
+        <div class="tool-card">
+          <div class="t-icon">⇄</div>
+          <div class="t-info"><div class="t-name">delegate-task</div><div class="t-desc">Sub-agent orchestration</div></div>
+        </div>
+        <div class="tool-card">
+          <div class="t-icon">📁</div>
+          <div class="t-info"><div class="t-name">filesystem</div><div class="t-desc">File read/write/search</div></div>
+        </div>
+        <div class="tool-card">
+          <div class="t-icon">⎔</div>
+          <div class="t-info"><div class="t-name">docker</div><div class="t-desc">Container management</div></div>
+        </div>
+        <div class="tool-card">
+          <div class="t-icon">⌂</div>
+          <div class="t-info"><div class="t-name">github</div><div class="t-desc">Repository operations</div></div>
+        </div>
+        <div class="tool-card">
+          <div class="t-icon">◎</div>
+          <div class="t-info"><div class="t-name">search</div><div class="t-desc">Web & codebase search</div></div>
+        </div>
+      </div>
+
+      <!-- Available Skills -->
+      <div class="section-header">
+        <h3>Available Skills</h3>
+        <span class="see-all">See all 62 →</span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="s-icon">⚡</div>
+          <div class="s-name">Software Engineering</div>
+          <div class="s-count">14 skills</div>
+        </div>
+        <div class="skill-card">
+          <div class="s-icon">◎</div>
+          <div class="s-name">Research</div>
+          <div class="s-count">8 skills</div>
+        </div>
+        <div class="skill-card">
+          <div class="s-icon">⎈</div>
+          <div class="s-name">DevOps</div>
+          <div class="s-count">9 skills</div>
+        </div>
+        <div class="skill-card">
+          <div class="s-icon">⊟</div>
+          <div class="s-name">Data Science</div>
+          <div class="s-count">6 skills</div>
+        </div>
+        <div class="skill-card">
+          <div class="s-icon">◈</div>
+          <div class="s-name">Security</div>
+          <div class="s-count">5 skills</div>
+        </div>
+        <div class="skill-card">
+          <div class="s-icon">⊡</div>
+          <div class="s-name">Memory</div>
+          <div class="s-count">4 skills</div>
+        </div>
+        <div class="skill-card">
+          <div class="s-icon">◇</div>
+          <div class="s-name">Autonomous Agents</div>
+          <div class="s-count">7 skills</div>
+        </div>
+        <div class="skill-card">
+          <div class="s-icon">✦</div>
+          <div class="s-name">Creative</div>
+          <div class="s-count">9 skills</div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="sidebar-right">
+
+      <div class="sb-section">
+        <div class="sb-title">System Health</div>
+        <div class="health-list">
+          <div class="health-item">
+            <div class="h-left"><span class="h-dot online"></span> Kernel</div>
+            <span class="h-status">online</span>
+          </div>
+          <div class="health-item">
+            <div class="h-left"><span class="h-dot online"></span> Swarm</div>
+            <span class="h-status">active</span>
+          </div>
+          <div class="health-item">
+            <div class="h-left"><span class="h-dot online"></span> Memory</div>
+            <span class="h-status">online</span>
+          </div>
+          <div class="health-item">
+            <div class="h-left"><span class="h-dot online"></span> Engineering</div>
+            <span class="h-status">online</span>
+          </div>
+          <div class="health-item">
+            <div class="h-left"><span class="h-dot online"></span> Marketplace</div>
+            <span class="h-status">online</span>
+          </div>
+          <div class="health-item">
+            <div class="h-left"><span class="h-dot online"></span> Enterprise</div>
+            <span class="h-status">online</span>
+          </div>
+          <div class="health-item">
+            <div class="h-left"><span class="h-dot online"></span> Cluster</div>
+            <span class="h-status">connected</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-title">Recent Activity</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-dot green"></span>
+            <div class="timeline-content">
+              <div class="t-event">Agent aether-worker-03 started</div>
+              <div class="t-time">2 min ago</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot blue"></span>
+            <div class="timeline-content">
+              <div class="t-event">Repository indexed: aetheros-core</div>
+              <div class="t-time">5 min ago</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot purple"></span>
+            <div class="timeline-content">
+              <div class="t-event">Task #1427 completed</div>
+              <div class="t-time">12 min ago</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot green"></span>
+            <div class="timeline-content">
+              <div class="t-event">Memory optimized — 2.1k entries</div>
+              <div class="t-time">18 min ago</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot yellow"></span>
+            <div class="timeline-content">
+              <div class="t-event">Plugin loaded: observability-v2</div>
+              <div class="t-time">25 min ago</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot green"></span>
+            <div class="timeline-content">
+              <div class="t-event">Deployment to cluster-beta finished</div>
+              <div class="t-time">37 min ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-title">Notifications</div>
+        <div class="notif-list">
+          <div class="notif-item">
+            <span class="n-icon">⚠</span>
+            <span class="n-text">Memory threshold approaching</span>
+            <span class="n-count">341 MB</span>
+          </div>
+          <div class="notif-item">
+            <span class="n-icon">◎</span>
+            <span class="n-text">Agent update available: v0.18.1</span>
+            <span class="n-count">new</span>
+          </div>
+          <div class="notif-item">
+            <span class="n-icon">◈</span>
+            <span class="n-text">Approval request: deploy to prod</span>
+            <span class="n-count">pending</span>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- COMMAND BAR -->
+  <div class="command-bar">
+    <div class="command-input-wrapper">
+      <span class="prompt">❯</span>
+      <input type="text" placeholder="Ask AetherOS..." autofocus>
+      <button class="send-btn">↵</button>
+    </div>
+    <div class="command-suggestions">
+      <span class="cmd-suggestion">/help</span>
+      <span class="cmd-suggestion">/agents</span>
+      <span class="cmd-suggestion">/tasks</span>
+      <span class="cmd-suggestion">/workspace</span>
+      <span class="cmd-suggestion">/cluster</span>
+      <span class="cmd-suggestion">/memory</span>
+      <span class="cmd-suggestion">/status</span>
+      <span class="cmd-suggestion">/plugins</span>
+    </div>
+  </div>
+
+  <!-- DIAGNOSTICS PANEL (hidden) -->
+  <div class="diag-panel" id="diag-panel">
+    <div class="diag-header">
+      <div class="diag-title">
+        <span>✕</span>
+        <span>Diagnostics — Task #1427 failed</span>
+      </div>
+      <div class="diag-actions">
+        <button class="diag-btn">↻ Retry</button>
+        <button class="diag-btn">📋 Copy</button>
+        <button class="diag-btn">📂 Logs</button>
+        <button class="diag-btn">🐛 Report</button>
+        <button class="diag-btn primary">✦ AI Fix</button>
+      </div>
+    </div>
+    <div class="diag-stack">RuntimeError: Agent worker-03 exceeded max iterations (90) in task #1427
+  at Agent._check_iteration_budget (run_agent.py:1427)
+  at Agent.run_conversation (run_agent.py:893)
+  at delegate_task._run_child (tools/delegate_tool.py:312)
+  at task_orchestrator.execute (orchestrator.py:89)
+Caused by: cyclic dependency detected in skill chain: 
+  code-review → deploy → validate → code-review</div>
+  </div>
+
+</div>
+
+<script>
+// ===== PARTICLES =====
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let W, H;
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const particles = Array.from({ length: 80 }, () => ({
+  x: Math.random() * W,
+  y: Math.random() * H,
+  vx: (Math.random() - 0.5) * 0.3,
+  vy: (Math.random() - 0.5) * 0.3,
+  r: Math.random() * 1.5 + 0.5,
+  a: Math.random() * 0.3 + 0.05,
+}));
+
+function drawParticles() {
+  ctx.clearRect(0, 0, W, H);
+  for (const p of particles) {
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x < 0) p.x = W;
+    if (p.x > W) p.x = 0;
+    if (p.y < 0) p.y = H;
+    if (p.y > H) p.y = 0;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(79, 209, 255, ${p.a})`;
+    ctx.fill();
+  }
+
+  // subtle lines between nearby particles
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(79, 209, 255, ${0.04 * (1 - dist / 120)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// ===== METRIC ANIMATION =====
+function animateMetrics() {
+  const metrics = [
+    { el: document.getElementById('cpu-val'), base: 23, range: 10 },
+    { el: document.getElementById('ram-val'), base: 45, range: 8 },
+    { el: document.getElementById('gpu-val'), base: 12, range: 6 },
+    { el: document.getElementById('net-val'), base: 67, range: 6 },
+  ];
+  const bars = document.querySelectorAll('.bar-fill');
+  setInterval(() => {
+    metrics.forEach((m, i) => {
+      const v = Math.min(100, Math.max(0, m.base + (Math.random() - 0.5) * m.range * 2));
+      m.el.textContent = Math.round(v) + '%';
+      if (bars[i]) bars[i].style.width = Math.round(v) + '%';
+    });
+  }, 2000);
+}
+animateMetrics();
+
+// ===== NAVIGATION =====
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// ===== COMMAND INPUT =====
+const cmdInput = document.querySelector('.command-input-wrapper input');
+const sendBtn = document.querySelector('.send-btn');
+
+function handleCommand() {
+  const val = cmdInput.value.trim();
+  if (!val) return;
+  if (val.toLowerCase() === 'diagnose' || val.toLowerCase() === '/diagnose') {
+    document.getElementById('diag-panel').classList.toggle('visible');
+  }
+  cmdInput.value = '';
+}
+
+cmdInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') handleCommand();
+});
+sendBtn.addEventListener('click', handleCommand);
+
+// ===== SUGGESTION CLICKS =====
+document.querySelectorAll('.cmd-suggestion').forEach(el => {
+  el.addEventListener('click', () => {
+    cmdInput.value = el.textContent + ' ';
+    cmdInput.focus();
+  });
+});
+
+// ===== DIAG BUTTONS =====
+document.querySelectorAll('.diag-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (btn.textContent.includes('Retry')) {
+      document.getElementById('diag-panel').classList.remove('visible');
+    }
+  });
+});
+
+// ===== LOGO PULSE GLOW =====
+const glowEl = document.querySelector('.welcome-logo-glow');
+let glowAngle = 0;
+setInterval(() => {
+  if (!glowEl) return;
+  const s = 1 + Math.sin(glowAngle) * 0.05;
+  const o = 0.6 + Math.sin(glowAngle) * 0.2;
+  glowEl.style.transform = `scale(${s})`;
+  glowAngle += 0.02;
+}, 50);
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+{"apple":"absent (macOS unsigned)","windows":"absent (Authenticode unsigned)","verdict":"SIGNING_BLOCKED_BY_CREDENTIALS — artifacts must not be labeled production-signed"}

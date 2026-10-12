@@ -1,0 +1,16 @@
+{
+  "product": "AetherOS iOS",
+  "bundle": "com.aetheros.mobile",
+  "version": "1.0.0 (build 1) - UNRELEASED WORKTREE",
+  "commit": "UNVERIFIED (dirty worktree)",
+  "target": "iPhone only (family 1, portrait) - iPad NOT targeted",
+  "xcode_build": "NOT EXECUTED - BLOCKED (no macOS/Xcode)",
+  "tests_swift": "5 files exist - NOT RUN - BLOCKED (no Xcode)",
+  "tests_contract": "6 passed (executed 2026-09-11, incl. backend handler check)",
+  "entitlements": "MISSING FILE (P1)",
+  "privacy_manifest": "MISSING (P1)",
+  "apns": "NOT CONFIGURED - BLOCKED",
+  "testflight": "NO BUILD - BLOCKED (credentials)",
+  "app_store": "NOT SUBMITTED",
+  "known_limitations": ["iphone-only", "portrait-only", "no push", "no biometrics proof", "no offline live test", "no device tests"]
+}

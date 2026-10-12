@@ -1,0 +1,9 @@
+MSI Property table (WindowsInstaller COM, actual read 2026-09-15):
+Manufacturer = AetherOS
+ProductCode = {77035F50-600E-49B1-851F-6E004FDBC134}
+ProductName = AetherOS
+ProductVersion = 1.0.0.0
+UpgradeCode = {5A6B7C8D-9E0F-1A2B-3C4D-5E6F7A8B9C0D}
+size=203137784
+ProductCode format VALID (GUID braces); ProductVersion matches 1.0.0.x;
+ProductName = AetherOS; UpgradeCode matches package.json msi.upgradeCode.

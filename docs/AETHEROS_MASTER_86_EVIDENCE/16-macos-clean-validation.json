@@ -1,0 +1,1 @@
+{"reason":"no clean supported macOS environment obtainable; no Gatekeeper/quarantine bypasses used","status":"BLOCKED_BY_ENVIRONMENT","steps":"download/SHA-256/DMG/install/launch/Gatekeeper/notarization-check/runtime/IPC/UI/remove/reinstall/relaunch sweep NOT executed"}

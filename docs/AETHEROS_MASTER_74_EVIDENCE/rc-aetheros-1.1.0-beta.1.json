@@ -1,0 +1,41 @@
+{
+  "product": "AetherOS",
+  "kind": "release-candidate",
+  "version": "1.1.0-beta.1",
+  "channel": "beta",
+  "releaseId": "aetheros-1.1.0-beta.1",
+  "commit": "2bdfbfd8ebcf2bb27b06f600c2beb159e723d8b1",
+  "buildId": "local",
+  "artifacts": [
+    {
+      "file": "AetherOS-1.1.0-beta.1-win-x64.exe",
+      "platform": "win",
+      "arch": "x64",
+      "size": 12345,
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "channel": "beta"
+    }
+  ],
+  "sbom": {
+    "path": "C:\\Users\\User\\AppData\\Local\\Temp\\rc-test\\sbom.spdx.json",
+    "sha256": "ef78e005a978a0261319b8eca054706c2934d21ecee7b7d681e80bb1f756eb36"
+  },
+  "provenance": {
+    "workflow": "update-release.yml",
+    "builder": "AetherOS",
+    "buildTimestamp": "2026-09-12T14:00:04.861Z"
+  },
+  "testStatus": {
+    "updater": "pass",
+    "release": "pass"
+  },
+  "knownIssues": [
+    "BETA-KNOWN-1: macOS build blocked, no signing runner"
+  ],
+  "platformCoverage": {
+    "win32-x64": "BETA_READY_WITH_LIMITATIONS",
+    "darwin-arm64": "BLOCKED",
+    "linux-x64": "UNVERIFIED"
+  },
+  "frozenAt": "2026-09-12T14:00:04.862Z"
+}

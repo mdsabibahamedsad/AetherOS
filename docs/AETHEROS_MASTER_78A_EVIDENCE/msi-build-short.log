@@ -1,0 +1,12 @@
+  ΓÇó electron-builder  version=26.8.1 os=10.0.26200
+  ΓÇó loaded configuration  file=package.json ("build" field)
+  ΓÇó packaging       platform=win32 arch=x64 electron=40.9.3 appOutDir=dist-packaged\win-unpacked
+[before-build] WARNING: canonical LICENSE missing at D:\LICENSE
+  ΓÇó packageManager not detected by file, falling back to environment detection  resolvedPackageManager=npm detected=D:\hb
+  ΓÇó updating asar integrity executable resource  executablePath=dist-packaged\win-unpacked\AetherOS.exe
+[set-exe-identity] stamping D:\hb\dist-packaged\win-unpacked\AetherOS.exe
+[set-exe-identity] icon: D:\hb\assets\icon.ico
+[set-exe-identity] done ΓÇö AetherOS icon + identity stamped
+  ΓÇó skipping "afterSign" hook as no signing occurred, perhaps you intended "afterPack"?
+  ΓÇó building        target=MSI arch=x64 file=dist-packaged\AetherOS-1.0.0-win-x64.msi
+  ΓÇó signing with signtool.exe  path=dist-packaged\AetherOS-1.0.0-win-x64.msi

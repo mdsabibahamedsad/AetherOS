@@ -1,0 +1,402 @@
+# Trust Fabric Migration Report (§201)
+
+Files scanned with findings: 389
+
+## protected (19)
+- `aetheros_control_plane/agent_cards.py` — raw network access: urllib.request.urlopen(
+- `aetheros_security/privacy/__init__.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_security/sandbox/__init__.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `aetheros_security/secrets/__init__.py` — secret access: keyring.get_password(
+- `benchmark/adapters/__init__.py` — raw subprocess execution: subprocess.run(
+- `benchmark/adapters/__init__.py` — raw filesystem mutation: shutil.rmtree(
+- `benchmark/environment.py` — raw subprocess execution: subprocess.run(
+- `benchmark/validators.py` — raw subprocess execution: subprocess.run(
+- `scripts/trust_bypass_audit.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(, os.system(, os.execv
+- `scripts/trust_bypass_audit.py` — raw network access: urllib.request.urlopen(, requests.post(, requests.get(, socket.create_connection(
+- `scripts/trust_bypass_audit.py` — raw filesystem mutation: shutil.rmtree(, os.remove(, os.removedirs(, Path.unlink(
+- `scripts/trust_bypass_audit.py` — secret access: keyring.get_password(, os.environ['
+- `scripts/trust_bypass_audit.py` — browser action: page.goto(, browser_navigate(
+- `scripts/trust_bypass_audit.py` — robot action: set_velocity(, .move_joints(
+- `scripts/trust_bypass_audit.py` — A2A send: federation.send(, send_remote(
+- `scripts/trust_bypass_audit.py` — MCP execution: mcp.call_tool(, tools/call
+- `scripts/trust_bypass_audit.py` — automation trigger: scheduler.add_job(, cron.schedule(
+- `scripts/trust_bypass_audit.py` — direct tool invocation: handle_function_call(
+- `trust/approvals.py` — raw network access: requests.get(
+
+## partially protected (16)
+- `aetheros_cli/doctor.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/doctor.py` — secret access: os.environ["
+- `aetheros_cli/oneshot.py` — secret access: os.environ["
+- `aetheros_cli/web_server.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `aetheros_cli/web_server.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cli/web_server.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/web_server.py` — secret access: os.environ["
+- `cli.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(, os.system(
+- `cli.py` — secret access: os.environ["
+- `cron/scheduler.py` — raw subprocess execution: subprocess.run(
+- `cron/scheduler.py` — secret access: os.environ["
+- `model_tools.py` — direct tool invocation: handle_function_call(
+- `tools/skill_manager_tool.py` — raw filesystem mutation: shutil.rmtree(
+- `tui_gateway/server.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `tui_gateway/server.py` — raw network access: urllib.request.urlopen(, socket.create_connection(
+- `tui_gateway/server.py` — secret access: os.environ["
+
+## legacy bypass (354)
+- `acp_adapter/server.py` — secret access: os.environ["
+- `aetheros_actions/adapters/browser.py` — browser action: browser_navigate(
+- `aetheros_ai_runtime/local.py` — raw subprocess execution: subprocess.run(
+- `aetheros_arch/health_checker.py` — raw network access: socket.create_connection(
+- `aetheros_automation/agents/browser_agent.py` — raw network access: urllib.request.urlopen(
+- `aetheros_automation/agents/qa.py` — raw subprocess execution: subprocess.run(
+- `aetheros_automation/agents/research.py` — raw network access: urllib.request.urlopen(
+- `aetheros_automation/browser/base.py` — browser action: page.goto(
+- `aetheros_automation/browser_automation/computer_use_manager.py` — raw subprocess execution: subprocess.run(
+- `aetheros_automation/browser_automation/web_search_manager.py` — raw network access: urllib.request.urlopen(
+- `aetheros_automation/calendar/handler.py` — raw subprocess execution: subprocess.Popen(
+- `aetheros_automation/code/review.py` — raw subprocess execution: subprocess.run(
+- `aetheros_automation/computer/apps.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `aetheros_automation/computer/notifications.py` — raw subprocess execution: subprocess.Popen(
+- `aetheros_automation/computer/screenshot.py` — raw filesystem mutation: os.remove(
+- `aetheros_automation/computer/windows.py` — raw subprocess execution: subprocess.run(
+- `aetheros_automation/developer/code_indexer.py` — raw filesystem mutation: os.remove(
+- `aetheros_automation/developer/dependency_manager.py` — raw subprocess execution: subprocess.run(
+- `aetheros_automation/developer/git_integration.py` — raw subprocess execution: subprocess.run(
+- `aetheros_automation/developer/project_manager.py` — raw subprocess execution: subprocess.run(
+- `aetheros_automation/developer/project_manager.py` — raw filesystem mutation: os.remove(
+- `aetheros_automation/files/backup.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_automation/files/operations.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_automation/orchestrator/approvals.py` — raw network access: requests.get(
+- `aetheros_automation/orchestrator/checkpoint.py` — raw filesystem mutation: os.remove(
+- `aetheros_automation/orchestrator/store.py` — raw filesystem mutation: os.remove(
+- `aetheros_automation/undo/checkpoints.py` — raw filesystem mutation: os.remove(
+- `aetheros_automation/undo/manager.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_autonomy/watchers.py` — raw subprocess execution: subprocess.run(
+- `aetheros_bootstrap.py` — secret access: os.environ["
+- `aetheros_cli/_subprocess_compat.py` — raw subprocess execution: subprocess.Popen(
+- `aetheros_cli/aetheros_account.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cli/backup.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/banner.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/banner.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cli/boot_animation.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/boot_animation.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cli/browser_connect.py` — raw subprocess execution: subprocess.Popen(
+- `aetheros_cli/browser_connect.py` — raw network access: urllib.request.urlopen(, socket.create_connection(
+- `aetheros_cli/claw.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/cli_commands_mixin.py` — secret access: os.environ["
+- `aetheros_cli/clipboard.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/cloud_provider_base.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/commands.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/config.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/container_boot.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/copilot_auth.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/copilot_auth.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cli/debug.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cli/dep_ensure.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/dingtalk_auth.py` — raw network access: requests.post(
+- `aetheros_cli/dump.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/extension_sdk.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/extension_sdk.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/extension_sdk.py` — MCP execution: tools/call
+- `aetheros_cli/first_launch.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/gateway.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(, os.execv
+- `aetheros_cli/gateway.py` — secret access: os.environ["
+- `aetheros_cli/gateway_windows.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `aetheros_cli/gateway_windows.py` — secret access: os.environ["
+- `aetheros_cli/gui_uninstall.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/initialization_flow.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/initialization_flow.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cli/kanban.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/kanban_db.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `aetheros_cli/kanban_db.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/main.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(, os.execv
+- `aetheros_cli/main.py` — raw network access: socket.create_connection(
+- `aetheros_cli/main.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/main.py` — secret access: os.environ["
+- `aetheros_cli/managed_uv.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/marketplace_manager.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/mcp_catalog.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/mcp_catalog.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/mcp_manager.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/mcp_manager.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cli/memory_setup.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/model_catalog.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cli/models.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cli/plugins_cmd.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/plugins_cmd.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/profile_distribution.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/profile_distribution.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/profiles.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/profiles.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/profiles.py` — secret access: os.environ["
+- `aetheros_cli/relaunch.py` — raw subprocess execution: subprocess.run(, os.execv
+- `aetheros_cli/runtime_provider.py` — raw network access: requests.get(
+- `aetheros_cli/sdk_commands.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cli/secrets_cli.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/security_audit.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cli/self_repair.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/service_manager.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/service_manager.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/setup.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/setup_wizard.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cli/skills_hub.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/stdio.py` — secret access: os.environ[", os.environ['
+- `aetheros_cli/tools_config.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/tools_config.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cli/uninstall.py` — raw subprocess execution: subprocess.run(
+- `aetheros_cli/uninstall.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_cli/webhook.py` — raw network access: urllib.request.urlopen(
+- `aetheros_cognitive/twins.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_computer/dispatcher.py` — browser action: browser_navigate(
+- `aetheros_constants.py` — secret access: os.environ["
+- `aetheros_developer_platform/sdk/csharp_sdk.py` — raw subprocess execution: subprocess.run(
+- `aetheros_developer_platform/sdk/go_sdk.py` — raw subprocess execution: subprocess.run(
+- `aetheros_developer_platform/sdk/java_sdk.py` — raw subprocess execution: subprocess.run(
+- `aetheros_developer_platform/sdk/javascript_sdk.py` — raw subprocess execution: subprocess.run(
+- `aetheros_developer_platform/sdk/python_sdk.py` — raw subprocess execution: subprocess.run(
+- `aetheros_developer_platform/sdk/rust_sdk.py` — raw subprocess execution: subprocess.run(
+- `aetheros_developer_platform/sdk/typescript_sdk.py` — raw subprocess execution: subprocess.run(
+- `aetheros_extensions/scanner.py` — raw subprocess execution: subprocess.Popen(
+- `aetheros_extensions/service.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_integrations/providers/storage.py` — raw network access: requests.get(
+- `aetheros_intelligence/local_ai.py` — raw subprocess execution: subprocess.run(
+- `aetheros_intelligence/local_ai.py` — raw network access: urllib.request.urlopen(, requests.post(
+- `aetheros_jarvis/context.py` — raw subprocess execution: subprocess.run(
+- `aetheros_mesh/governance.py` — raw network access: requests.get(
+- `aetheros_ocr/providers/cloud.py` — raw network access: requests.post(
+- `aetheros_orchestrator/cli/commands.py` — raw network access: urllib.request.urlopen(
+- `aetheros_production/backup/__init__.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_production/observability/__init__.py` — raw network access: urllib.request.urlopen(
+- `aetheros_production/packaging/__init__.py` — raw subprocess execution: subprocess.run(
+- `aetheros_production/packaging/__init__.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_production/security/__init__.py` — raw subprocess execution: os.system(
+- `aetheros_providers/local_model_manager.py` — raw subprocess execution: subprocess.run(
+- `aetheros_providers/local_model_manager.py` — raw network access: socket.create_connection(
+- `aetheros_providers/model_validator.py` — raw network access: urllib.request.urlopen(
+- `aetheros_runtime/code_executor.py` — raw subprocess execution: subprocess.run(
+- `aetheros_runtime/filesystem_engine.py` — raw filesystem mutation: shutil.rmtree(
+- `aetheros_science/experiments.py` — raw subprocess execution: subprocess.run(
+- `aetheros_self_improvement/graders_eval.py` — raw subprocess execution: os.system(
+- `aetheros_self_improvement/suites.py` — raw subprocess execution: os.system(
+- `aetheros_vision/gpu.py` — raw subprocess execution: subprocess.run(
+- `aetheros_vision/video.py` — raw subprocess execution: subprocess.run(
+- `aetheros_voice/computer/apps.py` — raw subprocess execution: subprocess.Popen(
+- `aetheros_voice/computer/controller.py` — raw subprocess execution: subprocess.run(
+- `agent/agent_init.py` — secret access: os.environ["
+- `agent/agent_runtime_helpers.py` — direct tool invocation: handle_function_call(
+- `agent/anthropic_adapter.py` — raw subprocess execution: subprocess.run(
+- `agent/anthropic_adapter.py` — raw network access: urllib.request.urlopen(
+- `agent/azure_identity_adapter.py` — secret access: os.environ["
+- `agent/coding_context.py` — raw subprocess execution: subprocess.run(
+- `agent/context_references.py` — raw subprocess execution: subprocess.run(
+- `agent/conversation_compression.py` — secret access: os.environ["
+- `agent/copilot_acp_client.py` — raw subprocess execution: subprocess.Popen(
+- `agent/curator_backup.py` — raw filesystem mutation: shutil.rmtree(
+- `agent/google_code_assist.py` — raw network access: urllib.request.urlopen(
+- `agent/google_oauth.py` — raw network access: urllib.request.urlopen(
+- `agent/image_gen_provider.py` — raw network access: requests.get(
+- `agent/lsp/install.py` — raw subprocess execution: subprocess.run(
+- `agent/lsp/servers.py` — secret access: os.environ["
+- `agent/model_metadata.py` — raw network access: requests.get(
+- `agent/models_dev.py` — raw network access: requests.get(
+- `agent/multimodal/artifacts.py` — raw filesystem mutation: os.remove(
+- `agent/multimodal/ci_cd.py` — raw subprocess execution: subprocess.run(
+- `agent/multimodal/disaster_recovery.py` — raw subprocess execution: subprocess.run(
+- `agent/multimodal/local_models.py` — raw subprocess execution: subprocess.run(
+- `agent/multimodal/local_models.py` — raw network access: requests.post(
+- `agent/multimodal/media_abstraction.py` — raw subprocess execution: subprocess.run(
+- `agent/multimodal/production.py` — raw subprocess execution: subprocess.run(
+- `agent/multimodal/security_advanced.py` — raw network access: requests.get(
+- `agent/orchestration/approval.py` — raw network access: requests.get(
+- `agent/quality/benchmarks.py` — raw subprocess execution: subprocess.run(
+- `agent/research/targets.py` — raw subprocess execution: subprocess.run(
+- `agent/secret_sources/bitwarden.py` — raw subprocess execution: subprocess.run(
+- `agent/secret_sources/bitwarden.py` — raw network access: urllib.request.urlopen(
+- `agent/shell_hooks.py` — raw subprocess execution: subprocess.run(
+- `agent/skill_preprocessing.py` — raw subprocess execution: subprocess.run(
+- `agent/tool_executor.py` — direct tool invocation: handle_function_call(
+- `agent/transports/aetheros_tools_mcp_server.py` — direct tool invocation: handle_function_call(
+- `agent/transports/codex_app_server.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `agent/transports/codex_app_server.py` — raw network access: requests.get(
+- `agents/dashboard.py` — raw subprocess execution: os.system(
+- `cluster/transport.py` — A2A send: send_remote(
+- `core/jarvis/executor.py` — raw subprocess execution: subprocess.run(
+- `core/jarvis/observer.py` — raw subprocess execution: subprocess.run(
+- `cron/jobs.py` — raw filesystem mutation: shutil.rmtree(
+- `engineering/linting.py` — raw subprocess execution: subprocess.run(
+- `engineering/packaging.py` — raw subprocess execution: subprocess.run(
+- `engineering/static_analysis.py` — raw subprocess execution: subprocess.run(
+- `engineering/testing.py` — raw subprocess execution: subprocess.run(
+- `enterprise/approvals.py` — raw network access: requests.get(
+- `gateway/config.py` — secret access: os.environ["
+- `gateway/kanban_watchers.py` — secret access: os.environ["
+- `gateway/platforms/base.py` — raw filesystem mutation: os.remove(
+- `gateway/platforms/sms.py` — secret access: os.environ["
+- `gateway/platforms/webhook.py` — raw subprocess execution: subprocess.run(
+- `gateway/platforms/wecom.py` — raw network access: urllib.request.urlopen(
+- `gateway/platforms/whatsapp.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `gateway/platforms/yuanbao.py` — secret access: os.environ["
+- `gateway/run.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `gateway/run.py` — secret access: os.environ["
+- `gateway/session_context.py` — secret access: os.environ["
+- `gateway/shutdown_forensics.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `gateway/slash_commands.py` — raw subprocess execution: subprocess.Popen(
+- `gateway/status.py` — raw subprocess execution: subprocess.run(
+- `hub/mcp_marketplace.py` — raw subprocess execution: subprocess.run(
+- `hub/mcp_marketplace.py` — raw filesystem mutation: shutil.rmtree(
+- `hub/plugins.py` — raw filesystem mutation: shutil.rmtree(
+- `hub/sandbox.py` — raw filesystem mutation: shutil.rmtree(
+- `hub/security.py` — raw filesystem mutation: shutil.rmtree(
+- `hub/themes.py` — raw filesystem mutation: shutil.rmtree(
+- `kernel/approval.py` — raw network access: requests.get(
+- `kernel/artifact_manager.py` — raw filesystem mutation: shutil.rmtree(
+- `kernel/reviewer.py` — raw subprocess execution: os.system(
+- `kernel/workspace.py` — raw filesystem mutation: shutil.rmtree(
+- `marketplace/installer.py` — raw filesystem mutation: shutil.rmtree(
+- `marketplace/registry.py` — raw network access: urllib.request.urlopen(
+- `marketplace/updater.py` — raw filesystem mutation: shutil.rmtree(
+- `optional-skills/blockchain/evm/scripts/evm_client.py` — raw network access: urllib.request.urlopen(
+- `optional-skills/blockchain/hyperliquid/scripts/hyperliquid_client.py` — raw network access: urllib.request.urlopen(
+- `optional-skills/blockchain/solana/scripts/solana_client.py` — raw network access: urllib.request.urlopen(
+- `optional-skills/creative/kanban-video-orchestrator/scripts/monitor.py` — raw subprocess execution: subprocess.run(
+- `optional-skills/creative/meme-generation/scripts/generate_meme.py` — raw network access: urllib.request.urlopen(, requests.get(
+- `optional-skills/creative/pixel-art/scripts/pixel_art_video.py` — raw subprocess execution: subprocess.run(
+- `optional-skills/devops/watchers/scripts/watch_github.py` — raw network access: urllib.request.urlopen(
+- `optional-skills/devops/watchers/scripts/watch_http_json.py` — raw network access: urllib.request.urlopen(
+- `optional-skills/devops/watchers/scripts/watch_rss.py` — raw network access: urllib.request.urlopen(
+- `optional-skills/finance/excel-author/scripts/recalc.py` — raw subprocess execution: subprocess.run(
+- `optional-skills/health/fitness-nutrition/scripts/nutrition_search.py` — raw network access: urllib.request.urlopen(
+- `optional-skills/migration/openclaw-migration/scripts/openclaw_to_hermes.py` — raw filesystem mutation: shutil.rmtree(
+- `optional-skills/productivity/canvas/scripts/canvas_api.py` — raw network access: requests.get(
+- `optional-skills/productivity/telephony/scripts/telephony.py` — raw network access: urllib.request.urlopen(
+- `optional-skills/research/domain-intel/scripts/domain_intel.py` — raw network access: urllib.request.urlopen(, socket.create_connection(
+- `optional-skills/research/drug-discovery/scripts/chembl_target.py` — raw network access: urllib.request.urlopen(
+- `optional-skills/research/drug-discovery/scripts/ro5_screen.py` — raw network access: urllib.request.urlopen(
+- `optional-skills/research/osint-investigation/scripts/_http.py` — raw network access: urllib.request.urlopen(
+- `optional-skills/research/osint-investigation/scripts/fetch_icij_offshore.py` — raw network access: urllib.request.urlopen(
+- `optional-skills/research/osint-investigation/scripts/fetch_usaspending.py` — raw network access: urllib.request.urlopen(
+- `plugins/browser/browser_use/provider.py` — raw network access: requests.post(
+- `plugins/browser/browserbase/provider.py` — raw network access: requests.post(
+- `plugins/browser/firecrawl/provider.py` — raw network access: requests.post(
+- `plugins/disk-cleanup/disk_cleanup.py` — raw filesystem mutation: shutil.rmtree(
+- `plugins/google_meet/audio_bridge.py` — raw subprocess execution: subprocess.run(
+- `plugins/google_meet/cli.py` — browser action: page.goto(
+- `plugins/google_meet/meet_bot.py` — browser action: page.goto(
+- `plugins/google_meet/process_manager.py` — raw subprocess execution: subprocess.Popen(
+- `plugins/image_gen/krea/__init__.py` — raw network access: requests.post(, requests.get(
+- `plugins/image_gen/xai/__init__.py` — raw network access: requests.post(
+- `plugins/memory/byterover/__init__.py` — raw subprocess execution: subprocess.run(
+- `plugins/memory/hindsight/__init__.py` — raw subprocess execution: subprocess.run(
+- `plugins/memory/hindsight/__init__.py` — raw network access: urllib.request.urlopen(
+- `plugins/memory/honcho/cli.py` — raw subprocess execution: subprocess.run(
+- `plugins/memory/honcho/client.py` — raw subprocess execution: subprocess.run(
+- `plugins/memory/retaindb/__init__.py` — raw network access: requests.post(, requests.get(
+- `plugins/memory/supermemory/__init__.py` — raw network access: urllib.request.urlopen(
+- `plugins/model-providers/anthropic/__init__.py` — raw network access: urllib.request.urlopen(
+- `plugins/platforms/discord/adapter.py` — raw subprocess execution: subprocess.run(
+- `plugins/platforms/discord/adapter.py` — secret access: os.environ["
+- `plugins/platforms/discord/voice_mixer.py` — raw subprocess execution: subprocess.run(
+- `plugins/platforms/google_chat/oauth.py` — raw network access: urllib.request.urlopen(
+- `plugins/platforms/google_chat/oauth.py` — secret access: os.environ["
+- `plugins/platforms/line/adapter.py` — secret access: os.environ["
+- `plugins/platforms/mattermost/adapter.py` — secret access: os.environ["
+- `plugins/platforms/photon/adapter.py` — raw subprocess execution: subprocess.Popen(
+- `plugins/platforms/photon/cli.py` — raw subprocess execution: subprocess.run(
+- `plugins/platforms/simplex/adapter.py` — raw subprocess execution: subprocess.run(
+- `plugins/platforms/simplex/adapter.py` — raw filesystem mutation: os.remove(
+- `plugins/security-guidance/patterns.py` — raw subprocess execution: subprocess.run(, os.system(
+- `plugins/web/parallel/provider.py` — MCP execution: tools/call
+- `production/maintenance.py` — raw filesystem mutation: shutil.rmtree(
+- `production/regression.py` — raw subprocess execution: subprocess.run(
+- `production/release_manager.py` — raw subprocess execution: subprocess.run(
+- `production/release_manager.py` — raw filesystem mutation: shutil.rmtree(
+- `production/release_validation.py` — raw subprocess execution: subprocess.run(
+- `providers/base.py` — raw network access: urllib.request.urlopen(
+- `scripts/benchmark_browser_eval.py` — raw subprocess execution: subprocess.Popen(
+- `scripts/benchmark_browser_eval.py` — raw network access: urllib.request.urlopen(
+- `scripts/benchmark_browser_eval.py` — raw filesystem mutation: shutil.rmtree(
+- `scripts/check-windows-footguns.py` — raw subprocess execution: subprocess.run(
+- `scripts/check_subprocess_stdin.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `scripts/contributor_audit.py` — raw subprocess execution: subprocess.run(
+- `scripts/discord-voice-doctor.py` — raw network access: requests.get(
+- `scripts/generate_branding_assets.py` — raw subprocess execution: os.system(
+- `scripts/install_psutil_android.py` — raw subprocess execution: subprocess.run(
+- `scripts/profile-tui.py` — raw subprocess execution: subprocess.run(, os.execv
+- `scripts/release.py` — raw subprocess execution: subprocess.run(
+- `scripts/release.py` — raw filesystem mutation: shutil.rmtree(
+- `scripts/run_tests_parallel.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `scripts/tool_search_livetest.py` — raw filesystem mutation: shutil.rmtree(
+- `scripts/tool_search_livetest.py` — secret access: os.environ["
+- `sdk/context.py` — raw network access: urllib.request.urlopen(
+- `skills/creative/comfyui/scripts/auto_fix_deps.py` — raw subprocess execution: subprocess.run(
+- `skills/creative/comfyui/scripts/hardware_check.py` — raw subprocess execution: subprocess.run(
+- `skills/creative/comfyui/scripts/run_workflow.py` — raw network access: socket.create_connection(
+- `skills/creative/comfyui/scripts/ws_monitor.py` — raw network access: socket.create_connection(
+- `skills/creative/excalidraw/scripts/upload.py` — raw network access: urllib.request.urlopen(
+- `skills/productivity/google-workspace/scripts/google_api.py` — raw subprocess execution: subprocess.run(
+- `skills/productivity/google-workspace/scripts/gws_bridge.py` — raw subprocess execution: subprocess.run(
+- `skills/productivity/google-workspace/scripts/gws_bridge.py` — raw network access: urllib.request.urlopen(
+- `skills/productivity/google-workspace/scripts/setup.py` — raw network access: urllib.request.urlopen(
+- `skills/productivity/google-workspace/scripts/setup.py` — secret access: os.environ["
+- `skills/productivity/maps/scripts/maps_client.py` — raw network access: urllib.request.urlopen(
+- `skills/research/arxiv/scripts/search_arxiv.py` — raw network access: urllib.request.urlopen(
+- `skills/research/polymarket/scripts/polymarket.py` — raw network access: urllib.request.urlopen(
+- `tool_runtime/browser/runtime.py` — browser action: page.goto(
+- `tool_runtime/desktop/runtime.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `tool_runtime/filesystem/tools.py` — raw filesystem mutation: shutil.rmtree(
+- `tool_runtime/git/runtime.py` — raw subprocess execution: subprocess.run(
+- `tool_runtime/python/runtime.py` — raw subprocess execution: subprocess.run(
+- `tool_runtime/rest/runtime.py` — raw network access: urllib.request.urlopen(
+- `tool_runtime/terminal/runtime.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `tool_runtime/testing/tests.py` — raw filesystem mutation: shutil.rmtree(
+- `tools/approval.py` — secret access: os.environ["
+- `tools/browser_camofox.py` — raw network access: requests.post(, requests.get(
+- `tools/browser_tool.py` — raw subprocess execution: subprocess.Popen(
+- `tools/browser_tool.py` — raw network access: requests.get(
+- `tools/browser_tool.py` — raw filesystem mutation: shutil.rmtree(
+- `tools/browser_tool.py` — browser action: browser_navigate(
+- `tools/browser_transfer_tools.py` — raw network access: requests.get(
+- `tools/checkpoint_manager.py` — raw subprocess execution: subprocess.run(
+- `tools/checkpoint_manager.py` — raw filesystem mutation: shutil.rmtree(
+- `tools/code_execution_tool.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `tools/code_execution_tool.py` — raw filesystem mutation: shutil.rmtree(
+- `tools/code_execution_tool.py` — secret access: os.environ["
+- `tools/code_execution_tool.py` — direct tool invocation: handle_function_call(
+- `tools/computer_use/linux_backend.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `tools/computer_use/win32_backend.py` — raw subprocess execution: subprocess.Popen(
+- `tools/credential_files.py` — raw filesystem mutation: shutil.rmtree(
+- `tools/discord_tool.py` — raw network access: urllib.request.urlopen(
+- `tools/env_probe.py` — raw subprocess execution: subprocess.run(
+- `tools/environments/base.py` — raw subprocess execution: subprocess.Popen(
+- `tools/environments/docker.py` — raw subprocess execution: subprocess.run(
+- `tools/environments/docker.py` — raw filesystem mutation: shutil.rmtree(
+- `tools/environments/local.py` — raw subprocess execution: subprocess.Popen(
+- `tools/environments/singularity.py` — raw subprocess execution: subprocess.run(
+- `tools/environments/ssh.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `tools/file_operations.py` — raw filesystem mutation: shutil.rmtree(
+- `tools/lazy_deps.py` — raw subprocess execution: subprocess.run(
+- `tools/mcp_tool.py` — MCP execution: tools/call
+- `tools/osv_check.py` — raw network access: urllib.request.urlopen(
+- `tools/process_registry.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `tools/skills_guard.py` — raw subprocess execution: os.system(
+- `tools/skills_hub.py` — raw subprocess execution: subprocess.run(
+- `tools/skills_hub.py` — raw filesystem mutation: shutil.rmtree(
+- `tools/skills_sync.py` — raw filesystem mutation: shutil.rmtree(
+- `tools/terminal_tool.py` — raw subprocess execution: subprocess.run(
+- `tools/terminal_tool.py` — raw filesystem mutation: shutil.rmtree(
+- `tools/terminal_tool.py` — secret access: os.environ["
+- `tools/tirith_security.py` — raw subprocess execution: subprocess.run(
+- `tools/tirith_security.py` — raw network access: urllib.request.urlopen(
+- `tools/tirith_security.py` — raw filesystem mutation: shutil.rmtree(
+- `tools/transcription_tools.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `tools/transcription_tools.py` — raw network access: requests.post(
+- `tools/tts_tool.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `tools/tts_tool.py` — raw network access: requests.post(
+- `tools/tts_tool.py` — raw filesystem mutation: os.remove(
+- `tools/voice_mode.py` — raw subprocess execution: subprocess.run(, subprocess.Popen(
+- `tools/x_search_tool.py` — raw network access: requests.post(
+- `tui_gateway/slash_worker.py` — secret access: os.environ["
+- `workflows/nodes/actions.py` — direct tool invocation: handle_function_call(
+
+## Trusted infrastructure exceptions (§108)
+- `trust/` + `aetheros_control_plane/` + `aetheros_security/`: the enforcement layer itself; owned by Trust Fabric, audited by tests/trust + tests/control_plane.
+- EmergencyController/PolicyEngine/IdentityAuthority paths: privileged by design; every use emits audit events.

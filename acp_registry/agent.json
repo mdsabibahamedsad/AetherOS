@@ -1,0 +1,16 @@
+{
+  "id": "aetheros",
+  "name": "Aetheros",
+  "version": "0.16.0",
+  "description": "Self-improving open-source AI agent by AetherOS with ACP editor integration, persistent memory, skills, and rich tool support.",
+  "repository": "https://github.com/aetheros/aetheros",
+  "website": "https://aetheros.aetheros.com/docs/user-guide/features/acp",
+  "authors": ["AetherOS"],
+  "license": "MIT",
+  "distribution": {
+    "uvx": {
+      "package": "aetheros[acp]==0.16.0",
+      "args": ["aetheros-acp"]
+    }
+  }
+}

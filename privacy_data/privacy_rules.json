@@ -1,0 +1,98 @@
+[
+  {
+    "id": "rule_personal_info",
+    "data_category": "personal_info",
+    "processing_level": "local_only",
+    "allowed_providers": [],
+    "require_consent": true,
+    "retention_days": 0,
+    "description": "Personal information must not be sent to external providers",
+    "enabled": true,
+    "created_at": "",
+    "updated_at": ""
+  },
+  {
+    "id": "rule_messages",
+    "data_category": "messages",
+    "processing_level": "trusted_provider",
+    "allowed_providers": [],
+    "require_consent": true,
+    "retention_days": 0,
+    "description": "Messages may be processed by trusted providers with consent",
+    "enabled": true,
+    "created_at": "",
+    "updated_at": ""
+  },
+  {
+    "id": "rule_emails",
+    "data_category": "emails",
+    "processing_level": "trusted_provider",
+    "allowed_providers": [],
+    "require_consent": true,
+    "retention_days": 0,
+    "description": "Emails may be processed by trusted providers with consent",
+    "enabled": true,
+    "created_at": "",
+    "updated_at": ""
+  },
+  {
+    "id": "rule_work_docs",
+    "data_category": "work_documents",
+    "processing_level": "any_enabled",
+    "allowed_providers": [],
+    "require_consent": false,
+    "retention_days": 0,
+    "description": "Work documents may use any enabled provider",
+    "enabled": true,
+    "created_at": "",
+    "updated_at": ""
+  },
+  {
+    "id": "rule_files",
+    "data_category": "files",
+    "processing_level": "any_enabled",
+    "allowed_providers": [],
+    "require_consent": false,
+    "retention_days": 0,
+    "description": "Files may use any enabled provider",
+    "enabled": true,
+    "created_at": "",
+    "updated_at": ""
+  },
+  {
+    "id": "rule_memories",
+    "data_category": "memories",
+    "processing_level": "trusted_provider",
+    "allowed_providers": [],
+    "require_consent": true,
+    "retention_days": 0,
+    "description": "Memories require trusted provider and consent",
+    "enabled": true,
+    "created_at": "",
+    "updated_at": ""
+  },
+  {
+    "id": "rule_knowledge_graph",
+    "data_category": "knowledge_graph",
+    "processing_level": "local_only",
+    "allowed_providers": [],
+    "require_consent": true,
+    "retention_days": 0,
+    "description": "Knowledge graph data stays local",
+    "enabled": true,
+    "created_at": "",
+    "updated_at": ""
+  },
+  {
+    "id": "rule_agent_context",
+    "data_category": "agent_context",
+    "processing_level": "trusted_provider",
+    "allowed_providers": [],
+    "require_consent": true,
+    "retention_days": 0,
+    "description": "Agent context requires trusted provider and consent",
+    "enabled": true,
+    "created_at": "",
+    "updated_at": ""
+  }
+]

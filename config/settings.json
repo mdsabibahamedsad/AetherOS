@@ -1,0 +1,14 @@
+{
+  "theme": "default",
+  "language": "en",
+  "notifications": {
+    "enabled": true,
+    "sound": true,
+    "desktop": true
+  },
+  "display": {
+    "compact_mode": false,
+    "show_timestamps": true,
+    "show_token_count": false
+  }
+}

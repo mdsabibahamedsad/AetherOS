@@ -1,0 +1,45 @@
+AetherOS packaging path-length guard (Master 78 ┬º46, Master 79.1 ┬º17)
+  root           : D:\hermes-agent-main\aetheros\apps\desktop
+  maxSafeLength  : 240
+  installPrefix  : C:\Program Files\AetherOS\
+  strict         : false (strict also fails on absolute-only excess)
+  note: absent scan dirs (skipped): dist-packaged/__msi-x64
+  files scanned  : 35061
+  note: 6 absolute-only path(s) exceed 240 chars but fit the projected production path (checkout-prefix effect; non-blocking):
+    ABS=262 PROJ=218 PACKAGE=elevenlabs
+      D:\hermes-agent-main\aetheros\apps\desktop\dist-packaged\win-unpacked\resources\py\Lib\site-packages\elevenlabs\text_to_speech\types\body_text_to_speech_streaming_with_timestamps_v_1_text_to_speech_voice_id_stream_with_timestamps_post_apply_text_normalization.py
+    ABS=249 PROJ=205 PACKAGE=elevenlabs
+      D:\hermes-agent-main\aetheros\apps\desktop\dist-packaged\win-unpacked\resources\py\Lib\site-packages\elevenlabs\pronunciation_dictionary\types\body_add_a_pronunciation_dictionary_v_1_pronunciation_dictionaries_add_from_rules_post_workspace_access.py
+    ABS=246 PROJ=218 PACKAGE=elevenlabs
+      D:\hermes-agent-main\aetheros\apps\desktop\build\bundled-python\py\Lib\site-packages\elevenlabs\text_to_speech\types\body_text_to_speech_streaming_with_timestamps_v_1_text_to_speech_voice_id_stream_with_timestamps_post_apply_text_normalization.py
+    ABS=245 PROJ=201 PACKAGE=elevenlabs
+      D:\hermes-agent-main\aetheros\apps\desktop\dist-packaged\win-unpacked\resources\py\Lib\site-packages\elevenlabs\text_to_speech\types\body_text_to_speech_with_timestamps_v_1_text_to_speech_voice_id_with_timestamps_post_apply_text_normalization.py
+    ABS=243 PROJ=199 PACKAGE=elevenlabs
+      D:\hermes-agent-main\aetheros\apps\desktop\dist-packaged\win-unpacked\resources\py\Lib\site-packages\elevenlabs\pronunciation_dictionary\types\body_add_a_pronunciation_dictionary_v_1_pronunciation_dictionaries_add_from_rules_post_rules_item.py
+    ABS=241 PROJ=197 PACKAGE=mistralai
+      D:\hermes-agent-main\aetheros\apps\desktop\dist-packaged\win-unpacked\resources\py\Lib\site-packages\mistralai\client\models\get_chat_completion_field_options_counts_v1_observability_chat_completion_fields_field_name_options_counts_postop.py
+
+VALID ΓÇö all 35061 projected production paths are within 240 chars
+Γû╢ scanLongPaths
+  Γ£ö passes a tree of short paths (7.5073ms)
+  Γ£ö flags paths over budget, longest first (3.9857ms)
+  Γ£ö treats checkout-prefix-only excess as a non-blocking warning (Master 79.1 ┬º17) (4.875ms)
+  Γ£ö still fails when the projected production path is over budget (2.9379ms)
+  Γ£ö maps bundled-python content under resources/ (Master 79.1 ┬º17) (0.2643ms)
+  Γ£ö tolerates a missing directory (0.2794ms)
+Γ£ö scanLongPaths (21.4995ms)
+Γû╢ owningPackage
+  Γ£ö extracts the site-packages owner (0.318ms)
+Γ£ö owningPackage (0.4685ms)
+Γû╢ runCheck
+  Γ£ö fails closed when no scan dirs exist (0.945ms)
+  Γ£ö reports offenders against a real staged-looking tree (4.0565ms)
+Γ£ö runCheck (5.1816ms)
+Γä╣ tests 9
+Γä╣ suites 3
+Γä╣ pass 9
+Γä╣ fail 0
+Γä╣ cancelled 0
+Γä╣ skipped 0
+Γä╣ todo 0
+Γä╣ duration_ms 115.8839

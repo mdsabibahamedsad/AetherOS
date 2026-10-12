@@ -1,0 +1,162 @@
+{
+  "benchmark_id": "PERF-BUNDLE-001",
+  "name": "Desktop Bundle Size",
+  "category": "web",
+  "status": "MEASURED",
+  "iterations": 1,
+  "warmup_iterations": 3,
+  "metrics": {
+    "total_js_bytes_mean": 23608270.0,
+    "total_js_bytes_median": 23608270.0,
+    "total_js_bytes_stdev": 0.0,
+    "total_js_bytes_min": 23608270.0,
+    "total_js_bytes_max": 23608270.0,
+    "total_css_bytes_mean": 500625.0,
+    "total_css_bytes_median": 500625.0,
+    "total_css_bytes_stdev": 0.0,
+    "total_css_bytes_min": 500625.0,
+    "total_css_bytes_max": 500625.0,
+    "total_html_bytes_mean": 1248.0,
+    "total_html_bytes_median": 1248.0,
+    "total_html_bytes_stdev": 0.0,
+    "total_html_bytes_min": 1248.0,
+    "total_html_bytes_max": 1248.0,
+    "total_assets_bytes_mean": 5094175.0,
+    "total_assets_bytes_median": 5094175.0,
+    "total_assets_bytes_stdev": 0.0,
+    "total_assets_bytes_min": 5094175.0,
+    "total_assets_bytes_max": 5094175.0,
+    "top_js_0_bytes_mean": 3373415.0,
+    "top_js_0_bytes_median": 3373415.0,
+    "top_js_0_bytes_stdev": 0.0,
+    "top_js_0_bytes_min": 3373415.0,
+    "top_js_0_bytes_max": 3373415.0,
+    "top_js_1_bytes_mean": 779873.0,
+    "top_js_1_bytes_median": 779873.0,
+    "top_js_1_bytes_stdev": 0.0,
+    "top_js_1_bytes_min": 779873.0,
+    "top_js_1_bytes_max": 779873.0,
+    "top_js_2_bytes_mean": 779847.0,
+    "top_js_2_bytes_median": 779847.0,
+    "top_js_2_bytes_stdev": 0.0,
+    "top_js_2_bytes_min": 779847.0,
+    "top_js_2_bytes_max": 779847.0,
+    "top_js_3_bytes_mean": 626126.0,
+    "top_js_3_bytes_median": 626126.0,
+    "top_js_3_bytes_stdev": 0.0,
+    "top_js_3_bytes_min": 626126.0,
+    "top_js_3_bytes_max": 626126.0,
+    "top_js_4_bytes_mean": 626126.0,
+    "top_js_4_bytes_median": 626126.0,
+    "top_js_4_bytes_stdev": 0.0,
+    "top_js_4_bytes_min": 626126.0,
+    "top_js_4_bytes_max": 626126.0,
+    "top_js_5_bytes_mean": 622325.0,
+    "top_js_5_bytes_median": 622325.0,
+    "top_js_5_bytes_stdev": 0.0,
+    "top_js_5_bytes_min": 622325.0,
+    "top_js_5_bytes_max": 622325.0,
+    "top_js_6_bytes_mean": 622325.0,
+    "top_js_6_bytes_median": 622325.0,
+    "top_js_6_bytes_stdev": 0.0,
+    "top_js_6_bytes_min": 622325.0,
+    "top_js_6_bytes_max": 622325.0,
+    "top_js_7_bytes_mean": 262384.0,
+    "top_js_7_bytes_median": 262384.0,
+    "top_js_7_bytes_stdev": 0.0,
+    "top_js_7_bytes_min": 262384.0,
+    "top_js_7_bytes_max": 262384.0,
+    "top_js_8_bytes_mean": 262384.0,
+    "top_js_8_bytes_median": 262384.0,
+    "top_js_8_bytes_stdev": 0.0,
+    "top_js_8_bytes_min": 262384.0,
+    "top_js_8_bytes_max": 262384.0,
+    "top_js_9_bytes_mean": 236177.0,
+    "top_js_9_bytes_median": 236177.0,
+    "top_js_9_bytes_stdev": 0.0,
+    "top_js_9_bytes_min": 236177.0,
+    "top_js_9_bytes_max": 236177.0
+  },
+  "units": {
+    "total_js_bytes": "bytes",
+    "total_css_bytes": "bytes",
+    "total_html_bytes": "bytes",
+    "total_assets_bytes": "bytes",
+    "top_js_0_bytes": "bytes",
+    "top_js_1_bytes": "bytes",
+    "top_js_2_bytes": "bytes",
+    "top_js_3_bytes": "bytes",
+    "top_js_4_bytes": "bytes",
+    "top_js_5_bytes": "bytes",
+    "top_js_6_bytes": "bytes",
+    "top_js_7_bytes": "bytes",
+    "top_js_8_bytes": "bytes",
+    "top_js_9_bytes": "bytes"
+  },
+  "raw_samples": {
+    "total_js_bytes": [
+      23608270.0
+    ],
+    "total_css_bytes": [
+      500625.0
+    ],
+    "total_html_bytes": [
+      1248.0
+    ],
+    "total_assets_bytes": [
+      5094175.0
+    ],
+    "top_js_0_bytes": [
+      3373415.0
+    ],
+    "top_js_1_bytes": [
+      779873.0
+    ],
+    "top_js_2_bytes": [
+      779847.0
+    ],
+    "top_js_3_bytes": [
+      626126.0
+    ],
+    "top_js_4_bytes": [
+      626126.0
+    ],
+    "top_js_5_bytes": [
+      622325.0
+    ],
+    "top_js_6_bytes": [
+      622325.0
+    ],
+    "top_js_7_bytes": [
+      262384.0
+    ],
+    "top_js_8_bytes": [
+      262384.0
+    ],
+    "top_js_9_bytes": [
+      236177.0
+    ]
+  },
+  "environment": {
+    "benchmark_version": "m71-v1",
+    "timestamp": 1789185309.6839178,
+    "os": "Windows 10",
+    "os_platform": "Windows-10-10.0.26200-SP0",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "cpu_count": 12,
+    "ram_gb": 7.4,
+    "gpu": "none-detected",
+    "python_version": "3.11.15",
+    "node_version": "v25.5.0",
+    "electron_version": null,
+    "aetheros_version": null,
+    "build_mode": "unknown",
+    "power_mode": "unknown",
+    "thermal_state": "unknown",
+    "extra": {}
+  },
+  "metadata": {},
+  "timestamp": 1789185309.924715,
+  "commit_hash": null,
+  "tags": []
+}

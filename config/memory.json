@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "provider": "local",
+  "embedding_model": "text-embedding-3-small",
+  "max_results": 10,
+  "consolidation": {
+    "enabled": true,
+    "interval_hours": 24
+  }
+}

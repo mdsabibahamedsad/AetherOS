@@ -1,0 +1,269 @@
+﻿class UserMemory(MemoryLayer):
+    \"\"\"User memory for storing user-specific information like preferences and personal details.\"\"\"
+    def __init__(self):
+        super().__init__(MemoryType.USER, MemoryScope.USER)
+
+    def add(self, entry: MemoryEntry) -> str:
+        \"\"\"Add a user memory entry.\"\"\"
+        self.entries[entry.id] = entry
+        return entry.id
+
+    def get(self, entry_id: str) -> Optional[MemoryEntry]:
+        \"\"\"Retrieve a user memory entry by ID.\"\"\"
+        return self.entries.get(entry_id)
+
+    def search(self, query: str, limit: int = 10) -> List[MemoryEntry]:
+        \"\"\"Search user memory for entries matching the query.\"\"\"
+        query_lower = query.lower()
+        results = []
+        for entry in self.entries.values():
+            if query_lower in entry.content.lower():
+                results.append(entry)
+        # Sort by timestamp (most recent first)
+        results.sort(key=lambda e: e.timestamp, reverse=True)
+        return results[:limit]
+
+    def update(self, entry_id: str, updates: Dict[str, Any]) -> bool:
+        \"\"\"Update a user memory entry.\"\"\"
+        if entry_id not in self.entries:
+            return False
+
+        entry = self.entries[entry_id]
+        for key, value in updates.items():
+            if hasattr(entry, key):
+                setattr(entry, key, value)
+        entry.updated_at = time.time()
+        return True
+
+    def delete(self, entry_id: str) -> bool:
+        \"\"\"Delete a user memory entry.\"\"\"
+        if entry_id in self.entries:
+            del self.entries[entry_id]
+            return True
+        return False
+
+    def cleanup_expired(self) -> int:
+        \"\"\"Remove expired entries from user memory.\"\"\"
+        expired_ids = []
+        for entry_id, entry in self.entries.items():
+            if entry.is_expired():
+                expired_ids.append(entry_id)
+        for entry_id in expired_ids:
+            del self.entries[entry_id]
+        return len(expired_ids)
+
+class ProjectMemory(MemoryLayer):
+    \"\"\"Project memory for storing project-specific information like architecture, decisions, and conventions.\"\"\"
+    def __init__(self):
+        super().__init__(MemoryType.PROJECT, MemoryScope.PROJECT)
+
+    def add(self, entry: MemoryEntry) -> str:
+        \"\"\"Add a project memory entry.\"\"\"
+        self.entries[entry.id] = entry
+        return entry.id
+
+    def get(self, entry_id: str) -> Optional[MemoryEntry]:
+        \"\"\"Retrieve a project memory entry by ID.\"\"\"
+        return self.entries.get(entry_id)
+
+    def search(self, query: str, limit: int = 10) -> List[MemoryEntry]:
+        \"\"\"Search project memory for entries matching the query.\"\"\"
+        query_lower = query.lower()
+        results = []
+        for entry in self.entries.values():
+            if query_lower in entry.content.lower():
+                results.append(entry)
+        # Sort by timestamp (most recent first)
+        results.sort(key=lambda e: e.timestamp, reverse=True)
+        return results[:limit]
+
+    def update(self, entry_id: str, updates: Dict[str, Any]) -> bool:
+        \"\"\"Update a project memory entry.\"\"\"
+        if entry_id not in self.entries:
+            return False
+
+        entry = self.entries[entry_id]
+        for key, value in updates.items():
+            if hasattr(entry, key):
+                setattr(entry, key, value)
+        entry.updated_at = time.time()
+        return True
+
+    def delete(self, entry_id: str) -> bool:
+        \"\"\"Delete a project memory entry.\"\"\"
+        if entry_id in self.entries:
+            del self.entries[entry_id]
+            return True
+        return False
+
+    def cleanup_expired(self) -> int:
+        \"\"\"Remove expired entries from project memory.\"\"\"
+        expired_ids = []
+        for entry_id, entry in self.entries.items():
+            if entry.is_expired():
+                expired_ids.append(entry_id)
+        for entry_id in expired_ids:
+            del self.entries[entry_id]
+        return len(expired_ids)
+
+class TaskMemory(MemoryLayer):
+    \"\"\"Task memory for storing task-specific information like goals, plans, and progress.\"\"\"
+    def __init__(self):
+        super().__init__(MemoryType.TASK, MemoryScope.TASK)
+
+    def add(self, entry: MemoryEntry) -> str:
+        \"\"\"Add a task memory entry.\"\"\"
+        self.entries[entry.id] = entry
+        return entry.id
+
+    def get(self, entry_id: str) -> Optional[MemoryEntry]:
+        \"\"\"Retrieve a task memory entry by ID.\"\"\"
+        return self.entries.get(entry_id)
+
+    def search(self, query: str, limit: int = 10) -> List[MemoryEntry]:
+        \"\"\"Search task memory for entries matching the query.\"\"\"
+        query_lower = query.lower()
+        results = []
+        for entry in self.entries.values():
+            if query_lower in entry.content.lower():
+                results.append(entry)
+        # Sort by timestamp (most recent first)
+        results.sort(key=lambda e: e.timestamp, reverse=True)
+        return results[:limit]
+
+    def update(self, entry_id: str, updates: Dict[str, Any]) -> bool:
+        \"\"\"Update a task memory entry.\"\"\"
+        if entry_id not in self.entries:
+            return False
+
+        entry = self.entries[entry_id]
+        for key, value in updates.items():
+            if hasattr(entry, key):
+                setattr(entry, key, value)
+        entry.updated_at = time.time()
+        return True
+
+    def delete(self, entry_id: str) -> bool:
+        \"\"\"Delete a task memory entry.\"\"\"
+        if entry_id in self.entries:
+            del self.entries[entry_id]
+            return True
+        return False
+
+    def cleanup_expired(self) -> int:
+        \"\"\"Remove expired entries from task memory.\"\"\"
+        expired_ids = []
+        for entry_id, entry in self.entries.items():
+            if entry.is_expired():
+                expired_ids.append(entry_id)
+        for entry_id in expired_ids:
+            del self.entries[entry_id]
+        return len(expired_ids)
+
+class AgentMemory(MemoryLayer):
+    \"\"\"Agent memory for storing agent-specific operational memory like successful patterns and failure history.\"\"\"
+    def __init__(self):
+        super().__init__(MemoryType.AGENT, MemoryScope.AGENT)
+
+    def add(self, entry: MemoryEntry) -> str:
+        \"\"\"Add an agent memory entry.\"\"\"
+        self.entries[entry.id] = entry
+        return entry.id
+
+    def get(self, entry_id: str) -> Optional[MemoryEntry]:
+        \"\"\"Retrieve an agent memory entry by ID.\"\"\"
+        return self.entries.get(entry_id)
+
+    def search(self, query: str, limit: int = 10) -> List[MemoryEntry]:
+        \"\"\"Search agent memory for entries matching the query.\"\"\"
+        query_lower = query.lower()
+        results = []
+        for entry in self.entries.values():
+            if query_lower in entry.content.lower():
+                results.append(entry)
+        # Sort by timestamp (most recent first)
+        results.sort(key=lambda e: e.timestamp, reverse=True)
+        return results[:limit]
+
+    def update(self, entry_id: str, updates: Dict[str, Any]) -> bool:
+        \"\"\"Update an agent memory entry.\"\"\"
+        if entry_id not in self.entries:
+            return False
+
+        entry = self.entries[entry_id]
+        for key, value in updates.items():
+            if hasattr(entry, key):
+                setattr(entry, key, value)
+        entry.updated_at = time.time()
+        return True
+
+    def delete(self, entry_id: str) -> bool:
+        \"\"\"Delete an agent memory entry.\"\"\"
+        if entry_id in self.entries:
+            del self.entries[entry_id]
+            return True
+        return False
+
+    def cleanup_expired(self) -> int:
+        \"\"\"Remove expired entries from agent memory.\"\"\"
+        expired_ids = []
+        for entry_id, entry in self.entries.items():
+            if entry.is_expired():
+                expired_ids.append(entry_id)
+        for entry_id in expired_ids:
+            del self.entries[entry_id]
+        return len(expired_ids)
+
+class OrganizationMemory(MemoryLayer):
+    \"\"\"Organization memory for storing organization-scoped information like policies and standards.\"\"\"
+    def __init__(self):
+        super().__init__(MemoryType.ORGANIZATION, MemoryScope.ORGANIZATION)
+
+    def add(self, entry: MemoryEntry) -> str:
+        \"\"\"Add an organization memory entry.\"\"\"
+        self.entries[entry.id] = entry
+        return entry.id
+
+    def get(self, entry_id: str) -> Optional[MemoryEntry]:
+        \"\"\"Retrieve an organization memory entry by ID.\"\"\"
+        return self.entries.get(entry_id)
+
+    def search(self, query: str, limit: int = 10) -> List[MemoryEntry]:
+        \"\"\"Search organization memory for entries matching the query.\"\"\"
+        query_lower = query.lower()
+        results = []
+        for entry in self.entries.values():
+            if query_lower in entry.content.lower():
+                results.append(entry)
+        # Sort by timestamp (most recent first)
+        results.sort(key=lambda e: e.timestamp, reverse=True)
+        return results[:limit]
+
+    def update(self, entry_id: str, updates: Dict[str, Any]) -> bool:
+        \"\"\"Update an organization memory entry.\"\"\"
+        if entry_id not in self.entries:
+            return False
+
+        entry = self.entries[entry_id]
+        for key, value in updates.items():
+            if hasattr(entry, key):
+                setattr(entry, key, value)
+        entry.updated_at = time.time()
+        return True
+
+    def delete(self, entry_id: str) -> bool:
+        \"\"\"Delete an organization memory entry.\"\"\"
+        if entry_id in self.entries:
+            del self.entries[entry_id]
+            return True
+        return False
+
+    def cleanup_expired(self) -> int:
+        \"\"\"Remove expired entries from organization memory.\"\"\"
+        expired_ids = []
+        for entry_id, entry in self.entries.items():
+            if entry.is_expired():
+                expired_ids.append(entry_id)
+        for entry_id in expired_ids:
+            del self.entries[entry_id]
+        return len(expired_ids)

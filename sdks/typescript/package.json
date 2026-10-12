@@ -1,0 +1,21 @@
+{
+  "name": "@aetheros/sdk",
+  "version": "1.0.0",
+  "description": "Typed AetherOS developer SDK (Node.js 18+ and browser-safe core). Zero runtime dependencies.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "gen": "python ../../aetheros_platform/tsgen.py --out src/generated.ts",
+    "build": "node ../../ui-tui/node_modules/typescript/bin/tsc -p tsconfig.json",
+    "typecheck": "node ../../ui-tui/node_modules/typescript/bin/tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test dist/test/*.test.js"
+  },
+  "engines": { "node": ">=18" }
+}

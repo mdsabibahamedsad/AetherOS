@@ -1,0 +1,1 @@
+{"detail":"No clean Windows VM is available in this environment. The developer workstation (Windows, dirty: prior installs, dist-packaged outputs, node_modules) was used for local validation only and is explicitly NOT substituted for clean-VM evidence.","status":"CLEAN_VM_VALIDATION_BLOCKED","verdict":"BLOCKED"}

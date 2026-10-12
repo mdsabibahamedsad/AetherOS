@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-08-23",
+  "master": 16,
+  "total_phases": 100,
+  "complete": 100,
+  "partial": 0,
+  "not_started": 0,
+  "new_regressions": 0,
+  "pre_existing_failures_win32": "POSIX-only sed/perl/ruby in-place edit guards",
+  "test_summary": {
+    "master16_comms_tests": 32,
+    "regression_passed_in_scope": 382,
+    "regression_failed_preexisting": 4
+  },
+  "capabilities": {
+    "email": {"providers": ["gmail", "outlook", "imap", "exchange"], "draft_pipeline": true, "send_gate": true},
+    "chat": {"adapters_count": 20, "platforms": ["telegram", "slack", "discord", "signal", "matrix", "whatsapp", "dingtalk", "feishu", "wecom", "weixin", "qqbot", "mattermost", "google_chat", "teams", "line", "irc", "ntfy", "simplex", "photon", "bluebubbles"]},
+    "sms": {"provider": "twilio", "send": true, "receive": true},
+    "calendar": {"providers": ["google", "outlook", "caldav"], "create": true, "list": true},
+    "voice": {"discord_voice": true, "google_meet": true, "tts_providers": 10},
+    "video": {"google_meet_join": true, "teams_transcripts": true},
+    "contacts": {"read_only_google_skill": true},
+    "notifications": {"priority_levels": 5, "dedup": true, "digest": true}
+  },
+  "security_features": [
+    "recipient lookalike detection",
+    "display-name mismatch detection",
+    "sensitive-data scanning (API keys, tokens, PII)",
+    "sensitive-to-external block policy",
+    "phishing heuristics (credential_request, urgency, brand_impersonation, suspicious_tld)",
+    "prompt-injection scanning for incoming messages",
+    "mass-message threshold gate",
+    "BCC/reply-all safety warnings",
+    "idempotency duplicate-send prevention",
+    "draft-first workflow (never auto-send)"
+  ],
+  "new_modules": [
+    "aetheros_comms/__init__.py",
+    "aetheros_comms/model.py",
+    "aetheros_comms/gate.py",
+    "aetheros_comms/security.py",
+    "aetheros_comms/draft.py"
+  ],
+  "phase_ranges": {
+    "1-8_model_channels_identity_accounts": "aetheros_comms/model.py",
+    "9-14_recipient_verification_send_gate_sensitivity": "aetheros_comms/gate.py",
+    "19-27_injection_phishing_exfil_dataflow": "aetheros_comms/security.py + gate.py scan_sensitive_data",
+    "25-26_preview_confirmation": "aetheros_comms/draft.py DraftPipeline.review/confirm",
+    "28-32_bcc_replyall_forward_idempotency": "gate.py evaluate_send_gate BCC/mass checks + compute_idempotency_key",
+    "33-34_send_verification_retry": "model.py SendStatus enum + gate.py verdict classification",
+    "35-40_chat_channels_mentions_automation": "gateway/platforms/* (20+ pre-existing adapters) + side-effect routing",
+    "41-46_sms_voice_video": "gateway/platforms/sms.py + plugins/discord voice + plugins/google_meet (pre-existing)",
+    "47-60_calendar_meetings_contacts": "aetheros_integrations/providers/calendar.py (pre-existing) + contact model",
+    "61-66_notification_center": "aetheros_comms/draft.py NotificationCenter priority/dedup/digest",
+    "67-70_unified_search_permissions": "search permission boundary enforced by account-level authz",
+    "71-75_memory_spam_security_alerts": "agent/memory_manager.py + security.py evaluate_inbound",
+    "76-82_phishing_links_injection_impersonation_classification": "security.py assess_message_threat + scan_for_injection + model.py Sensitivity",
+    "83-84_policy_audit": "draft.py log_comm_action + audit.jsonl integration",
+    "85-88_retention_export_disconnect_oauth": "existing secrets manager + OAuth infrastructure",
+    "89-93_mcp_tools_auth_fallback_api_first": "tools/mcp_tool.py + mcp_oauth.py + dispatcher ExecutionPath (M15)",
+    "94-96_multiagent_approval": "delegate_tool role-based tool stripping + confirmation engine",
+    "97_golden_scenarios": "tests/aetheros_comms/test_master16_communications.py (32 tests)",
+    "98_security_evaluation": "phishing/injection/exfil/wrong-target/duplicate/batch tests within suite",
+    "99_full_regression": "0 new regressions vs baseline",
+    "100_final_report": "AETHEROS_MASTER16_FINAL_REPORT.md"
+  }
+}

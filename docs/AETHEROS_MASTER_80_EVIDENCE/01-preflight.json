@@ -1,0 +1,109 @@
+{
+  "schema": "aetheros-windows-preflight/1",
+  "generatedAt": "2026-09-15T13:24:49.638Z",
+  "commit": "2bdfbfd8ebcf2bb27b06f600c2beb159e723d8b1",
+  "node": "v22.12.0",
+  "canonicalNodeMajor": 22,
+  "version": "1.0.0",
+  "checks": [
+    {
+      "id": "A01",
+      "name": "git clean (release policy)",
+      "status": "FAIL",
+      "code": "RELEASE_BUILD_BLOCKED_DIRTY_TREE",
+      "detail": "2783 changed path(s)",
+      "offenders": [
+        " M .github/workflows/desktop-build.yml",
+        " M .github/workflows/desktop-nightly.yml",
+        " M .github/workflows/desktop-release.yml",
+        " D aetherROS/workflows/nodes/__init__.py",
+        " M aetheros/.aetheros/engineering/artifacts/artifact_index.json",
+        " M aetheros/.github/ISSUE_TEMPLATE/setup_help.yml",
+        " M aetheros/.gitignore",
+        " M aetheros/CHANGELOG.md",
+        " M aetheros/ORCHESTRATION.md",
+        " M aetheros/PROJECT_STATUS_REPORT.md",
+        " M aetheros/TASK_ENGINE.md",
+        " D aetheros/_remove_import.py",
+        " D aetheros/_wire_enterprise.py",
+        " M aetheros/acp_adapter/tools.py",
+        " M aetheros/aetheros.egg-info/PKG-INFO",
+        " M aetheros/aetheros.egg-info/SOURCES.txt",
+        " M aetheros/aetheros.egg-info/entry_points.txt",
+        " M aetheros/aetheros.egg-info/requires.txt",
+        " M aetheros/aetheros.egg-info/top_level.txt",
+        " M aetheros/aetheros/pnpm-workspace.yaml",
+        " M aetheros/aetheros_automation/__init__.py",
+        " M aetheros/aetheros_automation/agents/communication_agent.py",
+        " M aetheros/aetheros_automation/agents/creative.py",
+        " M aetheros/aetheros_automation/agents/data_agent.py",
+        " M aetheros/aetheros_automation/agents/review_agent.py"
+      ]
+    },
+    {
+      "id": "A02",
+      "name": "canonical Node 22 (nvmrc 22.12.0)",
+      "status": "PASS",
+      "actual": "v22.12.0"
+    },
+    {
+      "id": "A03",
+      "name": "npm available (bundled with canonical Node)",
+      "status": "PASS",
+      "actual": "11.8.0"
+    },
+    {
+      "id": "A04",
+      "name": "packaged Electron pin 40.9.3",
+      "status": "PASS",
+      "devRange": "^40.10.6",
+      "installed": "40.10.6"
+    },
+    {
+      "id": "A05",
+      "name": "electron-builder 26.8.1 repo-local (./node_modules/.bin)",
+      "status": "PASS",
+      "range": "^26.8.1"
+    },
+    {
+      "id": "A06",
+      "name": "lockfiles present (root + desktop)",
+      "status": "PASS"
+    },
+    {
+      "id": "A07",
+      "name": "npm ci succeeds",
+      "status": "INFORMATIONAL",
+      "note": "INFORMATIONAL in preflight — enforced by canonical build; use desktop:release:windows for the real gate"
+    },
+    {
+      "id": "A08",
+      "name": "lockfile unchanged after install",
+      "status": "INFORMATIONAL",
+      "note": "INFORMATIONAL in preflight — enforced post-install by canonical build (LOCKFILE_MUTATED)"
+    },
+    {
+      "id": "A09",
+      "name": "output path safe + build-owned",
+      "status": "PASS"
+    },
+    {
+      "id": "A10",
+      "name": "output initially clean",
+      "status": "FAIL",
+      "code": "OUTPUT_DIRECTORY_NOT_CLEAN",
+      "detail": "10 entries: AetherOS-1.0.0-linux-x64.AppImage, AetherOS-1.0.0-linux-x64.deb, AetherOS-1.0.0-linux-x64.rpm, AetherOS-1.0.0-win-x64-portable.exe, AetherOS-1.0.0-win-x64.exe, AetherOS-1.0.0-win-x64.exe.blockmap, AetherOS-1.0.0-win-x64.msi, builder-debug.yml, latest.yml, win-unpacked"
+    },
+    {
+      "id": "A11",
+      "name": "projected-path guard wired",
+      "status": "PASS"
+    },
+    {
+      "id": "A12",
+      "name": "packaging identity (appId/product/output)",
+      "status": "PASS"
+    }
+  ],
+  "overall": "PREFLIGHT_FAIL"
+}

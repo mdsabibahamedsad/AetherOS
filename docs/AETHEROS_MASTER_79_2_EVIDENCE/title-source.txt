@@ -1,0 +1,10 @@
+Renderer title (actual reads 2026-09-15):
+apps/desktop/index.html (SOURCE):        <title>AetherOS</title> — PASS (Master 79.1 fix intact)
+apps/desktop/dist/index.html (STALE):    <title>Aetheros</title> — OLD_ARTIFACT_KNOWN_ISSUE (dist/ predates source fix; NOT rebuilt)
+app.asar string probe: AetherOS x140 / Aetheros x93 — mixed because internal identifiers
+  (package name "aetheros", appId com.aetheros.aetheros) legitimately retain the old token;
+  NO packaged <title> tag found either way (bundled/minified renderer).
+Rule §28: if CI rebuilds, verify packaged renderer contains AetherOS; until then the
+shipped artifacts carry OLD_ARTIFACT_KNOWN_ISSUE for the stale dist title.
+build.electronVersion = 40.9.3 VERIFIED in apps/desktop/package.json (do NOT modify).
+win-unpacked AetherOS.exe: ProductName=AetherOS, CompanyName=AetherOS, FileVersion=40.9.3 (Electron version).

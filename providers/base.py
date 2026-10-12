@@ -1,0 +1,314 @@
+"""Provider profile base class.
+
+A ProviderProfile declares everything about an inference provider in one place:
+auth, endpoints, client quirks, request-time quirks. The transport reads this
+instead of receiving 20+ boolean flags.
+
+Provider profiles are DECLARATIVE — they describe the provider's behavior.
+They do NOT own client construction, credential rotation, or streaming.
+Those stay on AIAgent.
+"""
+
+from __future__ import annotations
+
+import logging
+from dataclasses import dataclass, field
+from typing import Any
+
+logger = logging.getLogger(__name__)
+
+# Sentinel for "omit temperature entirely" (Kimi: server manages it)
+OMIT_TEMPERATURE = object()
+
+
+def _profile_user_agent() -> str:
+    """Return a ``hermes-cli/<version>`` UA string, with a stable fallback.
+
+    Used by ``ProviderProfile.fetch_models`` so the catalog probe is not
+    served the default ``Python-urllib/<ver>`` UA — some providers
+    (OpenCode Zen, etc.) sit behind a WAF that returns 403 for that.
+    """
+    try:
+        from aetheros_cli import __version__ as _ver  # lazy: avoid layer cycle at import time
+        return f"aetheros-cli/{_ver}"
+    except Exception:
+        return "aetheros-cli"
+
+
+@dataclass
+class ProviderProfile:
+    """Base provider profile — subclass or instantiate with overrides."""
+
+    # ── Identity ─────────────────────────────────────────────
+    name: str
+    api_mode: str = "chat_completions"
+    aliases: tuple = ()
+
+    # ── Human-readable metadata ───────────────────────────────
+    display_name: str = ""       # e.g. "GMI Cloud" — shown in picker/labels
+    description: str = ""        # e.g. "GMI Cloud (multi-model direct API)" — picker subtitle
+    signup_url: str = ""         # e.g. "https://www.gmicloud.ai/" — shown during setup
+    logo: str = ""               # short logo/emoji shown in provider lists ("" = none)
+    version: str = ""            # provider profile/API version marker ("" = unversioned)
+    category: str = "cloud"      # cloud | local | aggregator — used for routing/health grouping
+
+    # ── Auth & endpoints ─────────────────────────────────────
+    env_vars: tuple = ()
+    base_url: str = ""
+    models_url: str = ""  # explicit models endpoint; falls back to {base_url}/models
+    auth_type: str = "api_key"   # api_key|oauth_device_code|oauth_external|copilot|aws_sdk
+    supports_health_check: bool = True  # False → doctor skips /models probe for this provider
+    supports_streaming: bool = True     # False → runtime must use non-streaming transport
+
+    # ── Vision support ────────────────────────────────────────
+    # True when the provider's API accepts image content inside
+    # tool-result messages natively.  Set on providers that expose
+    # multimodal models via tool results (Anthropic Messages API,
+    # OpenAI Chat Completions, Gemini, MiniMax, etc.).
+    # Falls back to model-catalog lookup when False and the provider
+    # has no registered profile.
+    supports_vision: bool = False
+
+    # True when the provider's API accepts list-type tool message
+    # content (multipart with image_url parts).  Defaults to True for
+    # backward compatibility.  Set to False for providers that accept
+    # multimodal user messages but reject list-type tool content
+    # (e.g. Xiaomi MiMo, which returns 400 "text is not set").
+    supports_vision_tool_messages: bool = True
+
+    # ── Model catalog ─────────────────────────────────────────
+    # fallback_models: curated list shown in /model picker when live fetch fails.
+    # Only agentic models that support tool calling should appear here.
+    fallback_models: tuple = ()
+
+    # hostname: base hostname for URL→provider reverse-mapping in model_metadata.py
+    # e.g. "api.gmi-serving.com". Derived from base_url when empty.
+    hostname: str = ""
+
+    # ── Client-level quirks (set once at client construction) ─
+    default_headers: dict[str, str] = field(default_factory=dict)
+
+    # ── Request-level quirks ─────────────────────────────────
+    # Temperature: None = use caller's default, OMIT_TEMPERATURE = don't send
+    fixed_temperature: Any = None
+    default_max_tokens: int | None = None
+    default_aux_model: str = (
+        ""  # cheap model for auxiliary tasks (compression, vision, etc.)
+    )
+    # empty = use main model
+
+    # ── Hooks (override in subclass for complex providers) ───
+
+    def get_hostname(self) -> str:
+        """Return the provider's base hostname for URL-based detection.
+
+        Uses self.hostname if set explicitly, otherwise derives it from base_url.
+        e.g. 'https://api.gmi-serving.com/v1' → 'api.gmi-serving.com'
+        """
+        if self.hostname:
+            return self.hostname
+        if self.base_url:
+            from urllib.parse import urlparse
+            return urlparse(self.base_url).hostname or ""
+        return ""
+
+    def prepare_messages(self, messages: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Provider-specific message preprocessing.
+
+        Called AFTER codex field sanitization, BEFORE developer role swap.
+        Default: pass-through.
+        """
+        return messages
+
+    def build_extra_body(
+        self, *, session_id: str | None = None, **context: Any
+    ) -> dict[str, Any]:
+        """Provider-specific extra_body fields.
+
+        Merged into the API kwargs extra_body. Default: empty dict.
+        """
+        return {}
+
+    def build_api_kwargs_extras(
+        self,
+        *,
+        reasoning_config: dict | None = None,
+        **context: Any,
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
+        """Provider-specific kwargs split between extra_body and top-level api_kwargs.
+
+        Returns (extra_body_additions, top_level_kwargs).
+        The transport merges extra_body_additions into extra_body, and
+        top_level_kwargs directly into api_kwargs.
+
+        This split exists because some providers put reasoning config in
+        extra_body (OpenRouter: extra_body.reasoning) while others put it
+        as top-level api_kwargs (Kimi: api_kwargs.reasoning_effort).
+
+        Default: ({}, {}).
+        """
+        return {}, {}
+
+    def get_max_tokens(self, model: str | None) -> int | None:
+        """Return the default max_tokens cap for *model*.
+
+        Overrideable hook for providers that need per-model output caps —
+        e.g. a relay that fronts several upstream backends, each with a
+        different completion-token limit. The transport calls this when
+        the user hasn't set an explicit max_tokens.
+
+        Default: return self.default_max_tokens (the static profile field),
+        ignoring the model name. Override in a subclass to vary the cap
+        per-model.
+        """
+        return self.default_max_tokens
+
+    def check_health(
+        self,
+        *,
+        api_key: str | None = None,
+        base_url: str | None = None,
+        timeout: float = 8.0,
+    ) -> dict:
+        """Probe the provider's models endpoint and report connectivity.
+
+        Returns a dict::
+
+            {"provider": self.name, "online": bool, "latency_ms": int | None,
+             "http_status": int | None, "authenticated": bool,
+             "error": str | None, "checked_at": float}
+
+        ``online`` is True when the endpoint responded (any HTTP status —
+        including 401, which proves reachability but failed auth). Providers
+        that declare ``supports_health_check=False`` or that have no base URL
+        return ``online=False`` with ``error`` explaining why, so callers can
+        distinguish "skipped" from "down".
+
+        Reuses :meth:`fetch_models` so auth quirks (x-api-key, custom
+        headers) are honored automatically. Subclasses may override to probe
+        a cheaper liveness path.
+        """
+        import time as _time
+
+        checked_at = _time.time()
+        if not self.supports_health_check:
+            return {
+                "provider": self.name,
+                "online": False,
+                "latency_ms": None,
+                "http_status": None,
+                "authenticated": False,
+                "error": "health_check_disabled",
+                "checked_at": checked_at,
+            }
+        url = (self.models_url or "").strip() or base_url or self.base_url
+        if not url:
+            return {
+                "provider": self.name,
+                "online": False,
+                "latency_ms": None,
+                "http_status": None,
+                "authenticated": False,
+                "error": "no_base_url",
+                "checked_at": checked_at,
+            }
+
+        # API-key providers can't be probed without a key — report that
+        # instead of hitting the network with no credentials (and burning a
+        # caller's timeout on a guaranteed 401).
+        if self.auth_type == "api_key" and not api_key:
+            return {
+                "provider": self.name,
+                "online": False,
+                "latency_ms": None,
+                "http_status": None,
+                "authenticated": False,
+                "error": "no_api_key",
+                "checked_at": checked_at,
+            }
+
+        start = _time.monotonic()
+        try:
+            models = self.fetch_models(api_key=api_key, timeout=timeout)
+        except Exception as exc:  # defensive — fetch_models already swallows
+            return {
+                "provider": self.name,
+                "online": False,
+                "latency_ms": None,
+                "http_status": None,
+                "authenticated": False,
+                "error": str(exc)[:300],
+                "checked_at": checked_at,
+            }
+        latency_ms = int((_time.monotonic() - start) * 1000)
+        # fetch_models returns None both for HTTP failure and for providers
+        # with no listable catalog (bedrock, copilot-acp, ...). None is not
+        # "down" — treat it as reachable-unknown so we don't flag valid
+        # providers offline.
+        return {
+            "provider": self.name,
+            "online": models is not None,
+            "latency_ms": latency_ms,
+            "http_status": None,
+            "authenticated": models is not None,
+            "error": None if models is not None else "no_listable_catalog",
+            "checked_at": checked_at,
+        }
+
+    def get_health_probe_url(self) -> str:
+        """Return the URL used by ``check_health`` (for display/debug)."""
+        return (self.models_url or "").strip() or (self.base_url.rstrip("/") + "/models" if self.base_url else "")
+
+    def fetch_models(
+        self,
+        *,
+        api_key: str | None = None,
+        timeout: float = 8.0,
+    ) -> list[str] | None:
+        """Fetch the live model list from the provider's models endpoint.
+
+        Returns a list of model ID strings, or None if the fetch failed or
+        the provider does not support live model listing.
+
+        Resolution order for the endpoint URL:
+          1. self.models_url  (explicit override — use when the models
+             endpoint differs from the inference base URL, e.g. OpenRouter
+             exposes a public catalog at /api/v1/models while inference is
+             at /api/v1)
+          2. self.base_url + "/models"  (standard OpenAI-compat fallback)
+
+        The default implementation sends Bearer auth when api_key is given
+        and forwards self.default_headers. Override to customise auth, path,
+        response shape, or to return None for providers with no REST catalog.
+
+        Callers must always fall back to the static _PROVIDER_MODELS list
+        when this returns None.
+        """
+        url = (self.models_url or "").strip()
+        if not url:
+            if not self.base_url:
+                return None
+            url = self.base_url.rstrip("/") + "/models"
+
+        import json
+        import urllib.request
+
+        req = urllib.request.Request(url)
+        if api_key:
+            req.add_header("Authorization", f"Bearer {api_key}")
+        req.add_header("Accept", "application/json")
+        # Some providers (e.g. OpenCode Zen) sit behind a WAF that blocks
+        # the default ``Python-urllib/<ver>`` User-Agent.  Set a generic
+        # hermes-cli UA so the catalog endpoint is reachable.
+        req.add_header("User-Agent", _profile_user_agent())
+        for k, v in self.default_headers.items():
+            req.add_header(k, v)
+
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                data = json.loads(resp.read().decode())
+            items = data if isinstance(data, list) else data.get("data", [])
+            return [m["id"] for m in items if isinstance(m, dict) and "id" in m]
+        except Exception as exc:
+            logger.debug("fetch_models(%s): %s", self.name, exc)
+            return None

@@ -1,0 +1,4 @@
+﻿
+> aetheros@1.0.0 typecheck
+> tsc -p . --noEmit
+

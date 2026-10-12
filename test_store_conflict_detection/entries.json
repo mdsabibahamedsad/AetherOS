@@ -1,0 +1,70 @@
+{
+  "generation": 1,
+  "entries": {
+    "ab1c00f0-cd6b-4cea-bc23-abeb1bbbc188": {
+      "schema_version": 1,
+      "id": "ab1c00f0-cd6b-4cea-bc23-abeb1bbbc188",
+      "memory_type": "semantic",
+      "boundary": "user",
+      "origin": "unknown",
+      "state": "active",
+      "content": "Python is a programming language",
+      "summary": "",
+      "tags": [],
+      "user_id": "user123",
+      "workspace_id": "",
+      "session_id": "",
+      "agent_id": "",
+      "project_id": "",
+      "source": "",
+      "source_uri": "",
+      "confidence": 0.0,
+      "trust": 0.0,
+      "verification": "unverified",
+      "corroborated_by": [],
+      "checksum": "1a61ca96995958f53b13ef0c4db126d389593408d2a99af6ad71d3f86cb7d03b",
+      "version": 1,
+      "ttl": 0.0,
+      "created_at": 1788528824.5183067,
+      "updated_at": 1788528824.5183067,
+      "accessed_at": 1788528824.5183067,
+      "access_count": 0,
+      "metadata": {
+        "semantic_key": "python_definition"
+      }
+    },
+    "e88e58e0-f137-4946-aef5-ec7f0e2cd5ba": {
+      "schema_version": 1,
+      "id": "e88e58e0-f137-4946-aef5-ec7f0e2cd5ba",
+      "memory_type": "semantic",
+      "boundary": "user",
+      "origin": "unknown",
+      "state": "active",
+      "content": "Python is a type of snake",
+      "summary": "",
+      "tags": [],
+      "user_id": "user123",
+      "workspace_id": "",
+      "session_id": "",
+      "agent_id": "",
+      "project_id": "",
+      "source": "",
+      "source_uri": "",
+      "confidence": 0.0,
+      "trust": 0.0,
+      "verification": "unverified",
+      "corroborated_by": [],
+      "checksum": "cad38cf71526451991ef11be8ce08bc4b567d6d7e71c59ce15ea761049322e08",
+      "version": 1,
+      "ttl": 0.0,
+      "created_at": 1788528824.5203218,
+      "updated_at": 1788528824.5203218,
+      "accessed_at": 1788528824.5203218,
+      "access_count": 0,
+      "metadata": {
+        "semantic_key": "python_definition"
+      }
+    }
+  },
+  "quarantined": []
+}

@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "port": 0,
+  "host": "127.0.0.1",
+  "platforms": {
+    "telegram": {"enabled": false},
+    "discord": {"enabled": false},
+    "slack": {"enabled": false}
+  }
+}

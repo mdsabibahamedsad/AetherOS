@@ -1,0 +1,4 @@
+gh auth status => FAILED (token invalid, unchanged since Master 79.2)
+=> CI dispatch impossible. CI = NOT_RUN (§82). Root workflow READY (7-job DAG, YAML-valid).
+WindowsSandbox.exe => absent. Hyper-V/provider => none.
+=> CLEAN_VM = BLOCKED (§83). Developer host is NOT a clean environment.

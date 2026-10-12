@@ -1,0 +1,71 @@
+{
+  "master": 18,
+  "date": "2026-08-24",
+  "wave": 2,
+  "phases_total": 100,
+  "summary": {
+    "complete_count": 100,
+    "partial_count": 0,
+    "not_started_count": 0,
+    "partial_phases": {},
+    "not_started_phases": [],
+    "partials_closed_this_wave": {
+      "42": "offline vector retrieval now functional by default: HashingEmbedder (deterministic feature-hashing, no network/model download) + persistent item_embeddings table (model/dim/created_at) + reindex; cloud/local providers plug in via the same EmbeddingProvider interface",
+      "95": "larger-volume performance verified: 2500-item indexed store + 50 hybrid searches, 600-doc embedding index build, contention-safe ceilings; own per-file subprocess budget",
+      "96": "memory-specific stress suite added (30 projects x 10 concurrent agents with isolation assertions, interleaved write/read/forget/feedback hammering across threads, 600-turn conversation with periodic consolidation, 200-node graph traversal); repository kanban stress scripts executed directly: 6/8 green (test_concurrency, test_concurrency_mixed, test_concurrency_parent_gate, test_concurrency_reclaim_race, test_property_fuzzing, test_benchmarks), 2 pre-existing kanban-domain failures unrelated to memory (tests/stress/test_atypical_scenarios.py, tests/stress/test_subprocess_e2e.py - documented below)"
+    }
+  },
+  "new_package": "agent/memory_os/ (models, store, security, entities, graph, lifecycle, retrieval, embeddings, manager, bridges) + legacy monolith kept importable",
+  "surfaces": {
+    "cli": "aetheros memory-os {status,remember,search,show,list,forget,candidates,correct,feedback,link,graph,export,import,backup,restore,maintenance,private-mode,audit}",
+    "mcp_tools": ["memory_search", "memory_get", "memory_store", "memory_forget", "memory_list"],
+    "model_tools_added": 0
+  },
+  "tests": {
+    "new_tests_passed": 137,
+    "new_test_files": [
+      "tests/agent/test_memory_os_models.py",
+      "tests/agent/test_memory_os_store.py",
+      "tests/agent/test_memory_os_security.py",
+      "tests/agent/test_memory_os_lifecycle.py",
+      "tests/agent/test_memory_os_entities_graph.py",
+      "tests/agent/test_memory_os_retrieval.py",
+      "tests/agent/test_memory_os_scenarios.py",
+      "tests/agent/test_memory_os_redteam.py",
+      "tests/agent/test_memory_os_perf.py",
+      "tests/agent/test_memory_os_embeddings.py",
+      "tests/agent/test_memory_os_volume.py",
+      "tests/agent/test_memory_os_stress.py",
+      "tests/cli/test_memory_os_cmd.py"
+    ],
+    "golden_scenarios": "SC01-SC30 implemented offline",
+    "redteam": "poisoning/cross-project/cross-user/secret-extraction/resurrection/bypass/inference-escalation/external-injection: 0 escaped",
+    "regression_sweep": {
+      "mode": "chunked-by-directory (canonical runner)",
+      "files": 1783,
+      "passed": 31142,
+      "failed": 912,
+      "baseline_before_m18": {"files": 1578, "passed": 30716, "failed": 913},
+      "new_failing_files": 0,
+      "note": "all failures pre-existing platform/environment/other-wave drift; no failing file imports agent.memory_os"
+    }
+  },
+  "security_invariants_verified": [
+    "secrets never persisted (refused at store and update paths)",
+    "untrusted sources cannot create procedural/workflow/system memory",
+    "injection-shaped external content quarantined, excluded from all retrieval",
+    "agents: shared-only, project/task isolated; tools: no sensitive/org/system scope",
+    "cross-owner user memory invisible",
+    "deletion cascade removes row+FTS+versions+edges; audit tombstone content-free; non-resurrection asserted",
+    "import lands as CANDIDATE; malicious bundles quarantined/refused",
+    "backup restore never silently overwrites newer rows"
+  ],
+  "final_certification": "READY",
+  "ready_blockers": [],
+  "residual_notes": [
+    "HashingEmbedder is a deterministic lexical-approximate baseline, not transformer-grade; swap via EmbeddingProvider interface for higher semantic quality",
+    "pre-existing kanban stress failures (unrelated to memory, present before M18): tests/stress/test_atypical_scenarios.py 'Task.spawn_failures' stale attribute + archived-parent promotion expectation; tests/stress/test_subprocess_e2e.py dangling current_run_id after killed worker",
+    "pre-existing failure clusters (windows PTY/setup/update suites, nous-credits stale imports, memory-intelligence fabric tests, multimodal cluster) predate M18 and are documented in the M17/M18 reports"
+  ]
+}
+

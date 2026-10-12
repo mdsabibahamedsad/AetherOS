@@ -1,0 +1,11 @@
+{"master": 70, "purpose": "cross-platform E2E + QA handoff",
+ "suites": [
+  {"id": "py-platform", "cmd": "python -m pytest tests/aetheros_platform/ -q", "env": "any-python-3.12"},
+  {"id": "py-intel", "cmd": "python -m pytest tests/agent/test_operating_layer.py tests/agent_network -q", "env": "any-python-3.12"},
+  {"id": "electron-unit", "cmd": "node --test electron/*.test.cjs", "cwd": "apps/desktop", "env": "node-22+"},
+  {"id": "web-typecheck", "cmd": "npm run typecheck", "cwd": "web", "env": "node-22+deps"},
+  {"id": "cli-smoke", "cmd": "python -m aetheros_cli.main --help", "env": "repo-venv"},
+  {"id": "entitlements", "cmd": "python scripts/macos_entitlements_audit.py", "env": "any-python"},
+  {"id": "desktop-entry", "cmd": "python scripts/linux_desktop_entry_check.py", "env": "any-python"},
+  {"id": "bench", "cmd": "python scripts/windows_bench.py", "env": "target-hardware"}],
+ "blocked": ["xcode", "gradle", "docker", "k8s", "cloud", "browser-matrix", "clean-vms", "signing"]}

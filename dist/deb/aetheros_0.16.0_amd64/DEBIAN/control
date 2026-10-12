@@ -1,0 +1,6 @@
+Package: aetheros
+Version: 0.16.0
+Architecture: amd64
+Maintainer: AetherOS Team <team@aetheros.dev>
+Description: AetherOS - AI Operating System
+ AetherOS is a personal AI agent that runs across multiple platforms.

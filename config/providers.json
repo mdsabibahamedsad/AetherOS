@@ -1,0 +1,14 @@
+{
+  "default_provider": "openai",
+  "default_model": "gpt-4o",
+  "providers": {
+    "openai": {
+      "enabled": true,
+      "models": ["gpt-4o", "gpt-4o-mini", "o3", "o4-mini"]
+    },
+    "anthropic": {
+      "enabled": false,
+      "models": ["claude-sonnet-4", "claude-haiku-4"]
+    }
+  }
+}

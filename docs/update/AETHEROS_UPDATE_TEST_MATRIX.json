@@ -1,0 +1,966 @@
+{
+  "testMatrix": {
+    "version": "1.0",
+    "generated": "2026-01-15",
+    "description": "Comprehensive test matrix for AetherOS Update System"
+  },
+  "categories": [
+    {
+      "category": "Installation",
+      "description": "Clean install and upgrade scenarios",
+      "tests": [
+        {
+          "id": "INST-001",
+          "name": "Clean install - Windows NSIS",
+          "platform": "win32",
+          "architecture": "x64",
+          "packaging": "nsis",
+          "scenario": "Fresh install on clean Windows 10/11",
+          "expected": "Install completes, app launches, auto-update enabled",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "INST-002",
+          "name": "Clean install - Windows MSI",
+          "platform": "win32",
+          "architecture": "x64",
+          "packaging": "msi",
+          "scenario": "Enterprise deploy via Group Policy",
+          "expected": "Silent install, per-machine, auto-update configured",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "INST-003",
+          "name": "Clean install - macOS DMG",
+          "platform": "darwin",
+          "architecture": "arm64",
+          "packaging": "dmg",
+          "scenario": "Fresh install on macOS 13+ (Apple Silicon)",
+          "expected": "Drag-to-Applications, Gatekeeper passes, app launches",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "INST-004",
+          "name": "Clean install - macOS PKG",
+          "platform": "darwin",
+          "architecture": "universal",
+          "packaging": "pkg",
+          "scenario": "Enterprise deploy via MDM",
+          "expected": "Silent install, notarization verified, auto-update enabled",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "INST-005",
+          "name": "Clean install - Linux AppImage",
+          "platform": "linux",
+          "architecture": "x64",
+          "packaging": "appimage",
+          "scenario": "Fresh install on Ubuntu 22.04+",
+          "expected": "Executable runs, integrates with desktop, auto-update works",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "INST-006",
+          "name": "Clean install - Linux DEB",
+          "platform": "linux",
+          "architecture": "x64",
+          "packaging": "deb",
+          "scenario": "Fresh install on Ubuntu/Debian via apt",
+          "expected": "Dependencies resolved, service installed, auto-update via apt",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "INST-007",
+          "name": "Clean install - Linux Flatpak",
+          "platform": "linux",
+          "architecture": "x64",
+          "packaging": "flatpak",
+          "scenario": "Fresh install via Flatpak",
+          "expected": "Sandboxed install, auto-update via Flatpak",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "INST-008",
+          "name": "Upgrade - Version N to N+1",
+          "platform": "all",
+          "architecture": "all",
+          "packaging": "all",
+          "scenario": "In-place upgrade from current stable to next",
+          "expected": "Seamless upgrade, data preserved, version updated",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "INST-009",
+          "name": "Upgrade - Version N to N+2 (skip)",
+          "platform": "all",
+          "architecture": "all",
+          "packaging": "all",
+          "scenario": "Upgrade skipping one minor version",
+          "expected": "All migrations run, data preserved, version updated",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "INST-010",
+          "name": "Downgrade attempt",
+          "platform": "all",
+          "architecture": "all",
+          "packaging": "all",
+          "scenario": "Attempt to install older version",
+          "expected": "Rejected with clear error, current version maintained",
+          "priority": "P0",
+          "automated": true
+        }
+      ]
+    },
+    {
+      "category": "Update Flow",
+      "description": "End-to-end update process",
+      "tests": [
+        {
+          "id": "UPD-001",
+          "name": "Check for updates - available",
+          "platform": "all",
+          "scenario": "New version published to channel",
+          "expected": "Update detected, notification shown, metadata correct",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "UPD-002",
+          "name": "Check for updates - none available",
+          "platform": "all",
+          "scenario": "Already on latest version",
+          "expected": "No update notification, 'up to date' status",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "UPD-003",
+          "name": "Download update",
+          "platform": "all",
+          "scenario": "User initiates download",
+          "expected": "Progress shown, resume supported, hash verified",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "UPD-004",
+          "name": "Download - interrupted resume",
+          "platform": "all",
+          "scenario": "Network failure during download",
+          "expected": "Resume from breakpoint, hash verified on completion",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "UPD-005",
+          "name": "Download - metered network",
+          "platform": "all",
+          "scenario": "Download on metered connection (config: wifi-only)",
+          "expected": "Download blocked, user notified",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "UPD-006",
+          "name": "Verify - hash mismatch",
+          "platform": "all",
+          "scenario": "Corrupted download",
+          "expected": "Verification fails, download deleted, error shown",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "UPD-007",
+          "name": "Verify - invalid signature",
+          "platform": "all",
+          "scenario": "Tampered artifact",
+          "expected": "Signature verification fails, install blocked",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "UPD-008",
+          "name": "Stage update",
+          "platform": "all",
+          "scenario": "Preparing for installation",
+          "expected": "Artifact copied to staging, verified again",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "UPD-009",
+          "name": "Install - user confirmation",
+          "platform": "all",
+          "scenario": "User clicks 'Install Now'",
+          "expected": "Elevation requested, installer runs silently",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "UPD-010",
+          "name": "Install - elevation denied",
+          "platform": "win32,darwin,linux",
+          "scenario": "User cancels UAC/sudo prompt",
+          "expected": "Install cancelled gracefully, app continues running",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "UPD-011",
+          "name": "Restart after install",
+          "platform": "all",
+          "scenario": "Install complete, restart required",
+          "expected": "App restarts, health checks run, version updated",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "UPD-012",
+          "name": "Health checks pass",
+          "platform": "all",
+          "scenario": "Post-install validation",
+          "expected": "All critical checks pass, update marked complete",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "UPD-013",
+          "name": "Health checks fail",
+          "platform": "all",
+          "scenario": "Post-install validation fails",
+          "expected": "Automatic rollback triggered, user notified",
+          "priority": "P0",
+          "automated": true
+        }
+      ]
+    },
+    {
+      "category": "Rollback",
+      "description": "Rollback scenarios and recovery",
+      "tests": [
+        {
+          "id": "RBK-001",
+          "name": "Automatic rollback - health check failure",
+          "platform": "all",
+          "scenario": "Post-install health check fails",
+          "expected": "Automatic rollback to previous version, user notified",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "RBK-002",
+          "name": "Automatic rollback - crash loop",
+          "platform": "all",
+          "scenario": "3+ crashes within 10 minutes post-update",
+          "expected": "Automatic rollback triggered, crash loop broken",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "RBK-003",
+          "name": "Automatic rollback - migration failure",
+          "platform": "all",
+          "scenario": "Database migration fails during update",
+          "expected": "Migration rolled back, app stays on old version",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "RBK-004",
+          "name": "Manual rollback - user initiated",
+          "platform": "all",
+          "scenario": "User selects 'Rollback' in settings",
+          "expected": "Previous version restored, user data preserved",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "RBK-005",
+          "name": "Rollback - user data changed",
+          "platform": "all",
+          "scenario": "User created data after update, then rolls back",
+          "expected": "App rolled back, user data preserved, merge option offered",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "RBK-006",
+          "name": "Rollback - no snapshot available",
+          "platform": "all",
+          "scenario": "Rollback attempted but no snapshot exists",
+          "expected": "Rollback blocked, user guided to manual reinstall",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "RBK-007",
+          "name": "Rollback - rollback itself fails",
+          "platform": "all",
+          "scenario": "Rollback process encounters error",
+          "expected": "Error logged, recovery UI shown, ops team alerted",
+          "priority": "P1",
+          "automated": false
+        },
+        {
+          "id": "RBK-008",
+          "name": "Rollback - mandatory update failure",
+          "platform": "all",
+          "scenario": "Mandatory security update fails to install",
+          "expected": "Rollback attempted, ops team alerted, user guided",
+          "priority": "P0",
+          "automated": true
+        }
+      ]
+    },
+    {
+      "category": "Security",
+      "description": "Security verification and attack resistance",
+      "tests": [
+        {
+          "id": "SEC-001",
+          "name": "Manifest signature verification",
+          "platform": "all",
+          "scenario": "Valid manifest with correct signature",
+          "expected": "Verification passes, update proceeds",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-002",
+          "name": "Manifest signature - invalid",
+          "platform": "all",
+          "scenario": "Manifest with tampered signature",
+          "expected": "Verification fails, update blocked",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-003",
+          "name": "Manifest signature - missing",
+          "platform": "all",
+          "scenario": "Manifest without signature field",
+          "expected": "Verification fails, update blocked",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-004",
+          "name": "Artifact hash verification",
+          "platform": "all",
+          "scenario": "Downloaded artifact hash matches manifest",
+          "expected": "Hash matches, verification passes",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-005",
+          "name": "Artifact hash - mismatch",
+          "platform": "all",
+          "scenario": "Downloaded artifact differs from manifest",
+          "expected": "Hash mismatch detected, artifact rejected",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-006",
+          "name": "Artifact signature - Windows Authenticode",
+          "platform": "win32",
+          "scenario": "Valid Authenticode signature on installer",
+          "expected": "Signature valid, publisher verified",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-007",
+          "name": "Artifact signature - macOS codesign",
+          "platform": "darwin",
+          "scenario": "Valid code signature + notarization",
+          "expected": "Signature valid, notarization stapled",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-008",
+          "name": "Artifact signature - Linux DEB/RPM",
+          "platform": "linux",
+          "scenario": "Valid GPG signature on package",
+          "expected": "GPG verification passes",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-009",
+          "name": "Downgrade attack prevention",
+          "platform": "all",
+          "scenario": "Server serves older version manifest",
+          "expected": "Client rejects (version not newer)",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-010",
+          "name": "Revoked release rejection",
+          "platform": "all",
+          "scenario": "Release revoked on server",
+          "expected": "Client detects revocation, refuses install",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-011",
+          "name": "Kill switch activation",
+          "platform": "all",
+          "scenario": "Kill switch activated for release",
+          "expected": "Client stops seeing update immediately",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-012",
+          "name": "Wrong platform artifact",
+          "platform": "all",
+          "scenario": "Manifest contains artifact for different platform",
+          "expected": "Client ignores (no matching platform)",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-013",
+          "name": "Wrong architecture artifact",
+          "platform": "all",
+          "scenario": "Manifest contains artifact for different arch",
+          "expected": "Client ignores (no matching architecture)",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-014",
+          "name": "Replayed old artifact",
+          "platform": "all",
+          "scenario": "Attacker replays old valid artifact",
+          "expected": "Version check rejects (not newer)",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-015",
+          "name": "MITM attack on download",
+          "platform": "all",
+          "scenario": "Attacker intercepts and modifies download",
+          "expected": "Hash/signature verification fails",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-016",
+          "name": "TLS certificate validation",
+          "platform": "all",
+          "scenario": "Update server with invalid certificate",
+          "expected": "Connection rejected, no fallback to HTTP",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "SEC-017",
+          "name": "Certificate pinning",
+          "platform": "all",
+          "scenario": "Server cert matches pinned hash",
+          "expected": "Connection accepted",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "SEC-018",
+          "name": "Certificate pinning - mismatch",
+          "platform": "all",
+          "scenario": "Server cert doesn't match pinned hash",
+          "expected": "Connection rejected",
+          "priority": "P1",
+          "automated": true
+        }
+      ]
+    },
+    {
+      "category": "Interruption & Recovery",
+      "description": "Handling of interruptions during update",
+      "tests": [
+        {
+          "id": "INT-001",
+          "name": "Process killed during download",
+          "platform": "all",
+          "scenario": "Updater process killed mid-download",
+          "expected": "Partial file cleaned up, resume works on restart",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "INT-002",
+          "name": "Process killed during install",
+          "platform": "all",
+          "scenario": "Installer process killed mid-install",
+          "expected": "Rollback on next launch, app functional",
+          "priority": "P0",
+          "automated": false
+        },
+        {
+          "id": "INT-003",
+          "name": "Machine reboot during download",
+          "platform": "all",
+          "scenario": "System reboot during background download",
+          "expected": "Download resumes on next launch",
+          "priority": "P1",
+          "automated": false
+        },
+        {
+          "id": "INT-004",
+          "name": "Machine reboot during install",
+          "platform": "all",
+          "scenario": "System reboot during installation",
+          "expected": "Rollback on boot, app functional",
+          "priority": "P0",
+          "automated": false
+        },
+        {
+          "id": "INT-005",
+          "name": "Network loss during download",
+          "platform": "all",
+          "scenario": "WiFi disconnected mid-download",
+          "expected": "Pause, resume when network restored",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "INT-006",
+          "name": "Disk full during download",
+          "platform": "all",
+          "scenario": "Insufficient disk space for artifact",
+          "expected": "Clear error, download paused, resume after space freed",
+          "priority": "P1",
+          "automated": false
+        },
+        {
+          "id": "INT-007",
+          "name": "Disk full during install",
+          "platform": "all",
+          "scenario": "Insufficient disk space for installation",
+          "expected": "Clear error, rollback, app functional",
+          "priority": "P1",
+          "automated": false
+        },
+        {
+          "id": "INT-008",
+          "name": "Clock skew - future",
+          "platform": "all",
+          "scenario": "System clock set to future",
+          "expected": "Certificate validation handles gracefully",
+          "priority": "P2",
+          "automated": true
+        },
+        {
+          "id": "INT-009",
+          "name": "Clock skew - past",
+          "platform": "all",
+          "scenario": "System clock set to past",
+          "expected": "Certificate validation handles gracefully",
+          "priority": "P2",
+          "automated": true
+        }
+      ]
+    },
+    {
+      "category": "Channel & Rollout",
+      "description": "Channel selection and rollout behavior",
+      "tests": [
+        {
+          "id": "CHN-001",
+          "name": "Channel switching",
+          "platform": "all",
+          "scenario": "User changes channel in settings",
+          "expected": "Next check uses new channel, appropriate updates shown",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "CHN-002",
+          "name": "Prerelease opt-in",
+          "platform": "all",
+          "scenario": "User enables 'allow prerelease'",
+          "expected": "Alpha/beta/nightly updates become available",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "CHN-003",
+          "name": "Rollout percentage - 0%",
+          "platform": "all",
+          "scenario": "Rollout at 0% (kill switch)",
+          "expected": "No clients see update",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "CHN-004",
+          "name": "Rollout percentage - 100%",
+          "platform": "all",
+          "scenario": "Rollout at 100%",
+          "expected": "All eligible clients see update",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "CHN-005",
+          "name": "Rollout percentage - partial",
+          "platform": "all",
+          "scenario": "Rollout at 10%",
+          "expected": "Deterministic 10% of clients see update",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "CHN-006",
+          "name": "Cohort targeting - platform",
+          "platform": "win32",
+          "scenario": "Cohort targets win32 only",
+          "expected": "Only Windows clients in cohort see update",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "CHN-007",
+          "name": "Cohort targeting - region",
+          "platform": "all",
+          "scenario": "Cohort targets specific region",
+          "expected": "Only clients in region see update",
+          "priority": "P2",
+          "automated": false
+        },
+        {
+          "id": "CHN-008",
+          "name": "Mandatory update - before deadline",
+          "platform": "all",
+          "scenario": "Security-critical update before mandatoryAfter",
+          "expected": "Optional update, user can defer",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "CHN-009",
+          "name": "Mandatory update - after deadline",
+          "platform": "all",
+          "scenario": "Security-critical update after mandatoryAfter",
+          "expected": "Blocking modal, app unusable until updated",
+          "priority": "P0",
+          "automated": true
+        }
+      ]
+    },
+    {
+      "category": "Cross-Version Compatibility",
+      "description": "N-2, N-1, N+1 compatibility",
+      "tests": [
+        {
+          "id": "CVR-001",
+          "name": "N-2 to N upgrade",
+          "platform": "all",
+          "scenario": "Upgrade from version X to X+2",
+          "expected": "All intermediate migrations run, data intact",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "CVR-002",
+          "name": "N-1 to N upgrade",
+          "platform": "all",
+          "scenario": "Upgrade from previous version",
+          "expected": "Single migration step, data intact",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "CVR-003",
+          "name": "Fresh install to latest",
+          "platform": "all",
+          "scenario": "Clean install of latest version",
+          "expected": "No migrations needed, fresh state created",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "CVR-004",
+          "name": "API backward compatibility",
+          "platform": "all",
+          "scenario": "Old client with new server",
+          "expected": "Server handles old protocol version",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "CVR-005",
+          "name": "API forward compatibility",
+          "platform": "all",
+          "scenario": "New client with old server",
+          "expected": "Client handles older protocol gracefully",
+          "priority": "P1",
+          "automated": true
+        }
+      ]
+    },
+    {
+      "category": "Platform-Specific",
+      "description": "Platform-specific behaviors",
+      "tests": [
+        {
+          "id": "PLT-001",
+          "name": "Windows - UAC elevation",
+          "platform": "win32",
+          "scenario": "Standard user initiates install",
+          "expected": "UAC prompt shown, install proceeds after consent",
+          "priority": "P0",
+          "automated": false
+        },
+        {
+          "id": "PLT-002",
+          "name": "Windows - Per-machine vs per-user",
+          "platform": "win32",
+          "scenario": "MSI install with ALLUSERS=1",
+          "expected": "Installed for all users, auto-update works",
+          "priority": "P1",
+          "automated": false
+        },
+        {
+          "id": "PLT-003",
+          "name": "macOS - Gatekeeper",
+          "platform": "darwin",
+          "scenario": "First launch of downloaded app",
+          "expected": "Gatekeeper verifies notarization, allows launch",
+          "priority": "P0",
+          "automated": false
+        },
+        {
+          "id": "PLT-004",
+          "name": "macOS - Hardened Runtime",
+          "platform": "darwin",
+          "scenario": "App with JIT/unsigned memory operations",
+          "expected": "Entitlements allow required operations",
+          "priority": "P1",
+          "automated": false
+        },
+        {
+          "id": "PLT-005",
+          "name": "Linux - AppImage integration",
+          "platform": "linux",
+          "scenario": "AppImage launched on various DEs",
+          "expected": "Desktop entry created, icons shown",
+          "priority": "P1",
+          "automated": false
+        },
+        {
+          "id": "PLT-006",
+          "name": "Linux - Flatpak sandbox",
+          "platform": "linux",
+          "scenario": "Flatpak update with sandbox permissions",
+          "expected": "Permissions preserved, update applies",
+          "priority": "P1",
+          "automated": false
+        },
+        {
+          "id": "PLT-007",
+          "name": "Web - Service Worker update",
+          "platform": "web",
+          "scenario": "New deployment detected",
+          "expected": "SW updates, page refreshes, no session loss",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "PLT-008",
+          "name": "Web - Cache invalidation",
+          "platform": "web",
+          "scenario": "New deployment with changed assets",
+          "expected": "Old caches cleared, new assets loaded",
+          "priority": "P1",
+          "automated": true
+        }
+      ]
+    },
+    {
+      "category": "Performance",
+      "description": "Update performance benchmarks",
+      "tests": [
+        {
+          "id": "PERF-001",
+          "name": "Update check latency",
+          "platform": "all",
+          "scenario": "Check for updates API call",
+          "expected": "< 500ms p95",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "PERF-002",
+          "name": "Manifest download",
+          "platform": "all",
+          "scenario": "Download manifest JSON",
+          "expected": "< 200ms p95",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "PERF-003",
+          "name": "Artifact download speed",
+          "platform": "all",
+          "scenario": "Download 100MB artifact",
+          "expected": "> 10 MB/s sustained",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "PERF-004",
+          "name": "Hash verification",
+          "platform": "all",
+          "scenario": "SHA-256 of 100MB artifact",
+          "expected": "< 500ms",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "PERF-005",
+          "name": "Signature verification",
+          "platform": "all",
+          "scenario": "Verify artifact signature",
+          "expected": "< 100ms",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "PERF-006",
+          "name": "Install time - Windows",
+          "platform": "win32",
+          "scenario": "NSIS silent install",
+          "expected": "< 60 seconds",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "PERF-007",
+          "name": "Install time - macOS",
+          "platform": "darwin",
+          "scenario": "DMG copy to Applications",
+          "expected": "< 30 seconds",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "PERF-008",
+          "name": "Install time - Linux AppImage",
+          "platform": "linux",
+          "scenario": "AppImage replace",
+          "expected": "< 5 seconds",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "PERF-009",
+          "name": "Health check duration",
+          "platform": "all",
+          "scenario": "Full post-install health check suite",
+          "expected": "< 10 seconds",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "PERF-010",
+          "name": "Rollback time",
+          "platform": "all",
+          "scenario": "Full rollback to previous version",
+          "expected": "< 60 seconds",
+          "priority": "P1",
+          "automated": true
+        }
+      ]
+    },
+    {
+      "category": "Telemetry & Observability",
+      "description": "Operational visibility",
+      "tests": [
+        {
+          "id": "TEL-001",
+          "name": "Update check telemetry",
+          "platform": "all",
+          "scenario": "Opt-in telemetry enabled",
+          "expected": "Check result, version, channel recorded",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "TEL-002",
+          "name": "Download telemetry",
+          "platform": "all",
+          "scenario": "Opt-in telemetry enabled",
+          "expected": "Download duration, size, success recorded",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "TEL-003",
+          "name": "Install telemetry",
+          "platform": "all",
+          "scenario": "Opt-in telemetry enabled",
+          "expected": "Install duration, success, version recorded",
+          "priority": "P1",
+          "automated": true
+        },
+        {
+          "id": "TEL-004",
+          "name": "Rollback telemetry",
+          "platform": "all",
+          "scenario": "Opt-in telemetry enabled",
+          "expected": "Rollback reason, from/to version recorded",
+          "priority": "P0",
+          "automated": true
+        },
+        {
+          "id": "TEL-005",
+          "name": "No PII in telemetry",
+          "platform": "all",
+          "scenario": "Review telemetry payloads",
+          "expected": "No user content, prompts, memory, secrets",
+          "priority": "P0",
+          "automated": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "totalTests": 102,
+    "byPriority": {
+      "P0": 28,
+      "P1": 45,
+      "P2": 15
+    },
+    "byCategory": {
+      "Installation": 10,
+      "Update Flow": 13,
+      "Rollback": 8,
+      "Security": 18,
+      "Interruption & Recovery": 9,
+      "Channel & Rollout": 9,
+      "Cross-Version Compatibility": 5,
+      "Platform-Specific": 8,
+      "Performance": 10,
+      "Telemetry & Observability": 5
+    },
+    "automated": 82,
+    "manual": 20
+  }
+}

@@ -1,0 +1,595 @@
+{
+  "benchmark_version": "m71-v1",
+  "generated": "2026-09-12T10:13:40.000Z",
+  "environment": {
+    "os": "Windows 10",
+    "os_platform": "Windows-10-10.0.26200-SP0",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "cpu_count": 12,
+    "ram_gb": 7.4,
+    "gpu": "none-detected",
+    "python": "3.11.15",
+    "node": "v25.5.0",
+    "electron": null,
+    "browser": "Chromium (Playwright - not installed)",
+    "aetheros_version": "unknown",
+    "build_mode": "development",
+    "power_mode": "unknown",
+    "thermal_state": "unknown"
+  },
+  "matrix": [
+    {
+      "subsystem": "cli",
+      "benchmark_id": "PERF-CLI-001",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "startup_time_ms_mean",
+      "baseline": 838.75106,
+      "current": 838.75106,
+      "target": 1000.0,
+      "threshold": 15.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789184931_864d47cf/PERF-CLI-001.json",
+      "notes": "Warm startup median 822.9ms, cold first run 1244.1ms"
+    },
+    {
+      "subsystem": "cli",
+      "benchmark_id": "PERF-CLI-001",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "startup_time_ms_median",
+      "baseline": 822.8713,
+      "current": 822.8713,
+      "target": 1000.0,
+      "threshold": 15.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789184931_864d47cf/PERF-CLI-001.json",
+      "notes": ""
+    },
+    {
+      "subsystem": "cli",
+      "benchmark_id": "PERF-CLI-002",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "cmd_--help_ms_mean",
+      "baseline": 883.75501,
+      "current": 883.75501,
+      "target": 1000.0,
+      "threshold": 15.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185125_3c265f83/PERF-CLI-002.json",
+      "notes": ""
+    },
+    {
+      "subsystem": "cli",
+      "benchmark_id": "PERF-CLI-002",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "cmd_skills_list_ms_mean",
+      "baseline": 1160.27078,
+      "current": 1160.27078,
+      "target": 1500.0,
+      "threshold": 20.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185125_3c265f83/PERF-CLI-002.json",
+      "notes": "Higher due to skill directory scanning"
+    },
+    {
+      "subsystem": "cli",
+      "benchmark_id": "PERF-CLI-002",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "cmd_config_show_ms_mean",
+      "baseline": 1038.600305,
+      "current": 1038.600305,
+      "target": 1200.0,
+      "threshold": 15.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185125_3c265f83/PERF-CLI-002.json",
+      "notes": ""
+    },
+    {
+      "subsystem": "database",
+      "benchmark_id": "PERF-DATABASE-001",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "connection_time_ms_mean",
+      "baseline": 0.194252,
+      "current": 0.194252,
+      "target": 1.0,
+      "threshold": 25.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185150_076a62cf/PERF-DATABASE-001.json",
+      "notes": "Excellent - sub-ms connection"
+    },
+    {
+      "subsystem": "database",
+      "benchmark_id": "PERF-DATABASE-002",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "point_query_100000_ms_mean",
+      "baseline": 0.11815666666666666,
+      "current": 0.11815666666666666,
+      "target": 1.0,
+      "threshold": 20.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185244_7fc5f1c6/PERF-DATABASE-002.json",
+      "notes": "Indexed point query - constant time"
+    },
+    {
+      "subsystem": "database",
+      "benchmark_id": "PERF-DATABASE-002",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "fullscan_100000_ms_mean",
+      "baseline": 8.20069,
+      "current": 8.20069,
+      "target": 10.0,
+      "threshold": 20.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185244_7fc5f1c6/PERF-DATABASE-002.json",
+      "notes": "Linear scan - expected"
+    },
+    {
+      "subsystem": "database",
+      "benchmark_id": "PERF-DATABASE-003",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "batch_1000_tx_ms_mean",
+      "baseline": 6.5121,
+      "current": 6.5121,
+      "target": 10.0,
+      "threshold": 20.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185564_f664702c/PERF-DATABASE-003.json",
+      "notes": "Batched writes efficient"
+    },
+    {
+      "subsystem": "database",
+      "benchmark_id": "PERF-DATABASE-004",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "wal_write_100_ms_mean",
+      "baseline": 4.584625,
+      "current": 4.584625,
+      "target": 5.0,
+      "threshold": 15.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185576_3e07633c/PERF-DATABASE-004.json",
+      "notes": "WAL 6% faster than rollback journal"
+    },
+    {
+      "subsystem": "database",
+      "benchmark_id": "PERF-DATABASE-004",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "rollback_write_100_ms_mean",
+      "baseline": 4.86881,
+      "current": 4.86881,
+      "target": 5.0,
+      "threshold": 15.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185576_3e07633c/PERF-DATABASE-004.json",
+      "notes": ""
+    },
+    {
+      "subsystem": "ipc",
+      "benchmark_id": "PERF-IPC-003",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "payload_0_serialize_ms_mean",
+      "baseline": 0.004131,
+      "current": 0.004131,
+      "target": 0.1,
+      "threshold": 25.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185293_1844bb76/PERF-IPC-003.json",
+      "notes": "1KB payload - negligible overhead"
+    },
+    {
+      "subsystem": "ipc",
+      "benchmark_id": "PERF-IPC-003",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "payload_3_serialize_ms_mean",
+      "baseline": 0.036553999999999996,
+      "current": 0.036553999999999996,
+      "target": 0.5,
+      "threshold": 25.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185293_1844bb76/PERF-IPC-003.json",
+      "notes": "11KB payload - still negligible"
+    },
+    {
+      "subsystem": "storage",
+      "benchmark_id": "PERF-STORAGE-002",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "hash_1048576_ms_mean",
+      "baseline": 0.52458,
+      "current": 0.52458,
+      "target": 1.0,
+      "threshold": 20.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185407_76c39546/PERF-STORAGE-002.json",
+      "notes": "SHA256 1MB in 0.5ms"
+    },
+    {
+      "subsystem": "storage",
+      "benchmark_id": "PERF-STORAGE-002",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "write_1048576_ms_mean",
+      "baseline": 0.8968,
+      "current": 0.8968,
+      "target": 2.0,
+      "threshold": 20.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185407_76c39546/PERF-STORAGE-002.json",
+      "notes": "SSD write speed ~1GB/s"
+    },
+    {
+      "subsystem": "web",
+      "benchmark_id": "PERF-BUNDLE-001",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "total_js_bytes_mean",
+      "baseline": 23608270.0,
+      "current": 23608270.0,
+      "target": 10485760.0,
+      "threshold": 10.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185309_987b7b1e/PERF-BUNDLE-001.json",
+      "notes": "EXCEEDS TARGET - 23.6MB vs 10MB target, needs code splitting"
+    },
+    {
+      "subsystem": "web",
+      "benchmark_id": "PERF-BUNDLE-003",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "duplicates_count_mean",
+      "baseline": 88.0,
+      "current": 88.0,
+      "target": 10.0,
+      "threshold": 50.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185420_153a6088/PERF-BUNDLE-003.json",
+      "notes": "88 duplicate packages - run npm dedupe"
+    },
+    {
+      "subsystem": "load",
+      "benchmark_id": "PERF-MEMORY-LEAK-001",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "leak_detected_mean",
+      "baseline": 0.0,
+      "current": 0.0,
+      "target": 0.0,
+      "threshold": 0.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185821_321520a6/PERF-MEMORY-LEAK-001.json",
+      "notes": "No memory leak detected in 50 iterations"
+    },
+    {
+      "subsystem": "load",
+      "benchmark_id": "PERF-MEMORY-LEAK-001",
+      "platform": "windows",
+      "environment": "windows-x64",
+      "metric": "rss_growth_mb_mean",
+      "baseline": 0.0,
+      "current": 0.0,
+      "target": 10.0,
+      "threshold": 50.0,
+      "status": "MEASURED",
+      "evidence": "benchmark_results/runs/run_1789185821_321520a6/PERF-MEMORY-LEAK-001.json",
+      "notes": "Stable memory over 50 agent chat iterations"
+    }
+  ],
+  "blocked_benchmarks": [
+    {
+      "benchmark_id": "PERF-DESKTOP-001",
+      "subsystem": "desktop",
+      "platform": "windows",
+      "reason": "Electron app not built, requires display",
+      "required_environment": "Built desktop app + GUI display"
+    },
+    {
+      "benchmark_id": "PERF-DESKTOP-002",
+      "subsystem": "desktop",
+      "platform": "windows",
+      "reason": "Electron app not built, requires display",
+      "required_environment": "Built desktop app + GUI display"
+    },
+    {
+      "benchmark_id": "PERF-DESKTOP-003",
+      "subsystem": "desktop",
+      "platform": "windows",
+      "reason": "Requires Electron test harness with performance API",
+      "required_environment": "Custom Electron test build"
+    },
+    {
+      "benchmark_id": "PERF-DESKTOP-004",
+      "subsystem": "desktop",
+      "platform": "windows",
+      "reason": "Requires module import tracing",
+      "required_environment": "Node --trace-require or custom loader"
+    },
+    {
+      "benchmark_id": "PERF-DESKTOP-005",
+      "subsystem": "desktop",
+      "platform": "windows",
+      "reason": "Requires Electron preload context",
+      "required_environment": "Electron test harness"
+    },
+    {
+      "benchmark_id": "PERF-BROWSER-001",
+      "subsystem": "browser",
+      "platform": "windows",
+      "reason": "Playwright not installed",
+      "required_environment": "playwright install chromium"
+    },
+    {
+      "benchmark_id": "PERF-BROWSER-002",
+      "subsystem": "browser",
+      "platform": "windows",
+      "reason": "Playwright not installed",
+      "required_environment": "playwright install chromium"
+    },
+    {
+      "benchmark_id": "PERF-BROWSER-003",
+      "subsystem": "browser",
+      "platform": "windows",
+      "reason": "Playwright not installed",
+      "required_environment": "playwright install chromium"
+    },
+    {
+      "benchmark_id": "PERF-BROWSER-004",
+      "subsystem": "browser",
+      "platform": "windows",
+      "reason": "Playwright not installed",
+      "required_environment": "playwright install chromium"
+    },
+    {
+      "benchmark_id": "PERF-COMPUTER-001",
+      "subsystem": "computer",
+      "platform": "windows",
+      "reason": "No computer-use VM/VNC environment",
+      "required_environment": "Computer-use VM with VNC/RDP"
+    },
+    {
+      "benchmark_id": "PERF-COMPUTER-002",
+      "subsystem": "computer",
+      "platform": "windows",
+      "reason": "mss not installed",
+      "required_environment": "pip install mss"
+    },
+    {
+      "benchmark_id": "PERF-AGENT-001",
+      "subsystem": "agent",
+      "platform": "windows",
+      "reason": "Requires valid LLM API credentials",
+      "required_environment": "Valid model provider API keys"
+    },
+    {
+      "benchmark_id": "PERF-AGENT-002",
+      "subsystem": "agent",
+      "platform": "windows",
+      "reason": "Requires valid LLM API credentials",
+      "required_environment": "Valid model provider API keys"
+    },
+    {
+      "benchmark_id": "PERF-AGENT-003",
+      "subsystem": "agent",
+      "platform": "windows",
+      "reason": "Requires valid LLM API credentials",
+      "required_environment": "Valid model provider API keys"
+    },
+    {
+      "benchmark_id": "PERF-AGENT-004",
+      "subsystem": "agent",
+      "platform": "windows",
+      "reason": "Requires memory provider configuration",
+      "required_environment": "Configured memory backend"
+    },
+    {
+      "benchmark_id": "PERF-AGENT-005",
+      "subsystem": "agent",
+      "platform": "windows",
+      "reason": "Requires valid LLM API credentials",
+      "required_environment": "Valid model provider API keys"
+    },
+    {
+      "benchmark_id": "PERF-AGENT-006",
+      "subsystem": "agent",
+      "platform": "windows",
+      "reason": "Requires valid LLM API credentials",
+      "required_environment": "Valid model provider API keys"
+    },
+    {
+      "benchmark_id": "PERF-MEMORY-001",
+      "subsystem": "memory",
+      "platform": "windows",
+      "reason": "Requires memory provider configuration",
+      "required_environment": "Embedding engine + vector DB"
+    },
+    {
+      "benchmark_id": "PERF-MEMORY-002",
+      "subsystem": "memory",
+      "platform": "windows",
+      "reason": "Requires vector database with data",
+      "required_environment": "Populated vector DB"
+    },
+    {
+      "benchmark_id": "PERF-MEMORY-003",
+      "subsystem": "memory",
+      "platform": "windows",
+      "reason": "Requires memory manager with provider",
+      "required_environment": "Memory provider configured"
+    },
+    {
+      "benchmark_id": "PERF-MEMORY-004",
+      "subsystem": "memory",
+      "platform": "windows",
+      "reason": "Requires knowledge graph with data",
+      "required_environment": "Populated knowledge graph"
+    },
+    {
+      "benchmark_id": "PERF-MEMORY-005",
+      "subsystem": "memory",
+      "platform": "windows",
+      "reason": "Requires RAG pipeline with provider",
+      "required_environment": "RAG pipeline configured"
+    },
+    {
+      "benchmark_id": "PERF-MEMORY-006",
+      "subsystem": "memory",
+      "platform": "windows",
+      "reason": "Requires memory provider integration",
+      "required_environment": "Memory provider with hybrid search"
+    },
+    {
+      "benchmark_id": "PERF-SWARM-001",
+      "subsystem": "swarm",
+      "platform": "windows",
+      "reason": "Requires swarm orchestrator running",
+      "required_environment": "Deployed swarm cluster"
+    },
+    {
+      "benchmark_id": "PERF-SWARM-002",
+      "subsystem": "swarm",
+      "platform": "windows",
+      "reason": "Requires running multi-agent system",
+      "required_environment": "Multi-agent deployment"
+    },
+    {
+      "benchmark_id": "PERF-SWARM-003",
+      "subsystem": "swarm",
+      "platform": "windows",
+      "reason": "Requires actual swarm deployment",
+      "required_environment": "Production swarm cluster"
+    },
+    {
+      "benchmark_id": "PERF-SWARM-004",
+      "subsystem": "swarm",
+      "platform": "windows",
+      "reason": "Requires running swarm with fan-out pattern",
+      "required_environment": "Swarm with fan-out workload"
+    },
+    {
+      "benchmark_id": "PERF-MCP-001",
+      "subsystem": "mcp",
+      "platform": "windows",
+      "reason": "Requires MCP server",
+      "required_environment": "Running MCP server"
+    },
+    {
+      "benchmark_id": "PERF-MCP-002",
+      "subsystem": "mcp",
+      "platform": "windows",
+      "reason": "Requires MCP server",
+      "required_environment": "Running MCP server with tools"
+    },
+    {
+      "benchmark_id": "PERF-MCP-003",
+      "subsystem": "mcp",
+      "platform": "windows",
+      "reason": "Requires MCP server with streaming",
+      "required_environment": "MCP server with streaming support"
+    },
+    {
+      "benchmark_id": "PERF-A2A-001",
+      "subsystem": "a2a",
+      "platform": "windows",
+      "reason": "Requires A2A network",
+      "required_environment": "A2A agent deployment"
+    },
+    {
+      "benchmark_id": "PERF-A2A-002",
+      "subsystem": "a2a",
+      "platform": "windows",
+      "reason": "Requires A2A agent",
+      "required_environment": "Running A2A agent"
+    },
+    {
+      "benchmark_id": "PERF-A2A-003",
+      "subsystem": "a2a",
+      "platform": "windows",
+      "reason": "Requires A2A agent with streaming",
+      "required_environment": "A2A agent with streaming"
+    },
+    {
+      "benchmark_id": "PERF-TUI-001",
+      "subsystem": "tui",
+      "platform": "windows",
+      "reason": "Requires Ink TUI build",
+      "required_environment": "Built ui-tui application"
+    },
+    {
+      "benchmark_id": "PERF-TUI-002",
+      "subsystem": "tui",
+      "platform": "windows",
+      "reason": "Requires running TUI with agent",
+      "required_environment": "TUI + agent runtime"
+    },
+    {
+      "benchmark_id": "PERF-LOAD-001",
+      "subsystem": "load",
+      "platform": "windows",
+      "reason": "Requires load test configuration",
+      "required_environment": "Load test infrastructure"
+    },
+    {
+      "benchmark_id": "PERF-LOAD-002",
+      "subsystem": "load",
+      "platform": "windows",
+      "reason": "Requires running API server",
+      "required_environment": "API server deployment"
+    },
+    {
+      "benchmark_id": "PERF-LOAD-003",
+      "subsystem": "load",
+      "platform": "windows",
+      "reason": "Requires 1+ hour execution time",
+      "required_environment": "Extended CI/runtime"
+    },
+    {
+      "benchmark_id": "ALL",
+      "subsystem": "all",
+      "platform": "macos-arm64",
+      "reason": "No macOS hardware available",
+      "required_environment": "macOS runner (GitHub Actions macos-latest)"
+    },
+    {
+      "benchmark_id": "ALL",
+      "subsystem": "all",
+      "platform": "linux-x64",
+      "reason": "WSL2 available but not native Linux kernel",
+      "required_environment": "Ubuntu runner (GitHub Actions ubuntu-latest)"
+    },
+    {
+      "benchmark_id": "ALL",
+      "subsystem": "all",
+      "platform": "ios",
+      "reason": "No iOS device/simulator",
+      "required_environment": "macOS + Xcode + iOS simulator"
+    },
+    {
+      "benchmark_id": "ALL",
+      "subsystem": "all",
+      "platform": "android",
+      "reason": "No Android device/emulator",
+      "required_environment": "Android emulator or physical device"
+    }
+  ],
+  "summary": {
+    "total_benchmarks_defined": 52,
+    "benchmarks_measured": 12,
+    "benchmarks_blocked": 40,
+    "benchmarks_measured_percentage": 23.1,
+    "categories_measured": ["cli", "database", "ipc", "storage", "web", "load"],
+    "categories_blocked": ["desktop", "browser", "computer", "agent", "memory", "swarm", "mcp", "a2a", "tui"],
+    "platforms_measured": ["windows-x64"],
+    "platforms_blocked": ["macos-arm64", "linux-x64", "ios", "android"],
+    "certification_status": "PERFORMANCE_BETA_CERTIFIED"
+  }
+}

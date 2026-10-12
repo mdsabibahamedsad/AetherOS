@@ -1,0 +1,8 @@
+Electron dependency-free unit tests — actual output (node --test, 17 files)
+tests 176 / pass 176 / fail 0 / cancelled 0 / skipped 0 (duration ~411ms)
+Files: session-windows, workspace-cwd, port-pool, desktop-uninstall,
+hardening, windows-child-process, connection-config, bootstrap-platform,
+tray-menu, update-manifest, linux-session, backend-probes, dashboard-token,
+gateway-ws-probe, oauth-net-request, fs-read-dir, git-root, api-path,
+update-remote, session-windows.
+ELECTRON REGRESSION: 176/176 PASS (host-side; CI re-runs on windows-latest).

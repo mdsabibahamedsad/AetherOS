@@ -1,0 +1,37 @@
+﻿{
+  "definitions": [
+    {
+      "n": 100,
+      "create_s": 0.432,
+      "tick_s": 0.061,
+      "runs_started": 100,
+      "trigger_match_ms": 0.0,
+      "rss_kb": 29560.0
+    },
+    {
+      "n": 1000,
+      "create_s": 31.582,
+      "tick_s": 0.607,
+      "runs_started": 1000,
+      "trigger_match_ms": 0.0,
+      "rss_kb": 35960.0
+    }
+  ],
+  "concurrency": [
+    {
+      "concurrent_runs": 10,
+      "completed": 10,
+      "wall_s": 0.022
+    },
+    {
+      "concurrent_runs": 50,
+      "completed": 50,
+      "wall_s": 0.043
+    },
+    {
+      "concurrent_runs": 100,
+      "completed": 100,
+      "wall_s": 0.084
+    }
+  ]
+}

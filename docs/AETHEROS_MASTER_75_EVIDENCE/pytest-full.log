@@ -1,0 +1,11 @@
+﻿.venv\Scripts\python : ERROR: usage: __main__.py [options] [file_or_dir] [file_or_dir] [...]
+At line:1 char:1
++ .venv\Scripts\python -m pytest tests/ -q -n auto -p no:cacheprovider  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR: usage: _...e_or_dir] [...]:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+__main__.py: error: unrecognized arguments: -n
+  inifile: D:\hermes-agent-main\aetheros\pyproject.toml
+  rootdir: D:\hermes-agent-main\aetheros
+

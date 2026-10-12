@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 626 108" width="626" height="108">  <defs>
+  <linearGradient id="aog" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0" stop-color="#35E0FF"/>
+    <stop offset="0.52" stop-color="#3B82F6"/>
+    <stop offset="1" stop-color="#8B5CF6"/>
+  </linearGradient>
+  <radialGradient id="aov" cx="0.5" cy="0.56" r="0.62">
+    <stop offset="0.72" stop-color="#000010" stop-opacity="0"/>
+    <stop offset="1" stop-color="#000010" stop-opacity="0.30"/>
+  </radialGradient>
+  <linearGradient id="wmg" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0" stop-color="#3B82F6"/>
+    <stop offset="1" stop-color="#8B5CF6"/>
+  </linearGradient>
+  <clipPath id="aoc"><path d="M256 494L198 420L182 376L88 380L116 308L38 288L124 144L112 120L168 10L212 58L300 58L344 10L400 120L388 144L474 288L396 308L424 380L330 376L314 420Z M128 212L206 240L198 268L136 246Z M384 212L306 240L314 268L376 246Z M256 390L288 424L256 459L224 424Z M256 132L276 158L256 184L236 158Z"/></clipPath>
+  </defs><g transform="translate(9.5 0)"><path transform="translate(0 0) scale(1)" fill="none" stroke="#FFFFFF" stroke-width="15" d="M2 100L32 4L46 4L76 100"/><path transform="translate(0 0) scale(1)" fill="none" stroke="#FFFFFF" stroke-width="15" d="M20 66L58 66"/><path transform="translate(91 0) scale(1)" fill="none" stroke="#FFFFFF" stroke-width="15" d="M60 36L20 36L8 48L8 86L20 98L60 98L60 74"/><path transform="translate(91 0) scale(1)" fill="none" stroke="#FFFFFF" stroke-width="15" d="M8 72L60 72"/><path transform="translate(170 0) scale(1)" fill="none" stroke="#FFFFFF" stroke-width="15" d="M30 2L30 96L44 96"/><path transform="translate(170 0) scale(1)" fill="none" stroke="#FFFFFF" stroke-width="15" d="M10 38L52 38"/><path transform="translate(233 0) scale(1)" fill="none" stroke="#FFFFFF" stroke-width="15" d="M6 2L6 100"/><path transform="translate(233 0) scale(1)" fill="none" stroke="#FFFFFF" stroke-width="15" d="M6 60L24 38L42 38L60 60L60 100"/><path transform="translate(308 0) scale(1)" fill="none" stroke="#FFFFFF" stroke-width="15" d="M60 36L20 36L8 48L8 86L20 98L60 98L60 74"/><path transform="translate(308 0) scale(1)" fill="none" stroke="#FFFFFF" stroke-width="15" d="M8 72L60 72"/><path transform="translate(387 0) scale(1)" fill="none" stroke="#FFFFFF" stroke-width="15" d="M6 38L6 100"/><path transform="translate(387 0) scale(1)" fill="none" stroke="#FFFFFF" stroke-width="15" d="M6 58L22 38L44 38"/><path transform="translate(448 0) scale(1)" fill-rule="evenodd" fill="url(#wmg)" d="M24 4L54 4L74 24L74 76L54 96L24 96L4 76L4 24Z M30 21L48 21L57 30L57 70L48 79L30 79L21 70L21 30Z"/><path transform="translate(539 0) scale(1)" fill="none" stroke="url(#wmg)" stroke-width="15" d="M60 14L52 4L20 4L8 16L8 34L18 44L52 44L64 56L64 86L54 96L20 96L10 85"/></g></svg>

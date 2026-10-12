@@ -1,0 +1,1 @@
+{"builder":"electron-builder 26.8.1, existing config in apps/desktop/package.json `build` key (untouched)","msi":"BLOCKED (WiX LGHT0103, environment long-path; see 08)","nsis":"PASS","outputDir":"apps/desktop/dist-packaged/ (authoritative; gitignored; deprecated release/ not revived)","portable":"PASS"}

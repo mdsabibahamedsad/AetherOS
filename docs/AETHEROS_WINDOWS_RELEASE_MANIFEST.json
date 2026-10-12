@@ -1,0 +1,26 @@
+{
+  "product": "AetherOS",
+  "platform": "windows-x64",
+  "version": "1.0.0-desktop / 0.16.0-backend (UNRELEASED WORKTREE - values descriptive, not certified)",
+  "commit": "UNVERIFIED (dirty worktree)",
+  "build_environment": "NOT BUILT HERE - see desktop-release.yml (windows-latest)",
+  "installer_formats": ["nsis", "msi", "portable"],
+  "artifact_hashes": "NOT PRODUCED - see windows-artifacts.sha256 in CI",
+  "signature_status": "UNSIGNED - BLOCKED (signing credentials)",
+  "certificate_identity": null,
+  "timestamp_status": null,
+  "sbom_reference": null,
+  "provenance_reference": null,
+  "test_results": {
+    "electron_unit_node_test": "122 passed, 0 failed (executed 2026-09-11: 110 prior + tray-menu 6 + update-manifest 6)",
+    "python_suites": "270 passed, 0 failed (executed 2026-09-11: 242 prior + capabilities 6 + toast 10 + native 12)",
+    "web_typecheck": "clean (executed 2026-09-11)",
+    "cli_smoke": "--help boots, agent + agent-network coexist (executed 2026-09-11)",
+    "bench": "scripts/windows_bench.py executed (see WINDOWS_BENCHMARKS)"
+  },
+  "known_failures": ["web vite build blocked by partial node_modules + private @aetheros/ui (pre-existing)"],
+  "known_limitations": ["no tray", "no login-item background mode", "no updater channel/rollback", "no UIA tree (OCR fallback)", "no code signing", "no clean-VM validation"],
+  "release_channel": "none declared",
+  "update_metadata": "passive git-remote check only; no signed channel",
+  "rollback_metadata": "previous release artifacts only; no in-app rollback"
+}

@@ -1,0 +1,8 @@
+Static security results (actual 2026-09-15, host-side, informational):
+- security:audit (audit-security.mjs): exit 0, Score 50/100 (12/24 passed), report written to apps/desktop/docs/SECURITY_AUDIT.md
+- security:secrets (check-secrets.mjs): exit 1 — hits are test-fixture strings
+  (onboarding.test.ts "sk-secret", onboarding.ts "apikey", updates.test.ts "token: 't'").
+  No live credential leak observed; triage required before gating.
+- security:deps (audit-dependencies.mjs): exit 2 — 32 vulns (21 high, 1 critical), 49 outdated, Score 0/100.
+  Recorded honestly; dependency remediation is OUT OF SCOPE for Master 79.2 (no arch changes).
+These are static probes, NOT runtime security certification (W79-035 live half stays BLOCKED).

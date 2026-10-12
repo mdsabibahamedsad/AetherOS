@@ -1,0 +1,34 @@
+name: ios-platform
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/ios/**'
+      - 'aetheros_platform/mobile_contract.py'
+      - '.github/workflows/ios-platform.yml'
+  pull_request:
+    paths:
+      - 'apps/ios/**'
+  workflow_dispatch:
+
+jobs:
+  mobile-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Mobile API contract tests
+        run: python -m pytest tests/aetheros_platform/test_mobile_contract.py -q
+
+  xcode:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: XcodeGen + build + test (requires macOS runner)
+        run: |
+          brew install xcodegen
+          cd apps/ios && xcodegen generate
+          xcodebuild -scheme AetherOS -destination 'platform=iOS Simulator,name=iPhone 16' clean build test

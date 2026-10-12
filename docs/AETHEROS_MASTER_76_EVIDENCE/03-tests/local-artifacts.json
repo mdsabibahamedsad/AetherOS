@@ -1,0 +1,25 @@
+{
+  "product": "AetherOS",
+  "version": "1.0.0",
+  "releaseId": "aetheros-1.0.0-unsigned-local",
+  "channel": "local-build",
+  "commit": "2bdfbfd8ebcf2bb27b06f600c2beb159e723d8b1",
+  "signed": false,
+  "artifacts": [
+    {
+      "file": "AetherOS-1.0.0-win-x64-portable.exe",
+      "size": 187240131,
+      "sha256": "cce16c07b326dab150aa6d493c1ded0141c9ce701193b37405463cde1893c9cf"
+    },
+    {
+      "file": "AetherOS-1.0.0-win-x64.exe",
+      "size": 187414763,
+      "sha256": "3147bcead2fe080c1fded39cf77b7e707397d09ac52d4a6e38e513b7a8a27b06"
+    },
+    {
+      "file": "AetherOS-1.0.0-win-x64.msi",
+      "size": 196571899,
+      "sha256": "6fe65eb4bbbe057d3c1e3b0d333cdcd4a49aea77e10fc39dcb1e10629c3df2f3"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"command":"gh attestation verify <release linux-sbom.spdx.json> --owner sabib360 (executed 2026-09-17 against actual release bytes)","exitCode":1,"result":"HTTP 404 Not Found from api.github.com attestations endpoint — no attestation exists, as expected while the provenance job is gated","status":"PROVENANCE_ATTESTATION_BLOCKED (verified, not assumed)"}

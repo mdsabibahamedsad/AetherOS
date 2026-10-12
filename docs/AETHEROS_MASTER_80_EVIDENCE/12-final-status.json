@@ -1,0 +1,1 @@
+{"attestation":"UNVERIFIED (step exists, no CI run)","certification":"BUILD_SYSTEM_HARDENED","ci":"NOT_RUN (gh token invalid; 7-job workflow YAML-valid)","cleanVm":"BLOCKED","production":"PRODUCTION_RELEASE_BLOCKED","sbom":"BLOCKED (step exists, no CI run)","signing":"BLOCKED (UNSIGNED; sign-windows.mjs exits 1 without credentials)"}

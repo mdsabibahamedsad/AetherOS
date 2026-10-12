@@ -1,0 +1,90 @@
+{
+  "description": "Performance regression thresholds for Master 71 CI gates",
+  "version": "m71-v1",
+  "global": {
+    "default_threshold_pct": 10.0,
+    "min_samples": 10,
+    "max_cv": 0.25
+  },
+  "benchmarks": {
+    "PERF-DESKTOP-001": {
+      "startup_time_ms": {
+        "threshold_pct": 15.0,
+        "max_absolute_ms": 8000,
+        "priority": "P0"
+      }
+    },
+    "PERF-DESKTOP-002": {
+      "startup_time_ms": {
+        "threshold_pct": 10.0,
+        "max_absolute_ms": 3000,
+        "priority": "P0"
+      }
+    },
+    "PERF-AGENT-001": {
+      "init_time_ms": {
+        "threshold_pct": 20.0,
+        "max_absolute_ms": 5000,
+        "priority": "P0"
+      }
+    },
+    "PERF-AGENT-002": {
+      "iteration_time_ms": {
+        "threshold_pct": 15.0,
+        "max_absolute_ms": 2000,
+        "priority": "P0"
+      }
+    },
+    "PERF-DATABASE-001": {
+      "connection_time_ms": {
+        "threshold_pct": 25.0,
+        "max_absolute_ms": 50,
+        "priority": "P1"
+      }
+    },
+    "PERF-DATABASE-002": {
+      "point_query_10000_ms": {
+        "threshold_pct": 20.0,
+        "max_absolute_ms": 10,
+        "priority": "P1"
+      }
+    },
+    "PERF-CLI-001": {
+      "startup_time_ms": {
+        "threshold_pct": 20.0,
+        "max_absolute_ms": 3000,
+        "priority": "P0"
+      }
+    },
+    "PERF-BROWSER-001": {
+      "total_ms": {
+        "threshold_pct": 25.0,
+        "max_absolute_ms": 10000,
+        "priority": "P0"
+      }
+    },
+    "PERF-BUNDLE-001": {
+      "total_js_bytes": {
+        "threshold_pct": 10.0,
+        "max_absolute_bytes": 5242880,
+        "priority": "P1"
+      }
+    },
+    "PERF-MEMORY-LEAK-001": {
+      "rss_growth_mb": {
+        "threshold_pct": 0.0,
+        "max_absolute_mb": 50,
+        "priority": "P0"
+      }
+    }
+  },
+  "ci_gates": {
+    "pr_suite": [
+      "PERF-CLI-001",
+      "PERF-BUNDLE-001",
+      "PERF-DATABASE-001"
+    ],
+    "nightly_suite": "ALL",
+    "release_suite": "ALL"
+  }
+}

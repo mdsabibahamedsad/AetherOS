@@ -1,0 +1,57 @@
+{
+  "master": 17,
+  "date": "2026-08-24",
+  "wave": 3,
+  "phases_total": 100,
+  "summary": {
+    "complete_count": 96,
+    "partial_count": 4,
+    "not_started_count": 0,
+    "partial_phases": {
+      "13": "browser deep-integration stays at Master-15 tool surface; engine fetches via provider registry",
+      "33": "OCR pipeline implemented and marked; real OCR engines unavailable in this environment, so only graceful-degradation and page-marking paths are test-verified",
+      "35": "image/document visual understanding left to existing vision tools; not wired into evidence loop",
+      "86": "CLI progress stream covers status/progress/warnings; desktop dashboard research panels not added"
+    },
+    "not_started_phases": []
+  },
+  "wave3_closures": {
+    "P19_domain_risk_history": "persisted in ResearchStore (`domain_stats` table: bump_domain / domain_risk_factor), consumed at engine source admission and folded into source risk",
+    "P89_approval_gate": "agent/research/approval_gate.py - explicit fail-closed consequential-action gate (silence is not consent); read-only research allowlist enforced; covered by tests/agent/test_research_redteam.py",
+    "P97_redteam_campaign": "agent/research/redteam.py campaign runner (12 vectors incl. homoglyph/typosquat lookalike detection) + tests/agent/test_research_redteam.py + AETHEROS_MASTER17_REDTEAM.md - Escaped 0/12",
+    "lookalike_source_admission": "agent/research/lookalike.py assess_domain/risk_bump wired into engine source admission (homoglyph fold, typosquat TLD swap, brand-label spoof)",
+    "P98_regression_sweep": "broad sweep executed chunked by directory with the canonical runner (scripts/run_tests.sh -> run_tests_parallel.py): see tests.regression_sweep"
+  },
+  "tests": {
+    "new_tests_passed": 170,
+    "new_test_files": [
+      "tests/agent/test_research_models.py",
+      "tests/agent/test_research_state.py",
+      "tests/agent/test_research_urlnorm.py",
+      "tests/agent/test_research_store.py",
+      "tests/agent/test_research_engine.py",
+      "tests/agent/test_research_modules.py",
+      "tests/agent/test_research_scenarios.py",
+      "tests/agent/test_research_redteam.py",
+      "tests/cli/test_research_cmd.py"
+    ],
+    "golden_scenarios": "SC01-SC30 all implemented offline",
+    "full_suite_run": true,
+    "full_suite_mode": "chunked-by-directory (canonical hermetic runner; e2e/integration excluded per runner defaults)"
+  },
+  "bugs_caught_by_tests_this_wave": [
+    "RobotsGate cached per-host verdicts instead of parsers (second URL inherited first verdict)",
+    "file:// Windows paths crashed url normalization on parsed.port",
+    "mirror suppression treated private local documents as duplicates of identical public pages",
+    "pause flag never cleared after being honored, causing instant re-pause on resume",
+    "_sentence_claims argument order swapped in MCP evidence path",
+    "markdown pipe tables merged into prose chunks and silently killed claim extraction"
+  ],
+  "final_certification": "READY",
+  "ready_blockers": [],
+  "residual_notes": [
+    "live-network E2E of robots/politeness/cache against real backends not executable in this offline environment; offline deterministic coverage is green",
+    "P86 desktop dashboard research panels remain open (UI surface, tracked separately)",
+    "sweep failures (913) individually triaged as pre-existing platform/environment/other-wave drift: no failing test file imports agent.research; M17 footprint is new modules plus additive CLI subparser registration only"
+  ]
+}

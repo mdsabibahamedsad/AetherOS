@@ -1,0 +1,1 @@
+{"mechanism":"localStorage aetheros.jarvis.tasks.v1 (metadata only, no secrets/transcripts)","onBoot":"recoverTasks() → interrupted/completed/failed; gateway-sync re-derives gateway lifecycle; tasks marked interrupted must be explicitly re-queued","verdict":"NOT VERIFIED E2E (requires installed-app restart test); mechanism implemented and typechecked"}

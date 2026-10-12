@@ -1,0 +1,12 @@
+PackageIdentifier: AetherOS.AetherOS
+PackageVersion: 0.16.0
+PackageName: AetherOS
+PackageLocale: en-US
+Publisher: AetherOS
+ShortDescription: AI Operating System
+License: MIT
+Installers:
+  - Architecture: x64
+    InstallerType: exe
+    InstallerUrl: https://github.com/aetheros/aetheros/releases/download/v0.16.0/aetheros-setup.exe
+    InstallerSha256: COMPUTE_AFTER_RELEASE

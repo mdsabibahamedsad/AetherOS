@@ -1,0 +1,118 @@
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+.version {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.notice {
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+}
+
+.noticeWarn {
+  background: rgba(255, 171, 0, 0.12);
+  border: 1px solid rgba(255, 171, 0, 0.5);
+}
+
+.noticeError {
+  background: rgba(255, 82, 82, 0.1);
+  border: 1px solid rgba(255, 82, 82, 0.5);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.card {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.cardMine {
+  border-color: var(--ifm-color-primary);
+}
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: var(--ifm-color-primary);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.arch {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.artifact {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  padding: 0.75rem 0;
+}
+
+.artifactHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.button {
+  background: var(--ifm-color-primary);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.35rem 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.unavailable {
+  color: var(--ifm-color-emphasis-600);
+  font-style: italic;
+}
+
+.file {
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+  word-break: break-all;
+}
+
+.meta {
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.sha {
+  display: block;
+  font-size: 0.72rem;
+  word-break: break-all;
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.copy {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.source {
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-600);
+}

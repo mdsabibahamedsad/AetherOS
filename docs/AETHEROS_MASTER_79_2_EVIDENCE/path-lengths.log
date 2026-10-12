@@ -1,0 +1,17 @@
+AetherOS packaging path-length guard (Master 78 §46, Master 79.1 §17) — actual output, exit 0
+  root           : D:\hermes-agent-main\aetheros\apps\desktop
+  maxSafeLength  : 240
+  installPrefix  : C:\Program Files\AetherOS\
+  strict         : false (strict also fails on absolute-only excess)
+  note: absent scan dirs (skipped): dist-packaged/__msi-x64
+  files scanned  : 35061
+  note: 6 absolute-only path(s) exceed 240 chars but fit the projected production path (checkout-prefix effect; non-blocking):
+    ABS=262 PROJ=218 PACKAGE=elevenlabs (…stream_with_timestamps_post_apply_text_normalization.py)
+    ABS=249 PROJ=205 PACKAGE=elevenlabs (…add_from_rules_post_workspace_access.py)
+    ABS=246 PROJ=218 PACKAGE=elevenlabs (build/bundled-python copy of the above)
+    ABS=245 PROJ=201 PACKAGE=elevenlabs (…with_timestamps_v_1_…_post_apply_text_normalization.py)
+    ABS=243 PROJ=199 PACKAGE=elevenlabs (…add_from_rules_post_rules_item.py)
+    ABS=241 PROJ=197 PACKAGE=mistralai (…field_name_options_counts_postop.py)
+
+VALID — all 35061 projected production paths are within 240 chars
+Guard: DO NOT disable; 6 warnings are correctly classified absolute-only.

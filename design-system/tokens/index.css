@@ -1,0 +1,500 @@
+/*
+ * AetherOS Design System - Core Tokens
+ * Version: 1.0.0
+ * 
+ * This file contains all design tokens for the AetherOS design system.
+ * Import this file to access all tokens.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BRAND COLORS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Primary Brand Colors */
+  --brand-blue: #0066FF;
+  --brand-cyan: #00D4FF;
+  --brand-purple: #9933FF;
+  
+  /* Brand Gradients */
+  --brand-gradient: linear-gradient(135deg, #0066FF 0%, #00D4FF 50%, #9933FF 100%);
+  --brand-gradient-subtle: linear-gradient(135deg, rgba(0,102,255,0.1) 0%, rgba(0,212,255,0.05) 50%, rgba(153,51,255,0.1) 100%);
+  --brand-gradient-strong: linear-gradient(135deg, rgba(0,102,255,0.2) 0%, rgba(0,212,255,0.1) 50%, rgba(153,51,255,0.2) 100%);
+  
+  /* Brand Shadows */
+  --brand-shadow-blue: 0 0 20px rgba(0, 102, 255, 0.3);
+  --brand-shadow-cyan: 0 0 20px rgba(0, 212, 255, 0.3);
+  --brand-shadow-purple: 0 0 20px rgba(153, 51, 255, 0.3);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     PRIMARY COLORS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --primary-50: #E6F0FF;
+  --primary-100: #CCE0FF;
+  --primary-200: #99C2FF;
+  --primary-300: #66A3FF;
+  --primary-400: #3385FF;
+  --primary-500: #0066FF;
+  --primary-600: #0052CC;
+  --primary-700: #003D99;
+  --primary-800: #002966;
+  --primary-900: #001433;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECONDARY COLORS (CYAN)
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --secondary-50: #E6FBFF;
+  --secondary-100: #CCF7FF;
+  --secondary-200: #99EFFF;
+  --secondary-300: #66E8FF;
+  --secondary-400: #33E0FF;
+  --secondary-500: #00D4FF;
+  --secondary-600: #00AACC;
+  --secondary-700: #008099;
+  --secondary-800: #005566;
+  --secondary-900: #002B33;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     ACCENT COLORS (PURPLE)
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --accent-50: #F3E6FF;
+  --accent-100: #E6CCFF;
+  --accent-200: #CC99FF;
+  --accent-300: #B366FF;
+  --accent-400: #A64DFF;
+  --accent-500: #9933FF;
+  --accent-600: #7A29CC;
+  --accent-700: #5C1F99;
+  --accent-800: #3D1466;
+  --accent-900: #1F0A33;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SUCCESS COLORS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --success-50: #ECFDF5;
+  --success-100: #D1FAE5;
+  --success-200: #A7F3D0;
+  --success-300: #6EE7B7;
+  --success-400: #34D399;
+  --success-500: #10B981;
+  --success-600: #059669;
+  --success-700: #047857;
+  --success-800: #065F46;
+  --success-900: #064E3B;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     WARNING COLORS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --warning-50: #FFFBEB;
+  --warning-100: #FEF3C7;
+  --warning-200: #FDE68A;
+  --warning-300: #FCD34D;
+  --warning-400: #FBBF24;
+  --warning-500: #F59E0B;
+  --warning-600: #D97706;
+  --warning-700: #B45309;
+  --warning-800: #92400E;
+  --warning-900: #78350F;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     DANGER COLORS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --danger-50: #FFF1F2;
+  --danger-100: #FFE4E6;
+  --danger-200: #FECDD3;
+  --danger-300: #FDA4AF;
+  --danger-400: #FB7185;
+  --danger-500: #FF4D6A;
+  --danger-600: #E11D48;
+  --danger-700: #BE123C;
+  --danger-800: #9F1239;
+  --danger-900: #881337;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     INFO COLORS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --info-50: #EFF6FF;
+  --info-100: #DBEAFE;
+  --info-200: #BFDBFE;
+  --info-300: #93C5FD;
+  --info-400: #60A5FA;
+  --info-500: #3B82F6;
+  --info-600: #2563EB;
+  --info-700: #1D4ED8;
+  --info-800: #1E40AF;
+  --info-900: #1E3A8A;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     NEUTRAL COLORS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --neutral-50: #F9FAFB;
+  --neutral-100: #F3F4F6;
+  --neutral-200: #E5E7EB;
+  --neutral-300: #D1D5DB;
+  --neutral-400: #9CA3AF;
+  --neutral-500: #6B7280;
+  --neutral-600: #4B5563;
+  --neutral-700: #374151;
+  --neutral-800: #1F2937;
+  --neutral-900: #111827;
+  --neutral-950: #030712;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     BACKGROUND LEVELS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --bg-base: #060816;
+  --bg-raised: #0B1020;
+  --bg-overlay: #121826;
+  --bg-surface: #1A2233;
+  --bg-elevated: #232D42;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SURFACE LEVELS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --surface-0: transparent;
+  --surface-1: rgba(255, 255, 255, 0.02);
+  --surface-2: rgba(255, 255, 255, 0.04);
+  --surface-3: rgba(255, 255, 255, 0.06);
+  --surface-4: rgba(255, 255, 255, 0.08);
+  --surface-5: rgba(255, 255, 255, 0.10);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     BORDER COLORS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --border-emphasis: rgba(255, 255, 255, 0.16);
+  --border-brand: rgba(0, 212, 255, 0.3);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     DIVIDER COLORS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --divider-subtle: rgba(255, 255, 255, 0.04);
+  --divider-default: rgba(255, 255, 255, 0.08);
+  --divider-strong: rgba(255, 255, 255, 0.12);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     TEXT COLORS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --text-primary: #E8ECF4;
+  --text-secondary: #8B95A8;
+  --text-tertiary: #6B7280;
+  --text-quaternary: #4B5563;
+  --text-disabled: #374151;
+  --text-inverse: #060816;
+  --text-brand: #00D4FF;
+  --text-link: #00D4FF;
+  --text-link-hover: #00E5FF;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     INTERACTIVE STATES
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --interactive-default: var(--primary-500);
+  --interactive-hover: var(--primary-400);
+  --interactive-pressed: var(--primary-600);
+  --interactive-disabled: var(--neutral-700);
+  --interactive-focus: var(--secondary-500);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SELECTION COLORS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --selection-background: rgba(0, 212, 255, 0.2);
+  --selection-text: var(--text-primary);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SCROLLBAR COLORS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: rgba(255, 255, 255, 0.1);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.2);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     FOCUS RING
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: rgba(0, 212, 255, 0.5);
+  --focus-ring-shadow: 0 0 0 2px rgba(0, 212, 255, 0.3);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     TYPOGRAPHY
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  /* Font Families */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', ui-monospace, Menlo, Consolas, monospace;
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  
+  /* Font Sizes */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.8125rem;    /* 13px */
+  --text-base: 0.875rem;   /* 14px */
+  --text-md: 1rem;         /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+  
+  /* Font Weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* Letter Spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SPACING
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --space-0: 0px;
+  --space-px: 1px;
+  --space-0-5: 0.125rem;   /* 2px */
+  --space-1: 0.25rem;      /* 4px */
+  --space-1-5: 0.375rem;   /* 6px */
+  --space-2: 0.5rem;       /* 8px */
+  --space-2-5: 0.625rem;   /* 10px */
+  --space-3: 0.75rem;      /* 12px */
+  --space-3-5: 0.875rem;   /* 14px */
+  --space-4: 1rem;         /* 16px */
+  --space-5: 1.25rem;      /* 20px */
+  --space-6: 1.5rem;       /* 24px */
+  --space-7: 1.75rem;      /* 28px */
+  --space-8: 2rem;         /* 32px */
+  --space-9: 2.25rem;      /* 36px */
+  --space-10: 2.5rem;      /* 40px */
+  --space-12: 3rem;        /* 48px */
+  --space-14: 3.5rem;      /* 56px */
+  --space-16: 4rem;        /* 64px */
+  --space-20: 5rem;        /* 80px */
+  --space-24: 6rem;        /* 96px */
+  --space-28: 7rem;        /* 112px */
+  --space-32: 8rem;        /* 128px */
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     ELEVATION (SHADOWS)
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --shadow-none: none;
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-xl: 0 12px 36px rgba(0, 0, 0, 0.4);
+  --shadow-2xl: 0 16px 48px rgba(0, 0, 0, 0.45);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  
+  /* Premium Shadows */
+  --shadow-premium: 0 4px 24px rgba(0, 0, 0, 0.25);
+  --shadow-premium-lg: 0 8px 48px rgba(0, 0, 0, 0.35);
+  --shadow-premium-xl: 0 16px 64px rgba(0, 0, 0, 0.45);
+  
+  /* Brand Shadows */
+  --shadow-glow-blue: 0 0 20px rgba(0, 102, 255, 0.3);
+  --shadow-glow-cyan: 0 0 20px rgba(0, 212, 255, 0.3);
+  --shadow-glow-purple: 0 0 20px rgba(153, 51, 255, 0.3);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     BLUR
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --blur-none: 0;
+  --blur-xs: 2px;
+  --blur-sm: 4px;
+  --blur-md: 8px;
+  --blur-lg: 12px;
+  --blur-xl: 16px;
+  --blur-2xl: 24px;
+  --blur-3xl: 32px;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     BORDER RADIUS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+  --radius-4xl: 24px;
+  --radius-full: 9999px;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     OPACITY
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --opacity-0: 0;
+  --opacity-5: 0.05;
+  --opacity-10: 0.1;
+  --opacity-20: 0.2;
+  --opacity-25: 0.25;
+  --opacity-30: 0.3;
+  --opacity-40: 0.4;
+  --opacity-50: 0.5;
+  --opacity-60: 0.6;
+  --opacity-70: 0.7;
+  --opacity-75: 0.75;
+  --opacity-80: 0.8;
+  --opacity-90: 0.9;
+  --opacity-95: 0.95;
+  --opacity-100: 1;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     ANIMATION DURATION
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --duration-instant: 0ms;
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 400ms;
+  --duration-slowest: 500ms;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     ANIMATION CURVES
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     TRANSITIONS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --transition-fast: all 100ms var(--ease-out);
+  --transition-normal: all 200ms var(--ease-out);
+  --transition-slow: all 300ms var(--ease-out);
+  --transition-colors: color 200ms var(--ease-out), background-color 200ms var(--ease-out), border-color 200ms var(--ease-out);
+  --transition-transform: transform 200ms var(--ease-out);
+  --transition-opacity: opacity 200ms var(--ease-out);
+  --transition-shadow: box-shadow 200ms var(--ease-out);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     Z-INDEX
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --z-below: -1;
+  --z-base: 0;
+  --z-above: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-popover: 500;
+  --z-toast: 600;
+  --z-tooltip: 700;
+  --z-max: 9999;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     GRID
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --grid-columns: 12;
+  --grid-gutter: var(--space-6);
+  --grid-margin: var(--space-6);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     BREAKPOINTS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     GLASSMORPHISM
+     ═══════════════════════════════════════════════════════════════════════════ */
+  
+  --glass-blur: 16px;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DARK MODE (DEFAULT)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="light"] {
+  --bg-base: #FFFFFF;
+  --bg-raised: #F9FAFB;
+  --bg-overlay: #F3F4F6;
+  --bg-surface: #E5E7EB;
+  --bg-elevated: #D1D5DB;
+  
+  --surface-1: rgba(0, 0, 0, 0.02);
+  --surface-2: rgba(0, 0, 0, 0.04);
+  --surface-3: rgba(0, 0, 0, 0.06);
+  --surface-4: rgba(0, 0, 0, 0.08);
+  --surface-5: rgba(0, 0, 0, 0.10);
+  
+  --border-subtle: rgba(0, 0, 0, 0.04);
+  --border-default: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.12);
+  --border-emphasis: rgba(0, 0, 0, 0.16);
+  
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-tertiary: #6B7280;
+  --text-quaternary: #9CA3AF;
+  
+  --interactive-default: var(--primary-600);
+  --interactive-hover: var(--primary-700);
+  --interactive-pressed: var(--primary-800);
+  
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}

@@ -1,0 +1,90 @@
+{
+  "benchmark_id": "PERF-CLI-001",
+  "name": "CLI Cold Startup",
+  "category": "cli",
+  "status": "MEASURED",
+  "iterations": 10,
+  "warmup_iterations": 3,
+  "metrics": {
+    "startup_time_ms_mean": 1244.05212,
+    "startup_time_ms_median": 963.51865,
+    "startup_time_ms_stdev": 510.1250023050751,
+    "startup_time_ms_min": 862.6536,
+    "startup_time_ms_max": 2365.8035,
+    "exit_code_mean": 0.0,
+    "exit_code_median": 0.0,
+    "exit_code_stdev": 0.0,
+    "exit_code_min": 0.0,
+    "exit_code_max": 0.0,
+    "stdout_bytes_mean": 15345.0,
+    "stdout_bytes_median": 15345.0,
+    "stdout_bytes_stdev": 0.0,
+    "stdout_bytes_min": 15345.0,
+    "stdout_bytes_max": 15345.0
+  },
+  "units": {
+    "startup_time_ms": "ms",
+    "exit_code": "code",
+    "stdout_bytes": "bytes"
+  },
+  "raw_samples": {
+    "startup_time_ms": [
+      1634.0729,
+      962.4732,
+      2365.8035,
+      895.6698,
+      964.5641,
+      1791.1623,
+      1073.0784,
+      862.6536,
+      962.368,
+      928.6754
+    ],
+    "exit_code": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "stdout_bytes": [
+      15345.0,
+      15345.0,
+      15345.0,
+      15345.0,
+      15345.0,
+      15345.0,
+      15345.0,
+      15345.0,
+      15345.0,
+      15345.0
+    ]
+  },
+  "environment": {
+    "benchmark_version": "m71-v1",
+    "timestamp": 1789184814.7884288,
+    "os": "Windows 10",
+    "os_platform": "Windows-10-10.0.26200-SP0",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "cpu_count": 12,
+    "ram_gb": 7.4,
+    "gpu": "none-detected",
+    "python_version": "3.11.15",
+    "node_version": "v25.5.0",
+    "electron_version": null,
+    "aetheros_version": null,
+    "build_mode": "unknown",
+    "power_mode": "unknown",
+    "thermal_state": "unknown",
+    "extra": {}
+  },
+  "metadata": {},
+  "timestamp": 1789184827.4248226,
+  "commit_hash": null,
+  "tags": []
+}

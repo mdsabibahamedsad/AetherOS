@@ -1,0 +1,71 @@
+{
+  "benchmark_id": "PERF-BUNDLE-003",
+  "name": "Duplicate Dependencies",
+  "category": "web",
+  "status": "MEASURED",
+  "iterations": 1,
+  "warmup_iterations": 3,
+  "metrics": {
+    "total_packages_mean": 1031.0,
+    "total_packages_median": 1031.0,
+    "total_packages_stdev": 0.0,
+    "total_packages_min": 1031.0,
+    "total_packages_max": 1031.0,
+    "unique_names_mean": 852.0,
+    "unique_names_median": 852.0,
+    "unique_names_stdev": 0.0,
+    "unique_names_min": 852.0,
+    "unique_names_max": 852.0,
+    "duplicates_count_mean": 88.0,
+    "duplicates_count_median": 88.0,
+    "duplicates_count_stdev": 0.0,
+    "duplicates_count_min": 88.0,
+    "duplicates_count_max": 88.0,
+    "duplicate_details_mean": 88,
+    "duplicate_details_median": 88,
+    "duplicate_details_stdev": 0.0,
+    "duplicate_details_min": 88,
+    "duplicate_details_max": 88
+  },
+  "units": {
+    "total_packages": "count",
+    "unique_names": "count",
+    "duplicates_count": "count"
+  },
+  "raw_samples": {
+    "total_packages": [
+      1031.0
+    ],
+    "unique_names": [
+      852.0
+    ],
+    "duplicates_count": [
+      88.0
+    ],
+    "duplicate_details": [
+      88
+    ]
+  },
+  "environment": {
+    "benchmark_version": "m71-v1",
+    "timestamp": 1789185420.5145314,
+    "os": "Windows 10",
+    "os_platform": "Windows-10-10.0.26200-SP0",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "cpu_count": 12,
+    "ram_gb": 7.4,
+    "gpu": "none-detected",
+    "python_version": "3.11.15",
+    "node_version": "v25.5.0",
+    "electron_version": null,
+    "aetheros_version": null,
+    "build_mode": "unknown",
+    "power_mode": "unknown",
+    "thermal_state": "unknown",
+    "extra": {}
+  },
+  "metadata": {},
+  "timestamp": 1789185420.6043737,
+  "commit_hash": null,
+  "tags": []
+}

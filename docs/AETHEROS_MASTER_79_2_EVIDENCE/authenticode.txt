@@ -1,0 +1,5 @@
+Get-AuthenticodeSignature (actual 2026-09-15):
+AetherOS-1.0.0-win-x64.exe          Status=NotSigned
+AetherOS-1.0.0-win-x64.msi          Status=NotSigned
+AetherOS-1.0.0-win-x64-portable.exe Status=NotSigned
+SIGNING=UNSIGNED (no credentials in repo; workflow adds none). Do NOT claim trust.

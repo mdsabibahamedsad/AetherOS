@@ -1,0 +1,5 @@
+canonical_node_binary=%TEMP%\node22\node-v22.12.0-win-x64\node.exe
+node --version => v22.12.0 (matches .nvmrc 22.12.0, §14)
+npm --version (bundled) => 10.9.0
+binary_identity: same SHA-verified install as Master 81 (persistence re-verified by version output)
+system node untouched (v25.5.0 NOT used for any release purpose, §80)

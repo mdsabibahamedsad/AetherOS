@@ -1,0 +1,273 @@
+# AetherOS Performance CI (Master 71)
+# Runs performance benchmarks on PR, nightly, and release
+
+name: Performance Benchmarks
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  schedule:
+    - cron: '0 2 * * *'  # Nightly at 2 AM UTC
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: 'Benchmark suite to run'
+        required: true
+        default: 'pr'
+        type: choice
+        options:
+          - pr
+          - nightly
+          - release
+
+env:
+  BENCHMARK_RESULTS_DIR: ${{ github.workspace }}/benchmark_results
+  BENCHMARK_BASELINES_DIR: ${{ github.workspace }}/benchmarks/baselines
+
+jobs:
+  # Fast PR suite - runs on every PR
+  pr-benchmarks:
+    name: PR Performance Suite
+    runs-on: windows-latest
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: apps/desktop/package-lock.json
+
+      - name: Install Python dependencies
+        run: |
+          pip install -e .
+          pip install psutil numpy
+
+      - name: Install Node dependencies
+        run: |
+          cd apps/desktop
+          npm ci
+
+      - name: Build desktop app
+        run: |
+          cd apps/desktop
+          npm run build
+
+      - name: Run PR benchmark suite
+        run: |
+          python -m benchmarks run --category cli --results-dir ${{ env.BENCHMARK_RESULTS_DIR }} --save-baseline
+          python -m benchmarks run --benchmark web/PERF-BUNDLE-001 --results-dir ${{ env.BENCHMARK_RESULTS_DIR }} --save-baseline
+          python -m benchmarks run --benchmark database/PERF-DATABASE-001 --results-dir ${{ env.BENCHMARK_RESULTS_DIR }} --save-baseline
+
+      - name: Compare with baselines
+        run: |
+          python -m benchmarks compare --results-dir ${{ env.BENCHMARK_RESULTS_DIR }} --baseline-dir ${{ env.BENCHMARK_BASELINES_DIR }}
+
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-benchmark-results
+          path: ${{ env.BENCHMARK_RESULTS_DIR }}/runs/
+          retention-days: 7
+
+      - name: Comment PR with results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const resultsDir = process.env.BENCHMARK_RESULTS_DIR;
+            const runs = fs.readdirSync(path.join(resultsDir, 'runs')).sort().reverse();
+            if (runs.length > 0) {
+              const latestRun = runs[0];
+              const manifest = JSON.parse(fs.readFileSync(path.join(resultsDir, 'runs', latestRun, 'manifest.json')));
+              const body = `## Performance Benchmark Results\n\n**Run:** ${manifest.benchmark_run_id}\n**Agent:** ${manifest.agent}\n**Tasks:** ${manifest.task_count}\n\nSee workflow artifacts for detailed results.`;
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            }
+
+  # Nightly full suite
+  nightly-benchmarks:
+    name: Nightly Full Benchmark Suite
+    runs-on: windows-latest
+    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.suite == 'nightly')
+    timeout-minutes: 120
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: apps/desktop/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          pip install -e .
+          pip install psutil numpy playwright
+          playwright install chromium
+          cd apps/desktop && npm ci
+
+      - name: Build desktop app
+        run: |
+          cd apps/desktop && npm run build
+
+      - name: Run full benchmark suite
+        run: |
+          python -m benchmarks run --all --results-dir ${{ env.BENCHMARK_RESULTS_DIR }} --save-baseline --baseline-name nightly
+
+      - name: Compare with baselines
+        run: |
+          python -m benchmarks compare --results-dir ${{ env.BENCHMARK_RESULTS_DIR }} --baseline-dir ${{ env.BENCHMARK_BASELINES_DIR }} --thresholds ${{ env.BENCHMARK_BASELINES_DIR }}/thresholds.json
+
+      - name: Generate report
+        run: |
+          python -m benchmarks report --results-dir ${{ env.BENCHMARK_RESULTS_DIR }} --output AETHEROS_NIGHTLY_BENCHMARK_REPORT.md
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-benchmark-results
+          path: |
+            ${{ env.BENCHMARK_RESULTS_DIR }}/runs/
+            AETHEROS_NIGHTLY_BENCHMARK_REPORT.md
+          retention-days: 30
+
+      - name: Create issue on regression
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '⚠️ Nightly Performance Regression Detected',
+              body: 'Automated nightly benchmarks detected performance regressions. Check the workflow artifacts for details.',
+              labels: ['performance', 'regression', 'automated']
+            });
+
+  # Release certification suite
+  release-benchmarks:
+    name: Release Performance Certification
+    runs-on: windows-latest
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.suite == 'release'
+    timeout-minutes: 180
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: apps/desktop/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          pip install -e .
+          pip install psutil numpy playwright
+          playwright install chromium
+          cd apps/desktop && npm ci
+
+      - name: Build desktop app
+        run: |
+          cd apps/desktop && npm run build
+
+      - name: Run release certification suite
+        run: |
+          python -m benchmarks run --all --iterations 20 --warmup 5 --results-dir ${{ env.BENCHMARK_RESULTS_DIR }} --save-baseline --baseline-name release
+
+      - name: Compare with release baselines
+        run: |
+          python -m benchmarks compare --results-dir ${{ env.BENCHMARK_RESULTS_DIR }} --baseline-dir ${{ env.BENCHMARK_BASELINES_DIR }} --thresholds ${{ env.BENCHMARK_BASELINES_DIR }}/thresholds.json
+
+      - name: Generate certification report
+        run: |
+          python -m benchmarks report --results-dir ${{ env.BENCHMARK_RESULTS_DIR }} --output AETHEROS_RELEASE_CERTIFICATION_REPORT.md
+
+      - name: Upload certification artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-certification
+          path: |
+            ${{ env.BENCHMARK_RESULTS_DIR }}/runs/
+            AETHEROS_RELEASE_CERTIFICATION_REPORT.md
+          retention-days: 90
+
+  # Linux benchmarks (via WSL or Ubuntu runner)
+  linux-benchmarks:
+    name: Linux Performance Benchmarks
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: apps/desktop/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          pip install -e .
+          pip install psutil numpy
+          cd apps/desktop && npm ci
+
+      - name: Build desktop app
+        run: |
+          cd apps/desktop && npm run build
+
+      - name: Run Linux benchmarks
+        run: |
+          python -m benchmarks run --category cli --results-dir ${{ env.BENCHMARK_RESULTS_DIR }}
+          python -m benchmarks run --category database --results-dir ${{ env.BENCHMARK_RESULTS_DIR }}
+          python -m benchmarks run --category memory --results-dir ${{ env.BENCHMARK_RESULTS_DIR }}
+
+      - name: Upload Linux results
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-benchmark-results
+          path: ${{ env.BENCHMARK_RESULTS_DIR }}/runs/
+          retention-days: 14

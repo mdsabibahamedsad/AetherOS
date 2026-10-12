@@ -1,0 +1,36 @@
+{
+  "generation": 0,
+  "entries": {
+    "441c2ed7-884a-42cf-bf58-733d187af8ee": {
+      "schema_version": 1,
+      "id": "441c2ed7-884a-42cf-bf58-733d187af8ee",
+      "memory_type": "semantic",
+      "boundary": "user",
+      "origin": "unknown",
+      "state": "active",
+      "content": "Low trust memory",
+      "summary": "",
+      "tags": [],
+      "user_id": "user123",
+      "workspace_id": "",
+      "session_id": "",
+      "agent_id": "",
+      "project_id": "",
+      "source": "",
+      "source_uri": "",
+      "confidence": 0.0,
+      "trust": 0.2,
+      "verification": "unverified",
+      "corroborated_by": [],
+      "checksum": "a52b7f4145bd0eb88ad782cd62f1e01408494a0cc299e1ce028abee9b793dee2",
+      "version": 1,
+      "ttl": 0.0,
+      "created_at": 1788528824.7206767,
+      "updated_at": 1788528824.7206767,
+      "accessed_at": 1788528824.7206767,
+      "access_count": 0,
+      "metadata": {}
+    }
+  },
+  "quarantined": []
+}

@@ -1,0 +1,1 @@
+{"method":"downloaded CI workflow artifact bundles (TEMP, outside repo) and recomputed SHA-256 per manifest entry","result":"ALL MATCH — 3/3 windows, 2/2 macOS present files, 3/3 linux","websiteCrossCheck":"every hash + size identical to website/static/api/releases/1.0.0.json (single source of bytes confirmed)"}

@@ -1,0 +1,12 @@
+HEAD=2bdfbfd8ebcf2bb27b06f600c2beb159e723d8b1
+branch=main
+repo_root=D:/hermes-agent-main (NOTE: git root is the PARENT of aetheros/)
+porcelain_paths=2783 (M=1780 incl. 13 D-class region check pending, ??=990+)
+node_system=v25.5.0 npm_system=11.8.0
+electron_builder_repo_local=26.8.1
+git=2.53.0.windows.1
+os=Windows Pro build 26200 (25H2) x64, non-admin
+sandbox=absent hypervisor=none
+node22_portable=v22.12.0 (nodejs.org, SHA-verified, %TEMP%\node22)
+REMOTE=origin https://github.com/sabib360/AetherOS.git (auth: FAILED)
+RELEASE_SOURCE_COMMIT=UNASSIGNED (no clean state; no commit authorized)

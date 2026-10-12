@@ -1,0 +1,1 @@
+{"assertDistBuilt":"PASS (dist/index.html + assets)","chain":"assert-root-install -> write-build-stamp -> stage-native-deps -> bundle-python -> tsc -b -> vite build -> assert-dist-built","result":"PASS in 2026-09-18 execution (vite built in 5.18s)","staleBuildRemoved":"apps/desktop/build/ (gitignored) deleted before build; stale 9/16 dist/ replaced"}

@@ -1,0 +1,106 @@
+{
+  "version": "1.0.0",
+  "commit": "e3e9746e3f66265ba45d1758e1edda735c65725fc4",
+  "artifacts": [
+    {
+      "platform": "windows",
+      "architecture": "x64",
+      "filename": "AetherOS-1.0.0-win-x64.exe",
+      "size": 152096097,
+      "sha256": "BB609665C6952267B4DDCA8391743C29E97DA6FA700FC019F0DF715B21C0CEB0",
+      "signed": false,
+      "type": "nsis-installer",
+      "notes": "LOCAL ARTIFACT - from prior local build; CI build (run 32806797641) failed before packaging"
+    },
+    {
+      "platform": "windows",
+      "architecture": "x64",
+      "filename": "AetherOS-1.0.0-win-x64.msi",
+      "size": 0,
+      "sha256": "",
+      "signed": false,
+      "type": "msi-installer",
+      "notes": "NOT PRODUCED - CI build failed before packaging"
+    },
+    {
+      "platform": "windows",
+      "architecture": "x64",
+      "filename": "AetherOS-1.0.0-win-x64-portable.exe",
+      "size": 0,
+      "sha256": "",
+      "signed": false,
+      "type": "portable",
+      "notes": "NOT PRODUCED - CI build failed before packaging"
+    },
+    {
+      "platform": "linux",
+      "architecture": "x64",
+      "filename": "AetherOS-1.0.0-linux-x64.AppImage",
+      "size": 0,
+      "sha256": "",
+      "signed": false,
+      "type": "appimage",
+      "notes": "NOT PRODUCED - CI build (run 32806797641) failed at renderer tests"
+    },
+    {
+      "platform": "linux",
+      "architecture": "x64",
+      "filename": "AetherOS-1.0.0-linux-x64.deb",
+      "size": 0,
+      "sha256": "",
+      "signed": false,
+      "type": "deb",
+      "notes": "NOT PRODUCED - CI build (run 32806797641) failed at renderer tests"
+    },
+    {
+      "platform": "linux",
+      "architecture": "x64",
+      "filename": "AetherOS-1.0.0-linux-x64.rpm",
+      "size": 0,
+      "sha256": "",
+      "signed": false,
+      "type": "rpm",
+      "notes": "NOT PRODUCED - CI build (run 32806797641) failed at renderer tests"
+    },
+    {
+      "platform": "macos",
+      "architecture": "arm64",
+      "filename": "AetherOS-1.0.0-macOS-arm64.dmg",
+      "size": 0,
+      "sha256": "",
+      "signed": false,
+      "type": "dmg",
+      "notes": "NOT PRODUCED - CI build (run 32806797641) failed at renderer tests"
+    },
+    {
+      "platform": "macos",
+      "architecture": "arm64",
+      "filename": "AetherOS-1.0.0-macOS-arm64.zip",
+      "size": 0,
+      "sha256": "",
+      "signed": false,
+      "type": "zip",
+      "notes": "NOT PRODUCED - CI build (run 32806797641) failed at renderer tests"
+    },
+    {
+      "platform": "macos",
+      "architecture": "arm64",
+      "filename": "AetherOS-1.0.0-macOS-arm64.pkg",
+      "size": 0,
+      "sha256": "",
+      "signed": false,
+      "type": "pkg",
+      "notes": "NOT PRODUCED - CI build (run 32806797641) failed at renderer tests"
+    },
+    {
+      "platform": "ios",
+      "architecture": "arm64",
+      "filename": "aetheros-ios-unsigned.tar.gz",
+      "size": 0,
+      "sha256": "",
+      "signed": false,
+      "type": "xcarchive-tarball",
+      "notes": "NOT PRODUCED - iOS tests (run 32808054969) failed at Swift compilation before archive step"
+    }
+  ]
+}

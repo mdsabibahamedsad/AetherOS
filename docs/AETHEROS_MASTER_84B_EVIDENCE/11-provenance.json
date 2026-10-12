@@ -1,0 +1,1 @@
+{"detail":"Workflow grants id-token:write + attestations:write but contains no actions/attest-build-provenance step. No provenance generated (no CI run).","status":"BLOCKED","verdict":"BLOCKED"}

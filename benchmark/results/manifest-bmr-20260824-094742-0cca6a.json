@@ -1,0 +1,39 @@
+{
+  "benchmark_run_id": "bmr-20260824-094742-0cca6a",
+  "benchmark_version": "m21-v1",
+  "dataset_version": "v1",
+  "dataset_hash": "3cbbabb25f9efc6f",
+  "agent": "claude-code",
+  "agent_health": {
+    "status": "INSTALLED",
+    "version": "unknown",
+    "evidence": [
+      "binary at C:\\Users\\User\\.npm-global\\claude.CMD",
+      "probe failed: FileNotFoundError: [WinError 2] The system cannot find the file specified"
+    ]
+  },
+  "environment": {
+    "benchmark_version": "m21-v1",
+    "os": "Windows 11",
+    "os_platform": "Windows-11-10.0.26200-SP0",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "cpu_count": 12,
+    "ram_gb": 0.0,
+    "gpu": "none-detected",
+    "python": "3.12.13",
+    "node": "v25.5.0",
+    "docker": "",
+    "network": {
+      "online_probe": false
+    },
+    "locale": "",
+    "tz": ""
+  },
+  "environment_fingerprint": "a46e44329cfe7bcf",
+  "allow_live": false,
+  "model": "unknown",
+  "provider": "unknown",
+  "started": 1787564862.2404554,
+  "task_count": 8,
+  "result_count": 8
+}

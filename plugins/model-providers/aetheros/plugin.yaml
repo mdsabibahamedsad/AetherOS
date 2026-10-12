@@ -1,0 +1,5 @@
+name: aetheros-provider
+kind: model-provider
+version: 1.0.0
+description: AetherOS Portal
+author: AetherOS

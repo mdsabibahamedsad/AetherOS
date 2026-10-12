@@ -1,0 +1,17 @@
+// AetherOS iOS — build configuration placeholders.
+//
+// Fill these in from your Apple developer account when provisioning is
+// available. NEVER commit real values: this file must keep working as the
+// public template. Release archives are BLOCKED until real credentials exist.
+//
+// Development (simulator needs no signing):
+//   xcodebuild -project AetherOS.xcodeproj -scheme AetherOS -destination 'platform=iOS Simulator,name=iPhone 15' build
+
+DEVELOPMENT_TEAM =
+CODE_SIGN_IDENTITY = Apple Development
+PROVISIONING_PROFILE_SPECIFIER =
+
+// TestFlight / App Store distribution requires:
+//   CODE_SIGN_IDENTITY = Apple Distribution
+//   an App ID with Push Notifications capability
+//   an aps-environment entitlement provisioned by Xcode automatic signing

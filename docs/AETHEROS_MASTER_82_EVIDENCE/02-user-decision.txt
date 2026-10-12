@@ -1,0 +1,4 @@
+User authorization decision (2026-09-15): BLOCK_AND_REPORT.
+No reset/clean/checkout/stash/commit performed. All 2786 paths intact, including
+13 user-deleted tracked files (left deleted) and 824 unknown untracked paths (left in place).
+Remediation owner: user.

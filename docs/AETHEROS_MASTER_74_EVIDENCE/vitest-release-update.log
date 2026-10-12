@@ -1,0 +1,13 @@
+﻿
+> aetheros@1.0.0 test:ui
+> vitest run --run src/release/__tests__ src/updater/__tests__
+
+
+ RUN  v4.1.5 D:/hermes-agent-main/aetheros/apps/desktop
+
+
+ Test Files  7 passed (7)
+      Tests  46 passed (46)
+   Start at  19:57:59
+   Duration  6.33s (transform 931ms, setup 181ms, import 1.23s, tests 4.61s, environment 13.99s)
+

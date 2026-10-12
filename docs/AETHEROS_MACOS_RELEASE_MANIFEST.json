@@ -1,0 +1,24 @@
+{
+  "product": "AetherOS",
+  "platform": "macos-arm64+x64",
+  "version": "1.0.0-desktop / 0.16.0-backend (UNRELEASED WORKTREE - descriptive only)",
+  "commit": "UNVERIFIED (dirty worktree)",
+  "build_environment": "NOT BUILT HERE - see desktop-release.yml macos job",
+  "artifacts": ["dmg", "zip", "pkg"],
+  "artifact_hashes": "NOT PRODUCED - see macos-artifacts.sha256 in CI",
+  "signature": "UNSIGNED HERE - BLOCKED (Apple Developer ID credentials)",
+  "certificate": null,
+  "entitlements": "audited (no get-task-allow; Electron JIT/library-validation justified)",
+  "notarization": "NOT EXECUTED - BLOCKED (notarization credentials)",
+  "staple": null,
+  "gatekeeper": "NOT TESTED - BLOCKED (macOS environment)",
+  "sbom": null,
+  "provenance": null,
+  "test_results": {
+    "macos_platform_contracts": "11 passed (executed 2026-09-11, cross-platform)",
+    "entitlements_audit": "PASS (executed 2026-09-11)",
+    "electron_unit_subset": "pass (in 122-file run)",
+    "python_regression": "270 passed"
+  },
+  "known_limitations": ["no login-item code", "no menu-bar status item", "no updater channel", "no crashReporter", "AX live runs blocked", "Keychain live ops blocked", "App Store not pursued"]
+}

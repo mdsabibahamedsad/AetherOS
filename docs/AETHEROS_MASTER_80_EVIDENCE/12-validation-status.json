@@ -1,0 +1,18 @@
+{
+  "overall": "RELEASE_VALIDATION_FAIL (2 gate(s))",
+  "failures": [
+    {
+      "id": "B12",
+      "name": "source binding (stamp=2bdfbfd8ebcf head=2bdfbfd8ebcf dirty=true)",
+      "code": "ARTIFACT_DIRTY_TREE",
+      "detail": "release artifact built from dirty tree"
+    },
+    {
+      "id": "C07",
+      "name": "packaged branding (source=AetherOS packaged=Aetheros)",
+      "code": "PACKAGED_BRANDING_MISMATCH",
+      "detail": "dist/index.html: source=AetherOS, packaged=Aetheros"
+    }
+  ],
+  "at": "2026-09-15T13:07:19.569Z"
+}

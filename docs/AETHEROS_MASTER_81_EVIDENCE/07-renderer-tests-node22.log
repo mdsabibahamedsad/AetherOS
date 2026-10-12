@@ -1,0 +1,7 @@
+Guards under Node 22: 19/19 PASS. Electron suite under Node 22: 176/176 PASS.
+Renderer (vitest) under Node 22: 808/811 — 3 failures in src/themes/design-tokens.test.ts
+(type-ramp, motion-duration, spacing-ladder) reproduce IDENTICALLY under Node 25.5.0
+→ pre-existing content-drift failures, NOT toolchain regressions, NOT Master-81 caused.
+Vitest also reports check-packaging-path-lengths.test.mjs as a file-level FAIL because it
+is a node:test module, not a vitest module (passes 9/9 under `node --test`) — pre-existing
+harness mismatch, unchanged by Master 81.

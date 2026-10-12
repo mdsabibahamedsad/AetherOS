@@ -1,0 +1,5 @@
+gh auth status: FAILED (token invalid for sabib360)
+git ls-remote origin HEAD: FAILED (authentication failed)
+=> CI dispatch impossible from this host. CI = NOT_RUN (§95). No run ID exists.
+Dispatch path for an authorized operator: GitHub UI → Actions →
+Windows Desktop Certification → Run workflow (or `gh workflow run` after re-auth).

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AetherOS — Wolf Brand Identity System</title>
+<style>
+:root{--cyan:#35E0FF;--blue:#3B82F6;--violet:#8B5CF6;--ink:#0A0F1E;
+--mid:#070B16;--paper:#F5F8FE;--mut:#8CA0C4}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#04060D;color:#E7EEFB;font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:64px 32px 120px}
+h1{font-size:15px;letter-spacing:.42em;color:var(--mut);text-transform:uppercase;font-weight:600}
+h2{font-size:26px;margin:0 0 6px;font-weight:650}
+h2 span{background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));
+-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:#93A5C8;font-size:14px;line-height:1.6;max-width:640px;margin-bottom:34px}
+section{margin-top:72px}
+.hero{display:flex;gap:48px;align-items:center;justify-content:center;
+background:radial-gradient(900px 420px at 50% 0,#0C1730 0%,#04060D 70%);
+border:1px solid #14203C;border-radius:24px;padding:72px 40px;margin-top:40px}
+.hero img{width:min(430px,80%)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{background:#0A1122;border:1px solid #16233F;border-radius:16px;padding:22px;
+display:flex;flex-direction:column;align-items:center;gap:16px;min-height:190px;
+justify-content:center}
+.card.dark{background:#04060D}.card.light{background:var(--paper)}
+.card.black{background:#000}.card.gray{background:var(--paper)}
+.card img{max-width:82%;max-height:110px}
+.card .nm{font-size:11px;color:var(--mut);letter-spacing:.14em;text-transform:uppercase;text-align:center}
+.row{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;
+background:#0A1122;border:1px solid #16233F;border-radius:16px;padding:26px}
+.sw{display:flex;align-items:flex-end;gap:10px}
+.sz{text-align:center;font-size:10px;color:var(--mut)}
+.bgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.tile{border-radius:14px;padding:30px;display:flex;align-items:center;justify-content:center;min-height:170px;border:1px solid rgba(255,255,255,.06)}
+.palette{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+.pal{border-radius:14px;padding:18px;height:120px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid rgba(255,255,255,.08)}
+.pal b{font-size:13px}.pal i{font-size:11px;opacity:.75;font-style:normal}
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.rule{border-radius:14px;padding:22px;font-size:13px;line-height:1.7}
+.ok{background:#07131F;border:1px solid #123047}.no{background:#170B12;border:1px solid #3B1230}
+.rule h3{font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px}
+.ok h3{color:#39D98A}.no h3{color:#FF6B9D}
+.checker{background:repeating-conic-gradient(#2A3350 0% 25%,#1B2340 0% 50%) 0 0/22px 22px}
+footer{margin-top:90px;color:#54648A;font-size:12px;text-align:center;line-height:2}
+img.wm{filter:none}
+</style>
+</head>
+<body><div class="wrap">
+
+<h1>AetherOS · Brand Identity · v1.0</h1>
+
+<div class="hero">
+  <img src="svg/logo-full.svg" alt="AetherOS full lockup">
+</div>
+
+<section>
+  <h2>The <span>Master Wolf</span></h2>
+  <p class="sub">One symbol. Every asset below is derived from this single
+  geometric wolf head — ears, brow planes, cheek ruff spikes, muzzle bridge,
+  negative-space eyes and nose. Nothing else may ever stand beside it.</p>
+  <div class="row"><img src="svg/wolf-icon.svg" width="360" alt="master wolf"></div>
+</section>
+
+<section>
+  <h2>Logo <span>Configurations</span></h2>
+  <p class="sub">Eleven canonical configurations. All derive from the master
+  wolf; no secondary symbol exists.</p>
+  <div class="grid">
+    <div class="card"><img src="svg/wolf-icon.svg" alt="01 · Wolf Icon Only"><div class="nm">01 · Wolf Icon Only</div></div>
+    <div class="card"><img src="svg/logo-horizontal.svg" alt="02 · Wolf + AetherOS Horizontal" style="max-width:95%"><div class="nm">02 · Wolf + AetherOS Horizontal</div></div>
+    <div class="card"><img src="svg/logo-stacked.svg" alt="03 · Wolf Above AetherOS"><div class="nm">03 · Wolf Above AetherOS</div></div>
+    <div class="card"><img src="svg/logo-full.svg" alt="04 · Wolf + AetherOS + Tagline" style="max-width:95%"><div class="nm">04 · Wolf + AetherOS + Tagline</div></div>
+    <div class="card light"><img src="svg/wolf-mono.svg" alt="05 · Monochrome Wolf" style="color:#0A0F1E"><div class="nm">05 · Monochrome Wolf</div></div>
+    <div class="card dark"><img src="svg/wolf-white.svg" alt="06 · White Wolf"><div class="nm">06 · White Wolf</div></div>
+    <div class="card gray"><img src="svg/wolf-black.svg" alt="07 · Black Wolf"><div class="nm">07 · Black Wolf</div></div>
+    <div class="card"><img src="svg/logo-dark-bg.svg" alt="08 · Dark Background Version" style="max-width:95%"><div class="nm">08 · Dark Background Version</div></div>
+    <div class="card"><img src="svg/logo-light-bg.svg" alt="09 · Light Background Version" style="max-width:95%"><div class="nm">09 · Light Background Version</div></div>
+    <div class="card"><img src="svg/favicon.svg" alt="10 · Favicon Master"><div class="nm">10 · Favicon Master</div></div>
+    <div class="card"><img src="png/icons/app_icon_256.png" alt="11 · App Icon"><div class="nm">11 · App Icon</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Color <span>System</span></h2>
+  <p class="sub">One coherent gradient — electric cyan through electric blue
+  into violet. Flat, enterprise-grade, no neon glow, no metal, no cartoon.</p>
+  <div class="palette"><div class="pal" style="background:linear-gradient(135deg,#35E0FF,#35E0FF)"><b>Electric Cyan</b><i>#35E0FF</i></div><div class="pal" style="background:linear-gradient(135deg,#3B82F6,#3B82F6)"><b>Electric Blue</b><i>#3B82F6</i></div><div class="pal" style="background:linear-gradient(135deg,#8B5CF6,#8B5CF6)"><b>Violet</b><i>#8B5CF6</i></div><div class="pal" style="background:linear-gradient(135deg,#182440,#0A0F1E)"><b>Deep-Space Navy</b><i>#0A0F1E</i></div><div class="pal" style="background:linear-gradient(135deg,#35E0FF,#8B5CF6)"><b>Signature Gradient</b><i>—</i></div></div>
+</section>
+
+<section>
+  <h2>Scale <span>Ladder</span></h2>
+  <p class="sub">True raster favicon renders at every size. At 16px the wolf
+  keeps its ears, eyes and snout — never a blob.</p>
+  <div class="row"><div class="sz"><img src="png/favicons/favicon_16.png" width="16" height="16" alt=""><br>16px</div><div class="sz"><img src="png/favicons/favicon_24.png" width="24" height="24" alt=""><br>24px</div><div class="sz"><img src="png/favicons/favicon_32.png" width="32" height="32" alt=""><br>32px</div><div class="sz"><img src="png/favicons/favicon_48.png" width="48" height="48" alt=""><br>48px</div><div class="sz"><img src="png/favicons/favicon_64.png" width="64" height="64" alt=""><br>64px</div><div class="sz"><img src="png/favicons/favicon_96.png" width="96" height="96" alt=""><br>96px</div><div class="sz"><img src="png/favicons/favicon_128.png" width="128" height="128" alt=""><br>128px</div><div class="sz"><img src="png/favicons/favicon_256.png" width="256" height="256" alt=""><br>256px</div></div>
+  <p class="sub" style="margin-top:18px">SVG vector ladder:</p>
+  <div class="row"><div class="sz"><img src="svg/wolf-icon.svg" width="16" height="16" alt=""><br>16px</div><div class="sz"><img src="svg/wolf-icon.svg" width="32" height="32" alt=""><br>32px</div><div class="sz"><img src="svg/wolf-icon.svg" width="64" height="64" alt=""><br>64px</div><div class="sz"><img src="svg/wolf-icon.svg" width="128" height="128" alt=""><br>128px</div><div class="sz"><img src="svg/wolf-icon.svg" width="256" height="256" alt=""><br>256px</div><div class="sz"><img src="svg/wolf-icon.svg" width="512" height="512" alt=""><br>512px</div></div>
+</section>
+
+<section>
+  <h2>Background <span>Tolerance</span></h2>
+  <div class="bgs"><div class="tile " style="background:#000000;"><img src="svg/wolf-icon.svg" width="120" alt=""></div><div class="tile " style="background:#070B16;"><img src="svg/wolf-icon.svg" width="120" alt=""></div><div class="tile " style="background:#FFFFFF;color:#0A0F1E;"><img src="svg/wolf-icon.svg" width="120" alt=""></div><div class="tile " style="background:#E7ECF5;color:#0A0F1E;"><img src="svg/wolf-icon.svg" width="120" alt=""></div><div class="tile checker"><img src="svg/wolf-icon.svg" width="120" alt=""></div></div>
+</section>
+
+<section>
+  <h2>Usage <span>Rules</span></h2>
+  <div class="rules">
+    <div class="rule ok"><h3>Always</h3>
+      Wolf first — the symbol identifies the brand alone.<br>
+      Clear space ≥ 25% of wolf height on all sides.<br>
+      Minimum size: 16px (favicon), 24px (inline), 88px (lockup).<br>
+      Use the exact gradient stops; never rotate or skew the wolf.<br>
+      Mono contexts: pure white or pure black wolf only.
+    </div>
+    <div class="rule no"><h3>Never</h3>
+      Do not replace the wolf with an abstract “A”.<br>
+      Do not add a second competing symbol beside it.<br>
+      Do not outline, shadow, bevel, animate parts, or add glow.<br>
+      Do not recolor outside the defined palette.<br>
+      Do not place the wolf on low-contrast mid-tone backgrounds.
+    </div>
+  </div>
+</section>
+
+<footer>
+  AETHEROS · AI OPERATING SYSTEM<br>
+  One wolf. One wordmark. One brand. One visual language.
+</footer>
+
+</div></body></html>

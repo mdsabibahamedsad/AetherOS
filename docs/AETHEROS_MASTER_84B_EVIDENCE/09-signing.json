@@ -1,0 +1,1 @@
+{"detail":"No CI artifacts exist to verify. Workflow contains no signtool/Authenticode step; macOS sets CODE_SIGNING_ALLOWED=NO; Windows electron-builder config sets signAndEditExecutable=false. Signing is outside RC scope by current config; unsigned artifacts must NOT be called production-ready.","status":"SIGNING_BLOCKED","verdict":"BLOCKED"}

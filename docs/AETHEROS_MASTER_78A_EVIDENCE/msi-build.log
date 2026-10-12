@@ -1,0 +1,52 @@
+
+> aetheros@1.0.0 builder
+> cross-env NODE_OPTIONS=--max-old-space-size=16384 electron-builder --win msi
+
+  ΓÇó electron-builder  version=26.8.1 os=10.0.26200
+  ΓÇó loaded configuration  file=package.json ("build" field)
+[before-pack] removed stale unpacked dir before staging: D:\hermes-agent-main\aetheros\apps\desktop\dist-packaged\win-unpacked
+[before-build] staged license.txt from LICENSE
+  ΓÇó packaging       platform=win32 arch=x64 electron=40.9.3 appOutDir=dist-packaged\win-unpacked
+  ΓÇó packageManager not detected by file, falling back to environment detection  resolvedPackageManager=npm detected=D:\hermes-agent-main\aetheros\apps\desktop
+  ΓÇó detected workspace root for project using process environment  pm=npm config=undefined resolved=undefined projectDir=D:\hermes-agent-main\aetheros\apps\desktop
+  ΓÇó updating asar integrity executable resource  executablePath=dist-packaged\win-unpacked\AetherOS.exe
+[set-exe-identity] stamping D:\hermes-agent-main\aetheros\apps\desktop\dist-packaged\win-unpacked\AetherOS.exe
+[set-exe-identity] icon: D:\hermes-agent-main\aetheros\apps\desktop\assets\icon.ico
+[set-exe-identity] done ΓÇö AetherOS icon + identity stamped
+  ΓÇó skipping "afterSign" hook as no signing occurred, perhaps you intended "afterPack"?
+  ΓÇó building        target=MSI arch=x64 file=dist-packaged\AetherOS-1.0.0-win-x64.msi
+  ΓÇó downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/wix-4.0.0.5512.2/wix-4.0.0.5512.2.7z size=2.2 MB parts=1
+  ΓÇó downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/wix-4.0.0.5512.2/wix-4.0.0.5512.2.7z duration=2.953s
+  Γ¿» C:\Users\User\AppData\Local\electron-builder\Cache\wix\wix-4.0.0.5512.2-wix-4.0.0.5512.2\light.exe process failed 103
+Exit code:
+103
+Output:
+Exit code: 103. Command failed: C:\Users\User\AppData\Local\electron-builder\Cache\wix\wix-4.0.0.5512.2-wix-4.0.0.5512.2\light.exe -out D:\hermes-agent-main\aetheros\apps\desktop\dist-p b47aa9652e4cb938baeb0bc35661931965ff826711dd4c26745fa024d87273ca (sha256 hash) -v -spdb -sw1076 -dappDir=D:\hermes-agent-main\aetheros\apps\desktop\dist-p 8cb320cbc85c7d741e2be2b89d014454b71e4d595bb6ec31ec33b0e8e1290c1b (sha256 hash) -p 585f8fa9a45c638e3be5f0030d88004923e218b5a334e60d7c7e606b6a3eccd6 (sha256 hash) -ext WixUIExtension project.wixobj
+D:\hermes-agent-main\aetheros\apps\desktop\dist-p 301f2c8d04f80189089c7ffc9688f38a8bbbb9096471564387697d67c27eb548 (sha256 hash) : error LGHT0103 : The system cannot find the file 'D:\hermes-agent-main\aetheros\apps\desktop\dist-p 91cba6e36c67c50f3d250b19cf055c6b3c20bbe23f316703f87c17b7e6d2afc1 (sha256 hash)
+
+WiX Toolset Linker version 4.0.0.5512
+Copyright (c) .NET Foundation and contributors. All rights reserved.
+
+
+D:\hermes-agent-main\aetheros\apps\desktop\dist-packaged\__msi-x64\project.wxs(30364) : error LGHT0103 : The system cannot find the file 'D:\hermes-agent-main\aetheros\apps\desktop\dist-packaged\win-unpacked\resources\py\Lib\site-packages\elevenlabs\text_to_speech\types\body_text_to_speech_streaming_with_timestamps_v_1_text_to_speech_voice_id_stream_with_timestamps_post_apply_text_normalization.py'.
+  failedTask=build stackTrace=Error: C:\Users\User\AppData\Local\electron-builder\Cache\wix\wix-4.0.0.5512.2-wix-4.0.0.5512.2\light.exe process failed 103
+Exit code:
+103
+Output:
+Exit code: 103. Command failed: C:\Users\User\AppData\Local\electron-builder\Cache\wix\wix-4.0.0.5512.2-wix-4.0.0.5512.2\light.exe -out D:\hermes-agent-main\aetheros\apps\desktop\dist-p b47aa9652e4cb938baeb0bc35661931965ff826711dd4c26745fa024d87273ca (sha256 hash) -v -spdb -sw1076 -dappDir=D:\hermes-agent-main\aetheros\apps\desktop\dist-p 8cb320cbc85c7d741e2be2b89d014454b71e4d595bb6ec31ec33b0e8e1290c1b (sha256 hash) -p 585f8fa9a45c638e3be5f0030d88004923e218b5a334e60d7c7e606b6a3eccd6 (sha256 hash) -ext WixUIExtension project.wixobj
+D:\hermes-agent-main\aetheros\apps\desktop\dist-p 301f2c8d04f80189089c7ffc9688f38a8bbbb9096471564387697d67c27eb548 (sha256 hash) : error LGHT0103 : The system cannot find the file 'D:\hermes-agent-main\aetheros\apps\desktop\dist-p 91cba6e36c67c50f3d250b19cf055c6b3c20bbe23f316703f87c17b7e6d2afc1 (sha256 hash)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          WiX Toolset Linker version 4.0.0.5512
+Copyright (c) .NET Foundation and contributors. All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          D:\hermes-agent-main\aetheros\apps\desktop\dist-packaged\__msi-x64\project.wxs(30364) : error LGHT0103 : The system cannot find the file 'D:\hermes-agent-main\aetheros\apps\desktop\dist-packaged\win-unpacked\resources\py\Lib\site-packages\elevenlabs\text_to_speech\types\body_text_to_speech_streaming_with_timestamps_v_1_text_to_speech_voice_id_stream_with_timestamps_post_apply_text_normalization.py'.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              at D:\hermes-agent-main\aetheros\node_modules\builder-util\src\util.ts:155:18
+    at ChildProcess.exithandler (node:child_process:424:5)
+    at ChildProcess.emit (node:events:508:20)
+    at maybeClose (node:internal/child_process:1084:16)
+    at Process.ChildProcess._handle.onexit (node:internal/child_process:304:5)
+npm error Lifecycle script `builder` failed with error:
+npm error code 1
+npm error path D:\hermes-agent-main\aetheros\apps\desktop
+npm error workspace aetheros@1.0.0
+npm error location D:\hermes-agent-main\aetheros\apps\desktop
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c cross-env NODE_OPTIONS=--max-old-space-size=16384 electron-builder --win msi

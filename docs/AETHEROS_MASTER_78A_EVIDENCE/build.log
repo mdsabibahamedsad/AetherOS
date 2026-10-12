@@ -1,0 +1,61 @@
+
+> aetheros@1.0.0 build
+> node scripts/assert-root-install.cjs && node scripts/write-build-stamp.cjs && node scripts/stage-native-deps.cjs && node scripts/bundle-python.cjs && tsc -b && vite build && node scripts/assert-dist-built.cjs
+
+[write-build-stamp] WARNING: working tree is dirty.
+  Pinning to 2bdfbfd8ebcf but the packaged code may differ from that commit.
+  Commit your changes before publishing this build.
+[write-build-stamp] wrote apps\desktop\build\install-stamp.json -> 2bdfbfd8ebcf (main) [DIRTY]
+[stage-native-deps] build\native-deps\node-pty: 27 files
+[bundle-python] ==========================================
+[bundle-python] Bundling Python runtime for production
+[bundle-python] ==========================================
+[bundle-python] Step 1/4: Finding host Python...
+[bundle-python] Host Python: D:\hermes-agent-main\aetheros\.venv\Scripts\python.exe (venv)
+[bundle-python] Step 2/4: Validating source virtual environment...
+[bundle-python] Validating source virtual environment...
+[bundle-python] Host Python version: 3.12
+[bundle-python] Source venv at D:\hermes-agent-main\aetheros\.venv
+[bundle-python] Step 3/4: Copying Python runtime to bundle...
+[bundle-python] Bundling existing virtual environment with all dependenciesΓÇª
+[bundle-python] Copying venv from D:\hermes-agent-main\aetheros\.venv to D:\hermes-agent-main\aetheros\apps\desktop\build\bundled-python\py...
+[bundle-python] Venv copy complete
+[bundle-python] Patched pyvenv.cfg: removed absolute home path references
+[bundle-python] Python runtime bundled at D:\hermes-agent-main\aetheros\apps\desktop\build\bundled-python\py
+[bundle-python] Step 4/4: Staging backend source code...
+[bundle-python] Staging backend source...
+[stage-bundled-backend] staged 2748 files to build\bundled-python\backend
+[stage-bundled-backend] done
+[bundle-python] Stripping unnecessary files...
+[bundle-python] Stripped 560 files (64.0 MB)
+[bundle-python] Bundle manifest written
+[bundle-python] Total bundle size: 270.7 MB
+[bundle-python]   Python runtime: 223.6 MB
+[bundle-python]   Backend source: 47.1 MB
+[bundle-python] Running smoke test on bundled Python...
+[bundle-python] Γ£ô Smoke test passed: Python 3.12.13
+, site-packages: D:\hermes-agent-main\aetheros\apps\desktop\build\bundled-python\py
+, pydantic 2.13.4
+[bundle-python] ==========================================
+[bundle-python] Python bundling complete!
+[bundle-python] ==========================================
+failed to load config from D:\hermes-agent-main\aetheros\apps\desktop\vite.config.ts
+error during build:
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@vitejs/plugin-react' imported from D:\hermes-agent-main\aetheros\node_modules\.vite-temp\vite.config.ts.timestamp-1789442180525-554383859aeba8.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:859:18)
+    at defaultResolve (node:internal/modules/esm/resolve:991:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:713:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:730:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:52)
+    at #resolve (node:internal/modules/esm/loader:695:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:615:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
+npm error Lifecycle script `build` failed with error:
+npm error code 1
+npm error path D:\hermes-agent-main\aetheros\apps\desktop
+npm error workspace aetheros@1.0.0
+npm error location D:\hermes-agent-main\aetheros\apps\desktop
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c node scripts/assert-root-install.cjs && node scripts/write-build-stamp.cjs && node scripts/stage-native-deps.cjs && node scripts/bundle-python.cjs && tsc -b && vite build && node scripts/assert-dist-built.cjs

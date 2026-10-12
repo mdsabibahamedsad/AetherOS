@@ -1,0 +1,8 @@
+# SHA-256 checksums — AetherOS Desktop 1.0.0 (Master 77)
+# Generated 2026-09-13 by Get-FileHash (SHA256) on the build host.
+# exe + blockmap: rebuilt 2026-09-13 via `npm run dist:win:nsis` from commit 2bdfbfd.
+# msi + portable: 2026-08-22 artifacts (MSI rebuild blocked by WiX MAX_PATH, see FINAL_STATUS).
+87091be02683aa8295c399a8f2b28545944add05d02e54f4419ebc0dedfa1f68  AetherOS-1.0.0-win-x64.exe (195739994 bytes)
+37c1e6619106d366694e5b493e56264a3de6358ecd8602552cc9b6105cd6a7ec  AetherOS-1.0.0-win-x64.exe.blockmap (202557 bytes)
+6fe65eb4bbbe057d3c1e3b0d333cdcd4a49aea77e10fc39dcb1e10629c3df2f3  AetherOS-1.0.0-win-x64.msi (196571899 bytes)
+cce16c07b326dab150aa6d493c1ded0141c9ce701193b37405463cde1893c9cf  AetherOS-1.0.0-win-x64-portable.exe (187240131 bytes)

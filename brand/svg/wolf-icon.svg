@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">  <defs>
+  <linearGradient id="aog" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0" stop-color="#35E0FF"/>
+    <stop offset="0.52" stop-color="#3B82F6"/>
+    <stop offset="1" stop-color="#8B5CF6"/>
+  </linearGradient>
+  <radialGradient id="aov" cx="0.5" cy="0.56" r="0.62">
+    <stop offset="0.72" stop-color="#000010" stop-opacity="0"/>
+    <stop offset="1" stop-color="#000010" stop-opacity="0.30"/>
+  </radialGradient>
+  <linearGradient id="wmg" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0" stop-color="#3B82F6"/>
+    <stop offset="1" stop-color="#8B5CF6"/>
+  </linearGradient>
+  <clipPath id="aoc"><path d="M256 494L198 420L182 376L88 380L116 308L38 288L124 144L112 120L168 10L212 58L300 58L344 10L400 120L388 144L474 288L396 308L424 380L330 376L314 420Z M128 212L206 240L198 268L136 246Z M384 212L306 240L314 268L376 246Z M256 390L288 424L256 459L224 424Z M256 132L276 158L256 184L236 158Z"/></clipPath>
+  </defs><path fill-rule="evenodd" fill="url(#aog)" d="M256 494L198 420L182 376L88 380L116 308L38 288L124 144L112 120L168 10L212 58L300 58L344 10L400 120L388 144L474 288L396 308L424 380L330 376L314 420Z M128 212L206 240L198 268L136 246Z M384 212L306 240L314 268L376 246Z M256 390L288 424L256 459L224 424Z M256 132L276 158L256 184L236 158Z"/>
+    <g clip-path="url(#aoc)">
+      <polygon points="256,108 338,232 318,374 194,374 174,232" fill="#FFFFFF" opacity="0.07"/>
+      <polygon points="388,144 474,288 396,308 424,380 330,376 356,298" fill="#000010" opacity="0.16"/>
+      <polygon points="124,144 38,288 116,308 88,380 182,376 156,298" fill="#000010" opacity="0.16"/>
+      <polygon points="302,62 344,28 368,110" fill="#000010" opacity="0.22"/>
+      <polygon points="210,62 168,28 144,110" fill="#000010" opacity="0.22"/>
+      <polygon points="261,264 289,290 271,388 258,388" fill="#FFFFFF" opacity="0.10"/>
+      <polygon points="251,264 223,290 241,388 254,388" fill="#FFFFFF" opacity="0.10"/>
+      <rect x="-64" y="-64" width="640" height="640" fill="url(#aov)"/>
+    </g></svg>

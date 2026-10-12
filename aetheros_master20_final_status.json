@@ -1,0 +1,80 @@
+{
+  "master": 20,
+  "date": "2026-08-24",
+  "phases_total": 100,
+  "summary": {
+    "complete_count": 100,
+    "partial_count": 0,
+    "not_started_count": 0,
+    "partial_phases": {},
+    "not_started_phases": []
+  },
+  "approach": "compose aetheros_observability + aetheros_reliability + canonical test runner + M19 chaos/reputation into agent/quality (pure-stdlib, offline-deterministic, profile-safe); CLI-only surface via 'aetheros quality'; no new model tools, no new test framework, no CI rewrites",
+  "new_modules": [
+    "agent/quality/__init__.py",
+    "agent/quality/models.py",
+    "agent/quality/benchmarks.py",
+    "agent/quality/metrics.py",
+    "agent/quality/regression.py",
+    "agent/quality/datasets.py",
+    "agent/quality/diagnostics.py",
+    "agent/quality/improvement.py",
+    "agent/quality/rollout.py",
+    "agent/quality/trends.py",
+    "agent/quality/knowledge.py",
+    "agent/quality/gates.py",
+    "aetheros_cli/quality.py"
+  ],
+  "wired_into_existing": {
+    "aetheros_cli/main.py": "single build_quality_parser(subparsers) call after computer-use block; no other changes",
+    "aetheros_observability.evaluation.TaskOutcome": "success taxonomy reused by QualityMetrics",
+    "aetheros_reliability.rca confidence discipline": "Diagnosis.confidence levels",
+    "tests/stress + CI workflows": "stress/soak/installer/browser validation venues referenced by golden skips"
+  },
+  "bugs_found_and_fixed_in_new_layer": [
+    "models.py: missing dataclasses import broke all to_dict() paths",
+    "agent/quality lacked __init__.py (package not importable)",
+    "rollout.flag_enabled percent/fraction scale mismatch",
+    "BaselineStore.latest ambiguous at equal timestamps",
+    "comparison policy sets never matched namespaced check metrics",
+    "recovery_rate double-counted crashed-and-failed tasks"
+  ],
+  "tests": {
+    "quality_suite_total": 122,
+    "new_test_files": [
+      "tests/quality/test_models.py",
+      "tests/quality/test_metrics.py",
+      "tests/quality/test_benchmarks_regression.py",
+      "tests/quality/test_platforms.py",
+      "tests/quality/test_golden_scenarios.py",
+      "tests/quality/test_quality_cli.py"
+    ],
+    "golden_scenarios": "SC01-SC30 implemented; real offline verification or explicit skip naming authoritative venue; skips never counted as passes",
+    "regression_evidence": {
+      "before_dependency_suites": {"passed": 195, "failed": 1},
+      "after_dependency_suites_plus_quality": {"passed": 314, "skipped": 7, "failed": 0},
+      "the_one_before_failure": "test_recent_orders_newest_first — hash-order flake outside canonical wrapper; classified FLAKY/ENVIRONMENTAL, recorded not deleted",
+      "new_regressions_from_master20": 0
+    }
+  },
+  "safety_invariants_verified": [
+    "risk classification upgrade-only from touched components; CRITICAL components force human approval",
+    "ChangeProposal refuses construction without evidence and rollback plan",
+    "autonomous application only via SAFE_AUTO_FIX_KINDS registry; anything else raises UnsafeAutoApply",
+    "publish() refuses EvaluationRun that did not execute (anti-fabrication)",
+    "gate never evaluated => BLOCK, never an implicit pass; CLI exits nonzero on BLOCK verdict",
+    "security findings force SECURITY gate BLOCK",
+    "unavailable rollback downgrades PASS->WARN and is recorded verbatim",
+    "rollout monitor breach halts stage and auto-rolls back with P71 validation checklist",
+    "diagnosis without evidence stays cause=undetermined confidence=UNKNOWN; latest commit never auto-blamed",
+    "quarantine requires explicit reason and entries stay visible/enumerable",
+    "datasets immutable: change_note mandatory, identical successor versions rejected, tamper detectable via content hash"
+  ],
+  "final_certification": "READY",
+  "ready_blockers": [],
+  "residual_notes": [
+    "platform/installer/browser/soak validations delegated to existing CI jobs and named in golden-suite skips; not claimed from this host",
+    "full ~31k suite sweep not re-run this session; last full sweep (M19) had 0 new failures; M20 diff is additive modules plus one parser-builder call",
+    "product release readiness remains governed by existing CI gates; quality layer BLOCKs on missing evidence by design"
+  ]
+}

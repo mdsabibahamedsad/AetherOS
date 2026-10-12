@@ -1,0 +1,439 @@
+{
+  "name": "aetheros",
+  "productName": "AetherOS",
+  "private": true,
+  "version": "1.1.0",
+  "description": "Native desktop shell for AetherOS.",
+  "author": "AetherOS",
+  "homepage": "https://github.com/Aetheros/Aetheros#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aetheros/Aetheros.git",
+    "directory": "aetheros/apps/desktop"
+  },
+  "type": "module",
+  "main": "electron/main.cjs",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev:renderer\" \"npm:dev:electron\"",
+    "dev:fake-boot": "cross-env AETHEROS_DESKTOP_BOOT_FAKE=1 AETHEROS_DESKTOP_BOOT_FAKE_STEP_MS=650 npm run dev",
+    "dev:renderer": "node scripts/assert-root-install.cjs && vite --host 127.0.0.1 --port 5174",
+    "dev:electron": "wait-on http://127.0.0.1:5174 && cross-env XCURSOR_SIZE=24 AETHEROS_DESKTOP_DEV_SERVER=http://127.0.0.1:5174 electron .",
+    "profile:main": "wait-on http://127.0.0.1:5174 && cross-env XCURSOR_SIZE=24 AETHEROS_DESKTOP_DEV_SERVER=http://127.0.0.1:5174 electron --inspect=9229 .",
+    "profile:main:cpu": "wait-on http://127.0.0.1:5174 && cross-env XCURSOR_SIZE=24 NODE_OPTIONS=--cpu-prof AETHEROS_DESKTOP_DEV_SERVER=http://127.0.0.1:5174 electron .",
+    "start": "npm run build && electron .",
+    "build": "node scripts/assert-root-install.cjs && node scripts/write-build-stamp.cjs && node scripts/stage-native-deps.cjs && node scripts/bundle-python.cjs && tsc -b && vite build && node scripts/assert-dist-built.cjs",
+    "builder": "cross-env NODE_OPTIONS=--max-old-space-size=16384 electron-builder",
+    "pack": "npm run build && npm run builder -- --dir",
+    "dist": "npm run build && npm run builder",
+    "dist:mac": "npm run build && npm run builder -- --mac",
+    "dist:mac:dmg": "npm run build && npm run builder -- --mac dmg",
+    "dist:mac:zip": "npm run build && npm run builder -- --mac zip",
+    "dist:win": "npm run build && npm run dist:win:validate-paths && npm run builder -- --win",
+    "dist:win:msi": "npm run build && npm run dist:win:validate-paths && npm run builder -- --win msi",
+    "dist:win:validate-paths": "node scripts/release/check-packaging-path-lengths.mjs",
+    "dist:win:nsis": "npm run build && npm run dist:win:validate-paths && npm run builder -- --win nsis",
+    "desktop:preflight:windows": "node scripts/release/preflight-windows.mjs",
+    "desktop:preflight:windows:report": "node scripts/release/preflight-windows.mjs --report",
+    "desktop:clean:windows": "node -e \"const p=require('./scripts/release/release-guards.cjs');const c=require('./scripts/release/release-config.cjs').loadContract();const r=p.assertOutputDirSafe(c.outputDir,c.repoRoot);if(!r.ok){console.error(r.code+': '+r.detail);process.exit(1)}require('fs').rmSync(c.outputDir,{recursive:true,force:true});console.log('cleaned '+c.outputDir)\"",
+    "desktop:validate:windows": "node scripts/release/validate-windows-release.mjs",
+    "desktop:verify:manifest": "node scripts/release/validate-windows-release.mjs",
+    "desktop:release:windows": "node scripts/release/release-windows.mjs",
+    "desktop:release:windows:manifest": "node scripts/release/release-windows.mjs --write-manifest",
+    "desktop:build:windows": "npm run dist:win",
+    "dist:linux": "npm run build && npm run builder -- --linux AppImage deb rpm",
+    "dist:linux:validate": "node scripts/release/validate-linux-packaging.mjs",
+    "test:desktop": "node scripts/test-desktop.mjs",
+    "test:desktop:all": "node scripts/test-desktop.mjs all",
+    "test:desktop:dmg": "node scripts/test-desktop.mjs dmg",
+    "test:desktop:nsis": "node scripts/test-desktop.mjs nsis",
+    "test:desktop:existing": "node scripts/test-desktop.mjs existing",
+    "test:desktop:fresh": "node scripts/test-desktop.mjs fresh",
+    "test:desktop:platforms": "node --test electron/bootstrap-platform.test.cjs electron/linux-session.test.cjs electron/hardening.test.cjs electron/backend-probes.test.cjs electron/connection-config.test.cjs electron/dashboard-token.test.cjs electron/gateway-ws-probe.test.cjs electron/oauth-net-request.test.cjs electron/desktop-uninstall.test.cjs electron/port-pool.test.cjs electron/session-windows.test.cjs electron/workspace-cwd.test.cjs electron/fs-read-dir.test.cjs electron/git-root.test.cjs electron/windows-child-process.test.cjs electron/update-remote.test.cjs electron/api-path.test.cjs",
+    "typecheck": "tsc -p . --noEmit",
+    "lint": "eslint src/ electron/",
+    "lint:fix": "eslint src/ electron/ --fix",
+    "fmt": "prettier --write 'src/**/*.{ts,tsx}' 'electron/**/*.{js,cjs}' 'vite.config.ts'",
+    "fix": "npm run lint:fix && npm run fmt",
+    "test:ui": "vitest run",
+    "preview": "node scripts/assert-root-install.cjs && vite preview --host 127.0.0.1 --port 4174",
+    "security:audit": "node scripts/security/audit-security.mjs",
+    "security:deps": "node scripts/security/audit-dependencies.mjs",
+    "security:secrets": "node scripts/security/check-secrets.mjs",
+    "release:notes": "node scripts/release/generate-release-notes.mjs",
+    "release:migration": "node scripts/release/generate-migration-guide.mjs",
+    "release:bump": "node scripts/release/bump-version.mjs",
+    "release:check": "node scripts/release/check-production-readiness.mjs",
+    "release:validate-artifacts": "node scripts/release/validate-artifacts.mjs",
+    "desktop:verify": "npm run typecheck && npm run dist:linux:validate && node scripts/release/validate-artifacts.mjs",
+    "linux:verify": "npm run dist:linux:validate && node scripts/release/validate-artifacts.mjs",
+    "quality:a11y": "node scripts/quality/verify-a11y.mjs",
+    "quality:l10n": "node scripts/quality/verify-l10n.mjs",
+    "quality:benchmark": "node scripts/quality/benchmark-performance.mjs",
+    "quality:verify": "node scripts/quality/verify-all.mjs",
+    "validate": "npm run lint && npm run typecheck && npm run test:ui && npm run security:audit",
+    "lts:status": "node lts/lts-config.ts",
+    "sdk:test": "vitest run sdk/tests/",
+    "sdk:compat": "node -e \"require('./sdk/sdk-compatibility-layer').generateCompatReport('1.0.0', '1.0.0')\"",
+    "engine:migrate": "node -e \"require('./engine/migration/migration-engine').migrationEngine.applyAllPending()\"",
+    "engine:telemetry:status": "node -e \"require('./engine/telemetry/telemetry-consent').getTelemetrySummary()\"",
+    "engine:perf:start": "node -e \"require('./engine/performance/performance-monitor').performanceMonitor.startCollection()\"",
+    "engine:deps:audit": "node -e \"require('./engine/dependency/dependency-manager').dependencyManager.audit()\"",
+    "engine:security:scan": "node -e \"require('./engine/security-maintenance/security-maintenance').securityScheduler.runAllTasks()\"",
+    "engine:release:plan": "node -e \"require('./engine/release/release-manager').releaseManager.generateReleasePlan('patch', '1.0.0', [])\"",
+    "engine:test:all": "node -e \"require('./engine/testing/continuous-testing').continuousTestingEngine.runAllSuites()\"",
+    "engine:backward:check": "node -e \"require('./engine/backward-compat/compatibility-checker').checkAllCompat('1.0.0')\"",
+    "engine:project:migrate": "node -e \"require('./engine/project-migration/project-migrator').projectMigrator.runAll()\""
+  },
+  "dependencies": {
+    "@aetheros/shared": "file:../shared",
+    "@assistant-ui/react": "^0.12.28",
+    "@assistant-ui/react-streamdown": "^0.1.11",
+    "@audiowave/react": "^0.6.2",
+    "@chenglou/pretext": "^0.0.6",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@icons-pack/react-simple-icons": "^13.13.0",
+    "@nanostores/react": "^1.1.0",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@streamdown/code": "^1.1.1",
+    "@tabler/icons-react": "^3.41.1",
+    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.2.4",
+    "@tanstack/react-query": "^5.100.6",
+    "@tanstack/react-virtual": "^3.13.24",
+    "@vscode/codicons": "^0.0.45",
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/addon-unicode11": "^0.9.0",
+    "@xterm/addon-web-links": "^0.12.0",
+    "@xterm/addon-webgl": "^0.19.0",
+    "@xterm/xterm": "^6.0.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "dnd-core": "^14.0.1",
+    "hast-util-from-html-isomorphic": "^2.0.0",
+    "hast-util-to-text": "^4.0.2",
+    "ignore": "^7.0.5",
+    "katex": "^0.16.45",
+    "leva": "^0.10.1",
+    "motion": "^12.38.0",
+    "nanostores": "^1.3.0",
+    "node-pty": "1.1.0",
+    "radix-ui": "^1.4.3",
+    "react": "^19.2.5",
+    "react-arborist": "^3.5.0",
+    "react-dnd-html5-backend": "^14.0.3",
+    "react-dom": "^19.2.5",
+    "react-router-dom": "^7.17.0",
+    "react-shiki": "^0.9.3",
+    "remark-math": "^6.0.0",
+    "shiki": "^4.0.2",
+    "streamdown": "^2.5.0",
+    "tailwind-merge": "^3.5.0",
+    "tailwindcss": "^4.2.4",
+    "tw-shimmer": "^0.4.11",
+    "unicode-animations": "^1.0.3",
+    "unified": "^11.0.5",
+    "unist-util-visit-parents": "^6.0.2",
+    "vfile": "^6.0.3",
+    "web-haptics": "^0.0.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.3.2",
+    "@types/hast": "^3.0.4",
+    "@types/node": "^24.13.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@typescript-eslint/eslint-plugin": "^8.59.1",
+    "@typescript-eslint/parser": "^8.59.1",
+    "@vitejs/plugin-react": "^6.0.1",
+    "concurrently": "^10.0.3",
+    "cross-env": "^10.1.0",
+    "electron": "^40.10.6",
+    "electron-builder": "^26.8.1",
+    "eslint": "^9.39.4",
+    "eslint-plugin-perfectionist": "^5.9.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "globals": "^16.5.0",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.8.3",
+    "rcedit": "^5.0.2",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.10",
+    "vitest": "^4.1.5",
+    "wait-on": "^9.0.5"
+  },
+  "build": {
+    "electronVersion": "40.9.3",
+    "appId": "com.aetheros.aetheros",
+    "productName": "AetherOS",
+    "copyright": "Copyright (c) 2026 AetherOS",
+    "executableName": "AetherOS",
+    "protocols": [
+      {
+        "name": "AetherOS Protocol",
+        "schemes": [
+          "aetheros"
+        ]
+      }
+    ],
+    "artifactName": "AetherOS-${version}-${os}-${arch}.${ext}",
+    "icon": "assets/icon",
+    "directories": {
+      "output": "dist-packaged"
+    },
+    "files": [
+      "dist/**",
+      "assets/**",
+      "electron/**",
+      "public/**",
+      "package.json"
+    ],
+    "beforeBuild": "scripts/before-build.cjs",
+    "beforePack": "scripts/before-pack.cjs",
+    "afterPack": "scripts/after-pack.cjs",
+    "extraResources": [
+      {
+        "from": "build/install-stamp.json",
+        "to": "install-stamp.json"
+      },
+      {
+        "from": "build/native-deps",
+        "to": "native-deps"
+      },
+      {
+        "from": "assets/icon.ico",
+        "to": "icon.ico"
+      },
+      {
+        "from": "build/installer/license.txt",
+        "to": "license.txt"
+      },
+      {
+        "from": "build/bundled-python/py",
+        "to": "py",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "build/bundled-python/backend",
+        "to": "backend",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "asar": true,
+    "afterSign": "scripts/notarize.cjs",
+    "asarUnpack": [
+      "**/*.node",
+      "**/prebuilds/**",
+      "dist/**"
+    ],
+    "fileAssociations": [
+      {
+        "ext": "aetheros",
+        "name": "AetherOS.Project",
+        "description": "AetherOS Project File",
+        "icon": "assets/icon.ico",
+        "role": "Editor"
+      },
+      {
+        "ext": "aethskill",
+        "name": "AetherOS.Skill",
+        "description": "AetherOS Skill Package",
+        "icon": "assets/icon.ico",
+        "role": "Editor"
+      },
+      {
+        "ext": "aethcfg",
+        "name": "AetherOS.Config",
+        "description": "AetherOS Configuration",
+        "icon": "assets/icon.ico",
+        "role": "Editor"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "entitlements": "electron/entitlements.mac.plist",
+      "entitlementsInherit": "electron/entitlements.mac.inherit.plist",
+      "extendInfo": {
+        "CFBundleDisplayName": "AetherOS",
+        "CFBundleExecutable": "AetherOS",
+        "CFBundleName": "AetherOS",
+        "NSAudioCaptureUsageDescription": "AetherOS uses audio capture for voice conversations.",
+        "NSMicrophoneUsageDescription": "AetherOS uses the microphone for voice input and voice conversations.",
+        "CFBundlePackageType": "APPL",
+        "CFBundleSignature": "AETH",
+        "NSRequiresAquaSystemAppearance": false
+      },
+      "artifactName": "AetherOS-${version}-macOS-${arch}.${ext}",
+      "gatekeeperAssess": false,
+      "hardenedRuntime": true,
+      "darkModeSupport": true,
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "pkg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "dmg": {
+      "title": "Install AetherOS",
+      "backgroundColor": "#1a1a2e",
+      "iconSize": 128,
+      "iconTextSize": 14,
+      "window": {
+        "width": 600,
+        "height": 400
+      },
+      "contents": [
+        {
+          "x": 180,
+          "y": 200,
+          "type": "file"
+        },
+        {
+          "x": 420,
+          "y": 200,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "artifactName": "AetherOS-${version}-macOS-${arch}.dmg"
+    },
+    "pkg": {
+      "scripts": "build/installer/pkg-scripts",
+      "installLocation": "/Applications",
+      "allowAnywhere": true,
+      "allowCurrentUserHome": true,
+      "allowRootDirectory": true,
+      "isRelocatable": false,
+      "overwriteAction": "upgrade",
+      "welcome": "build/installer/pkg-welcome.html",
+      "license": "build/installer/license.txt",
+      "conclusion": "build/installer/pkg-conclusion.html"
+    },
+    "win": {
+      "legalTrademarks": "AetherOS",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "msi",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "signAndEditExecutable": false,
+      "verifyUpdateCodeSignature": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "license": "build/installer/license.txt",
+      "shortcutName": "AetherOS",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "menuCategory": true,
+      "uninstallDisplayName": "AetherOS ${version}",
+      "warningsAsErrors": false,
+      "runAfterFinish": true,
+      "differentialPackage": true,
+      "deleteAppDataOnUninstall": false,
+      "guid": "{1A2B3C4D-5E6F-7A8B-9C0D-1E2F3A4B5C6D}",
+      "language": "1033",
+      "multiLanguageInstaller": false
+    },
+    "nsisWeb": {
+      "appPackageUrl": "https://releases.aetheros.com/desktop/${version}/AetherOS-${version}-win-x64.7z"
+    },
+    "msi": {
+      "warningsAsErrors": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "menuCategory": true,
+      "shortcutName": "AetherOS",
+      "runAfterFinish": true,
+      "oneClick": false,
+      "perMachine": true,
+      "upgradeCode": "{5A6B7C8D-9E0F-1A2B-3C4D-5E6F7A8B9C0D}"
+    },
+    "portable": {
+      "requestExecutionLevel": "user",
+      "unpackDirName": "AetherOS",
+      "artifactName": "AetherOS-${version}-win-x64-portable.${ext}"
+    },
+    "linux": {
+      "category": "Development",
+      "maintainer": "AetherOS <support@aetheros.com>",
+      "synopsis": "Native desktop shell for AetherOS.",
+      "description": "AetherOS is a personal AI agent that runs the same agent core across a CLI, messaging gateway, TUI, and Electron desktop app. It learns across sessions, delegates to subagents, runs scheduled jobs, and drives a real terminal and browser.",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "rpm",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.png",
+      "executableName": "aetheros",
+      "artifactName": "AetherOS-${version}-linux-x64.${ext}"
+    }
+  }
+}

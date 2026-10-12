@@ -1,0 +1,45 @@
+{
+  "schema": "aetheros-windows-release-manifest/1",
+  "product": "AetherOS",
+  "release": "1.0.0",
+  "platform": "windows",
+  "architecture": "x64",
+  "buildId": "AETHEROS-1.0.0-windows-x64-2bdfbfd8ebcf-20260915T13071",
+  "source": {
+    "commit": "2bdfbfd8ebcf2bb27b06f600c2beb159e723d8b1",
+    "tree": "dirty",
+    "stampBuiltAt": "2026-09-15T03:17:22.339Z"
+  },
+  "toolchain": {
+    "node": "v25.5.0",
+    "npm": "11.8.0",
+    "electronPackaged": "40.9.3",
+    "electronInstalled": "40.10.6",
+    "electronBuilder": "26.8.1"
+  },
+  "signing": {
+    "stage": "unsigned",
+    "hashPhase": "post-build-pre-sign"
+  },
+  "artifacts": [
+    {
+      "target": "nsis",
+      "file": "AetherOS-1.0.0-win-x64.exe",
+      "size": 195891460,
+      "sha256": "b86b22f74f1afaa74bc28a304ff13e5bb0b0a6ad8cc42e969d138c34e67f9278"
+    },
+    {
+      "target": "msi",
+      "file": "AetherOS-1.0.0-win-x64.msi",
+      "size": 203137784,
+      "sha256": "1069fc6d26ee71810a9131f1383413d51252a3f3ae99c357f054dd1e2a5b031b"
+    },
+    {
+      "target": "portable",
+      "file": "AetherOS-1.0.0-win-x64-portable.exe",
+      "size": 162205111,
+      "sha256": "214d425537eb8eea43ca6c3f78f48edc1ccce758817e3fb9425e52ca143cfe3c"
+    }
+  ],
+  "manifestSha256": "9c0ab599ffbd59eb806b42c825f3b9e0fa096204c9bb2225f6f51b2d418117b3"
+}

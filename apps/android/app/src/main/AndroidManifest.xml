@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- AetherOS Android manifest — AUDITED SCAFFOLD, UNVERIFIED (no toolchain here).
+     Rules enforced by audit_manifest() in aetheros_platform/android_contract.py:
+     exact package, minSdk 26 / targetSdk 36, no unjustified dangerous
+     permissions, no exported component without permission, no foreground
+     service without type, never debuggable/cleartext in release.
+     Deliberately ABSENT: AccessibilityService, foreground services,
+     location/contacts/SMS permissions, WebView bridges. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aetheros.android">
+
+    <!-- Requested in-context on Android 13+; value explained before ask. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <!-- Camera/mic requested only when the user invokes capture/voice. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <application
+        android:label="AetherOS"
+        android:usesCleartextTraffic="false"
+        android:allowBackup="false"
+        android:debuggable="false">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="aetheros.example" android:pathPrefix="/aetheros/" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

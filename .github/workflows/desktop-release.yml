@@ -1,0 +1,312 @@
+name: AetherOS Desktop Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., 1.0.0)'
+        required: true
+        type: string
+      prerelease:
+        description: 'Mark as pre-release'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  # Validate packaging config on any OS before native build
+  validate-linux-config:
+    name: Validate Linux Packaging Config
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build @aetheros/shared
+        # Rebuild the shared workspace from source so packaging validation
+        # never consumes a stale committed dist/ (CI #8 class of failure).
+        run: npm run build --workspace @aetheros/shared
+
+      - name: Validate Linux packaging
+        run: npm run dist:linux:validate
+        working-directory: apps/desktop
+
+  # Linux native build on ubuntu-latest
+  build-linux:
+    name: Build Linux (AppImage, deb, rpm)
+    needs: validate-linux-config
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install system dependencies for Electron + linux packaging
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libnss3-dev libatk-bridge2.0-dev libdrm-dev libxkbcommon-dev \
+            libxcomposite-dev libxdamage-dev libxrandr-dev libgbm-dev \
+            libasound2-dev libpango1.0-dev libcups2-dev libxshmfence-dev \
+            libxfixes-dev rpm fakeroot dpkg
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build @aetheros/shared
+        # Rebuild the shared workspace from source so renderer tests and the
+        # production bundle never consume a stale committed dist/ (CI #8).
+        run: npm run build --workspace @aetheros/shared
+
+      - name: Run renderer tests
+        run: npm run test:ui -- --run
+        working-directory: apps/desktop
+
+      - name: Run Electron tests
+        run: npm run test:desktop:platforms
+        working-directory: apps/desktop
+
+      - name: Build Linux packages (AppImage, deb, rpm)
+        run: npm run dist:linux
+        working-directory: apps/desktop
+        env:
+          NODE_OPTIONS: --max-old-space-size=16384
+
+      - name: Verify artifacts exist
+        run: |
+          ls -la dist-packaged/
+          test -f dist-packaged/AetherOS-*-linux-x64.AppImage || exit 1
+          test -f dist-packaged/AetherOS-*-linux-x64.deb || exit 1
+          test -f dist-packaged/AetherOS-*-linux-x64.rpm || exit 1
+
+      - name: Validate artifact metadata
+        run: |
+          # AppImage
+          APPIMAGE=$(ls dist-packaged/AetherOS-*-linux-x64.AppImage)
+          echo "AppImage: $APPIMAGE"
+          file "$APPIMAGE"
+          # Verify executable
+          chmod +x "$APPIMAGE"
+          "$APPIMAGE" --version 2>&1 || true
+
+          # deb
+          DEB=$(ls dist-packaged/AetherOS-*-linux-x64.deb)
+          echo "deb: $DEB"
+          dpkg-deb --info "$DEB"
+
+          # rpm
+          RPM=$(ls dist-packaged/AetherOS-*-linux-x64.rpm)
+          echo "rpm: $RPM"
+          rpm -qip "$RPM" 2>/dev/null || rpm -qip --nosignature "$RPM"
+
+      - name: Calculate SHA-256
+        run: |
+          sha256sum dist-packaged/AetherOS-*-linux-x64.* > linux-artifacts.sha256
+          cat linux-artifacts.sha256
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@7b9c33f0a390a5b881ab09081c392146904e254ac  # v0.20.7
+        with:
+          path: dist-packaged/
+          format: spdx-json
+          output-file: linux-sbom.spdx.json
+
+      - name: Upload Linux artifacts
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        with:
+          name: aetheros-linux-artifacts
+          path: |
+            dist-packaged/AetherOS-*-linux-x64.AppImage
+            dist-packaged/AetherOS-*-linux-x64.deb
+            dist-packaged/AetherOS-*-linux-x64.rpm
+            linux-artifacts.sha256
+            linux-sbom.spdx.json
+          retention-days: 30
+
+      - name: Upload Linux artifacts to release
+        if: github.event_name == 'workflow_dispatch'
+        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf339476667e8d4e  # v2
+        with:
+          tag_name: v${{ github.event.inputs.version }}
+          name: AetherOS Desktop v${{ github.event.inputs.version }} (Linux)
+          draft: false
+          prerelease: ${{ github.event.inputs.prerelease }}
+          files: |
+            dist-packaged/AetherOS-*-linux-x64.AppImage
+            dist-packaged/AetherOS-*-linux-x64.deb
+            dist-packaged/AetherOS-*-linux-x64.rpm
+            linux-artifacts.sha256
+            linux-sbom.spdx.json
+
+  # Windows build (existing)
+  build-windows:
+    name: Build Windows (NSIS, MSI, portable)
+    runs-on: windows-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build @aetheros/shared
+        # Rebuild the shared workspace from source so renderer tests and the
+        # production bundle never consume a stale committed dist/ (CI #8).
+        run: npm run build --workspace @aetheros/shared
+
+      - name: Run renderer tests
+        run: npm run test:ui -- --run
+        working-directory: apps/desktop
+
+      - name: Run Electron tests
+        run: npm run test:desktop:platforms
+        working-directory: apps/desktop
+
+      - name: Build Windows packages
+        run: npm run dist:win
+        working-directory: apps/desktop
+        env:
+          NODE_OPTIONS: --max-old-space-size=16384
+
+      - name: Verify artifacts exist
+        run: |
+          ls dist-packaged/
+          test -f dist-packaged/AetherOS-*-win-x64.exe || exit 1
+
+      - name: Calculate SHA-256
+        run: |
+          sha256sum dist-packaged/AetherOS-*-win-x64.* > windows-artifacts.sha256
+          cat windows-artifacts.sha256
+
+      - name: Upload Windows artifacts
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        with:
+          name: aetheros-windows-artifacts
+          path: |
+            dist-packaged/AetherOS-*-win-x64.exe
+            dist-packaged/AetherOS-*-win-x64.msi
+            dist-packaged/AetherOS-*-win-x64-portable.exe
+            windows-artifacts.sha256
+          retention-days: 30
+
+      - name: Upload Windows artifacts to release
+        if: github.event_name == 'workflow_dispatch'
+        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf339476667e8d4e  # v2
+        with:
+          tag_name: v${{ github.event.inputs.version }}
+          name: AetherOS Desktop v${{ github.event.inputs.version }} (Windows)
+          draft: false
+          prerelease: ${{ github.event.inputs.prerelease }}
+          files: |
+            dist-packaged/AetherOS-*-win-x64.exe
+            dist-packaged/AetherOS-*-win-x64.msi
+            dist-packaged/AetherOS-*-win-x64-portable.exe
+            windows-artifacts.sha256
+
+  # macOS build
+  build-macos:
+    name: Build macOS (DMG, ZIP, PKG)
+    runs-on: macos-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build @aetheros/shared
+        # Rebuild the shared workspace from source so renderer tests and the
+        # production bundle never consume a stale committed dist/ (CI #8).
+        run: npm run build --workspace @aetheros/shared
+
+      - name: Run renderer tests
+        run: npm run test:ui -- --run
+        working-directory: apps/desktop
+
+      - name: Run Electron tests
+        run: npm run test:desktop:platforms
+        working-directory: apps/desktop
+
+      - name: Build macOS packages
+        run: npm run dist:mac
+        working-directory: apps/desktop
+        env:
+          NODE_OPTIONS: --max-old-space-size=16384
+          CODE_SIGNING_ALLOWED: 'NO'
+
+      - name: Verify artifacts exist
+        run: |
+          ls dist-packaged/
+          test -f dist-packaged/AetherOS-*-macOS-*.dmg || exit 1
+
+      - name: Calculate SHA-256
+        run: |
+          sha256sum dist-packaged/AetherOS-*-macOS-* > macos-artifacts.sha256
+          cat macos-artifacts.sha256
+
+      - name: Upload macOS artifacts
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        with:
+          name: aetheros-macos-artifacts
+          path: |
+            dist-packaged/AetherOS-*-macOS-*.dmg
+            dist-packaged/AetherOS-*-macOS-*.zip
+            dist-packaged/AetherOS-*-macOS-*.pkg
+            macos-artifacts.sha256
+          retention-days: 30
+
+      - name: Upload macOS artifacts to release
+        if: github.event_name == 'workflow_dispatch'
+        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf339476667e8d4e  # v2
+        with:
+          tag_name: v${{ github.event.inputs.version }}
+          name: AetherOS Desktop v${{ github.event.inputs.version }} (macOS)
+          draft: false
+          prerelease: ${{ github.event.inputs.prerelease }}
+          files: |
+            dist-packaged/AetherOS-*-macOS-*.dmg
+            dist-packaged/AetherOS-*-macOS-*.zip
+            dist-packaged/AetherOS-*-macOS-*.pkg
+            macos-artifacts.sha256

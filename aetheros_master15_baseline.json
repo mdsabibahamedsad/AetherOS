@@ -1,0 +1,27 @@
+{
+  "captured_at": "2026-08-23",
+  "git_commit": "bb9b876f7a961a9a5b57b5e07e416ae3fffd1337",
+  "git_subject": "bb9b876 fix: complete hermes->aetheros rebrand, restore install.ps1, green install_sh tests",
+  "working_tree_dirty_files": 1605,
+  "python": "3.12.13 (Windows, .venv)",
+  "platform": "win32",
+  "master15_phase_status_baseline": {
+    "complete": 70,
+    "partial": 27,
+    "not_started": 3
+  },
+  "test_run": {
+    "command": "pytest tests/aetheros_computer/ tests/tools/test_master15_browser_transfer.py tests/tools/test_browser_cdp_tool.py tests/tools/test_computer_use.py tests/tools/test_vision_tools.py tests/tools/test_terminal_tool.py tests/tools/test_file_tools.py tests/tools/test_approval.py tests/tools/test_mcp_tool.py -q -p no:cacheprovider",
+    "passed": 687,
+    "failed": 9,
+    "skipped": 0
+  },
+  "known_pre_existing_failures_win32": [
+    "tests/tools/test_approval.py::TestAetherosConfigWriteProtection::test_sed_in_place_absolute_aetheros_home_env",
+    "tests/tools/test_approval.py::TestAetherosConfigWriteProtection::test_perl_in_place_absolute_aetheros_home_config",
+    "tests/tools/test_approval.py::TestAetherosConfigWriteProtection::test_ruby_in_place_absolute_aetheros_home_env",
+    "tests/tools/test_mcp_tool.py::TestBuildSafeEnv::test_windows_location_vars_passed_without_secrets",
+    "+4 sibling approval/sed-perl-ruby variants (POSIX-only in-place edit guards)"
+  ],
+  "failure_classification_note": "All 9 failures are POSIX-only shell-guard tests asserting sed/perl/ruby -i semantics plus one Windows env-var expectation; they fail identically before any Master-15 change and are excluded from regression comparison."
+}

@@ -1,0 +1,318 @@
+{
+  "platforms": [
+    {
+      "platform": "win32",
+      "name": "Windows",
+      "architectures": [
+        {
+          "arch": "x64",
+          "name": "x86-64",
+          "packaging": ["nsis", "msi"],
+          "updater": "NSIS/MSI installer with Authenticode",
+          "signing": "EV Code Signing Certificate (Azure Trusted Signing)",
+          "notarization": "N/A",
+          "rollback": "Previous version installer from backup",
+          "autoUpdate": true,
+          "deltaUpdates": false,
+          "status": "production",
+          "limitations": [
+            "Requires admin for per-machine install",
+            "UAC prompt for elevation",
+            "No native delta updates"
+          ]
+        },
+        {
+          "arch": "arm64",
+          "name": "ARM64",
+          "packaging": ["nsis", "msi"],
+          "updater": "NSIS/MSI installer with Authenticode",
+          "signing": "EV Code Signing Certificate",
+          "notarization": "N/A",
+          "rollback": "Previous version installer from backup",
+          "autoUpdate": true,
+          "deltaUpdates": false,
+          "status": "planned",
+          "limitations": [
+            "Windows on ARM ecosystem maturity",
+            "Limited hardware for testing"
+          ]
+        }
+      ],
+      "signing": {
+        "type": "EV Code Signing",
+        "provider": "Azure Trusted Signing / DigiCert",
+        "timestamping": "RFC 3161",
+        "certificateValidation": "Full chain + revocation"
+      },
+      "distribution": {
+        "cdn": "Azure CDN / Cloudflare",
+        "artifactStorage": "Azure Blob Storage (immutable)",
+        "manifestHosting": "Azure Static Web Apps"
+      }
+    },
+    {
+      "platform": "darwin",
+      "name": "macOS",
+      "architectures": [
+        {
+          "arch": "x64",
+          "name": "Intel (x86-64)",
+          "packaging": ["dmg", "pkg", "zip"],
+          "updater": "DMG mount + copy / PKG installer",
+          "signing": "Developer ID Application Certificate",
+          "notarization": "Apple Notarization Service",
+          "rollback": "App bundle swap from backup",
+          "autoUpdate": true,
+          "deltaUpdates": false,
+          "status": "production",
+          "limitations": [
+            "Requires Apple Developer Program ($99/year)",
+            "Notarization adds 5-30 min to release",
+            "Hardened Runtime restrictions"
+          ]
+        },
+        {
+          "arch": "arm64",
+          "name": "Apple Silicon (M1/M2/M3)",
+          "packaging": ["dmg", "pkg", "zip"],
+          "updater": "DMG mount + copy / PKG installer",
+          "signing": "Developer ID Application Certificate",
+          "notarization": "Apple Notarization Service",
+          "rollback": "App bundle swap from backup",
+          "autoUpdate": true,
+          "deltaUpdates": false,
+          "status": "production",
+          "limitations": [
+            "Universal binary increases size ~30%",
+            "Rosetta 2 not needed for native arm64"
+          ]
+        },
+        {
+          "arch": "universal",
+          "name": "Universal Binary (Intel + Apple Silicon)",
+          "packaging": ["dmg", "pkg", "zip"],
+          "updater": "DMG mount + copy / PKG installer",
+          "signing": "Developer ID Application Certificate",
+          "notarization": "Apple Notarization Service",
+          "rollback": "App bundle swap from backup",
+          "autoUpdate": true,
+          "deltaUpdates": false,
+          "status": "production",
+          "limitations": [
+            "Larger artifact size (~2x single arch)",
+            "lipo merge step in build"
+          ]
+        }
+      ],
+      "signing": {
+        "type": "Developer ID Application",
+        "provider": "Apple Developer Program",
+        "notarization": "Required for distribution outside App Store",
+        "stapling": "Required for offline verification",
+        "hardenedRuntime": true,
+        "entitlements": [
+          "com.apple.security.cs.allow-jit",
+          "com.apple.security.cs.allow-unsigned-executable-memory",
+          "com.apple.security.network.client",
+          "com.apple.security.network.server"
+        ]
+      },
+      "distribution": {
+        "cdn": "Cloudflare R2 / AWS S3",
+        "artifactStorage": "Cloudflare R2 (immutable)",
+        "manifestHosting": "Cloudflare Workers / Pages"
+      }
+    },
+    {
+      "platform": "linux",
+      "name": "Linux",
+      "architectures": [
+        {
+          "arch": "x64",
+          "name": "x86-64",
+          "packaging": ["appimage", "deb", "rpm", "flatpak"],
+          "updater": "AppImage replace / apt/dnf/flatpak",
+          "signing": "GPG (DEB/RPM), AppImageKit (AppImage)",
+          "notarization": "N/A",
+          "rollback": "Package manager reinstall / AppImage swap",
+          "autoUpdate": true,
+          "deltaUpdates": false,
+          "status": "production",
+          "limitations": [
+            "No unified update mechanism across distros",
+            "DEB/RPM require root/sudo",
+            "Flatpak sandbox restrictions",
+            "AppImage: no system integration"
+          ]
+        },
+        {
+          "arch": "arm64",
+          "name": "ARM64 (aarch64)",
+          "packaging": ["appimage", "deb", "rpm", "flatpak"],
+          "updater": "AppImage replace / apt/dnf/flatpak",
+          "signing": "GPG / AppImageKit",
+          "notarization": "N/A",
+          "rollback": "Package manager reinstall / AppImage swap",
+          "autoUpdate": true,
+          "deltaUpdates": false,
+          "status": "planned",
+          "limitations": [
+            "Limited ARM64 CI runners",
+            "Fewer native dependencies for ARM64"
+          ]
+        }
+      ],
+      "signing": {
+        "type": "GPG + AppImageKit",
+        "gpgKey": "4096-bit RSA",
+        "debSigning": "dpkg-sig with GPG",
+        "rpmSigning": "rpmsign with GPG",
+        "appimageSigning": "AppImageKit embedded signature",
+        "flatpakSigning": "OSTree/GPG"
+      },
+      "distribution": {
+        "cdn": "Cloudflare R2 / GitHub Releases",
+        "artifactStorage": "Cloudflare R2 / GitHub Releases",
+        "flatpakRepo": "Flathub (primary) + custom repo",
+        "aptRepo": "Custom APT repository (deb)",
+        "dnfRepo": "Custom DNF repository (rpm)"
+      }
+    },
+    {
+      "platform": "web",
+      "name": "Web (Browser)",
+      "architectures": [
+        {
+          "arch": "universal",
+          "name": "Universal (WASM/JS)",
+          "packaging": ["web"],
+          "updater": "Service Worker + Cache API",
+          "signing": "Subresource Integrity (SRI) + CSP",
+          "notarization": "N/A",
+          "rollback": "Server-side redeploy previous version",
+          "autoUpdate": true,
+          "deltaUpdates": false,
+          "status": "production",
+          "limitations": [
+            "No binary update - web is always current",
+            "Service Worker required for offline",
+            "Cache invalidation complexity",
+            "No code signing in traditional sense"
+          ]
+        }
+      ],
+      "signing": {
+        "type": "Subresource Integrity + CSP",
+        "integrityAlgorithm": "sha384/sha512",
+        "csp": "strict-dynamic with nonce"
+      },
+      "distribution": {
+        "cdn": "Cloudflare Pages / Vercel / Netlify",
+        "artifactStorage": "Immutable deployments",
+        "cacheControl": "immutable, max-age=31536000"
+      }
+    },
+    {
+      "platform": "ios",
+      "name": "iOS / iPadOS",
+      "architectures": [
+        {
+          "arch": "arm64",
+          "name": "Apple Silicon",
+          "packaging": ["ipa"],
+          "updater": "App Store / TestFlight",
+          "signing": "App Store Distribution Certificate",
+          "notarization": "App Store Review",
+          "rollback": "User reinstalls previous version",
+          "autoUpdate": false,
+          "deltaUpdates": true,
+          "status": "planned",
+          "limitations": [
+            "App Store review required (1-7 days)",
+            "No direct self-update capability",
+            "TestFlight for beta (90-day expiry)",
+            "Enterprise distribution requires Apple Business Manager",
+            "No sideloading on non-jailbroken devices"
+          ]
+        }
+      ],
+      "signing": {
+        "type": "App Store Distribution",
+        "certificate": "Apple Developer Program",
+        "review": "Mandatory Apple review"
+      },
+      "distribution": {
+        "primary": "App Store",
+        "beta": "TestFlight",
+        "enterprise": "Apple Business Manager / Ad Hoc"
+      }
+    },
+    {
+      "platform": "android",
+      "name": "Android",
+      "architectures": [
+        {
+          "arch": "arm64",
+          "name": "ARM64 (v8a)",
+          "packaging": ["apk", "aab"],
+          "updater": "Play Store In-App Updates API",
+          "signing": "Play App Signing (Google managed)",
+          "notarization": "Play Protect",
+          "rollback": "User reinstalls previous version",
+          "autoUpdate": true,
+          "deltaUpdates": true,
+          "status": "planned",
+          "limitations": [
+            "Play Store review (hours to days)",
+            "In-App Updates API for flexible/immediate",
+            "Enterprise: private Play Store or direct APK",
+            "Android 14+ restrictions on dynamic code"
+          ]
+        },
+        {
+          "arch": "x64",
+          "name": "x86-64",
+          "packaging": ["apk", "aab"],
+          "updater": "Play Store In-App Updates API",
+          "signing": "Play App Signing",
+          "notarization": "Play Protect",
+          "rollback": "User reinstalls previous version",
+          "autoUpdate": true,
+          "deltaUpdates": true,
+          "status": "planned",
+          "limitations": [
+            "x86 Android devices rare",
+            "Emulator testing primary"
+          ]
+        }
+      ],
+      "signing": {
+        "type": "Play App Signing",
+        "keyManagement": "Google-managed (recommended) or upload key",
+        "playProtect": "Automatic scanning"
+      },
+      "distribution": {
+        "primary": "Google Play Store",
+        "beta": "Play Console (internal/closed/open testing)",
+        "enterprise": "Private Play Store / Direct APK / MDM"
+      }
+    }
+  ],
+  "crossPlatform": {
+    "protocolVersion": 1,
+    "manifestFormat": "JSON",
+    "signatureAlgorithm": "RSA-PSS-SHA256 (4096-bit) / Ed25519",
+    "hashAlgorithm": "SHA-256",
+    "transport": "HTTPS (TLS 1.2+)",
+    "rolloutProtocol": "Percentage-based with cohort targeting",
+    "killSwitch": "Server-side immediate",
+    "revocation": "Server-side immediate",
+    "minClientVersion": "1.0.0"
+  },
+  "statusSummary": {
+    "production": ["win32-x64", "win32-arm64", "darwin-x64", "darwin-arm64", "darwin-universal", "linux-x64", "web-universal"],
+    "planned": ["linux-arm64", "ios-arm64", "android-arm64", "android-x64"],
+    "totalPlatforms": 6,
+    "totalArchitectures": 10
+  }
+}

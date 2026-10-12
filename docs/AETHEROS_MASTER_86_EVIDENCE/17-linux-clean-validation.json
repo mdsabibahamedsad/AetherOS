@@ -1,0 +1,1 @@
+{"artifactIntegrity":"PASS (3/3 Linux hashes match release manifest; see 05-artifact-sha256.json)","reason":"no clean environment matching the support matrix obtainable (no clean containers/VMs for AppImage/deb/rpm install-launch-uninstall sweeps); no universal-compatibility claim made","status":"BLOCKED_BY_ENVIRONMENT"}

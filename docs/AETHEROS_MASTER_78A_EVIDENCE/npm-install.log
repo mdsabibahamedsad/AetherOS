@@ -1,0 +1,7 @@
+
+> aetheros@1.0.0 postinstall
+> echo 'Γ£à Browser tools ready. Run: python run_agent.py --help'
+
+'? Browser tools ready. Run: python run_agent.py --help'
+
+added 100 packages, and changed 1 package in 19s

@@ -1,0 +1,1 @@
+{"ci_dispatch":"BLOCKED","final_state":"AETHEROS_1_0_PRODUCTION_BLOCKED","local_gates":"ALL PASS (vitest 814/814 incl. clean checkout, typecheck, electron 176/176, guards, artifact self-check)","reason":"No real GitHub Actions run exists for repair commit ed02700. Local evidence cannot substitute for CI evidence."}

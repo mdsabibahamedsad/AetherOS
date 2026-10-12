@@ -1,0 +1,2778 @@
+ M .github/workflows/desktop-build.yml
+ M .github/workflows/desktop-nightly.yml
+ M .github/workflows/desktop-release.yml
+ D aetherROS/workflows/nodes/__init__.py
+ M aetheros/.aetheros/engineering/artifacts/artifact_index.json
+ M aetheros/.github/ISSUE_TEMPLATE/setup_help.yml
+ M aetheros/.gitignore
+ M aetheros/CHANGELOG.md
+ M aetheros/ORCHESTRATION.md
+ M aetheros/PROJECT_STATUS_REPORT.md
+ M aetheros/TASK_ENGINE.md
+ D aetheros/_remove_import.py
+ D aetheros/_wire_enterprise.py
+ M aetheros/acp_adapter/tools.py
+ M aetheros/aetheros.egg-info/PKG-INFO
+ M aetheros/aetheros.egg-info/SOURCES.txt
+ M aetheros/aetheros.egg-info/entry_points.txt
+ M aetheros/aetheros.egg-info/requires.txt
+ M aetheros/aetheros.egg-info/top_level.txt
+ M aetheros/aetheros/pnpm-workspace.yaml
+ M aetheros/aetheros_automation/__init__.py
+ M aetheros/aetheros_automation/agents/communication_agent.py
+ M aetheros/aetheros_automation/agents/creative.py
+ M aetheros/aetheros_automation/agents/data_agent.py
+ M aetheros/aetheros_automation/agents/review_agent.py
+ M aetheros/aetheros_automation/cli/commands.py
+ M aetheros/aetheros_automation/core/engine.py
+ M aetheros/aetheros_automation/core/scheduler.py
+ M aetheros/aetheros_automation/models/models.py
+ M aetheros/aetheros_automation/orchestrator/__init__.py
+ M aetheros/aetheros_automation/orchestrator/agents.py
+ M aetheros/aetheros_automation/orchestrator/checkpoint.py
+ M aetheros/aetheros_automation/orchestrator/execution_engine.py
+ M aetheros/aetheros_automation/orchestrator/nlp.py
+ M aetheros/aetheros_automation/orchestrator/orchestrator.py
+ M aetheros/aetheros_automation/orchestrator/planner.py
+ M aetheros/aetheros_automation/orchestrator/routing.py
+ M aetheros/aetheros_automation/orchestrator/store.py
+ M aetheros/aetheros_automation/orchestrator/templates.py
+ M aetheros/aetheros_bootstrap.py
+ M aetheros/aetheros_cli/auth.py
+ M aetheros/aetheros_cli/backup.py
+ M aetheros/aetheros_cli/boot_animation.py
+ M aetheros/aetheros_cli/bundles.py
+ M aetheros/aetheros_cli/checkpoints.py
+ M aetheros/aetheros_cli/claw.py
+ M aetheros/aetheros_cli/cli_agent_setup_mixin.py
+ M aetheros/aetheros_cli/cli_commands_mixin.py
+ M aetheros/aetheros_cli/commands.py
+ M aetheros/aetheros_cli/config.py
+ M aetheros/aetheros_cli/cron.py
+ M aetheros/aetheros_cli/dashboard_auth/__init__.py
+ M aetheros/aetheros_cli/dashboard_auth/cookies.py
+ M aetheros/aetheros_cli/dashboard_auth/login_page.py
+ M aetheros/aetheros_cli/dashboard_auth/middleware.py
+ M aetheros/aetheros_cli/dashboard_register.py
+ M aetheros/aetheros_cli/debug.py
+ M aetheros/aetheros_cli/dump.py
+ M aetheros/aetheros_cli/env_loader.py
+ M aetheros/aetheros_cli/fallback_cmd.py
+ M aetheros/aetheros_cli/gateway.py
+ M aetheros/aetheros_cli/gateway_windows.py
+ M aetheros/aetheros_cli/goals.py
+ M aetheros/aetheros_cli/gui_uninstall.py
+ M aetheros/aetheros_cli/hooks.py
+ M aetheros/aetheros_cli/initialization_flow.py
+ M aetheros/aetheros_cli/intelligence_integration.py
+ M aetheros/aetheros_cli/kanban.py
+ M aetheros/aetheros_cli/kanban_db.py
+ M aetheros/aetheros_cli/kanban_diagnostics.py
+ M aetheros/aetheros_cli/logs.py
+ M aetheros/aetheros_cli/main.py
+ M aetheros/aetheros_cli/mcp_catalog.py
+ M aetheros/aetheros_cli/mcp_config.py
+ M aetheros/aetheros_cli/mcp_picker.py
+ M aetheros/aetheros_cli/migrate.py
+ M aetheros/aetheros_cli/model_catalog.py
+ M aetheros/aetheros_cli/model_setup_flows.py
+ M aetheros/aetheros_cli/model_switch.py
+ M aetheros/aetheros_cli/models.py
+ M aetheros/aetheros_cli/nous_account.py
+ M aetheros/aetheros_cli/nous_subscription.py
+ M aetheros/aetheros_cli/oneshot.py
+ M aetheros/aetheros_cli/pairing.py
+ M aetheros/aetheros_cli/plugins.py
+ M aetheros/aetheros_cli/plugins_cmd.py
+ M aetheros/aetheros_cli/portal_cli.py
+ M aetheros/aetheros_cli/profile_distribution.py
+ M aetheros/aetheros_cli/profiles.py
+ M aetheros/aetheros_cli/prompt_size.py
+ M aetheros/aetheros_cli/proxy/__init__.py
+ M aetheros/aetheros_cli/proxy/adapters/nous_portal.py
+ M aetheros/aetheros_cli/pty_bridge.py
+ M aetheros/aetheros_cli/relaunch.py
+ M aetheros/aetheros_cli/secrets_cli.py
+ M aetheros/aetheros_cli/security_advisories.py
+ M aetheros/aetheros_cli/security_audit.py
+ M aetheros/aetheros_cli/security_cmds.py
+ M aetheros/aetheros_cli/security_integration.py
+ M aetheros/aetheros_cli/send_cmd.py
+ M aetheros/aetheros_cli/setup.py
+ M aetheros/aetheros_cli/skills_hub.py
+ M aetheros/aetheros_cli/slack_cli.py
+ M aetheros/aetheros_cli/status.py
+ M aetheros/aetheros_cli/stdio.py
+ M aetheros/aetheros_cli/subcommands/dashboard.py
+ M aetheros/aetheros_cli/subcommands/gui.py
+ M aetheros/aetheros_cli/subcommands/memory.py
+ M aetheros/aetheros_cli/subcommands/setup.py
+ M aetheros/aetheros_cli/sync_engine.py
+ M aetheros/aetheros_cli/tips.py
+ M aetheros/aetheros_cli/tools_config.py
+ M aetheros/aetheros_cli/uninstall.py
+ M aetheros/aetheros_cli/web_dist/assets/index-Cm8E2h9u.js
+ M aetheros/aetheros_cli/web_security_api.py
+ M aetheros/aetheros_cli/web_server.py
+ M aetheros/aetheros_cli/webhook.py
+ M aetheros/aetheros_cli/win_pty_bridge.py
+ M aetheros/aetheros_cli/write_approval_commands.py
+ M aetheros/aetheros_cli/xai_retirement.py
+ M aetheros/aetheros_constants.py
+ M aetheros/aetheros_intelligence/__init__.py
+ M aetheros/aetheros_intelligence/research.py
+ M aetheros/aetheros_jarvis/mission.py
+ M aetheros/aetheros_knowledge/indexing/chunkers.py
+ M aetheros/aetheros_knowledge/indexing/pipeline.py
+ M aetheros/aetheros_knowledge/memory/engine.py
+ M aetheros/aetheros_knowledge/rag/studio.py
+ M aetheros/aetheros_knowledge/search/engine.py
+ M aetheros/aetheros_knowledge/store.py
+ M aetheros/aetheros_logging.py
+ M aetheros/aetheros_platform/__init__.py
+ M aetheros/aetheros_platform/cli.py
+ M aetheros/aetheros_platform/desktop/notifications.py
+ M aetheros/aetheros_providers/api_key_manager.py
+ M aetheros/aetheros_providers/failover.py
+ M aetheros/aetheros_providers/local_model_manager.py
+ M aetheros/aetheros_providers/model_validator.py
+ M aetheros/aetheros_providers/multi_provider.py
+ M aetheros/aetheros_providers/provider_settings.py
+ M aetheros/aetheros_runtime/__init__.py
+ M aetheros/aetheros_runtime/message_pipeline.py
+ M aetheros/aetheros_runtime/streaming_engine.py
+ M aetheros/aetheros_security/__init__.py
+ M aetheros/aetheros_security/audit/__init__.py
+ M aetheros/aetheros_security/secrets/__init__.py
+ M aetheros/aetheros_state.py
+ M aetheros/aetheros_vision/__init__.py
+ M aetheros/aetheros_vision/capture.py
+ M aetheros/aetheros_vision/models.py
+ M aetheros/agent/account_usage.py
+ M aetheros/agent/agent_init.py
+ M aetheros/agent/agent_runtime_helpers.py
+ M aetheros/agent/auxiliary_client.py
+ M aetheros/agent/conversation_loop.py
+ M aetheros/agent/credential_pool.py
+ M aetheros/agent/credential_sources.py
+ M aetheros/agent/memory_manager.py
+ M aetheros/agent/model_metadata.py
+ M aetheros/agent/nous_rate_guard.py
+ M aetheros/agent/portal_tags.py
+ M aetheros/agent/prompt_builder.py
+ M aetheros/agent/rate_limit_tracker.py
+ M aetheros/apps/bootstrap-installer/src-tauri/aetheros-setup.manifest
+ M aetheros/apps/bootstrap-installer/src-tauri/src/bootstrap.rs
+ M aetheros/apps/bootstrap-installer/src-tauri/src/lib.rs
+ M aetheros/apps/bootstrap-installer/src-tauri/src/main.rs
+ M aetheros/apps/bootstrap-installer/src-tauri/src/self_healing.rs
+ M aetheros/apps/bootstrap-installer/src-tauri/src/update.rs
+ M aetheros/apps/bootstrap-installer/src/routes/complete.tsx
+ M aetheros/apps/bootstrap-installer/src/routes/success.tsx
+ M aetheros/apps/bootstrap-installer/src/store.ts
+ M aetheros/apps/bootstrap-installer/src/styles.css
+ M aetheros/apps/desktop/.prettierrc
+ M aetheros/apps/desktop/ADMIN_GUIDE.md
+ M aetheros/apps/desktop/API_REFERENCE.md
+ M aetheros/apps/desktop/CONTRIBUTING.md
+ M aetheros/apps/desktop/DESIGN.md
+ M aetheros/apps/desktop/DEVELOPER_GUIDE.md
+ M aetheros/apps/desktop/INSTALL.md
+ M aetheros/apps/desktop/PRIVACY.md
+ M aetheros/apps/desktop/README.md
+ M aetheros/apps/desktop/RELEASE_CHECKLIST.md
+ M aetheros/apps/desktop/ROADMAP.md
+ M aetheros/apps/desktop/SECURITY.md
+ M aetheros/apps/desktop/USER_GUIDE.md
+ M aetheros/apps/desktop/components.json
+ M aetheros/apps/desktop/electron/backend-probes.cjs
+ M aetheros/apps/desktop/electron/backend-probes.test.cjs
+ M aetheros/apps/desktop/electron/bootstrap-platform.cjs
+ M aetheros/apps/desktop/electron/bootstrap-platform.test.cjs
+ M aetheros/apps/desktop/electron/connection-config.cjs
+ M aetheros/apps/desktop/electron/dashboard-token.cjs
+ M aetheros/apps/desktop/electron/dashboard-token.test.cjs
+ M aetheros/apps/desktop/electron/entitlements.mac.inherit.plist
+ M aetheros/apps/desktop/electron/entitlements.mac.plist
+ M aetheros/apps/desktop/electron/fs-read-dir.cjs
+ M aetheros/apps/desktop/electron/fs-read-dir.test.cjs
+ M aetheros/apps/desktop/electron/gateway-ws-probe.cjs
+ M aetheros/apps/desktop/electron/gateway-ws-probe.test.cjs
+ M aetheros/apps/desktop/electron/git-root.cjs
+ M aetheros/apps/desktop/electron/git-root.test.cjs
+ M aetheros/apps/desktop/electron/hardening.cjs
+ M aetheros/apps/desktop/electron/hardening.test.cjs
+ M aetheros/apps/desktop/electron/linux-session.cjs
+ M aetheros/apps/desktop/electron/linux-session.test.cjs
+ M aetheros/apps/desktop/electron/main.cjs
+ M aetheros/apps/desktop/electron/oauth-net-request.cjs
+ M aetheros/apps/desktop/electron/oauth-net-request.test.cjs
+ M aetheros/apps/desktop/electron/port-pool.cjs
+ M aetheros/apps/desktop/electron/port-pool.test.cjs
+ M aetheros/apps/desktop/electron/preload.cjs
+ M aetheros/apps/desktop/electron/session-windows.cjs
+ M aetheros/apps/desktop/electron/session-windows.test.cjs
+ M aetheros/apps/desktop/electron/system-stats.cjs
+ M aetheros/apps/desktop/electron/vscode-marketplace.cjs
+ M aetheros/apps/desktop/electron/vscode-marketplace.test.cjs
+ M aetheros/apps/desktop/electron/window-state.cjs
+ M aetheros/apps/desktop/electron/windows-child-process.test.cjs
+ M aetheros/apps/desktop/electron/workspace-cwd.cjs
+ M aetheros/apps/desktop/electron/workspace-cwd.test.cjs
+ M aetheros/apps/desktop/engine/backup/backup-engine.ts
+ M aetheros/apps/desktop/engine/backup/restore-ui.tsx
+ M aetheros/apps/desktop/engine/backward-compat/compatibility-checker.ts
+ M aetheros/apps/desktop/engine/backward-compat/config-migration.ts
+ M aetheros/apps/desktop/engine/dependency/dependency-manager.ts
+ M aetheros/apps/desktop/engine/error-reporting/error-categorizer.ts
+ M aetheros/apps/desktop/engine/error-reporting/error-store.ts
+ M aetheros/apps/desktop/engine/installer/auto-installer.ts
+ M aetheros/apps/desktop/engine/installer/runtime-manager.ts
+ M aetheros/apps/desktop/engine/migration/migration-engine.ts
+ M aetheros/apps/desktop/engine/migration/migrations.ts
+ M aetheros/apps/desktop/engine/performance/dashboard-store.ts
+ M aetheros/apps/desktop/engine/performance/performance-monitor.ts
+ M aetheros/apps/desktop/engine/project-migration/project-migrator.ts
+ M aetheros/apps/desktop/engine/release/release-manager.ts
+ M aetheros/apps/desktop/engine/security-maintenance/security-maintenance.ts
+ M aetheros/apps/desktop/engine/self-healing/health-engine.ts
+ M aetheros/apps/desktop/engine/self-healing/repair-system.ts
+ M aetheros/apps/desktop/engine/telemetry/telemetry-consent.ts
+ M aetheros/apps/desktop/engine/telemetry/telemetry.ts
+ M aetheros/apps/desktop/engine/testing/continuous-testing.ts
+ M aetheros/apps/desktop/eslint.config.mjs
+ M aetheros/apps/desktop/index.html
+ M aetheros/apps/desktop/lts/CHANNEL_POLICY.md
+ M aetheros/apps/desktop/lts/CHANNEL_STRATEGY.md
+ M aetheros/apps/desktop/lts/POLICY.md
+ M aetheros/apps/desktop/lts/lts-config.ts
+ M aetheros/apps/desktop/package.json
+ M aetheros/apps/desktop/preview-demo.html
+ M aetheros/apps/desktop/scripts/after-pack.cjs
+ M aetheros/apps/desktop/scripts/assert-dist-built.cjs
+ M aetheros/apps/desktop/scripts/assert-dist-built.test.cjs
+ M aetheros/apps/desktop/scripts/assert-root-install.cjs
+ M aetheros/apps/desktop/scripts/before-build.cjs
+ M aetheros/apps/desktop/scripts/before-pack.cjs
+ M aetheros/apps/desktop/scripts/before-pack.test.cjs
+ M aetheros/apps/desktop/scripts/build-all-installers.mjs
+ M aetheros/apps/desktop/scripts/bundle-python.cjs
+ M aetheros/apps/desktop/scripts/click-session.mjs
+ M aetheros/apps/desktop/scripts/dev-no-hmr.mjs
+ M aetheros/apps/desktop/scripts/diag-jump.mjs
+ M aetheros/apps/desktop/scripts/diag-scroll-reset.mjs
+ M aetheros/apps/desktop/scripts/eval.mjs
+ M aetheros/apps/desktop/scripts/leak-typing.mjs
+ M aetheros/apps/desktop/scripts/measure-jump.mjs
+ M aetheros/apps/desktop/scripts/measure-latency.mjs
+ M aetheros/apps/desktop/scripts/measure-real-stream.mjs
+ M aetheros/apps/desktop/scripts/measure-submit.mjs
+ M aetheros/apps/desktop/scripts/measure-synthetic-stream.mjs
+ M aetheros/apps/desktop/scripts/notarize-artifact.cjs
+ M aetheros/apps/desktop/scripts/notarize.cjs
+ M aetheros/apps/desktop/scripts/probe-renderer.mjs
+ M aetheros/apps/desktop/scripts/probe-thread.mjs
+ M aetheros/apps/desktop/scripts/profile-long-stream.mjs
+ M aetheros/apps/desktop/scripts/profile-real-stream.mjs
+ M aetheros/apps/desktop/scripts/profile-synth-stream.mjs
+ M aetheros/apps/desktop/scripts/profile-typing.mjs
+ M aetheros/apps/desktop/scripts/quality/benchmark-performance.mjs
+ M aetheros/apps/desktop/scripts/quality/verify-a11y.mjs
+ M aetheros/apps/desktop/scripts/quality/verify-all.mjs
+ M aetheros/apps/desktop/scripts/quality/verify-l10n.mjs
+ M aetheros/apps/desktop/scripts/release/bump-version.mjs
+ M aetheros/apps/desktop/scripts/release/check-production-readiness.mjs
+ M aetheros/apps/desktop/scripts/release/generate-migration-guide.mjs
+ M aetheros/apps/desktop/scripts/release/generate-release-notes.mjs
+ M aetheros/apps/desktop/scripts/release/validate-linux-packaging.mjs
+ M aetheros/apps/desktop/scripts/reload-renderer.mjs
+ M aetheros/apps/desktop/scripts/reload.mjs
+ M aetheros/apps/desktop/scripts/security/audit-dependencies.mjs
+ M aetheros/apps/desktop/scripts/security/audit-security.mjs
+ M aetheros/apps/desktop/scripts/security/check-secrets.mjs
+ M aetheros/apps/desktop/scripts/set-exe-identity.cjs
+ M aetheros/apps/desktop/scripts/stage-bundled-backend.cjs
+ M aetheros/apps/desktop/scripts/stage-native-deps.cjs
+ M aetheros/apps/desktop/scripts/test-desktop.mjs
+ M aetheros/apps/desktop/scripts/write-build-stamp.cjs
+ M aetheros/apps/desktop/sdk/deprecation-manager.ts
+ M aetheros/apps/desktop/sdk/plugin-api-v1.ts
+ M aetheros/apps/desktop/sdk/sdk-compatibility-layer.ts
+ M aetheros/apps/desktop/sdk/sdk-version.ts
+ M aetheros/apps/desktop/sdk/tests/plugin-compatibility.test.ts
+ M aetheros/apps/desktop/src/aetheros.ts
+ M aetheros/apps/desktop/src/app/accessibility/index.tsx
+ M aetheros/apps/desktop/src/app/agent-hub/agent-config.tsx
+ M aetheros/apps/desktop/src/app/agent-hub/agent-list.tsx
+ M aetheros/apps/desktop/src/app/agent-hub/automation-builder.tsx
+ M aetheros/apps/desktop/src/app/agent-hub/barrel.ts
+ M aetheros/apps/desktop/src/app/agent-hub/index.tsx
+ M aetheros/apps/desktop/src/app/agent-hub/marketplace.tsx
+ M aetheros/apps/desktop/src/app/agent-hub/monitoring-dashboard.tsx
+ M aetheros/apps/desktop/src/app/agent-hub/multi-agent.tsx
+ M aetheros/apps/desktop/src/app/agent-hub/task-manager.tsx
+ M aetheros/apps/desktop/src/app/agent-marketplace/index.tsx
+ M aetheros/apps/desktop/src/app/agents/index.tsx
+ M aetheros/apps/desktop/src/app/ai-actions/index.tsx
+ M aetheros/apps/desktop/src/app/artifacts/index.tsx
+ M aetheros/apps/desktop/src/app/automation/canvas/canvas-node.tsx
+ M aetheros/apps/desktop/src/app/automation/canvas/connection-line.tsx
+ M aetheros/apps/desktop/src/app/automation/canvas/mini-map.tsx
+ M aetheros/apps/desktop/src/app/automation/canvas/workflow-canvas.tsx
+ M aetheros/apps/desktop/src/app/automation/index.tsx
+ M aetheros/apps/desktop/src/app/automation/nodes/action-config.tsx
+ M aetheros/apps/desktop/src/app/automation/nodes/condition-config.tsx
+ M aetheros/apps/desktop/src/app/automation/nodes/trigger-config.tsx
+ M aetheros/apps/desktop/src/app/automation/panels/node-palette.tsx
+ M aetheros/apps/desktop/src/app/automation/panels/secrets-panel.tsx
+ M aetheros/apps/desktop/src/app/automation/panels/variables-panel.tsx
+ M aetheros/apps/desktop/src/app/automation/panels/workflow-history.tsx
+ M aetheros/apps/desktop/src/app/automation/panels/workflow-scheduler.tsx
+ M aetheros/apps/desktop/src/app/automation/templates/marketplace-view.tsx
+ M aetheros/apps/desktop/src/app/automation/templates/templates-gallery.tsx
+ M aetheros/apps/desktop/src/app/browser-view/index.tsx
+ M aetheros/apps/desktop/src/app/browser-workspace/ai-assistant.tsx
+ M aetheros/apps/desktop/src/app/browser-workspace/automation-builder.tsx
+ M aetheros/apps/desktop/src/app/browser-workspace/index.tsx
+ M aetheros/apps/desktop/src/app/chat/chat-drop-overlay.tsx
+ M aetheros/apps/desktop/src/app/chat/chat-swap-overlay.tsx
+ M aetheros/apps/desktop/src/app/chat/composer/attachments.tsx
+ M aetheros/apps/desktop/src/app/chat/composer/completion-drawer.tsx
+ M aetheros/apps/desktop/src/app/chat/composer/context-menu.tsx
+ M aetheros/apps/desktop/src/app/chat/composer/controls.tsx
+ M aetheros/apps/desktop/src/app/chat/composer/drop-affordance.ts
+ M aetheros/apps/desktop/src/app/chat/composer/enter-submit-dom-race.test.tsx
+ M aetheros/apps/desktop/src/app/chat/composer/focus.ts
+ M aetheros/apps/desktop/src/app/chat/composer/help-hint.tsx
+ M aetheros/apps/desktop/src/app/chat/composer/hooks/use-live-completion-adapter.ts
+ M aetheros/apps/desktop/src/app/chat/composer/hooks/use-slash-completions.ts
+ M aetheros/apps/desktop/src/app/chat/composer/hooks/use-voice-conversation.ts
+ M aetheros/apps/desktop/src/app/chat/composer/hooks/use-voice-recorder.ts
+ M aetheros/apps/desktop/src/app/chat/composer/ime-composition-dom-repro.test.tsx
+ M aetheros/apps/desktop/src/app/chat/composer/index.tsx
+ M aetheros/apps/desktop/src/app/chat/composer/inline-refs.ts
+ M aetheros/apps/desktop/src/app/chat/composer/queue-panel.tsx
+ M aetheros/apps/desktop/src/app/chat/composer/rich-editor.test.ts
+ M aetheros/apps/desktop/src/app/chat/composer/rich-editor.ts
+ M aetheros/apps/desktop/src/app/chat/composer/slash-nav-dom-repro.test.tsx
+ M aetheros/apps/desktop/src/app/chat/composer/text-utils.test.ts
+ M aetheros/apps/desktop/src/app/chat/composer/text-utils.ts
+ M aetheros/apps/desktop/src/app/chat/composer/trigger-popover.test.tsx
+ M aetheros/apps/desktop/src/app/chat/composer/trigger-popover.tsx
+ M aetheros/apps/desktop/src/app/chat/composer/url-dialog.tsx
+ M aetheros/apps/desktop/src/app/chat/composer/voice-activity.tsx
+ M aetheros/apps/desktop/src/app/chat/hooks/use-composer-actions.test.ts
+ M aetheros/apps/desktop/src/app/chat/hooks/use-composer-actions.ts
+ M aetheros/apps/desktop/src/app/chat/hooks/use-file-drop-zone.ts
+ M aetheros/apps/desktop/src/app/chat/index.tsx
+ M aetheros/apps/desktop/src/app/chat/perf-probe.tsx
+ M aetheros/apps/desktop/src/app/chat/right-rail/index.ts
+ M aetheros/apps/desktop/src/app/chat/right-rail/preview-console-state.ts
+ M aetheros/apps/desktop/src/app/chat/right-rail/preview-console.tsx
+ M aetheros/apps/desktop/src/app/chat/right-rail/preview-file.tsx
+ M aetheros/apps/desktop/src/app/chat/right-rail/preview-pane.test.tsx
+ M aetheros/apps/desktop/src/app/chat/right-rail/preview.tsx
+ M aetheros/apps/desktop/src/app/chat/sidebar/cron-jobs-section.tsx
+ M aetheros/apps/desktop/src/app/chat/sidebar/index.tsx
+ M aetheros/apps/desktop/src/app/chat/sidebar/load-more-row.tsx
+ M aetheros/apps/desktop/src/app/chat/sidebar/session-actions-menu.tsx
+ M aetheros/apps/desktop/src/app/chat/sidebar/session-row.tsx
+ M aetheros/apps/desktop/src/app/chat/thread-loading.test.ts
+ M aetheros/apps/desktop/src/app/chat/thread-loading.ts
+ M aetheros/apps/desktop/src/app/command-center/index.tsx
+ M aetheros/apps/desktop/src/app/command-palette/index.tsx
+ M aetheros/apps/desktop/src/app/communications-hub/activity-log.tsx
+ M aetheros/apps/desktop/src/app/communications-hub/ai-assistant.tsx
+ M aetheros/apps/desktop/src/app/communications-hub/automation-builder.tsx
+ M aetheros/apps/desktop/src/app/communications-hub/contacts.tsx
+ M aetheros/apps/desktop/src/app/communications-hub/conversation.tsx
+ M aetheros/apps/desktop/src/app/communications-hub/inbox.tsx
+ M aetheros/apps/desktop/src/app/communications-hub/index.tsx
+ M aetheros/apps/desktop/src/app/communications-hub/notifications.tsx
+ M aetheros/apps/desktop/src/app/communications-hub/scheduler.tsx
+ M aetheros/apps/desktop/src/app/communications-hub/settings.tsx
+ M aetheros/apps/desktop/src/app/conflict-resolution/index.tsx
+ M aetheros/apps/desktop/src/app/connection-wizard/index.tsx
+ M aetheros/apps/desktop/src/app/cron/index.tsx
+ M aetheros/apps/desktop/src/app/dashboard/index.tsx
+ M aetheros/apps/desktop/src/app/desktop-controller.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/ai-assistant.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/build-panel.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/change-preview.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/code-editor.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/code-review-panel.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/code-search.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/debug-panel.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/dependency-manager.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/git-panel.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/index.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/output-panel.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/problems-panel.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/process-manager.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/project-explorer.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/terminal-panel.tsx
+ M aetheros/apps/desktop/src/app/developer-ide/test-panel.tsx
+ M aetheros/apps/desktop/src/app/developer-tools/index.tsx
+ M aetheros/apps/desktop/src/app/devices/index.tsx
+ M aetheros/apps/desktop/src/app/diagnostics-center/index.tsx
+ M aetheros/apps/desktop/src/app/extension-sdk/index.tsx
+ M aetheros/apps/desktop/src/app/extension-sdk/template-preview.tsx
+ M aetheros/apps/desktop/src/app/extensions/index.tsx
+ M aetheros/apps/desktop/src/app/file-understanding/file-analyzer.tsx
+ M aetheros/apps/desktop/src/app/file-understanding/index.tsx
+ M aetheros/apps/desktop/src/app/files-view/index.tsx
+ M aetheros/apps/desktop/src/app/floating-hud.ts
+ M aetheros/apps/desktop/src/app/gateway/hooks/use-gateway-boot.test.tsx
+ M aetheros/apps/desktop/src/app/gateway/hooks/use-gateway-boot.ts
+ M aetheros/apps/desktop/src/app/help/index.tsx
+ M aetheros/apps/desktop/src/app/history/index.tsx
+ M aetheros/apps/desktop/src/app/home/index.tsx
+ M aetheros/apps/desktop/src/app/hooks/use-keybinds.ts
+ M aetheros/apps/desktop/src/app/hooks/use-refresh-hotkey.ts
+ M aetheros/apps/desktop/src/app/hooks/use-route-enum-param.ts
+ M aetheros/apps/desktop/src/app/index.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/agents/agent-manager.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/animations/index.ts
+ M aetheros/apps/desktop/src/app/jarvis-mode/animations/particle-background.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/animations/waveform.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/automation/automation-dashboard.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/backgrounds/background-system.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/command-bar/command-bar.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/command-center/command-input.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/command-center/command-palette.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/dashboard/jarvis-dashboard.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/index.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/intel-feed/intel-feed.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/layout/jarvis-layout.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/layout/mission-control.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/mission-nav/mission-nav.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/notifications/notification-center.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/orb/ai-orb.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/orb/status-ring.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/orchestra/agent-orchestra.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/panels/browser-view.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/panels/communications-view.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/panels/files-view.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/panels/knowledge-view.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/panels/left-panel.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/panels/mcp-view.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/panels/memory-view.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/panels/projects-view.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/panels/right-panel.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/panels/section-content.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/panels/settings-view.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/panels/skills-view.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/panels/terminal-view.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/shared/glass-panel.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/shared/neon-text.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/status-bar/jarvis-status-bar.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/status-bar/system-status.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/theme/glass-effect.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/theme/jarvis-theme.ts
+ M aetheros/apps/desktop/src/app/jarvis-mode/timeline/execution-timeline.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/voice/voice-controls.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/workspace/conversational-workspace.tsx
+ M aetheros/apps/desktop/src/app/jarvis-mode/workspace/live-thinking.tsx
+ M aetheros/apps/desktop/src/app/knowledge/index.tsx
+ M aetheros/apps/desktop/src/app/layout-constants.ts
+ M aetheros/apps/desktop/src/app/logs-view/index.tsx
+ M aetheros/apps/desktop/src/app/marketplace/index.tsx
+ M aetheros/apps/desktop/src/app/marketplace/plugin-detail.tsx
+ M aetheros/apps/desktop/src/app/mcp-manager/index.tsx
+ M aetheros/apps/desktop/src/app/mcp-manager/server-detail.tsx
+ M aetheros/apps/desktop/src/app/memory/index.tsx
+ M aetheros/apps/desktop/src/app/messaging/comms-panels.tsx
+ M aetheros/apps/desktop/src/app/messaging/dashboard-view.tsx
+ M aetheros/apps/desktop/src/app/messaging/index.tsx
+ M aetheros/apps/desktop/src/app/messaging/platform-icon.tsx
+ M aetheros/apps/desktop/src/app/messaging/unified-inbox.tsx
+ M aetheros/apps/desktop/src/app/model-picker-overlay.tsx
+ M aetheros/apps/desktop/src/app/model-visibility-overlay.tsx
+ M aetheros/apps/desktop/src/app/models/index.tsx
+ M aetheros/apps/desktop/src/app/overlays/overlay-chrome.tsx
+ M aetheros/apps/desktop/src/app/overlays/overlay-search-input.tsx
+ M aetheros/apps/desktop/src/app/overlays/overlay-split-layout.tsx
+ M aetheros/apps/desktop/src/app/overlays/overlay-view.tsx
+ M aetheros/apps/desktop/src/app/page-search-shell.tsx
+ M aetheros/apps/desktop/src/app/page-shell.tsx
+ M aetheros/apps/desktop/src/app/privacy/consent-dialog.tsx
+ M aetheros/apps/desktop/src/app/privacy/index.tsx
+ M aetheros/apps/desktop/src/app/profiles/create-profile-dialog.tsx
+ M aetheros/apps/desktop/src/app/profiles/delete-profile-dialog.tsx
+ M aetheros/apps/desktop/src/app/profiles/index.tsx
+ M aetheros/apps/desktop/src/app/profiles/rename-profile-dialog.tsx
+ M aetheros/apps/desktop/src/app/projects/index.tsx
+ M aetheros/apps/desktop/src/app/provider-manager/barrel.ts
+ M aetheros/apps/desktop/src/app/provider-manager/health-monitor.tsx
+ M aetheros/apps/desktop/src/app/provider-manager/index.tsx
+ M aetheros/apps/desktop/src/app/provider-manager/model-manager.tsx
+ M aetheros/apps/desktop/src/app/provider-manager/model-router.tsx
+ M aetheros/apps/desktop/src/app/provider-manager/model-tester.tsx
+ M aetheros/apps/desktop/src/app/provider-manager/provider-detail.tsx
+ M aetheros/apps/desktop/src/app/provider-manager/provider-hub.tsx
+ M aetheros/apps/desktop/src/app/provider-manager/settings.tsx
+ M aetheros/apps/desktop/src/app/provider-manager/usage-dashboard.tsx
+ M aetheros/apps/desktop/src/app/remote-agent-dashboard/index.tsx
+ M aetheros/apps/desktop/src/app/remote-instances/index.tsx
+ M aetheros/apps/desktop/src/app/resource-manager/index.tsx
+ M aetheros/apps/desktop/src/app/right-sidebar/files/dnd-manager.ts
+ M aetheros/apps/desktop/src/app/right-sidebar/files/ipc.ts
+ M aetheros/apps/desktop/src/app/right-sidebar/files/remote-picker.tsx
+ M aetheros/apps/desktop/src/app/right-sidebar/files/tree.tsx
+ M aetheros/apps/desktop/src/app/right-sidebar/files/use-project-tree.test.ts
+ M aetheros/apps/desktop/src/app/right-sidebar/files/use-project-tree.ts
+ M aetheros/apps/desktop/src/app/right-sidebar/index.tsx
+ M aetheros/apps/desktop/src/app/right-sidebar/store.ts
+ M aetheros/apps/desktop/src/app/right-sidebar/terminal/buffer.ts
+ M aetheros/apps/desktop/src/app/right-sidebar/terminal/index.tsx
+ M aetheros/apps/desktop/src/app/right-sidebar/terminal/persistent.tsx
+ M aetheros/apps/desktop/src/app/right-sidebar/terminal/selection.ts
+ M aetheros/apps/desktop/src/app/right-sidebar/terminal/use-terminal-session.ts
+ M aetheros/apps/desktop/src/app/routes.ts
+ M aetheros/apps/desktop/src/app/sandbox/index.tsx
+ M aetheros/apps/desktop/src/app/screen-understanding/index.tsx
+ M aetheros/apps/desktop/src/app/screen-understanding/screen-capture-panel.tsx
+ M aetheros/apps/desktop/src/app/security-center/alerts.tsx
+ M aetheros/apps/desktop/src/app/security-center/approvals.tsx
+ M aetheros/apps/desktop/src/app/security-center/audit.tsx
+ M aetheros/apps/desktop/src/app/security-center/index.tsx
+ M aetheros/apps/desktop/src/app/security-center/overview.tsx
+ M aetheros/apps/desktop/src/app/security-center/permissions.tsx
+ M aetheros/apps/desktop/src/app/security-center/privacy.tsx
+ M aetheros/apps/desktop/src/app/security-center/sandbox.tsx
+ M aetheros/apps/desktop/src/app/security-center/secrets.tsx
+ M aetheros/apps/desktop/src/app/service-manager/index.tsx
+ M aetheros/apps/desktop/src/app/services/connect-wizard.tsx
+ M aetheros/apps/desktop/src/app/services/index.tsx
+ M aetheros/apps/desktop/src/app/services/service-detail-dialog.tsx
+ M aetheros/apps/desktop/src/app/services/sync-manager.tsx
+ M aetheros/apps/desktop/src/app/session-picker-overlay.tsx
+ M aetheros/apps/desktop/src/app/session-switcher.tsx
+ M aetheros/apps/desktop/src/app/session/hooks/use-context-suggestions.ts
+ M aetheros/apps/desktop/src/app/session/hooks/use-cwd-actions.ts
+ M aetheros/apps/desktop/src/app/session/hooks/use-message-stream.ts
+ M aetheros/apps/desktop/src/app/session/hooks/use-model-controls.test.tsx
+ M aetheros/apps/desktop/src/app/session/hooks/use-model-controls.ts
+ M aetheros/apps/desktop/src/app/session/hooks/use-prompt-actions.test.tsx
+ M aetheros/apps/desktop/src/app/session/hooks/use-prompt-actions.ts
+ M aetheros/apps/desktop/src/app/session/hooks/use-route-resume.test.tsx
+ M aetheros/apps/desktop/src/app/session/hooks/use-route-resume.ts
+ M aetheros/apps/desktop/src/app/session/hooks/use-session-actions.ts
+ M aetheros/apps/desktop/src/app/session/hooks/use-session-state-cache.test.tsx
+ M aetheros/apps/desktop/src/app/session/hooks/use-session-state-cache.ts
+ M aetheros/apps/desktop/src/app/settings/about-settings.tsx
+ M aetheros/apps/desktop/src/app/settings/accessibility-settings.tsx
+ M aetheros/apps/desktop/src/app/settings/advanced-settings.tsx
+ M aetheros/apps/desktop/src/app/settings/appearance-settings.tsx
+ M aetheros/apps/desktop/src/app/settings/config-settings.tsx
+ M aetheros/apps/desktop/src/app/settings/constants.ts
+ M aetheros/apps/desktop/src/app/settings/developer-settings.tsx
+ M aetheros/apps/desktop/src/app/settings/enhanced-multimodal.tsx
+ M aetheros/apps/desktop/src/app/settings/env-var-actions-menu.tsx
+ M aetheros/apps/desktop/src/app/settings/field-copy.ts
+ M aetheros/apps/desktop/src/app/settings/helpers.test.ts
+ M aetheros/apps/desktop/src/app/settings/index.tsx
+ M aetheros/apps/desktop/src/app/settings/mcp-settings.tsx
+ M aetheros/apps/desktop/src/app/settings/model-settings.test.tsx
+ M aetheros/apps/desktop/src/app/settings/model-settings.tsx
+ M aetheros/apps/desktop/src/app/settings/multimodal.tsx
+ M aetheros/apps/desktop/src/app/settings/ocr-settings.tsx
+ M aetheros/apps/desktop/src/app/settings/onboarding-settings.tsx
+ M aetheros/apps/desktop/src/app/settings/primitives.tsx
+ M aetheros/apps/desktop/src/app/settings/providers-settings.tsx
+ M aetheros/apps/desktop/src/app/settings/sessions-settings.tsx
+ M aetheros/apps/desktop/src/app/settings/toolset-config-panel.test.tsx
+ M aetheros/apps/desktop/src/app/settings/toolset-config-panel.tsx
+ M aetheros/apps/desktop/src/app/settings/uninstall-section.tsx
+ M aetheros/apps/desktop/src/app/settings/use-deep-link-highlight.ts
+ M aetheros/apps/desktop/src/app/setup-wizard/index.ts
+ M aetheros/apps/desktop/src/app/setup-wizard/setup-wizard-overlay.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/agent.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/authentication.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/extensions.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/finish.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/initialization.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/knowledge.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/local-ai.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/memory.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/models.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/options.ts
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/profile.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/providers.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/security.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/services.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/summary.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/welcome.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/steps/workspace.tsx
+ M aetheros/apps/desktop/src/app/setup-wizard/wizard-container.tsx
+ M aetheros/apps/desktop/src/app/shell/app-shell.tsx
+ M aetheros/apps/desktop/src/app/shell/context-panel.tsx
+ M aetheros/apps/desktop/src/app/shell/hooks/use-overlay-routing.ts
+ M aetheros/apps/desktop/src/app/shell/keybind-panel.tsx
+ M aetheros/apps/desktop/src/app/shell/left-sidebar.tsx
+ M aetheros/apps/desktop/src/app/shell/model-menu-panel.tsx
+ M aetheros/apps/desktop/src/app/shell/sidebar-label.tsx
+ M aetheros/apps/desktop/src/app/shell/statusbar-controls.tsx
+ M aetheros/apps/desktop/src/app/shell/titlebar-controls.tsx
+ M aetheros/apps/desktop/src/app/shell/titlebar.test.ts
+ M aetheros/apps/desktop/src/app/shell/topbar.tsx
+ M aetheros/apps/desktop/src/app/shell/use-group-registry.ts
+ M aetheros/apps/desktop/src/app/skills/index.tsx
+ M aetheros/apps/desktop/src/app/smart-workspace/ai-canvas.tsx
+ M aetheros/apps/desktop/src/app/smart-workspace/index.tsx
+ M aetheros/apps/desktop/src/app/smart-workspace/mind-map.tsx
+ M aetheros/apps/desktop/src/app/smart-workspace/notes.tsx
+ M aetheros/apps/desktop/src/app/smart-workspace/scratchpad.tsx
+ M aetheros/apps/desktop/src/app/smart-workspace/whiteboard.tsx
+ M aetheros/apps/desktop/src/app/sync-dashboard/index.tsx
+ M aetheros/apps/desktop/src/app/sync-history/index.tsx
+ M aetheros/apps/desktop/src/app/task-orchestrator/agent-activity.tsx
+ M aetheros/apps/desktop/src/app/task-orchestrator/approval-panel.tsx
+ M aetheros/apps/desktop/src/app/task-orchestrator/checkpoint-view.tsx
+ M aetheros/apps/desktop/src/app/task-orchestrator/execution-graph.tsx
+ M aetheros/apps/desktop/src/app/task-orchestrator/index.tsx
+ M aetheros/apps/desktop/src/app/task-orchestrator/plan-view.tsx
+ M aetheros/apps/desktop/src/app/tasks/index.tsx
+ M aetheros/apps/desktop/src/app/types.ts
+ M aetheros/apps/desktop/src/app/updates-manager/index.tsx
+ M aetheros/apps/desktop/src/app/updates-overlay.tsx
+ M aetheros/apps/desktop/src/app/updates/index.tsx
+ M aetheros/apps/desktop/src/app/voice-assistant/floating-assistant.tsx
+ M aetheros/apps/desktop/src/app/voice-assistant/index.tsx
+ M aetheros/apps/desktop/src/app/voice-assistant/voice-settings-panel.tsx
+ M aetheros/apps/desktop/src/app/workspace-manager/index.tsx
+ M aetheros/apps/desktop/src/components/Backdrop.tsx
+ M aetheros/apps/desktop/src/components/BackdropLeva.tsx
+ M aetheros/apps/desktop/src/components/assistant-ui/ansi-text.tsx
+ M aetheros/apps/desktop/src/components/assistant-ui/directive-text.test.ts
+ M aetheros/apps/desktop/src/components/assistant-ui/directive-text.tsx
+ M aetheros/apps/desktop/src/components/assistant-ui/message-render-boundary.test.tsx
+ M aetheros/apps/desktop/src/components/assistant-ui/message-render-boundary.tsx
+ M aetheros/apps/desktop/src/components/assistant-ui/multimodal-message.tsx
+ M aetheros/apps/desktop/src/components/assistant-ui/streaming.test.tsx
+ M aetheros/apps/desktop/src/components/assistant-ui/thread-virtualizer.tsx
+ M aetheros/apps/desktop/src/components/assistant-ui/thread.tsx
+ M aetheros/apps/desktop/src/components/assistant-ui/todo-tool.tsx
+ M aetheros/apps/desktop/src/components/assistant-ui/tool-approval-group.test.tsx
+ M aetheros/apps/desktop/src/components/assistant-ui/tool-fallback-model.test.ts
+ M aetheros/apps/desktop/src/components/assistant-ui/tool-fallback-model.ts
+ M aetheros/apps/desktop/src/components/assistant-ui/tool-fallback.tsx
+ M aetheros/apps/desktop/src/components/assistant-ui/tooltip-icon-button.tsx
+ M aetheros/apps/desktop/src/components/assistant-ui/user-message-edit.test.tsx
+ M aetheros/apps/desktop/src/components/assistant-ui/user-message-text.tsx
+ M aetheros/apps/desktop/src/components/backdrop-store.ts
+ M aetheros/apps/desktop/src/components/boot-failure-overlay.tsx
+ M aetheros/apps/desktop/src/components/boot-failure-reauth.test.ts
+ M aetheros/apps/desktop/src/components/boot-failure-reauth.ts
+ M aetheros/apps/desktop/src/components/brand-logo.tsx
+ M aetheros/apps/desktop/src/components/brand-mark.tsx
+ M aetheros/apps/desktop/src/components/chat/activity-timer-text.tsx
+ M aetheros/apps/desktop/src/components/chat/activity-timer.test.tsx
+ M aetheros/apps/desktop/src/components/chat/activity-timer.ts
+ M aetheros/apps/desktop/src/components/chat/code-card.tsx
+ M aetheros/apps/desktop/src/components/chat/compact-markdown.tsx
+ M aetheros/apps/desktop/src/components/chat/diff-lines.tsx
+ M aetheros/apps/desktop/src/components/chat/disclosure-row.tsx
+ M aetheros/apps/desktop/src/components/chat/generated-image-context.tsx
+ M aetheros/apps/desktop/src/components/chat/image-generation-placeholder.tsx
+ M aetheros/apps/desktop/src/components/chat/intro-copy.jsonl
+ M aetheros/apps/desktop/src/components/chat/preview-attachment.tsx
+ M aetheros/apps/desktop/src/components/crash-recovery-overlay.tsx
+ M aetheros/apps/desktop/src/components/dashboard/activity-feed.tsx
+ M aetheros/apps/desktop/src/components/dashboard/auto-repair-panel.tsx
+ M aetheros/apps/desktop/src/components/dashboard/backup-panel.tsx
+ M aetheros/apps/desktop/src/components/dashboard/health-status.tsx
+ M aetheros/apps/desktop/src/components/dashboard/runtime-panel.tsx
+ M aetheros/apps/desktop/src/components/dashboard/stats-card.tsx
+ M aetheros/apps/desktop/src/components/dashboard/system-metrics.tsx
+ M aetheros/apps/desktop/src/components/dashboard/use-engine-bridge.ts
+ M aetheros/apps/desktop/src/components/desktop-onboarding-overlay.tsx
+ M aetheros/apps/desktop/src/components/gateway-connecting-overlay.test.tsx
+ M aetheros/apps/desktop/src/components/gateway-connecting-overlay.tsx
+ M aetheros/apps/desktop/src/components/haptics-provider.tsx
+ M aetheros/apps/desktop/src/components/language-switcher.tsx
+ M aetheros/apps/desktop/src/components/model-manager.tsx
+ M aetheros/apps/desktop/src/components/model-picker.tsx
+ M aetheros/apps/desktop/src/components/model-visibility-dialog.tsx
+ M aetheros/apps/desktop/src/components/notifications.tsx
+ M aetheros/apps/desktop/src/components/onboarding-wizard.tsx
+ M aetheros/apps/desktop/src/components/page-loader.tsx
+ M aetheros/apps/desktop/src/components/pane-shell/context.ts
+ M aetheros/apps/desktop/src/components/pane-shell/index.ts
+ M aetheros/apps/desktop/src/components/pane-shell/pane-shell.test.tsx
+ M aetheros/apps/desktop/src/components/pane-shell/pane-shell.tsx
+ M aetheros/apps/desktop/src/components/pane-shell/snap.test.ts
+ M aetheros/apps/desktop/src/components/pane-shell/snap.ts
+ M aetheros/apps/desktop/src/components/prompt-overlays.tsx
+ M aetheros/apps/desktop/src/components/quick-actions-panel.tsx
+ M aetheros/apps/desktop/src/components/session-picker.tsx
+ M aetheros/apps/desktop/src/components/status-dot.tsx
+ M aetheros/apps/desktop/src/components/ui/action-status.tsx
+ M aetheros/apps/desktop/src/components/ui/alert.tsx
+ M aetheros/apps/desktop/src/components/ui/audio-player.tsx
+ M aetheros/apps/desktop/src/components/ui/badge.tsx
+ M aetheros/apps/desktop/src/components/ui/braille-spinner.tsx
+ M aetheros/apps/desktop/src/components/ui/button.tsx
+ M aetheros/apps/desktop/src/components/ui/camera-capture.tsx
+ M aetheros/apps/desktop/src/components/ui/card.tsx
+ M aetheros/apps/desktop/src/components/ui/checkbox.tsx
+ M aetheros/apps/desktop/src/components/ui/codicon.tsx
+ M aetheros/apps/desktop/src/components/ui/command.tsx
+ M aetheros/apps/desktop/src/components/ui/confirm-dialog.tsx
+ M aetheros/apps/desktop/src/components/ui/context-menu.tsx
+ M aetheros/apps/desktop/src/components/ui/control.ts
+ M aetheros/apps/desktop/src/components/ui/copy-button.test.tsx
+ M aetheros/apps/desktop/src/components/ui/copy-button.tsx
+ M aetheros/apps/desktop/src/components/ui/dialog.tsx
+ M aetheros/apps/desktop/src/components/ui/disclosure-caret.tsx
+ M aetheros/apps/desktop/src/components/ui/document-preview.tsx
+ M aetheros/apps/desktop/src/components/ui/dropdown-menu.tsx
+ M aetheros/apps/desktop/src/components/ui/error-state.tsx
+ M aetheros/apps/desktop/src/components/ui/fade-text.tsx
+ M aetheros/apps/desktop/src/components/ui/input.tsx
+ M aetheros/apps/desktop/src/components/ui/kbd.tsx
+ M aetheros/apps/desktop/src/components/ui/label.tsx
+ M aetheros/apps/desktop/src/components/ui/loader.tsx
+ M aetheros/apps/desktop/src/components/ui/log-view.tsx
+ M aetheros/apps/desktop/src/components/ui/pagination.tsx
+ M aetheros/apps/desktop/src/components/ui/popover.tsx
+ M aetheros/apps/desktop/src/components/ui/privacy-indicator.tsx
+ M aetheros/apps/desktop/src/components/ui/screen-capture.tsx
+ M aetheros/apps/desktop/src/components/ui/scroll-area.tsx
+ M aetheros/apps/desktop/src/components/ui/search-field.tsx
+ M aetheros/apps/desktop/src/components/ui/segmented-control.tsx
+ M aetheros/apps/desktop/src/components/ui/select.tsx
+ M aetheros/apps/desktop/src/components/ui/separator.tsx
+ M aetheros/apps/desktop/src/components/ui/sheet.tsx
+ M aetheros/apps/desktop/src/components/ui/sidebar.tsx
+ M aetheros/apps/desktop/src/components/ui/skeleton.tsx
+ M aetheros/apps/desktop/src/components/ui/switch.tsx
+ M aetheros/apps/desktop/src/components/ui/tabs.tsx
+ M aetheros/apps/desktop/src/components/ui/text-tab.tsx
+ M aetheros/apps/desktop/src/components/ui/textarea.tsx
+ M aetheros/apps/desktop/src/components/ui/tool-icon.tsx
+ M aetheros/apps/desktop/src/components/ui/tooltip.tsx
+ M aetheros/apps/desktop/src/components/ui/video-player.tsx
+ M aetheros/apps/desktop/src/global.d.ts
+ M aetheros/apps/desktop/src/hermes.ts
+ M aetheros/apps/desktop/src/hooks/use-media-query.ts
+ M aetheros/apps/desktop/src/hooks/use-mobile.ts
+ M aetheros/apps/desktop/src/hooks/use-resize-observer.ts
+ M aetheros/apps/desktop/src/i18n/catalog.ts
+ M aetheros/apps/desktop/src/i18n/context.tsx
+ M aetheros/apps/desktop/src/i18n/define-locale.ts
+ M aetheros/apps/desktop/src/i18n/en.ts
+ M aetheros/apps/desktop/src/i18n/index.ts
+ M aetheros/apps/desktop/src/i18n/ja.ts
+ M aetheros/apps/desktop/src/i18n/languages.test.ts
+ M aetheros/apps/desktop/src/i18n/languages.ts
+ M aetheros/apps/desktop/src/i18n/runtime.ts
+ M aetheros/apps/desktop/src/i18n/types.ts
+ M aetheros/apps/desktop/src/i18n/zh-hant.ts
+ M aetheros/apps/desktop/src/i18n/zh.ts
+ M aetheros/apps/desktop/src/lib/agent-marketplace-client.ts
+ M aetheros/apps/desktop/src/lib/ansi.test.ts
+ M aetheros/apps/desktop/src/lib/ansi.ts
+ M aetheros/apps/desktop/src/lib/background-services.ts
+ M aetheros/apps/desktop/src/lib/brand.ts
+ M aetheros/apps/desktop/src/lib/chat-runtime.test.ts
+ M aetheros/apps/desktop/src/lib/clipboard-utils.ts
+ M aetheros/apps/desktop/src/lib/commit-changelog.test.ts
+ M aetheros/apps/desktop/src/lib/commit-changelog.ts
+ M aetheros/apps/desktop/src/lib/crash-recovery.ts
+ M aetheros/apps/desktop/src/lib/desktop-fs.test.ts
+ M aetheros/apps/desktop/src/lib/desktop-fs.ts
+ M aetheros/apps/desktop/src/lib/desktop-slash-commands.test.ts
+ M aetheros/apps/desktop/src/lib/document-intelligence.ts
+ M aetheros/apps/desktop/src/lib/embedded-images.test.ts
+ M aetheros/apps/desktop/src/lib/embedded-images.ts
+ M aetheros/apps/desktop/src/lib/gateway-events.test.ts
+ M aetheros/apps/desktop/src/lib/gateway-events.ts
+ M aetheros/apps/desktop/src/lib/gateway-ws-url.test.ts
+ M aetheros/apps/desktop/src/lib/haptics.ts
+ M aetheros/apps/desktop/src/lib/icons.ts
+ M aetheros/apps/desktop/src/lib/incremental-external-store-runtime.ts
+ M aetheros/apps/desktop/src/lib/jarvis/automation/automation-engine.ts
+ M aetheros/apps/desktop/src/lib/jarvis/background/job-manager.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/ai-core.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/autonomy.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/backend-bridge.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/context.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/engine.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/executor.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/memory.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/notifications.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/observer.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/planner.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/reasoning.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/scheduler.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/skills.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/startup.ts
+ M aetheros/apps/desktop/src/lib/jarvis/core/task-manager.ts
+ M aetheros/apps/desktop/src/lib/jarvis/index.ts
+ M aetheros/apps/desktop/src/lib/jarvis/memory/memory-graph.ts
+ M aetheros/apps/desktop/src/lib/jarvis/models/model-router.ts
+ M aetheros/apps/desktop/src/lib/jarvis/monitoring/health-monitor.ts
+ M aetheros/apps/desktop/src/lib/jarvis/orchestrator/agent-orchestrator.ts
+ M aetheros/apps/desktop/src/lib/jarvis/planner/execution-planner.ts
+ M aetheros/apps/desktop/src/lib/jarvis/reasoner/reasoner.ts
+ M aetheros/apps/desktop/src/lib/jarvis/security/security-manager.ts
+ M aetheros/apps/desktop/src/lib/jarvis/types.ts
+ M aetheros/apps/desktop/src/lib/jarvis/workspace/workspace-awareness.ts
+ M aetheros/apps/desktop/src/lib/katex-memo.ts
+ M aetheros/apps/desktop/src/lib/keybinds/actions.ts
+ M aetheros/apps/desktop/src/lib/keybinds/combo.test.ts
+ M aetheros/apps/desktop/src/lib/keybinds/combo.ts
+ M aetheros/apps/desktop/src/lib/local-preview.ts
+ M aetheros/apps/desktop/src/lib/markdown-code.test.ts
+ M aetheros/apps/desktop/src/lib/markdown-code.ts
+ M aetheros/apps/desktop/src/lib/markdown-preprocess.ts
+ M aetheros/apps/desktop/src/lib/model-router.ts
+ M aetheros/apps/desktop/src/lib/model-status-label.test.ts
+ M aetheros/apps/desktop/src/lib/mutable-ref.ts
+ M aetheros/apps/desktop/src/lib/ocr-engine.ts
+ M aetheros/apps/desktop/src/lib/platform-capabilities.test.ts
+ M aetheros/apps/desktop/src/lib/preview-targets.test.ts
+ M aetheros/apps/desktop/src/lib/preview-targets.ts
+ M aetheros/apps/desktop/src/lib/profile-color.ts
+ M aetheros/apps/desktop/src/lib/query-client.ts
+ M aetheros/apps/desktop/src/lib/runtime-readiness.test.ts
+ M aetheros/apps/desktop/src/lib/runtime-readiness.ts
+ M aetheros/apps/desktop/src/lib/screen-capture.ts
+ M aetheros/apps/desktop/src/lib/screen-understanding.ts
+ M aetheros/apps/desktop/src/lib/session-source.ts
+ M aetheros/apps/desktop/src/lib/speech-text.ts
+ M aetheros/apps/desktop/src/lib/storage.ts
+ M aetheros/apps/desktop/src/lib/todos.test.ts
+ M aetheros/apps/desktop/src/lib/todos.ts
+ M aetheros/apps/desktop/src/lib/tool-result-summary.test.ts
+ M aetheros/apps/desktop/src/lib/tool-result-summary.ts
+ M aetheros/apps/desktop/src/lib/update-copy.ts
+ M aetheros/apps/desktop/src/lib/use-enter-animation.ts
+ M aetheros/apps/desktop/src/lib/utils.ts
+ M aetheros/apps/desktop/src/lib/voice-commands.ts
+ M aetheros/apps/desktop/src/lib/voice-input.ts
+ M aetheros/apps/desktop/src/lib/yolo-session.ts
+ M aetheros/apps/desktop/src/main.tsx
+ M aetheros/apps/desktop/src/store/accessibility-store.ts
+ M aetheros/apps/desktop/src/store/agent-hub.ts
+ M aetheros/apps/desktop/src/store/agent-marketplace.ts
+ M aetheros/apps/desktop/src/store/ai-coding-assistant.ts
+ M aetheros/apps/desktop/src/store/automation.ts
+ M aetheros/apps/desktop/src/store/browser-automation.test.ts
+ M aetheros/apps/desktop/src/store/browser-automation.ts
+ M aetheros/apps/desktop/src/store/browser-permissions.test.ts
+ M aetheros/apps/desktop/src/store/browser-permissions.ts
+ M aetheros/apps/desktop/src/store/browser-workspace.test.ts
+ M aetheros/apps/desktop/src/store/browser-workspace.ts
+ M aetheros/apps/desktop/src/store/build-system.ts
+ M aetheros/apps/desktop/src/store/clarify.test.ts
+ M aetheros/apps/desktop/src/store/clarify.ts
+ M aetheros/apps/desktop/src/store/code-editor.ts
+ M aetheros/apps/desktop/src/store/code-review.ts
+ M aetheros/apps/desktop/src/store/code-search.ts
+ M aetheros/apps/desktop/src/store/command-center.ts
+ M aetheros/apps/desktop/src/store/command-palette.ts
+ M aetheros/apps/desktop/src/store/communications-ai.test.ts
+ M aetheros/apps/desktop/src/store/communications-ai.ts
+ M aetheros/apps/desktop/src/store/communications-contacts.test.ts
+ M aetheros/apps/desktop/src/store/communications-contacts.ts
+ M aetheros/apps/desktop/src/store/communications-notifications.test.ts
+ M aetheros/apps/desktop/src/store/communications-notifications.ts
+ M aetheros/apps/desktop/src/store/communications-scheduler.test.ts
+ M aetheros/apps/desktop/src/store/communications-scheduler.ts
+ M aetheros/apps/desktop/src/store/communications.ts
+ M aetheros/apps/desktop/src/store/composer-input-history.test.ts
+ M aetheros/apps/desktop/src/store/composer-input-history.ts
+ M aetheros/apps/desktop/src/store/composer-queue.test.ts
+ M aetheros/apps/desktop/src/store/composer-queue.ts
+ M aetheros/apps/desktop/src/store/composer.test.ts
+ M aetheros/apps/desktop/src/store/composer.ts
+ M aetheros/apps/desktop/src/store/dashboard.ts
+ M aetheros/apps/desktop/src/store/debugger.ts
+ M aetheros/apps/desktop/src/store/dependency-manager.ts
+ M aetheros/apps/desktop/src/store/developer-ide.ts
+ M aetheros/apps/desktop/src/store/devices.ts
+ M aetheros/apps/desktop/src/store/diagnostics-center.ts
+ M aetheros/apps/desktop/src/store/extension-sdk.ts
+ M aetheros/apps/desktop/src/store/file-understanding.ts
+ M aetheros/apps/desktop/src/store/git-integration.ts
+ M aetheros/apps/desktop/src/store/haptics.ts
+ M aetheros/apps/desktop/src/store/jarvis-mode.ts
+ M aetheros/apps/desktop/src/store/keybinds.ts
+ M aetheros/apps/desktop/src/store/knowledge.ts
+ M aetheros/apps/desktop/src/store/layout.ts
+ M aetheros/apps/desktop/src/store/marketplace.ts
+ M aetheros/apps/desktop/src/store/mcp-manager.ts
+ M aetheros/apps/desktop/src/store/model-visibility.ts
+ M aetheros/apps/desktop/src/store/multimodal.ts
+ M aetheros/apps/desktop/src/store/navigation.ts
+ M aetheros/apps/desktop/src/store/notifications.ts
+ M aetheros/apps/desktop/src/store/ocr-store.ts
+ M aetheros/apps/desktop/src/store/onboarding.test.ts
+ M aetheros/apps/desktop/src/store/panes.test.ts
+ M aetheros/apps/desktop/src/store/panes.ts
+ M aetheros/apps/desktop/src/store/plugin-manager.ts
+ M aetheros/apps/desktop/src/store/preview.test.ts
+ M aetheros/apps/desktop/src/store/preview.ts
+ M aetheros/apps/desktop/src/store/privacy-store.ts
+ M aetheros/apps/desktop/src/store/problems-panel.ts
+ M aetheros/apps/desktop/src/store/process-manager.ts
+ M aetheros/apps/desktop/src/store/project-workspace.ts
+ M aetheros/apps/desktop/src/store/prompts.test.ts
+ M aetheros/apps/desktop/src/store/prompts.ts
+ M aetheros/apps/desktop/src/store/provider-manager.ts
+ M aetheros/apps/desktop/src/store/quick-actions.ts
+ M aetheros/apps/desktop/src/store/remote-agent.ts
+ M aetheros/apps/desktop/src/store/resource-manager.ts
+ M aetheros/apps/desktop/src/store/sandbox.ts
+ M aetheros/apps/desktop/src/store/screen-understanding.ts
+ M aetheros/apps/desktop/src/store/security.ts
+ M aetheros/apps/desktop/src/store/service-manager.ts
+ M aetheros/apps/desktop/src/store/service-sync.ts
+ M aetheros/apps/desktop/src/store/services.ts
+ M aetheros/apps/desktop/src/store/session.test.ts
+ M aetheros/apps/desktop/src/store/session.ts
+ M aetheros/apps/desktop/src/store/setup-wizard.ts
+ M aetheros/apps/desktop/src/store/smart-workspace.ts
+ M aetheros/apps/desktop/src/store/subagents.test.ts
+ M aetheros/apps/desktop/src/store/subagents.ts
+ M aetheros/apps/desktop/src/store/sync.ts
+ M aetheros/apps/desktop/src/store/system.ts
+ M aetheros/apps/desktop/src/store/task-orchestrator.ts
+ M aetheros/apps/desktop/src/store/terminal-replacement.ts
+ M aetheros/apps/desktop/src/store/test-runner.ts
+ M aetheros/apps/desktop/src/store/thread-scroll.ts
+ M aetheros/apps/desktop/src/store/tool-diffs.ts
+ M aetheros/apps/desktop/src/store/tool-view.ts
+ M aetheros/apps/desktop/src/store/updates.test.ts
+ M aetheros/apps/desktop/src/store/updates.ts
+ M aetheros/apps/desktop/src/store/voice-assistant.ts
+ M aetheros/apps/desktop/src/store/voice-logging-store.ts
+ M aetheros/apps/desktop/src/store/voice-playback.ts
+ M aetheros/apps/desktop/src/store/workspace-manager.ts
+ M aetheros/apps/desktop/src/store/workspace.ts
+ M aetheros/apps/desktop/src/styles.css
+ M aetheros/apps/desktop/src/test-setup.ts
+ M aetheros/apps/desktop/src/themes/accent-presets.ts
+ M aetheros/apps/desktop/src/themes/color.ts
+ M aetheros/apps/desktop/src/themes/design-tokens.test.ts
+ M aetheros/apps/desktop/src/themes/design-tokens.ts
+ M aetheros/apps/desktop/src/themes/effects.ts
+ M aetheros/apps/desktop/src/themes/index.ts
+ M aetheros/apps/desktop/src/themes/install.test.ts
+ M aetheros/apps/desktop/src/themes/presets.test.ts
+ M aetheros/apps/desktop/src/themes/profile-theme.test.ts
+ M aetheros/apps/desktop/src/themes/types.ts
+ M aetheros/apps/desktop/src/themes/use-skin-command.ts
+ M aetheros/apps/desktop/src/themes/user-themes.test.ts
+ M aetheros/apps/desktop/src/themes/user-themes.ts
+ M aetheros/apps/desktop/src/themes/vscode.test.ts
+ M aetheros/apps/desktop/src/themes/vscode.ts
+ M aetheros/apps/desktop/src/vite-env.d.ts
+ M aetheros/apps/desktop/tsconfig.json
+ M aetheros/apps/desktop/vite.config.ts
+ M aetheros/apps/desktop/vitest.config.ts
+ M aetheros/apps/shared/package.json
+ M aetheros/apps/shared/src/index.ts
+ M aetheros/apps/shared/tsconfig.json
+ M aetheros/cli.py
+ M aetheros/cluster/transport.py
+ M aetheros/connect/__init__.py
+ M aetheros/cron/blueprint_catalog.py
+ M aetheros/cron/jobs.py
+ M aetheros/cron/scheduler.py
+ M aetheros/docs/DESKTOP_ARCHITECTURE.md
+ M aetheros/docs/MODULE_MAP.md
+ M aetheros/gateway/platforms/api_server.py
+ M aetheros/gateway/platforms/base.py
+ M aetheros/gateway/platforms/bluebubbles.py
+ M aetheros/gateway/platforms/feishu.py
+ M aetheros/gateway/platforms/qqbot/adapter.py
+ M aetheros/gateway/platforms/qqbot/constants.py
+ M aetheros/gateway/platforms/telegram.py
+ M aetheros/gateway/platforms/webhook.py
+ M aetheros/gateway/platforms/wecom.py
+ M aetheros/gateway/platforms/whatsapp.py
+ M aetheros/gateway/run.py
+ M aetheros/gateway/slash_commands.py
+ D aetheros/jarvis/__init__.py
+ D aetheros/jarvis/conversation.py
+ D aetheros/jarvis/runtime.py
+ D aetheros/jarvis/voice.py
+ D aetheros/jarvis/wakeword.py
+ M aetheros/mcp_serve.py
+ M aetheros/memory/__init__.py
+ M aetheros/memory/episodic.py
+ M aetheros/memory/memory_store.py
+ M aetheros/memory/procedural.py
+ M aetheros/memory/semantic.py
+ M aetheros/model_tools.py
+ M aetheros/optional-skills/creative/kanban-video-orchestrator/scripts/bootstrap_pipeline.py
+ M aetheros/optional-skills/creative/kanban-video-orchestrator/scripts/monitor.py
+ M aetheros/optional-skills/devops/watchers/scripts/watch_github.py
+ M aetheros/optional-skills/devops/watchers/scripts/watch_http_json.py
+ M aetheros/optional-skills/devops/watchers/scripts/watch_rss.py
+ M aetheros/optional-skills/migration/openclaw-migration/scripts/openclaw_to_hermes.py
+ D aetheros/plugins/dashboard_auth/nous/__init__.py
+ D aetheros/plugins/dashboard_auth/nous/plugin.yaml
+ M aetheros/plugins/dashboard_auth/self_hosted/__init__.py
+ M aetheros/plugins/google_meet/__init__.py
+ M aetheros/plugins/google_meet/cli.py
+ M aetheros/plugins/google_meet/meet_bot.py
+ M aetheros/plugins/google_meet/node/cli.py
+ M aetheros/plugins/google_meet/node/protocol.py
+ M aetheros/plugins/google_meet/node/server.py
+ M aetheros/plugins/google_meet/process_manager.py
+ M aetheros/plugins/image_gen/openai-codex/__init__.py
+ M aetheros/plugins/kanban/dashboard/plugin_api.py
+ M aetheros/plugins/memory/hindsight/__init__.py
+ M aetheros/plugins/memory/honcho/cli.py
+ M aetheros/plugins/memory/honcho/client.py
+ M aetheros/plugins/memory/honcho/session.py
+ M aetheros/plugins/memory/mem0/__init__.py
+ M aetheros/plugins/memory/openviking/__init__.py
+ M aetheros/plugins/memory/retaindb/__init__.py
+ D aetheros/plugins/model-providers/nous/__init__.py
+ D aetheros/plugins/model-providers/nous/plugin.yaml
+ M aetheros/plugins/observability/langfuse/__init__.py
+ M aetheros/plugins/platforms/discord/adapter.py
+ M aetheros/plugins/platforms/google_chat/adapter.py
+ M aetheros/plugins/platforms/irc/adapter.py
+ M aetheros/plugins/platforms/line/adapter.py
+ M aetheros/plugins/platforms/mattermost/adapter.py
+ M aetheros/plugins/platforms/photon/adapter.py
+ M aetheros/plugins/platforms/photon/cli.py
+ M aetheros/plugins/platforms/simplex/adapter.py
+ M aetheros/plugins/platforms/teams/adapter.py
+ M aetheros/plugins/spotify/__init__.py
+ M aetheros/plugins/teams_pipeline/cli.py
+ M aetheros/plugins/web/firecrawl/provider.py
+ M aetheros/plugins/web/parallel/provider.py
+ M aetheros/providers/base.py
+ M aetheros/pyproject.toml
+ M aetheros/run_agent.py
+ M aetheros/scripts/build_model_catalog.py
+ M aetheros/scripts/check-windows-footguns.py
+ M aetheros/scripts/discord-voice-doctor.py
+ M aetheros/scripts/install.ps1
+ M aetheros/scripts/install.sh
+ M aetheros/scripts/run_tests.sh
+ M aetheros/scripts/run_tests_parallel.py
+ M aetheros/scripts/setup_open_webui.sh
+ M aetheros/scripts/tool_search_livetest.py
+ M aetheros/scripts/whatsapp-bridge/allowlist.test.mjs
+ M aetheros/scripts/whatsapp-bridge/bridge.js
+ M aetheros/sdk/signing.py
+ M aetheros/skills/autonomous-ai-agents/aetheros-agent/SKILL.md
+ M aetheros/skills/productivity/maps/scripts/maps_client.py
+ M aetheros/tests/acp/test_tools.py
+ M aetheros/tests/aetheros_cli/conftest.py
+ M aetheros/tests/aetheros_cli/test_anthropic_model_flow_stale_oauth.py
+ M aetheros/tests/aetheros_cli/test_apply_profile_override.py
+ M aetheros/tests/aetheros_cli/test_argparse_flag_propagation.py
+ M aetheros/tests/aetheros_cli/test_auth_commands.py
+ M aetheros/tests/aetheros_cli/test_auth_nous_provider.py
+ M aetheros/tests/aetheros_cli/test_auth_profile_fallback.py
+ M aetheros/tests/aetheros_cli/test_auth_toctou_file_modes.py
+ M aetheros/tests/aetheros_cli/test_auth_xai_oauth_provider.py
+ M aetheros/tests/aetheros_cli/test_backup.py
+ M aetheros/tests/aetheros_cli/test_bundles.py
+ M aetheros/tests/aetheros_cli/test_claw.py
+ M aetheros/tests/aetheros_cli/test_cmd_update.py
+ M aetheros/tests/aetheros_cli/test_cmd_update_docker.py
+ M aetheros/tests/aetheros_cli/test_codex_runtime_plugin_migration.py
+ M aetheros/tests/aetheros_cli/test_commands.py
+ M aetheros/tests/aetheros_cli/test_completion.py
+ M aetheros/tests/aetheros_cli/test_curator_recent_run_notice.py
+ M aetheros/tests/aetheros_cli/test_curator_status.py
+ M aetheros/tests/aetheros_cli/test_dashboard_auth_middleware.py
+ M aetheros/tests/aetheros_cli/test_dashboard_lifecycle_flags.py
+ M aetheros/tests/aetheros_cli/test_dashboard_register.py
+ M aetheros/tests/aetheros_cli/test_dashboard_tui_backcompat.py
+ M aetheros/tests/aetheros_cli/test_debug.py
+ M aetheros/tests/aetheros_cli/test_default_interface_resolution.py
+ M aetheros/tests/aetheros_cli/test_doctor.py
+ M aetheros/tests/aetheros_cli/test_doctor_command_install.py
+ M aetheros/tests/aetheros_cli/test_doctor_dedicated_provider_skip.py
+ M aetheros/tests/aetheros_cli/test_gateway.py
+ M aetheros/tests/aetheros_cli/test_gateway_restart_loop.py
+ M aetheros/tests/aetheros_cli/test_gateway_s6_dispatch.py
+ M aetheros/tests/aetheros_cli/test_gateway_service.py
+ M aetheros/tests/aetheros_cli/test_goals.py
+ M aetheros/tests/aetheros_cli/test_gui_command.py
+ M aetheros/tests/aetheros_cli/test_gui_uninstall.py
+ M aetheros/tests/aetheros_cli/test_hooks_cli.py
+ M aetheros/tests/aetheros_cli/test_ignore_user_config_flags.py
+ M aetheros/tests/aetheros_cli/test_kanban_cli_dispatch_passthrough.py
+ M aetheros/tests/aetheros_cli/test_kanban_core_functionality.py
+ M aetheros/tests/aetheros_cli/test_kanban_db.py
+ M aetheros/tests/aetheros_cli/test_kanban_worker_image_extraction.py
+ M aetheros/tests/aetheros_cli/test_managed_uv.py
+ M aetheros/tests/aetheros_cli/test_mcp_add_command_dest.py
+ M aetheros/tests/aetheros_cli/test_memory_reset.py
+ M aetheros/tests/aetheros_cli/test_memory_setup_provider_arg.py
+ M aetheros/tests/aetheros_cli/test_migrate_xai.py
+ M aetheros/tests/aetheros_cli/test_model_catalog.py
+ M aetheros/tests/aetheros_cli/test_models_dev_preferred_merge.py
+ M aetheros/tests/aetheros_cli/test_nous_account.py
+ M aetheros/tests/aetheros_cli/test_nous_inference_url_validation.py
+ M aetheros/tests/aetheros_cli/test_nous_subscription.py
+ M aetheros/tests/aetheros_cli/test_placeholder_usage.py
+ M aetheros/tests/aetheros_cli/test_portal_cli.py
+ M aetheros/tests/aetheros_cli/test_profiles.py
+ M aetheros/tests/aetheros_cli/test_prompt_size.py
+ M aetheros/tests/aetheros_cli/test_proxy.py
+ M aetheros/tests/aetheros_cli/test_relaunch.py
+ M aetheros/tests/aetheros_cli/test_resolve_last_session.py
+ M aetheros/tests/aetheros_cli/test_secrets_bitwarden_non_tty.py
+ M aetheros/tests/aetheros_cli/test_send_cmd.py
+ M aetheros/tests/aetheros_cli/test_service_manager.py
+ M aetheros/tests/aetheros_cli/test_session_browse.py
+ M aetheros/tests/aetheros_cli/test_setup_irc.py
+ M aetheros/tests/aetheros_cli/test_setup_model_provider.py
+ M aetheros/tests/aetheros_cli/test_setup_noninteractive.py
+ M aetheros/tests/aetheros_cli/test_setup_openclaw_migration.py
+ M aetheros/tests/aetheros_cli/test_setup_reconfigure.py
+ M aetheros/tests/aetheros_cli/test_signal_handler_kanban_worker.py
+ M aetheros/tests/aetheros_cli/test_slack_cli.py
+ M aetheros/tests/aetheros_cli/test_startup_plugin_gating.py
+ M aetheros/tests/aetheros_cli/test_status.py
+ M aetheros/tests/aetheros_cli/test_status_model_provider.py
+ M aetheros/tests/aetheros_cli/test_subparser_routing_fallback.py
+ M aetheros/tests/aetheros_cli/test_tencent_tokenhub_provider.py
+ M aetheros/tests/aetheros_cli/test_tools_config.py
+ M aetheros/tests/aetheros_cli/test_tools_disable_enable.py
+ M aetheros/tests/aetheros_cli/test_tui_mouse_residue_suppression.py
+ M aetheros/tests/aetheros_cli/test_tui_npm_install.py
+ M aetheros/tests/aetheros_cli/test_tui_resume_flow.py
+ M aetheros/tests/aetheros_cli/test_update_autostash.py
+ M aetheros/tests/aetheros_cli/test_update_post_pull_syntax_guard.py
+ M aetheros/tests/aetheros_cli/test_update_stale_dashboard.py
+ M aetheros/tests/aetheros_cli/test_update_yes_flag.py
+ M aetheros/tests/aetheros_cli/test_verify_core_dependencies.py
+ M aetheros/tests/aetheros_cli/test_web_server.py
+ M aetheros/tests/aetheros_cli/test_web_server_skills_profiles.py
+ M aetheros/tests/aetheros_cli/test_windows_native_docs.py
+ M aetheros/tests/aetheros_cli/test_xiaomi_provider.py
+ M aetheros/tests/aetheros_providers/test_providers.py
+ M aetheros/tests/agent/lsp/test_install_and_lint_fixes.py
+ M aetheros/tests/agent/test_auxiliary_main_first.py
+ M aetheros/tests/agent/test_credential_pool.py
+ M aetheros/tests/agent/test_curator_classification.py
+ M aetheros/tests/agent/test_file_safety_cross_profile.py
+ M aetheros/tests/agent/test_file_safety_sandbox_mirror.py
+ M aetheros/tests/agent/test_memory_provider.py
+ M aetheros/tests/agent/test_memory_user_id.py
+ M aetheros/tests/agent/test_model_metadata.py
+ M aetheros/tests/agent/test_nous_oauth_401_guidance.py
+ M aetheros/tests/agent/test_nous_rate_guard.py
+ M aetheros/tests/agent/test_portal_tags.py
+ M aetheros/tests/agent/test_prompt_builder.py
+ M aetheros/tests/agent/test_shell_hooks.py
+ M aetheros/tests/agent/test_skill_utils.py
+ M aetheros/tests/agent/test_usage_pricing.py
+ M aetheros/tests/agent/test_vision_routing_31179.py
+ D aetheros/tests/agent/transports/test_hermes_tools_mcp_server.py
+ M aetheros/tests/cli/test_cli_init.py
+ M aetheros/tests/cli/test_cli_yolo_toggle.py
+ M aetheros/tests/cli/test_exit_summary_resume_hint.py
+ M aetheros/tests/cli/test_resume_quiet_stderr.py
+ M aetheros/tests/cli/test_save_conversation_location.py
+ M aetheros/tests/conftest.py
+ M aetheros/tests/docker/test_docker_exec_privilege_drop.py
+ M aetheros/tests/gateway/test_api_server.py
+ M aetheros/tests/gateway/test_bluebubbles.py
+ M aetheros/tests/gateway/test_clean_shutdown_marker.py
+ M aetheros/tests/gateway/test_dingtalk.py
+ M aetheros/tests/gateway/test_ephemeral_reply.py
+ M aetheros/tests/gateway/test_irc_adapter.py
+ M aetheros/tests/gateway/test_matrix.py
+ M aetheros/tests/gateway/test_matrix_mention.py
+ M aetheros/tests/gateway/test_run_progress_interrupt.py
+ M aetheros/tests/gateway/test_session_api.py
+ M aetheros/tests/gateway/test_slack.py
+ M aetheros/tests/gateway/test_telegram_mention_boundaries.py
+ M aetheros/tests/gateway/test_update_command.py
+ M aetheros/tests/gateway/test_update_streaming.py
+ M aetheros/tests/gateway/test_webhook_adapter.py
+ M aetheros/tests/gateway/test_whatsapp_formatting.py
+ M aetheros/tests/hermes_state/test_resolve_resume_session_id.py
+ M aetheros/tests/honcho_plugin/test_pin_peer_name.py
+ M aetheros/tests/honcho_plugin/test_session.py
+ M aetheros/tests/integration/test_web_tools.py
+ M aetheros/tests/openviking_plugin/test_openviking.py
+ M aetheros/tests/plugins/dashboard_auth/test_nous_provider.py
+ M aetheros/tests/plugins/platforms/photon/test_inbound.py
+ M aetheros/tests/plugins/platforms/photon/test_setup_access.py
+ M aetheros/tests/plugins/test_google_meet_plugin.py
+ M aetheros/tests/plugins/web/test_web_search_provider_plugins.py
+ M aetheros/tests/providers/test_provider_profiles.py
+ M aetheros/tests/run_agent/test_anthropic_prompt_cache_policy.py
+ M aetheros/tests/run_agent/test_codex_xai_oauth_recovery.py
+ M aetheros/tests/run_agent/test_switch_model_fallback_prune.py
+ M aetheros/tests/security/test_secrets_sandbox.py
+ M aetheros/tests/skills/test_google_oauth_setup.py
+ M aetheros/tests/skills/test_openclaw_migration.py
+ M aetheros/tests/stress/_fake_worker.py
+ M aetheros/tests/test_aetheros_bootstrap.py
+ M aetheros/tests/test_aetheros_state.py
+ M aetheros/tests/test_bitwarden_secrets.py
+ M aetheros/tests/test_empty_model_fallback.py
+ M aetheros/tests/test_empty_session_hygiene.py
+ M aetheros/tests/test_install_sh_symlink_stomp.py
+ M aetheros/tests/test_minimax_oauth.py
+ M aetheros/tests/test_project_metadata.py
+ M aetheros/tests/test_tui_gateway_server.py
+ M aetheros/tests/tools/test_approval.py
+ M aetheros/tests/tools/test_blueprints.py
+ M aetheros/tests/tools/test_browser_orphan_reaper.py
+ M aetheros/tests/tools/test_code_execution.py
+ M aetheros/tests/tools/test_computer_use.py
+ M aetheros/tests/tools/test_cross_profile_guard.py
+ M aetheros/tests/tools/test_image_generation.py
+ M aetheros/tests/tools/test_local_interrupt_cleanup.py
+ M aetheros/tests/tools/test_memory_tool.py
+ M aetheros/tests/tools/test_send_message_tool.py
+ M aetheros/tests/tools/test_skills_hub.py
+ M aetheros/tests/tools/test_skills_tool.py
+ M aetheros/tests/tui_gateway/test_protocol.py
+ M aetheros/tools/approval.py
+ M aetheros/tools/blueprints.py
+ M aetheros/tools/browser_cdp_tool.py
+ M aetheros/tools/browser_dialog_tool.py
+ M aetheros/tools/browser_tool.py
+ M aetheros/tools/checkpoint_manager.py
+ M aetheros/tools/code_execution_tool.py
+ M aetheros/tools/computer_use/backend.py
+ M aetheros/tools/computer_use/cua_backend.py
+ M aetheros/tools/computer_use/schema.py
+ M aetheros/tools/computer_use/tool.py
+ M aetheros/tools/cronjob_tools.py
+ M aetheros/tools/delegate_tool.py
+ M aetheros/tools/environments/docker.py
+ M aetheros/tools/image_generation_tool.py
+ M aetheros/tools/kanban_tools.py
+ M aetheros/tools/mcp_tool.py
+ M aetheros/tools/memory_tool.py
+ M aetheros/tools/registry.py
+ M aetheros/tools/send_message_tool.py
+ M aetheros/tools/skill_manager_tool.py
+ M aetheros/tools/skills_hub.py
+ M aetheros/tools/skills_tool.py
+ M aetheros/tools/tool_backend_helpers.py
+ M aetheros/tools/tts_tool.py
+ M aetheros/tools/web_tools.py
+ M aetheros/toolsets.py
+ M aetheros/tui_gateway/event_publisher.py
+ M aetheros/tui_gateway/server.py
+ M aetheros/ui-tui/src/app/slash/commands/session.ts
+ M aetheros/uv.lock
+ M aetheros/web/index.html
+ M aetheros/web/src/App.tsx
+ M aetheros/web/src/components/AuthWidget.tsx
+ M aetheros/web/src/components/Backdrop.tsx
+ M aetheros/web/src/components/ToolsetConfigDrawer.tsx
+ M aetheros/web/src/contexts/SystemActions.tsx
+ M aetheros/web/src/i18n/af.ts
+ M aetheros/web/src/i18n/de.ts
+ M aetheros/web/src/i18n/es.ts
+ M aetheros/web/src/i18n/fr.ts
+ M aetheros/web/src/i18n/ga.ts
+ M aetheros/web/src/i18n/hu.ts
+ M aetheros/web/src/i18n/it.ts
+ M aetheros/web/src/i18n/ko.ts
+ M aetheros/web/src/i18n/pt.ts
+ M aetheros/web/src/i18n/ru.ts
+ M aetheros/web/src/i18n/tr.ts
+ M aetheros/web/src/i18n/uk.ts
+ M aetheros/web/src/lib/api.ts
+ M aetheros/web/src/lib/resolve-page-title.ts
+ M aetheros/web/src/pages/ChannelsPage.tsx
+ M aetheros/web/src/pages/ChatPage.tsx
+ M aetheros/web/src/pages/CronPage.tsx
+ M aetheros/web/src/pages/EnvPage.tsx
+ M aetheros/web/src/pages/SkillsPage.tsx
+ M aetheros/web/src/pages/SystemPage.tsx
+ M aetheros/web/src/pages/tasks/TaskDetailPage.tsx
+ M aetheros/web/src/themes/types.ts
+ M aetheros/website/docs/developer-guide/acp-internals.md
+ M aetheros/website/docs/developer-guide/adding-platform-adapters.md
+ M aetheros/website/docs/developer-guide/adding-providers.md
+ M aetheros/website/docs/developer-guide/adding-tools.md
+ M aetheros/website/docs/developer-guide/agent-loop.md
+ M aetheros/website/docs/developer-guide/architecture.md
+ M aetheros/website/docs/developer-guide/context-compression-and-caching.md
+ M aetheros/website/docs/developer-guide/context-engine-plugin.md
+ M aetheros/website/docs/developer-guide/contributing.md
+ M aetheros/website/docs/developer-guide/creating-skills.md
+ M aetheros/website/docs/developer-guide/cron-internals.md
+ M aetheros/website/docs/developer-guide/gateway-internals.md
+ M aetheros/website/docs/developer-guide/image-gen-provider-plugin.md
+ M aetheros/website/docs/developer-guide/memory-provider-plugin.md
+ M aetheros/website/docs/developer-guide/model-provider-plugin.md
+ M aetheros/website/docs/developer-guide/plugin-llm-access.md
+ M aetheros/website/docs/developer-guide/programmatic-integration.md
+ M aetheros/website/docs/developer-guide/provider-runtime.md
+ M aetheros/website/docs/developer-guide/session-storage.md
+ M aetheros/website/docs/developer-guide/video-gen-provider-plugin.md
+ M aetheros/website/docs/developer-guide/web-search-provider-plugin.md
+ M aetheros/website/docs/getting-started/installation.md
+ M aetheros/website/docs/getting-started/learning-path.md
+ M aetheros/website/docs/getting-started/nix-setup.md
+ M aetheros/website/docs/getting-started/quickstart.md
+ M aetheros/website/docs/getting-started/termux.md
+ M aetheros/website/docs/getting-started/updating.md
+ M aetheros/website/docs/guides/automate-with-cron.md
+ M aetheros/website/docs/guides/automation-blueprints.md
+ M aetheros/website/docs/guides/aws-bedrock.md
+ M aetheros/website/docs/guides/azure-foundry.md
+ M aetheros/website/docs/guides/cron-script-only.md
+ M aetheros/website/docs/guides/cron-troubleshooting.md
+ M aetheros/website/docs/guides/daily-briefing-bot.md
+ M aetheros/website/docs/guides/github-pr-review-agent.md
+ M aetheros/website/docs/guides/google-gemini.md
+ M aetheros/website/docs/guides/local-llm-on-mac.md
+ M aetheros/website/docs/guides/local-ollama-setup.md
+ M aetheros/website/docs/guides/microsoft-graph-app-registration.md
+ M aetheros/website/docs/guides/migrate-from-openclaw.md
+ M aetheros/website/docs/guides/minimax-oauth.md
+ M aetheros/website/docs/guides/oauth-over-ssh.md
+ M aetheros/website/docs/guides/operate-teams-meeting-pipeline.md
+ M aetheros/website/docs/guides/pipe-script-output.md
+ M aetheros/website/docs/guides/python-library.md
+ M aetheros/website/docs/guides/run-hermes-with-nous-portal.md
+ M aetheros/website/docs/guides/run-nemotron-3-ultra-free.md
+ M aetheros/website/docs/guides/team-telegram-assistant.md
+ M aetheros/website/docs/guides/tips.md
+ M aetheros/website/docs/guides/use-mcp-with-hermes.md
+ M aetheros/website/docs/guides/use-voice-mode-with-hermes.md
+ M aetheros/website/docs/guides/webhook-github-pr-review.md
+ M aetheros/website/docs/guides/work-with-skills.md
+ M aetheros/website/docs/guides/xai-grok-oauth.md
+ M aetheros/website/docs/index.mdx
+ M aetheros/website/docs/integrations/index.md
+ M aetheros/website/docs/integrations/nous-portal.md
+ M aetheros/website/docs/integrations/providers.md
+ M aetheros/website/docs/reference/automation-blueprints-catalog.mdx
+ M aetheros/website/docs/reference/cli-commands.md
+ M aetheros/website/docs/reference/environment-variables.md
+ M aetheros/website/docs/reference/faq.md
+ M aetheros/website/docs/reference/model-catalog.md
+ M aetheros/website/docs/reference/optional-skills-catalog.md
+ M aetheros/website/docs/reference/profile-commands.md
+ M aetheros/website/docs/reference/skills-catalog.md
+ M aetheros/website/docs/reference/slash-commands.md
+ M aetheros/website/docs/reference/tools-reference.md
+ M aetheros/website/docs/reference/toolsets-reference.md
+ M aetheros/website/docs/user-guide/checkpoints-and-rollback.md
+ M aetheros/website/docs/user-guide/cli.md
+ M aetheros/website/docs/user-guide/configuration.md
+ M aetheros/website/docs/user-guide/configuring-models.md
+ M aetheros/website/docs/user-guide/desktop.md
+ M aetheros/website/docs/user-guide/docker.md
+ M aetheros/website/docs/user-guide/features/acp.md
+ M aetheros/website/docs/user-guide/features/api-server.md
+ M aetheros/website/docs/user-guide/features/batch-processing.md
+ M aetheros/website/docs/user-guide/features/browser.md
+ M aetheros/website/docs/user-guide/features/built-in-plugins.md
+ M aetheros/website/docs/user-guide/features/code-execution.md
+ M aetheros/website/docs/user-guide/features/codex-app-server-runtime.md
+ M aetheros/website/docs/user-guide/features/computer-use.md
+ M aetheros/website/docs/user-guide/features/credential-pools.md
+ M aetheros/website/docs/user-guide/features/cron.md
+ M aetheros/website/docs/user-guide/features/curator.md
+ M aetheros/website/docs/user-guide/features/extending-the-dashboard.md
+ M aetheros/website/docs/user-guide/features/fallback-providers.md
+ M aetheros/website/docs/user-guide/features/honcho.md
+ M aetheros/website/docs/user-guide/features/hooks.md
+ M aetheros/website/docs/user-guide/features/image-generation.md
+ M aetheros/website/docs/user-guide/features/kanban-tutorial.md
+ M aetheros/website/docs/user-guide/features/kanban-worker-lanes.md
+ M aetheros/website/docs/user-guide/features/kanban.md
+ M aetheros/website/docs/user-guide/features/lsp.md
+ M aetheros/website/docs/user-guide/features/mcp.md
+ M aetheros/website/docs/user-guide/features/memory-providers.md
+ M aetheros/website/docs/user-guide/features/memory.md
+ M aetheros/website/docs/user-guide/features/overview.md
+ M aetheros/website/docs/user-guide/features/plugins.md
+ M aetheros/website/docs/user-guide/features/provider-routing.md
+ M aetheros/website/docs/user-guide/features/skills.md
+ M aetheros/website/docs/user-guide/features/spotify.md
+ M aetheros/website/docs/user-guide/features/subscription-proxy.md
+ M aetheros/website/docs/user-guide/features/tool-gateway.md
+ M aetheros/website/docs/user-guide/features/tools.md
+ M aetheros/website/docs/user-guide/features/tts.md
+ M aetheros/website/docs/user-guide/features/vision.md
+ M aetheros/website/docs/user-guide/features/voice-mode.md
+ M aetheros/website/docs/user-guide/features/web-dashboard.md
+ M aetheros/website/docs/user-guide/features/web-search.md
+ M aetheros/website/docs/user-guide/features/x-search.md
+ M aetheros/website/docs/user-guide/git-worktrees.md
+ M aetheros/website/docs/user-guide/messaging/bluebubbles.md
+ M aetheros/website/docs/user-guide/messaging/dingtalk.md
+ M aetheros/website/docs/user-guide/messaging/discord.md
+ M aetheros/website/docs/user-guide/messaging/email.md
+ M aetheros/website/docs/user-guide/messaging/feishu.md
+ M aetheros/website/docs/user-guide/messaging/google_chat.md
+ M aetheros/website/docs/user-guide/messaging/homeassistant.md
+ M aetheros/website/docs/user-guide/messaging/index.md
+ M aetheros/website/docs/user-guide/messaging/line.md
+ M aetheros/website/docs/user-guide/messaging/matrix.md
+ M aetheros/website/docs/user-guide/messaging/mattermost.md
+ M aetheros/website/docs/user-guide/messaging/msgraph-webhook.md
+ M aetheros/website/docs/user-guide/messaging/ntfy.md
+ M aetheros/website/docs/user-guide/messaging/open-webui.md
+ M aetheros/website/docs/user-guide/messaging/photon.md
+ M aetheros/website/docs/user-guide/messaging/qqbot.md
+ M aetheros/website/docs/user-guide/messaging/signal.md
+ M aetheros/website/docs/user-guide/messaging/simplex.md
+ M aetheros/website/docs/user-guide/messaging/slack.md
+ M aetheros/website/docs/user-guide/messaging/sms.md
+ M aetheros/website/docs/user-guide/messaging/teams-meetings.md
+ M aetheros/website/docs/user-guide/messaging/teams.md
+ M aetheros/website/docs/user-guide/messaging/telegram.md
+ M aetheros/website/docs/user-guide/messaging/webhooks.md
+ M aetheros/website/docs/user-guide/messaging/wecom-callback.md
+ M aetheros/website/docs/user-guide/messaging/wecom.md
+ M aetheros/website/docs/user-guide/messaging/weixin.md
+ M aetheros/website/docs/user-guide/messaging/whatsapp.md
+ M aetheros/website/docs/user-guide/messaging/yuanbao.md
+ M aetheros/website/docs/user-guide/multi-profile-gateways.md
+ M aetheros/website/docs/user-guide/profile-distributions.md
+ M aetheros/website/docs/user-guide/profiles.md
+ M aetheros/website/docs/user-guide/secrets/bitwarden.md
+ M aetheros/website/docs/user-guide/security.md
+ M aetheros/website/docs/user-guide/sessions.md
+ M aetheros/website/docs/user-guide/skills/bundled/apple/apple-macos-computer-use.md
+ M aetheros/website/docs/user-guide/skills/bundled/autonomous-ai-agents/autonomous-ai-agents-codex.md
+ M aetheros/website/docs/user-guide/skills/bundled/autonomous-ai-agents/autonomous-ai-agents-hermes-agent.md
+ M aetheros/website/docs/user-guide/skills/bundled/data-science/data-science-jupyter-live-kernel.md
+ M aetheros/website/docs/user-guide/skills/bundled/devops/devops-kanban-orchestrator.md
+ M aetheros/website/docs/user-guide/skills/bundled/devops/devops-kanban-worker.md
+ M aetheros/website/docs/user-guide/skills/bundled/productivity/productivity-airtable.md
+ M aetheros/website/docs/user-guide/skills/bundled/productivity/productivity-teams-meeting-pipeline.md
+ M aetheros/website/docs/user-guide/skills/bundled/software-development/software-development-node-inspect-debugger.md
+ M aetheros/website/docs/user-guide/skills/bundled/software-development/software-development-python-debugpy.md
+ M aetheros/website/docs/user-guide/skills/optional/autonomous-ai-agents/autonomous-ai-agents-antigravity-cli.md
+ M aetheros/website/docs/user-guide/skills/optional/autonomous-ai-agents/autonomous-ai-agents-blackbox.md
+ M aetheros/website/docs/user-guide/skills/optional/autonomous-ai-agents/autonomous-ai-agents-grok.md
+ M aetheros/website/docs/user-guide/skills/optional/autonomous-ai-agents/autonomous-ai-agents-honcho.md
+ M aetheros/website/docs/user-guide/skills/optional/autonomous-ai-agents/autonomous-ai-agents-openhands.md
+ M aetheros/website/docs/user-guide/skills/optional/blockchain/blockchain-evm.md
+ M aetheros/website/docs/user-guide/skills/optional/blockchain/blockchain-hyperliquid.md
+ M aetheros/website/docs/user-guide/skills/optional/blockchain/blockchain-solana.md
+ M aetheros/website/docs/user-guide/skills/optional/communication/communication-one-three-one-rule.md
+ M aetheros/website/docs/user-guide/skills/optional/creative/creative-baoyu-article-illustrator.md
+ M aetheros/website/docs/user-guide/skills/optional/creative/creative-baoyu-comic.md
+ M aetheros/website/docs/user-guide/skills/optional/creative/creative-blender-mcp.md
+ M aetheros/website/docs/user-guide/skills/optional/creative/creative-concept-diagrams.md
+ M aetheros/website/docs/user-guide/skills/optional/creative/creative-creative-ideation.md
+ M aetheros/website/docs/user-guide/skills/optional/creative/creative-hyperframes.md
+ M aetheros/website/docs/user-guide/skills/optional/creative/creative-kanban-video-orchestrator.md
+ M aetheros/website/docs/user-guide/skills/optional/creative/creative-meme-generation.md
+ M aetheros/website/docs/user-guide/skills/optional/creative/creative-pixel-art.md
+ M aetheros/website/docs/user-guide/skills/optional/devops/devops-cli.md
+ M aetheros/website/docs/user-guide/skills/optional/devops/devops-docker-management.md
+ M aetheros/website/docs/user-guide/skills/optional/devops/devops-hermes-s6-container-supervision.md
+ M aetheros/website/docs/user-guide/skills/optional/devops/devops-pinggy-tunnel.md
+ M aetheros/website/docs/user-guide/skills/optional/devops/devops-watchers.md
+ M aetheros/website/docs/user-guide/skills/optional/dogfood/dogfood-adversarial-ux-test.md
+ M aetheros/website/docs/user-guide/skills/optional/email/email-agentmail.md
+ M aetheros/website/docs/user-guide/skills/optional/finance/finance-3-statement-model.md
+ M aetheros/website/docs/user-guide/skills/optional/finance/finance-comps-analysis.md
+ M aetheros/website/docs/user-guide/skills/optional/finance/finance-dcf-model.md
+ M aetheros/website/docs/user-guide/skills/optional/finance/finance-excel-author.md
+ M aetheros/website/docs/user-guide/skills/optional/finance/finance-lbo-model.md
+ M aetheros/website/docs/user-guide/skills/optional/finance/finance-merger-model.md
+ M aetheros/website/docs/user-guide/skills/optional/finance/finance-pptx-author.md
+ M aetheros/website/docs/user-guide/skills/optional/finance/finance-stocks.md
+ M aetheros/website/docs/user-guide/skills/optional/gaming/gaming-minecraft-modpack-server.md
+ M aetheros/website/docs/user-guide/skills/optional/gaming/gaming-pokemon-player.md
+ M aetheros/website/docs/user-guide/skills/optional/health/health-fitness-nutrition.md
+ M aetheros/website/docs/user-guide/skills/optional/health/health-neuroskill-bci.md
+ M aetheros/website/docs/user-guide/skills/optional/mcp/mcp-fastmcp.md
+ M aetheros/website/docs/user-guide/skills/optional/mcp/mcp-mcporter.md
+ M aetheros/website/docs/user-guide/skills/optional/migration/migration-openclaw-migration.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-accelerate.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-chroma.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-clip.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-faiss.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-flash-attention.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-guidance.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-huggingface-tokenizers.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-inference-outlines.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-instructor.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-lambda-labs.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-llava.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-modal.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-nemo-curator.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-obliteratus.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-peft.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-pinecone.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-pytorch-fsdp.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-pytorch-lightning.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-qdrant.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-research-dspy.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-saelens.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-simpo.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-slime.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-stable-diffusion.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-tensorrt-llm.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-torchtitan.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-training-axolotl.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-training-trl-fine-tuning.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-training-unsloth.md
+ M aetheros/website/docs/user-guide/skills/optional/mlops/mlops-whisper.md
+ M aetheros/website/docs/user-guide/skills/optional/productivity/productivity-canvas.md
+ M aetheros/website/docs/user-guide/skills/optional/productivity/productivity-here-now.md
+ M aetheros/website/docs/user-guide/skills/optional/productivity/productivity-memento-flashcards.md
+ M aetheros/website/docs/user-guide/skills/optional/productivity/productivity-shop-app.md
+ M aetheros/website/docs/user-guide/skills/optional/productivity/productivity-shopify.md
+ M aetheros/website/docs/user-guide/skills/optional/productivity/productivity-siyuan.md
+ M aetheros/website/docs/user-guide/skills/optional/productivity/productivity-telephony.md
+ M aetheros/website/docs/user-guide/skills/optional/research/research-bioinformatics.md
+ M aetheros/website/docs/user-guide/skills/optional/research/research-darwinian-evolver.md
+ M aetheros/website/docs/user-guide/skills/optional/research/research-domain-intel.md
+ M aetheros/website/docs/user-guide/skills/optional/research/research-drug-discovery.md
+ M aetheros/website/docs/user-guide/skills/optional/research/research-duckduckgo-search.md
+ M aetheros/website/docs/user-guide/skills/optional/research/research-gitnexus-explorer.md
+ M aetheros/website/docs/user-guide/skills/optional/research/research-osint-investigation.md
+ M aetheros/website/docs/user-guide/skills/optional/research/research-parallel-cli.md
+ M aetheros/website/docs/user-guide/skills/optional/research/research-qmd.md
+ M aetheros/website/docs/user-guide/skills/optional/research/research-scrapling.md
+ M aetheros/website/docs/user-guide/skills/optional/research/research-searxng-search.md
+ M aetheros/website/docs/user-guide/skills/optional/security/security-1password.md
+ M aetheros/website/docs/user-guide/skills/optional/security/security-godmode.md
+ M aetheros/website/docs/user-guide/skills/optional/security/security-oss-forensics.md
+ M aetheros/website/docs/user-guide/skills/optional/security/security-sherlock.md
+ M aetheros/website/docs/user-guide/skills/optional/security/security-web-pentest.md
+ M aetheros/website/docs/user-guide/skills/optional/software-development/software-development-code-wiki.md
+ M aetheros/website/docs/user-guide/skills/optional/software-development/software-development-rest-graphql-debug.md
+ M aetheros/website/docs/user-guide/skills/optional/software-development/software-development-subagent-driven-development.md
+ M aetheros/website/docs/user-guide/skills/optional/web-development/web-development-page-agent.md
+ M aetheros/website/docs/user-guide/tui.md
+ M aetheros/website/docs/user-guide/windows-native.md
+ M aetheros/website/docs/user-guide/windows-wsl-quickstart.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/acp-internals.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/adding-platform-adapters.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/adding-providers.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/adding-tools.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/agent-loop.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/architecture.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/context-compression-and-caching.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/context-engine-plugin.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/contributing.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/creating-skills.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/cron-internals.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/gateway-internals.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/image-gen-provider-plugin.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/memory-provider-plugin.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/model-provider-plugin.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/plugin-llm-access.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/programmatic-integration.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/provider-runtime.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/session-storage.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/video-gen-provider-plugin.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/developer-guide/web-search-provider-plugin.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/getting-started/installation.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/getting-started/nix-setup.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/getting-started/quickstart.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/getting-started/termux.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/getting-started/updating.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/automate-with-cron.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/automation-blueprints.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/aws-bedrock.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/azure-foundry.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/build-a-hermes-plugin.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/cron-script-only.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/cron-troubleshooting.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/daily-briefing-bot.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/github-pr-review-agent.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/google-gemini.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/local-llm-on-mac.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/local-ollama-setup.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/microsoft-graph-app-registration.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/migrate-from-openclaw.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/minimax-oauth.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/oauth-over-ssh.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/operate-teams-meeting-pipeline.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/pipe-script-output.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/python-library.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/run-hermes-with-nous-portal.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/team-telegram-assistant.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/tips.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/use-mcp-with-hermes.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/use-voice-mode-with-hermes.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/webhook-github-pr-review.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/work-with-skills.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/xai-grok-oauth.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/index.mdx
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/integrations/index.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/integrations/nous-portal.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/integrations/providers.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/cli-commands.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/environment-variables.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/faq.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/model-catalog.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/optional-skills-catalog.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/profile-commands.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/skills-catalog.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/slash-commands.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/tools-reference.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/reference/toolsets-reference.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/checkpoints-and-rollback.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/cli.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/configuration.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/configuring-models.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/docker.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/acp.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/api-server.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/batch-processing.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/browser.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/built-in-plugins.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/codex-app-server-runtime.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/computer-use.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/credential-pools.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/cron.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/curator.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/extending-the-dashboard.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/fallback-providers.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/honcho.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/hooks.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/image-generation.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/kanban-tutorial.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/kanban-worker-lanes.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/kanban.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/lsp.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/mcp.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/memory-providers.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/memory.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/overview.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/plugins.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/skills.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/spotify.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/subscription-proxy.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/tool-gateway.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/tools.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/tts.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/voice-mode.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/web-dashboard.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/web-search.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/features/x-search.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/git-worktrees.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/bluebubbles.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/dingtalk.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/discord.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/email.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/feishu.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/google_chat.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/homeassistant.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/index.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/line.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/matrix.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/mattermost.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/msgraph-webhook.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/ntfy.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/open-webui.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/qqbot.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/signal.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/simplex.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/slack.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/sms.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/teams-meetings.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/telegram.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/webhooks.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/wecom-callback.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/wecom.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/weixin.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/whatsapp.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/messaging/yuanbao.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/profile-distributions.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/profiles.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/secrets/bitwarden.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/security.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/sessions.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/bundled/apple/apple-macos-computer-use.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/bundled/autonomous-ai-agents/autonomous-ai-agents-codex.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/bundled/autonomous-ai-agents/autonomous-ai-agents-hermes-agent.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/bundled/devops/devops-kanban-orchestrator.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/bundled/devops/devops-kanban-worker.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/bundled/productivity/productivity-airtable.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/bundled/productivity/productivity-teams-meeting-pipeline.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/bundled/software-development/software-development-node-inspect-debugger.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/bundled/software-development/software-development-python-debugpy.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/autonomous-ai-agents/autonomous-ai-agents-blackbox.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/autonomous-ai-agents/autonomous-ai-agents-honcho.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/blockchain/blockchain-evm.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/blockchain/blockchain-hyperliquid.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/blockchain/blockchain-solana.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/communication/communication-one-three-one-rule.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/creative/creative-blender-mcp.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/creative/creative-concept-diagrams.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/creative/creative-hyperframes.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/creative/creative-kanban-video-orchestrator.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/creative/creative-meme-generation.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/devops/devops-cli.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/devops/devops-docker-management.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/devops/devops-pinggy-tunnel.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/devops/devops-watchers.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/dogfood/dogfood-adversarial-ux-test.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/email/email-agentmail.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/finance/finance-3-statement-model.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/finance/finance-comps-analysis.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/finance/finance-dcf-model.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/finance/finance-excel-author.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/finance/finance-lbo-model.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/finance/finance-merger-model.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/finance/finance-pptx-author.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/finance/finance-stocks.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/health/health-fitness-nutrition.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/health/health-neuroskill-bci.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mcp/mcp-fastmcp.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mcp/mcp-mcporter.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/migration/migration-openclaw-migration.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-accelerate.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-chroma.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-clip.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-faiss.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-flash-attention.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-guidance.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-huggingface-tokenizers.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-inference-outlines.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-instructor.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-lambda-labs.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-llava.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-modal.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-nemo-curator.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-peft.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-pinecone.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-pytorch-fsdp.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-pytorch-lightning.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-qdrant.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-saelens.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-simpo.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-slime.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-stable-diffusion.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-tensorrt-llm.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-torchtitan.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-training-axolotl.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-training-trl-fine-tuning.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-training-unsloth.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/mlops/mlops-whisper.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/productivity/productivity-canvas.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/productivity/productivity-here-now.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/productivity/productivity-memento-flashcards.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/productivity/productivity-shop-app.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/productivity/productivity-shopify.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/productivity/productivity-siyuan.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/productivity/productivity-telephony.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/research/research-bioinformatics.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/research/research-darwinian-evolver.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/research/research-domain-intel.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/research/research-drug-discovery.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/research/research-duckduckgo-search.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/research/research-gitnexus-explorer.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/research/research-osint-investigation.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/research/research-parallel-cli.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/research/research-qmd.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/research/research-scrapling.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/research/research-searxng-search.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/security/security-1password.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/security/security-oss-forensics.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/security/security-sherlock.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/software-development/software-development-rest-graphql-debug.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/skills/optional/web-development/web-development-page-agent.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/tui.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/windows-native.md
+ M aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/user-guide/windows-wsl-quickstart.md
+ M aetheros/website/scripts/extract-automation-blueprints.py
+ M aetheros/website/scripts/generate-llms-txt.py
+ M aetheros/website/scripts/generate-skill-docs.py
+ M aetheros/website/sidebars.ts
+ M aetheros/website/static/api/model-catalog.json
+?? .freebuff/
+?? AETHEROS_CORE_BRAIN_AUDIT.md
+?? AETHEROS_MODEL_PROVIDER_AUDIT.md
+?? AUDIT_STATUS.txt
+?? PHASE_1_SUMMARY.md
+?? PHASE_2_SUMMARY.md
+?? aetheros/%SystemDrive%/
+?? aetheros/.aetheros-smoke/
+?? aetheros/.github/workflows/android-platform.yml
+?? aetheros/.github/workflows/ios-platform.yml
+?? aetheros/.github/workflows/linux-platform.yml
+?? aetheros/.github/workflows/macos-platform.yml
+?? aetheros/.github/workflows/performance.yml
+?? aetheros/.github/workflows/update-release.yml
+?? aetheros/.github/workflows/windows-desktop-certification.yml
+?? aetheros/.github/workflows/windows-platform.yml
+?? aetheros/AETHEROS_BENCHMARK_REPORT.md
+?? aetheros/AETHEROS_CAPABILITY_MATRIX.md
+?? aetheros/AETHEROS_CODING_AGENT_AUDIT.md
+?? aetheros/AETHEROS_CODING_AGENT_DESIGN.md
+?? aetheros/AETHEROS_COMM_FABRIC_REPORT.md
+?? aetheros/AETHEROS_COMPET_AGENT_AUDIT.md
+?? aetheros/AETHEROS_COMPUTER_AGENT_AUDIT.md
+?? aetheros/AETHEROS_CORE_BRAIN_AUDIT.md
+?? aetheros/AETHEROS_DESKTOP_FINAL_REPORT.md
+?? aetheros/AETHEROS_DESKTOP_UI_AUDIT.md
+?? aetheros/AETHEROS_EFFICIENCY_REPORT.md
+?? aetheros/AETHEROS_MASTER15_BASELINE.md
+?? aetheros/AETHEROS_MASTER15_FINAL_CERTIFICATION.md
+?? aetheros/AETHEROS_MASTER16_COMMUNICATION_AUDIT.md
+?? aetheros/AETHEROS_MASTER16_FINAL_REPORT.md
+?? aetheros/AETHEROS_MASTER17_FINAL_REPORT.md
+?? aetheros/AETHEROS_MASTER17_REDTEAM.md
+?? aetheros/AETHEROS_MASTER17_RESEARCH_AUDIT.md
+?? aetheros/AETHEROS_MASTER18_FINAL_REPORT.md
+?? aetheros/AETHEROS_MASTER18_MEMORY_ARCHITECTURE.md
+?? aetheros/AETHEROS_MASTER18_MEMORY_AUDIT.md
+?? aetheros/AETHEROS_MASTER19_AGENT_CATALOG.md
+?? aetheros/AETHEROS_MASTER19_FINAL_REPORT.md
+?? aetheros/AETHEROS_MASTER19_ORCHESTRATION_ARCHITECTURE.md
+?? aetheros/AETHEROS_MASTER19_ORCHESTRATION_AUDIT.md
+?? aetheros/AETHEROS_MASTER20_BENCHMARK_SPEC.md
+?? aetheros/AETHEROS_MASTER20_EVALUATION_ARCHITECTURE.md
+?? aetheros/AETHEROS_MASTER20_EVALUATION_AUDIT.md
+?? aetheros/AETHEROS_MASTER20_FINAL_REPORT.md
+?? aetheros/AETHEROS_MASTER20_RELIABILITY_SPEC.md
+?? aetheros/AETHEROS_MASTER21_FINAL_REPORT.md
+?? aetheros/AETHEROS_MASTER23_WORKSPACE_REPORT.md
+?? aetheros/AETHEROS_MASTER31_FINAL_REPORT.md
+?? aetheros/AETHEROS_MASTER_10_MULTIMODAL_AUDIT.md
+?? aetheros/AETHEROS_MASTER_10_MULTIMODAL_FINAL_REPORT.md
+?? aetheros/AETHEROS_MASTER_11_ORCHESTRATION_AUDIT.md
+?? aetheros/AETHEROS_MASTER_12_ECOSYSTEM_AUDIT.md
+?? aetheros/AETHEROS_MASTER_12_ECOSYSTEM_FINAL_REPORT.md
+?? aetheros/AETHEROS_MASTER_13_AUTOMATION_AUDIT.md
+?? aetheros/AETHEROS_MASTER_13_AUTOMATION_FINAL_REPORT.md
+?? aetheros/AETHEROS_MASTER_14_KNOWLEDGE_AUDIT.md
+?? aetheros/AETHEROS_MASTER_14_KNOWLEDGE_FINAL_REPORT.md
+?? aetheros/AETHEROS_MASTER_15_COMPUTER_USE_AUDIT.md
+?? aetheros/AETHEROS_MASTER_15_COMPUTER_USE_FINAL_REPORT.md
+?? aetheros/AETHEROS_MASTER_9_MEMORY_AUDIT.md
+?? aetheros/AETHEROS_MEMORY_AUDIT.md
+?? aetheros/AETHEROS_MODEL_PROVIDER_AUDIT.md
+?? aetheros/AETHEROS_QUALITY_REPORT.md
+?? aetheros/AETHEROS_RELEASE_AUDIT.md
+?? aetheros/AETHEROS_RESEARCH_SYSTEM_AUDIT.md
+?? aetheros/AETHEROS_SECURITY_ASSET_INVENTORY.md
+?? aetheros/AETHEROS_SECURITY_BENCHMARK.md
+?? aetheros/AETHEROS_SPEED_REPORT.md
+?? aetheros/F821_AUDIT_REPORT.md
+?? aetheros/MEMORY_AUDIT_COMPLETE.txt
+?? aetheros/MP16_REPORT.md
+?? aetheros/SECURITY_REPORT.md
+?? aetheros/aetheros_actions/
+?? aetheros/aetheros_agent_economy/
+?? aetheros/aetheros_ai_runtime/
+?? aetheros/aetheros_automation/core/task_queue.py
+?? aetheros/aetheros_automation/enhanced_orchestrator.py
+?? aetheros/aetheros_automation/identity/
+?? aetheros/aetheros_automation/lifecycle/
+?? aetheros/aetheros_automation/monitoring/
+?? aetheros/aetheros_automation/orchestrator/agent_engine.py
+?? aetheros/aetheros_automation/orchestrator/security.py
+?? aetheros/aetheros_automation/routing/model_router.py.bak
+?? aetheros/aetheros_autonomy/
+?? aetheros/aetheros_benchmark_results.json
+?? aetheros/aetheros_benchmark_results.jsonl
+?? aetheros/aetheros_cli/aetheros_account.py
+?? aetheros/aetheros_cli/aetheros_subscription.py
+?? aetheros/aetheros_cli/agent_network_cmd.py
+?? aetheros/aetheros_cli/api_key_store.py
+?? aetheros/aetheros_cli/automation_cmd.py
+?? aetheros/aetheros_cli/cognitive_cmd.py
+?? aetheros/aetheros_cli/evolution_cmd.py
+?? aetheros/aetheros_cli/extension_cmd.py
+?? aetheros/aetheros_cli/governance_cmd.py
+?? aetheros/aetheros_cli/media.py
+?? aetheros/aetheros_cli/memory_intelligence_cli.py
+?? aetheros/aetheros_cli/memory_management.py
+?? aetheros/aetheros_cli/memory_os_cmd.py
+?? aetheros/aetheros_cli/missions.py
+?? aetheros/aetheros_cli/model_registry.py
+?? aetheros/aetheros_cli/model_router.py
+?? aetheros/aetheros_cli/physical_cmd.py
+?? aetheros/aetheros_cli/provider_health.py
+?? aetheros/aetheros_cli/providers_cmd.py
+?? aetheros/aetheros_cli/proxy/adapters/aetheros_portal.py
+?? aetheros/aetheros_cli/quality.py
+?? aetheros/aetheros_cli/reliability_cli.py
+?? aetheros/aetheros_cli/research_cmd.py
+?? aetheros/aetheros_cli/science_cmd.py
+?? aetheros/aetheros_cli/subcommands/capsule.py
+?? aetheros/aetheros_cli/subcommands/kernel.py
+?? aetheros/aetheros_cli/subcommands/memory_intelligence.py
+?? aetheros/aetheros_cli/subcommands/reliability.py
+?? aetheros/aetheros_cli/subcommands/storage.py
+?? aetheros/aetheros_cli/trust_cmd.py
+?? aetheros/aetheros_cli/usage_cmd.py
+?? aetheros/aetheros_cognitive/
+?? aetheros/aetheros_comm/
+?? aetheros/aetheros_comms/
+?? aetheros/aetheros_computer/
+?? aetheros/aetheros_control_plane/
+?? aetheros/aetheros_data/
+?? aetheros/aetheros_embodied/
+?? aetheros/aetheros_extensions/
+?? aetheros/aetheros_knowledge/deep_research.py
+?? aetheros/aetheros_master15_baseline.json
+?? aetheros/aetheros_master15_final_status.json
+?? aetheros/aetheros_master16_final_status.json
+?? aetheros/aetheros_master17_final_status.json
+?? aetheros/aetheros_master18_final_status.json
+?? aetheros/aetheros_master19_final_status.json
+?? aetheros/aetheros_master20_final_status.json
+?? aetheros/aetheros_memory_intelligence/
+?? aetheros/aetheros_mesh/
+?? aetheros/aetheros_network/
+?? aetheros/aetheros_observability/
+?? aetheros/aetheros_platform/a2a.py
+?? aetheros/aetheros_platform/agents.py
+?? aetheros/aetheros_platform/android_contract.py
+?? aetheros/aetheros_platform/auth.py
+?? aetheros/aetheros_platform/bench.py
+?? aetheros/aetheros_platform/desktop/startup.py
+?? aetheros/aetheros_platform/docgen.py
+?? aetheros/aetheros_platform/domains.py
+?? aetheros/aetheros_platform/errors.py
+?? aetheros/aetheros_platform/events.py
+?? aetheros/aetheros_platform/gateway.py
+?? aetheros/aetheros_platform/linux_native.py
+?? aetheros/aetheros_platform/linux_paths.py
+?? aetheros/aetheros_platform/linux_session.py
+?? aetheros/aetheros_platform/macos_keychain.py
+?? aetheros/aetheros_platform/macos_paths.py
+?? aetheros/aetheros_platform/macos_tcc.py
+?? aetheros/aetheros_platform/mcp.py
+?? aetheros/aetheros_platform/mobile_contract.py
+?? aetheros/aetheros_platform/observability/eventlog.py
+?? aetheros/aetheros_platform/packages.py
+?? aetheros/aetheros_platform/policy.py
+?? aetheros/aetheros_platform/ratelimit.py
+?? aetheros/aetheros_platform/registry.py
+?? aetheros/aetheros_platform/sandbox.py
+?? aetheros/aetheros_platform/schemas.py
+?? aetheros/aetheros_platform/skills.py
+?? aetheros/aetheros_platform/tools.py
+?? aetheros/aetheros_platform/tsgen.py
+?? aetheros/aetheros_platform/web_contract.py
+?? aetheros/aetheros_platform/windows_capabilities.py
+?? aetheros/aetheros_reality/
+?? aetheros/aetheros_reliability/
+?? aetheros/aetheros_runtime/cache.py
+?? aetheros/aetheros_runtime/health.py
+?? aetheros/aetheros_runtime/models.py
+?? aetheros/aetheros_runtime/privacy.py
+?? aetheros/aetheros_runtime/router.py
+?? aetheros/aetheros_runtime/runtime.py
+?? aetheros/aetheros_science/
+?? aetheros/aetheros_sdk/
+?? aetheros/aetheros_security/action_guard/
+?? aetheros/aetheros_security/approval/
+?? aetheros/aetheros_security/authz/
+?? aetheros/aetheros_security/budget/
+?? aetheros/aetheros_security/classification/
+?? aetheros/aetheros_security/filesystem/
+?? aetheros/aetheros_security/identity/
+?? aetheros/aetheros_security/kill_switch/
+?? aetheros/aetheros_security/manifest/
+?? aetheros/aetheros_security/mcp/
+?? aetheros/aetheros_security/policy_hierarchy/
+?? aetheros/aetheros_security/redaction/
+?? aetheros/aetheros_security/response/
+?? aetheros/aetheros_security/runtime.py
+?? aetheros/aetheros_security/scorecard/
+?? aetheros/aetheros_security/secops/
+?? aetheros/aetheros_security/tokens/
+?? aetheros/aetheros_security/tool_authz/
+?? aetheros/aetheros_self_improvement/
+?? aetheros/aetheros_swarm/
+?? aetheros/agent/aetheros_portal_tags.py
+?? aetheros/agent/aetheros_rate_guard.py
+?? aetheros/agent/anthropic_provider_impl.py
+?? aetheros/agent/authorization_engine.py
+?? aetheros/agent/continuous_authorization.py
+?? aetheros/agent/demo_unified_model_registry.py
+?? aetheros/agent/memory_os/
+?? aetheros/agent/multi_agent_integration/
+?? aetheros/agent/multimodal/
+?? aetheros/agent/operating_layer.py
+?? aetheros/agent/orchestration/
+?? aetheros/agent/provider_init.py
+?? aetheros/agent/provider_init_enhanced.py
+?? aetheros/agent/provider_registry.py
+?? aetheros/agent/provider_registry_enhanced.py
+?? aetheros/agent/quality/
+?? aetheros/agent/research/
+?? aetheros/agent/security_policy.py
+?? aetheros/agent/security_principal.py
+?? aetheros/agent/test_provider_registry_enhanced.py
+?? aetheros/agent/test_unified_model_registry.py
+?? aetheros/agent/test_universal_provider.py
+?? aetheros/agent/tool_security.py
+?? aetheros/agent/unified_model_registry.py
+?? aetheros/agent/universal_provider_interface.py
+?? aetheros/apps/android/
+?? aetheros/apps/desktop/dist-packaged/
+?? aetheros/apps/desktop/docs/DEPENDENCY_AUDIT.md
+?? aetheros/apps/desktop/docs/SECURITY_AUDIT.md
+?? aetheros/apps/desktop/electron/api-path.test.cjs
+?? aetheros/apps/desktop/electron/tray-menu.cjs
+?? aetheros/apps/desktop/electron/tray-menu.test.cjs
+?? aetheros/apps/desktop/electron/tray.cjs
+?? aetheros/apps/desktop/electron/update-manifest.cjs
+?? aetheros/apps/desktop/electron/update-manifest.test.cjs
+?? aetheros/apps/desktop/package-lock.json
+?? aetheros/apps/desktop/scripts/release/canary-install.mjs
+?? aetheros/apps/desktop/scripts/release/check-packaging-path-lengths.mjs
+?? aetheros/apps/desktop/scripts/release/check-packaging-path-lengths.test.mjs
+?? aetheros/apps/desktop/scripts/release/preflight-windows.mjs
+?? aetheros/apps/desktop/scripts/release/release-config.cjs
+?? aetheros/apps/desktop/scripts/release/release-guards.cjs
+?? aetheros/apps/desktop/scripts/release/release-windows.mjs
+?? aetheros/apps/desktop/scripts/release/sign-windows.mjs
+?? aetheros/apps/desktop/scripts/release/validate-artifacts.mjs
+?? aetheros/apps/desktop/scripts/release/validate-windows-release.mjs
+?? aetheros/apps/desktop/scripts/release/verify-notarization.mjs
+?? aetheros/apps/desktop/scripts/release/windows-release-guards.test.cjs
+?? aetheros/apps/desktop/scripts/release/write-artifact-manifest.mjs
+?? aetheros/apps/desktop/src/app/agent-network/
+?? aetheros/apps/desktop/src/app/agent/
+?? aetheros/apps/desktop/src/app/automation-center/
+?? aetheros/apps/desktop/src/app/computer-usage/
+?? aetheros/apps/desktop/src/app/extensions-center/
+?? aetheros/apps/desktop/src/app/security-center/alerts.test.tsx
+?? aetheros/apps/desktop/src/app/security-center/approvals.test.tsx
+?? aetheros/apps/desktop/src/app/security-center/audit.test.tsx
+?? aetheros/apps/desktop/src/app/swarm-center/
+?? aetheros/apps/desktop/src/components/agent/
+?? aetheros/apps/desktop/src/components/agi/
+?? aetheros/apps/desktop/src/components/brand/
+?? aetheros/apps/desktop/src/components/system-status/
+?? aetheros/apps/desktop/src/components/ui/empty-state.tsx
+?? aetheros/apps/desktop/src/components/ui/primitives.test.tsx
+?? aetheros/apps/desktop/src/components/ui/status-dot.tsx
+?? aetheros/apps/desktop/src/components/ui/table.tsx
+?? aetheros/apps/desktop/src/design-system/
+?? aetheros/apps/desktop/src/lib/agent-network-client.ts
+?? aetheros/apps/desktop/src/lib/agi-states.test.ts
+?? aetheros/apps/desktop/src/lib/agi-states.ts
+?? aetheros/apps/desktop/src/lib/automation-client.ts
+?? aetheros/apps/desktop/src/lib/backup.test.ts
+?? aetheros/apps/desktop/src/lib/backup.ts
+?? aetheros/apps/desktop/src/lib/context-model.test.ts
+?? aetheros/apps/desktop/src/lib/context-model.ts
+?? aetheros/apps/desktop/src/lib/emergency-stop.test.ts
+?? aetheros/apps/desktop/src/lib/emergency-stop.ts
+?? aetheros/apps/desktop/src/lib/extension-client.ts
+?? aetheros/apps/desktop/src/lib/format-bytes.ts
+?? aetheros/apps/desktop/src/lib/format-timestamp.ts
+?? aetheros/apps/desktop/src/lib/format.test.ts
+?? aetheros/apps/desktop/src/lib/memory2-client.ts
+?? aetheros/apps/desktop/src/lib/secret-redaction.test.ts
+?? aetheros/apps/desktop/src/lib/secret-redaction.ts
+?? aetheros/apps/desktop/src/lib/session-actions.test.ts
+?? aetheros/apps/desktop/src/lib/session-actions.ts
+?? aetheros/apps/desktop/src/lib/swarm-client.ts
+?? aetheros/apps/desktop/src/lib/tool-registry.test.ts
+?? aetheros/apps/desktop/src/lib/tool-registry.ts
+?? aetheros/apps/desktop/src/navigation/
+?? aetheros/apps/desktop/src/release/
+?? aetheros/apps/desktop/src/store/agent-network.ts
+?? aetheros/apps/desktop/src/store/navigation-routes.test.ts
+?? aetheros/apps/desktop/src/store/notifications-redaction.test.ts
+?? aetheros/apps/desktop/src/updater/
+?? aetheros/apps/shared/@aetheros/
+?? aetheros/apps/shared/dist/
+?? aetheros/apps/shared/tests/
+?? aetheros/automation/
+?? aetheros/benchmark/
+?? aetheros/benchmark_results/
+?? aetheros/benchmarks/
+?? aetheros/brand/
+?? aetheros/check_trust.py
+?? aetheros/check_trust2.py
+?? aetheros/check_trust3.py
+?? aetheros/clean_bottom.md
+?? aetheros/clean_top.md
+?? aetheros/debug_bytes.py
+?? aetheros/debug_func.py
+?? aetheros/debug_lines.py
+?? aetheros/docs/AETHEROS_1.0.0_RELEASE_NOTES.md
+?? aetheros/docs/AETHEROS_1.0_ARCHITECTURE_SNAPSHOT.md
+?? aetheros/docs/AETHEROS_1.0_ARTIFACT_MANIFEST.json
+?? aetheros/docs/AETHEROS_1.0_CHANGELOG.md
+?? aetheros/docs/AETHEROS_1.0_DATA_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_1.0_FINAL_RELEASE_MANIFEST.json
+?? aetheros/docs/AETHEROS_1.0_MIGRATION_GUIDE.md
+?? aetheros/docs/AETHEROS_1.0_OPERATIONS_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_1.0_PLATFORM_RELEASE_MATRIX.md
+?? aetheros/docs/AETHEROS_1.0_PRODUCTION_BLOCKERS.md
+?? aetheros/docs/AETHEROS_1.0_PRODUCTION_RISK_REGISTER.md
+?? aetheros/docs/AETHEROS_1.0_RELEASE_TRUST_REPORT.md
+?? aetheros/docs/AETHEROS_1.0_SECURITY_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_1.0_SECURITY_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_1.0_SUPPORT_MODEL.md
+?? aetheros/docs/AETHEROS_1.0_TRUST_MODEL.md
+?? aetheros/docs/AETHEROS_A2A_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_A2A_DEVELOPER_GUIDE.md
+?? aetheros/docs/AETHEROS_A2A_MCP_INTEGRATION.md
+?? aetheros/docs/AETHEROS_ACCESSIBILITY.md
+?? aetheros/docs/AETHEROS_AGENT_FEDERATION.md
+?? aetheros/docs/AETHEROS_AGENT_IDENTITY.md
+?? aetheros/docs/AETHEROS_AGENT_KERNEL_BENCHMARK_REPORT.md
+?? aetheros/docs/AETHEROS_AGENT_KERNEL_IMPLEMENTATION_REPORT.md
+?? aetheros/docs/AETHEROS_AGENT_KERNEL_RELEASE_READINESS.md
+?? aetheros/docs/AETHEROS_AGENT_KERNEL_SECURITY_REPORT.md
+?? aetheros/docs/AETHEROS_AGENT_KERNEL_TEST_REPORT.md
+?? aetheros/docs/AETHEROS_AGENT_NETWORK.md
+?? aetheros/docs/AETHEROS_AGENT_NETWORK_AUDIT.md
+?? aetheros/docs/AETHEROS_AGENT_NETWORK_BENCHMARKS.md
+?? aetheros/docs/AETHEROS_AGENT_NETWORK_THREAT_MODEL.md
+?? aetheros/docs/AETHEROS_AGENT_OPERATING_LAYER.md
+?? aetheros/docs/AETHEROS_AGENT_SDK.md
+?? aetheros/docs/AETHEROS_AGENT_SECURITY.md
+?? aetheros/docs/AETHEROS_AGENT_TRUST.md
+?? aetheros/docs/AETHEROS_AGI_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_AGI_ARTIFACTS_RESULTS.md
+?? aetheros/docs/AETHEROS_AGI_SECURITY.md
+?? aetheros/docs/AETHEROS_ANDROID_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_ANDROID_TEST_MATRIX.md
+?? aetheros/docs/AETHEROS_API_REFERENCE.md
+?? aetheros/docs/AETHEROS_API_VERSIONING.md
+?? aetheros/docs/AETHEROS_AUTHENTICATION.md
+?? aetheros/docs/AETHEROS_AUTHORIZATION.md
+?? aetheros/docs/AETHEROS_AUTOMATION_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_AUTOMATION_EVALUATION.md
+?? aetheros/docs/AETHEROS_AUTOMATION_OPERATIONS.md
+?? aetheros/docs/AETHEROS_AUTOMATION_SCHEDULER.md
+?? aetheros/docs/AETHEROS_AUTOMATION_SECURITY.md
+?? aetheros/docs/AETHEROS_AUTONOMY_POLICY.md
+?? aetheros/docs/AETHEROS_BACKUP_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_BETA_ADMIN_GUIDE.md
+?? aetheros/docs/AETHEROS_BETA_PLATFORM_MATRIX.md
+?? aetheros/docs/AETHEROS_BETA_RELEASE_NOTES.md
+?? aetheros/docs/AETHEROS_BETA_RELEASE_RUNBOOK.md
+?? aetheros/docs/AETHEROS_BETA_USER_GUIDE.md
+?? aetheros/docs/AETHEROS_BRAND_AGI_LANGUAGE.md
+?? aetheros/docs/AETHEROS_BRAND_COLOR_SYSTEM.md
+?? aetheros/docs/AETHEROS_BRAND_FINAL_REPORT.md
+?? aetheros/docs/AETHEROS_BRAND_FOUNDATION.md
+?? aetheros/docs/AETHEROS_BRAND_ICONOGRAPHY.md
+?? aetheros/docs/AETHEROS_BRAND_LOGO_USAGE.md
+?? aetheros/docs/AETHEROS_BRAND_MOTION.md
+?? aetheros/docs/AETHEROS_BRAND_RADIUS.md
+?? aetheros/docs/AETHEROS_BRAND_SPACING.md
+?? aetheros/docs/AETHEROS_BRAND_THEME_FOUNDATION.md
+?? aetheros/docs/AETHEROS_BRAND_TOKENS.md
+?? aetheros/docs/AETHEROS_BRAND_TYPOGRAPHY.md
+?? aetheros/docs/AETHEROS_CHECKPOINT_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_CI_EXECUTION_CHECKLIST.md
+?? aetheros/docs/AETHEROS_COMPONENT_GUIDE.md
+?? aetheros/docs/AETHEROS_CONFLICT_RESOLUTION.md
+?? aetheros/docs/AETHEROS_CORE_CERTIFICATION_MATRIX.md
+?? aetheros/docs/AETHEROS_CRASH_RECOVERY.md
+?? aetheros/docs/AETHEROS_CROSS_PLATFORM_API.md
+?? aetheros/docs/AETHEROS_CROSS_PLATFORM_CAPABILITY_MATRIX.md
+?? aetheros/docs/AETHEROS_CROSS_PLATFORM_EXECUTION_REPORT.md
+?? aetheros/docs/AETHEROS_DATA_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_DATA_CERTIFICATION_MATRIX.md
+?? aetheros/docs/AETHEROS_DATA_INTEGRITY.md
+?? aetheros/docs/AETHEROS_DATA_MIGRATION.md
+?? aetheros/docs/AETHEROS_DATA_PORTABILITY.md
+?? aetheros/docs/AETHEROS_DATA_STORAGE_AUDIT.md
+?? aetheros/docs/AETHEROS_DEPENDENCY_GRAPH.md
+?? aetheros/docs/AETHEROS_DESIGN_SYSTEM.md
+?? aetheros/docs/AETHEROS_DEVELOPER_CLI.md
+?? aetheros/docs/AETHEROS_DEVELOPER_PLATFORM_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_DEVELOPER_SECURITY.md
+?? aetheros/docs/AETHEROS_DIGITAL_TWIN_PHYSICAL.md
+?? aetheros/docs/AETHEROS_DISASTER_RECOVERY.md
+?? aetheros/docs/AETHEROS_DISASTER_RECOVERY_RUNBOOK.md
+?? aetheros/docs/AETHEROS_DISCOVERY_PROVENANCE.md
+?? aetheros/docs/AETHEROS_EMBODIED_BENCHMARKS.md
+?? aetheros/docs/AETHEROS_EMBODIED_INTELLIGENCE.md
+?? aetheros/docs/AETHEROS_EXECUTION_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_EXECUTION_THREAT_MODEL.md
+?? aetheros/docs/AETHEROS_EXPERIMENT_ENGINE.md
+?? aetheros/docs/AETHEROS_EXTENSION_DEVELOPER_GUIDE.md
+?? aetheros/docs/AETHEROS_EXTENSION_MANIFEST.md
+?? aetheros/docs/AETHEROS_EXTENSION_MARKETPLACE.md
+?? aetheros/docs/AETHEROS_EXTENSION_PERMISSION_MODEL.md
+?? aetheros/docs/AETHEROS_EXTENSION_PLATFORM.md
+?? aetheros/docs/AETHEROS_EXTENSION_PLATFORM_AUDIT.md
+?? aetheros/docs/AETHEROS_EXTENSION_SDK.md
+?? aetheros/docs/AETHEROS_EXTENSION_SECURITY.md
+?? aetheros/docs/AETHEROS_EXTENSION_THREAT_MODEL.md
+?? aetheros/docs/AETHEROS_HARDWARE_ADAPTERS.md
+?? aetheros/docs/AETHEROS_HARDWARE_INTEGRATION.md
+?? aetheros/docs/AETHEROS_HUMAN_AGENT_INTERACTION.md
+?? aetheros/docs/AETHEROS_HYPOTHESIS_ENGINE.md
+?? aetheros/docs/AETHEROS_IOS_ACCESSIBILITY.md
+?? aetheros/docs/AETHEROS_IOS_APPSTORE.md
+?? aetheros/docs/AETHEROS_IOS_APP_INTENTS.md
+?? aetheros/docs/AETHEROS_IOS_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_IOS_AUTHENTICATION.md
+?? aetheros/docs/AETHEROS_IOS_BACKGROUND_EXECUTION.md
+?? aetheros/docs/AETHEROS_IOS_DEEP_LINKS.md
+?? aetheros/docs/AETHEROS_IOS_DEVICE_TRUST.md
+?? aetheros/docs/AETHEROS_IOS_MULTIMODAL.md
+?? aetheros/docs/AETHEROS_IOS_OFFLINE_SYNC.md
+?? aetheros/docs/AETHEROS_IOS_PRIVACY.md
+?? aetheros/docs/AETHEROS_IOS_PUSH.md
+?? aetheros/docs/AETHEROS_IOS_RELEASE.md
+?? aetheros/docs/AETHEROS_IOS_RELEASE_MANIFEST.json
+?? aetheros/docs/AETHEROS_IOS_SECURITY.md
+?? aetheros/docs/AETHEROS_IOS_TESTFLIGHT.md
+?? aetheros/docs/AETHEROS_IOS_TEST_MATRIX.md
+?? aetheros/docs/AETHEROS_IOS_TROUBLESHOOTING.md
+?? aetheros/docs/AETHEROS_IPADOS_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_LINUX_ACCESSIBILITY.md
+?? aetheros/docs/AETHEROS_LINUX_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_LINUX_COMPUTER_USE.md
+?? aetheros/docs/AETHEROS_LINUX_DBUS.md
+?? aetheros/docs/AETHEROS_LINUX_INSTALLATION.md
+?? aetheros/docs/AETHEROS_LINUX_PACKAGING.md
+?? aetheros/docs/AETHEROS_LINUX_PORTALS.md
+?? aetheros/docs/AETHEROS_LINUX_RELEASE.md
+?? aetheros/docs/AETHEROS_LINUX_RELEASE_MANIFEST.json
+?? aetheros/docs/AETHEROS_LINUX_SECURITY.md
+?? aetheros/docs/AETHEROS_LINUX_SUPPORT_MATRIX.md
+?? aetheros/docs/AETHEROS_LINUX_TROUBLESHOOTING.md
+?? aetheros/docs/AETHEROS_LINUX_UPDATES.md
+?? aetheros/docs/AETHEROS_LINUX_VM_TEST_MATRIX.md
+?? aetheros/docs/AETHEROS_LINUX_WAYLAND.md
+?? aetheros/docs/AETHEROS_LINUX_X11.md
+?? aetheros/docs/AETHEROS_LOCAL_DEVELOPMENT.md
+?? aetheros/docs/AETHEROS_MACOS_ACCESSIBILITY.md
+?? aetheros/docs/AETHEROS_MACOS_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_MACOS_COMPUTER_USE.md
+?? aetheros/docs/AETHEROS_MACOS_DISTRIBUTION.md
+?? aetheros/docs/AETHEROS_MACOS_E2E.md
+?? aetheros/docs/AETHEROS_MACOS_INSTALLATION.md
+?? aetheros/docs/AETHEROS_MACOS_KEYCHAIN.md
+?? aetheros/docs/AETHEROS_MACOS_NOTARIZATION.md
+?? aetheros/docs/AETHEROS_MACOS_PERFORMANCE.md
+?? aetheros/docs/AETHEROS_MACOS_PERMISSIONS.md
+?? aetheros/docs/AETHEROS_MACOS_RELEASE_MANIFEST.json
+?? aetheros/docs/AETHEROS_MACOS_SANDBOX_DECISION.md
+?? aetheros/docs/AETHEROS_MACOS_SECURITY.md
+?? aetheros/docs/AETHEROS_MACOS_SIGNING.md
+?? aetheros/docs/AETHEROS_MACOS_TROUBLESHOOTING.md
+?? aetheros/docs/AETHEROS_MACOS_UPDATE.md
+?? aetheros/docs/AETHEROS_MASTER_41_MEMORY_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_42_MULTI_AGENT_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_43_AUTOMATION_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_44_EXTENSION_PLATFORM_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_46_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_50_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_51_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_52_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_53_SCIENTIFIC_INTELLIGENCE_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_54_EMBODIED_INTELLIGENCE_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_58_IMPLEMENTATION_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_59_COMPLETION_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_61_DATA_COMPLETION_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_62_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_62_PERFORMANCE_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_62_PLATFORM_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_62_SECURITY_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_62_TEST_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_63_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_63_UX_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_63_UX_RESEARCH.md
+?? aetheros/docs/AETHEROS_MASTER_64_1_GAP_PLAN.md
+?? aetheros/docs/AETHEROS_MASTER_64_1_WINDOWS_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_64_WINDOWS_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_64_WINDOWS_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_65_MACOS_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_65_MACOS_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_65_MACOS_TEST_MATRIX.md
+?? aetheros/docs/AETHEROS_MASTER_66_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_66_LINUX_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_66_LINUX_COMPLETION_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_67_COMPLETION_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_67_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_67_IOS_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_68_ANDROID_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_68_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_69_EVIDENCE/
+?? aetheros/docs/AETHEROS_MASTER_69_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_69_WEB_SERVER_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_MASTER_69_WEB_SERVER_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_70_BLOCKED_TESTS.md
+?? aetheros/docs/AETHEROS_MASTER_70_E2E_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_70_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_70_PLATFORM_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_70_QA_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_70_TEST_MANIFEST.json
+?? aetheros/docs/AETHEROS_MASTER_70_TEST_MATRIX.json
+?? aetheros/docs/AETHEROS_MASTER_71_BENCHMARK_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_71_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_71_PERFORMANCE_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_71_PERFORMANCE_MATRIX.json
+?? aetheros/docs/AETHEROS_MASTER_72_EVIDENCE/
+?? aetheros/docs/AETHEROS_MASTER_72_THREAT_MODEL.md
+?? aetheros/docs/AETHEROS_MASTER_74_BETA_DEFECTS.md
+?? aetheros/docs/AETHEROS_MASTER_74_BETA_EXIT_SCORECARD.md
+?? aetheros/docs/AETHEROS_MASTER_74_BETA_TEST_MATRIX.json
+?? aetheros/docs/AETHEROS_MASTER_74_EVIDENCE/
+?? aetheros/docs/AETHEROS_MASTER_74_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_75_BLOCKED_TESTS.md
+?? aetheros/docs/AETHEROS_MASTER_75_CERTIFICATION_MATRIX.json
+?? aetheros/docs/AETHEROS_MASTER_75_COMMAND_LOG.md
+?? aetheros/docs/AETHEROS_MASTER_75_EVIDENCE/
+?? aetheros/docs/AETHEROS_MASTER_75_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_75_FINAL_TEST_MATRIX.json
+?? aetheros/docs/AETHEROS_MASTER_75_PERFORMANCE_SCORECARD.md
+?? aetheros/docs/AETHEROS_MASTER_75_PHASE_MATRIX.json
+?? aetheros/docs/AETHEROS_MASTER_75_PLATFORM_SCORECARD.md
+?? aetheros/docs/AETHEROS_MASTER_75_PRECERTIFICATION_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_75_PRODUCTION_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_75_PRODUCTION_SCORECARD.md
+?? aetheros/docs/AETHEROS_MASTER_75_RELIABILITY_SCORECARD.md
+?? aetheros/docs/AETHEROS_MASTER_75_SECURITY_SCORECARD.md
+?? aetheros/docs/AETHEROS_MASTER_75_SUPPLY_CHAIN_SCORECARD.md
+?? aetheros/docs/AETHEROS_MASTER_76_ARTIFACT_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_76_BLOCKED_TESTS.md
+?? aetheros/docs/AETHEROS_MASTER_76_CI_RECOVERY_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_76_COMMAND_LOG.md
+?? aetheros/docs/AETHEROS_MASTER_76_DEVICE_MATRIX.md
+?? aetheros/docs/AETHEROS_MASTER_76_EVIDENCE/
+?? aetheros/docs/AETHEROS_MASTER_76_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_76_INITIAL_BLOCKER_MATRIX.md
+?? aetheros/docs/AETHEROS_MASTER_76_PERFORMANCE_VALIDATION.md
+?? aetheros/docs/AETHEROS_MASTER_76_RECOVERY_VALIDATION.md
+?? aetheros/docs/AETHEROS_MASTER_76_SBOM_PROVENANCE_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_76_SECURITY_REVALIDATION.md
+?? aetheros/docs/AETHEROS_MASTER_76_SIGNING_READINESS.md
+?? aetheros/docs/AETHEROS_MASTER_76_STABILITY_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_76_UPDATER_VALIDATION.md
+?? aetheros/docs/AETHEROS_MASTER_77_ARTIFACT_INVENTORY.json
+?? aetheros/docs/AETHEROS_MASTER_77_ARTIFACT_INVENTORY.md
+?? aetheros/docs/AETHEROS_MASTER_77_BLOCKED_TESTS.md
+?? aetheros/docs/AETHEROS_MASTER_77_BUILD_MATRIX.md
+?? aetheros/docs/AETHEROS_MASTER_77_COMMAND_LOG.md
+?? aetheros/docs/AETHEROS_MASTER_77_DESKTOP_LINUX_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_77_EVIDENCE/
+?? aetheros/docs/AETHEROS_MASTER_77_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_77_FINAL_STATUS.md
+?? aetheros/docs/AETHEROS_MASTER_77_INSTALL_TESTS.md
+?? aetheros/docs/AETHEROS_MASTER_77_LINUX_COMPATIBILITY.md
+?? aetheros/docs/AETHEROS_MASTER_77_RELEASE_ARTIFACT_MANIFEST.json
+?? aetheros/docs/AETHEROS_MASTER_77_UPDATE_VALIDATION.md
+?? aetheros/docs/AETHEROS_MASTER_78A_ARTIFACT_INVENTORY.md
+?? aetheros/docs/AETHEROS_MASTER_78A_BUILD_ENVIRONMENT.md
+?? aetheros/docs/AETHEROS_MASTER_78A_COMMAND_LOG.md
+?? aetheros/docs/AETHEROS_MASTER_78A_DESKTOP_BUILD_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_78A_EVIDENCE/
+?? aetheros/docs/AETHEROS_MASTER_78A_FAILURE_LOG.md
+?? aetheros/docs/AETHEROS_MASTER_78A_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_78A_FINAL_STATUS.md
+?? aetheros/docs/AETHEROS_MASTER_78A_MSI_PATH_FIX.md
+?? aetheros/docs/AETHEROS_MASTER_78A_WINDOWS_ARTIFACT_CHECKSUMS.txt
+?? aetheros/docs/AETHEROS_MASTER_78A_WINDOWS_RELEASE_MANIFEST.json
+?? aetheros/docs/AETHEROS_MASTER_78_DISTRIBUTION_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_78_EVIDENCE/
+?? aetheros/docs/AETHEROS_MASTER_78_WIX_LGHT0103_ROOT_CAUSE.md
+?? aetheros/docs/AETHEROS_MASTER_79_2_BLOCKED_TESTS.md
+?? aetheros/docs/AETHEROS_MASTER_79_2_CI_ARTIFACT_MANIFEST.json
+?? aetheros/docs/AETHEROS_MASTER_79_2_CI_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_79_2_COMMAND_LOG.md
+?? aetheros/docs/AETHEROS_MASTER_79_2_EVIDENCE/
+?? aetheros/docs/AETHEROS_MASTER_79_2_FINAL_ARTIFACT_MANIFEST.json
+?? aetheros/docs/AETHEROS_MASTER_79_2_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_79_2_WINDOWS_CERTIFICATION_MATRIX.md
+?? aetheros/docs/AETHEROS_MASTER_79_ARTIFACT_CHECKSUMS.txt
+?? aetheros/docs/AETHEROS_MASTER_79_BLOCKED_TESTS.md
+?? aetheros/docs/AETHEROS_MASTER_79_COMMAND_LOG.md
+?? aetheros/docs/AETHEROS_MASTER_79_EVIDENCE/
+?? aetheros/docs/AETHEROS_MASTER_79_EXECUTION_2_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_79_EXECUTION_2_ENVIRONMENT.md
+?? aetheros/docs/AETHEROS_MASTER_79_EXECUTION_2_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_79_EXECUTION_3_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_79_EXECUTION_3_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_79_FINAL_ARTIFACT_MANIFEST.json
+?? aetheros/docs/AETHEROS_MASTER_79_FINAL_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_MASTER_79_FINAL_TEST_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_79_RELEASE_ARTIFACT_MANIFEST.json
+?? aetheros/docs/AETHEROS_MASTER_79_WINDOWS_CERTIFICATION_MATRIX.md
+?? aetheros/docs/AETHEROS_MASTER_79_WINDOWS_CERTIFICATION_MATRIX_EXEC3.md
+?? aetheros/docs/AETHEROS_MASTER_79_WINDOWS_TEST_ENVIRONMENT.md
+?? aetheros/docs/AETHEROS_MASTER_80_EVIDENCE/
+?? aetheros/docs/AETHEROS_MASTER_ARCHITECTURE_AUDIT.md
+?? aetheros/docs/AETHEROS_MASTER_PROMPT_2_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_PROMPT_3_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_PROMPT_4_REPORT.md
+?? aetheros/docs/AETHEROS_MASTER_PROMPT_5_REPORT.md
+?? aetheros/docs/AETHEROS_MCP_DEVELOPER_GUIDE.md
+?? aetheros/docs/AETHEROS_MCP_EXTENSION_MODEL.md
+?? aetheros/docs/AETHEROS_MEMORY_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_MEMORY_EVALUATION.md
+?? aetheros/docs/AETHEROS_MEMORY_GRAPH.md
+?? aetheros/docs/AETHEROS_MEMORY_OPERATIONS.md
+?? aetheros/docs/AETHEROS_MEMORY_RETRIEVAL.md
+?? aetheros/docs/AETHEROS_MEMORY_SECURITY.md
+?? aetheros/docs/AETHEROS_MODEL_RUNTIME_AUDIT.md
+?? aetheros/docs/AETHEROS_PHYSICAL_SAFETY.md
+?? aetheros/docs/AETHEROS_PHYSICAL_SECURITY.md
+?? aetheros/docs/AETHEROS_PHYSICAL_WORLD_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_PLATFORM_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_PLATFORM_RELEASE_MATRIX.md
+?? aetheros/docs/AETHEROS_PLATFORM_SECURITY.md
+?? aetheros/docs/AETHEROS_PLATFORM_TEST_MATRIX.md
+?? aetheros/docs/AETHEROS_PRODUCTION_ADMIN_GUIDE.md
+?? aetheros/docs/AETHEROS_PRODUCTION_CERTIFICATION.md
+?? aetheros/docs/AETHEROS_PRODUCTION_CHECKLIST.md
+?? aetheros/docs/AETHEROS_PRODUCTION_RELEASE_RUNBOOK.md
+?? aetheros/docs/AETHEROS_PRODUCTION_USER_GUIDE.md
+?? aetheros/docs/AETHEROS_PUBLIC_API_POLICY.md
+?? aetheros/docs/AETHEROS_REALITY_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_REDESIGN_REPORT.md
+?? aetheros/docs/AETHEROS_RELEASE_ARTIFACT_MANIFEST.json
+?? aetheros/docs/AETHEROS_REMOTE_TASKS.md
+?? aetheros/docs/AETHEROS_RESTORE_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_RETENTION_POLICY.md
+?? aetheros/docs/AETHEROS_ROBOT_CONTROL.md
+?? aetheros/docs/AETHEROS_SCHEMA_REFERENCE.md
+?? aetheros/docs/AETHEROS_SCIENCE_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_SCIENTIFIC_BENCHMARKS.md
+?? aetheros/docs/AETHEROS_SCIENTIFIC_INTELLIGENCE.md
+?? aetheros/docs/AETHEROS_SCIENTIFIC_SAFETY.md
+?? aetheros/docs/AETHEROS_SCREEN_INVENTORY.md
+?? aetheros/docs/AETHEROS_SDK_COMPATIBILITY_MATRIX.md
+?? aetheros/docs/AETHEROS_SECURITY_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_SECURITY_ZERO_TRUST_REPORT.md
+?? aetheros/docs/AETHEROS_SENSOR_FUSION.md
+?? aetheros/docs/AETHEROS_SKILL_SDK.md
+?? aetheros/docs/AETHEROS_STATE_MODEL.md
+?? aetheros/docs/AETHEROS_STORAGE_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_STORAGE_THREAT_MODEL.md
+?? aetheros/docs/AETHEROS_SWARM_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_SWARM_BENCHMARKS.md
+?? aetheros/docs/AETHEROS_SWARM_SECURITY.md
+?? aetheros/docs/AETHEROS_SYNC_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_THREAT_MODEL.md
+?? aetheros/docs/AETHEROS_TOOL_SDK.md
+?? aetheros/docs/AETHEROS_UNIVERSAL_REALITY_INTERFACE.md
+?? aetheros/docs/AETHEROS_UX_AGI_TASK_AGENT.md
+?? aetheros/docs/AETHEROS_UX_ARCHITECTURE_MAP.md
+?? aetheros/docs/AETHEROS_UX_HERMES_TERMINOLOGY.md
+?? aetheros/docs/AETHEROS_UX_MIGRATION_PLAN.md
+?? aetheros/docs/AETHEROS_UX_PRINCIPLES.md
+?? aetheros/docs/AETHEROS_UX_RESPONSIVE_A11Y_PERF.md
+?? aetheros/docs/AETHEROS_UX_SEARCH_COMMAND.md
+?? aetheros/docs/AETHEROS_UX_SECURITY.md
+?? aetheros/docs/AETHEROS_UX_SYSTEM_SURFACES.md
+?? aetheros/docs/AETHEROS_UX_WORKSPACE_FILES_APPS.md
+?? aetheros/docs/AETHEROS_WEB_ASVS_5_MAPPING.md
+?? aetheros/docs/AETHEROS_WEB_E2E_MATRIX.md
+?? aetheros/docs/AETHEROS_WEB_SERVER_DEPLOYMENT_RUNBOOK.md
+?? aetheros/docs/AETHEROS_WINDOWS_64_1_TEST_MATRIX.md
+?? aetheros/docs/AETHEROS_WINDOWS_ARCHITECTURE.md
+?? aetheros/docs/AETHEROS_WINDOWS_BACKGROUND_RUNTIME.md
+?? aetheros/docs/AETHEROS_WINDOWS_BENCHMARKS.md
+?? aetheros/docs/AETHEROS_WINDOWS_COMPUTER_USE.md
+?? aetheros/docs/AETHEROS_WINDOWS_CURRENT_ARTIFACT_MANIFEST.json
+?? aetheros/docs/AETHEROS_WINDOWS_DISTRIBUTION_DECISION.md
+?? aetheros/docs/AETHEROS_WINDOWS_E2E.md
+?? aetheros/docs/AETHEROS_WINDOWS_INSTALLATION.md
+?? aetheros/docs/AETHEROS_WINDOWS_INSTALLER_E2E.md
+?? aetheros/docs/AETHEROS_WINDOWS_MIGRATION.md
+?? aetheros/docs/AETHEROS_WINDOWS_NATIVE_INTEGRATION.md
+?? aetheros/docs/AETHEROS_WINDOWS_PERFORMANCE.md
+?? aetheros/docs/AETHEROS_WINDOWS_RELEASE.md
+?? aetheros/docs/AETHEROS_WINDOWS_RELEASE_MANIFEST.json
+?? aetheros/docs/AETHEROS_WINDOWS_SECURITY.md
+?? aetheros/docs/AETHEROS_WINDOWS_SECURITY_REGRESSION.md
+?? aetheros/docs/AETHEROS_WINDOWS_SIGNING.md
+?? aetheros/docs/AETHEROS_WINDOWS_TRAY.md
+?? aetheros/docs/AETHEROS_WINDOWS_TROUBLESHOOTING.md
+?? aetheros/docs/AETHEROS_WINDOWS_UI_AUTOMATION.md
+?? aetheros/docs/AETHEROS_WINDOWS_UPDATE.md
+?? aetheros/docs/AETHEROS_WINDOWS_UPDATE_ROLLBACK.md
+?? aetheros/docs/FINAL_RELEASE_BLOCKER_REGISTER.md
+?? aetheros/docs/architecture/59a3a8ae3266.md
+?? aetheros/docs/architecture/AETHEROS_AGENT_CAPSULE.md
+?? aetheros/docs/architecture/AETHEROS_AGENT_HYPERVISOR.md
+?? aetheros/docs/architecture/AETHEROS_AGENT_IPC.md
+?? aetheros/docs/architecture/AETHEROS_AGENT_KERNEL.md
+?? aetheros/docs/architecture/AETHEROS_AGENT_PROCESS.md
+?? aetheros/docs/architecture/AETHEROS_AGENT_PROCESS_MODEL.md
+?? aetheros/docs/architecture/AETHEROS_AUTHORITY_MODEL.md
+?? aetheros/docs/architecture/AETHEROS_CAPABILITY_ABI.md
+?? aetheros/docs/architecture/AETHEROS_CAPABILITY_MODEL.md
+?? aetheros/docs/architecture/AETHEROS_CAPSULE_CHECKPOINT.md
+?? aetheros/docs/architecture/AETHEROS_CAPSULE_FILESYSTEM.md
+?? aetheros/docs/architecture/AETHEROS_CAPSULE_MIGRATION.md
+?? aetheros/docs/architecture/AETHEROS_CAPSULE_NETWORK.md
+?? aetheros/docs/architecture/AETHEROS_CAPSULE_RESOURCES.md
+?? aetheros/docs/architecture/AETHEROS_CAPSULE_SECURITY.md
+?? aetheros/docs/architecture/AETHEROS_CAUSAL_ENGINE.md
+?? aetheros/docs/architecture/AETHEROS_CHECKPOINTS.md
+?? aetheros/docs/architecture/AETHEROS_COGNITIVE_ARCHITECTURE_2.md
+?? aetheros/docs/architecture/AETHEROS_CONTEXT_ENGINE.md
+?? aetheros/docs/architecture/AETHEROS_CONTROL_PLANE.md
+?? aetheros/docs/architecture/AETHEROS_DATA_CLASSIFICATION.md
+?? aetheros/docs/architecture/AETHEROS_DIGITAL_TWIN.md
+?? aetheros/docs/architecture/AETHEROS_EVENT_MODEL.md
+?? aetheros/docs/architecture/AETHEROS_FORESIGHT.md
+?? aetheros/docs/architecture/AETHEROS_INTENT_ABI.md
+?? aetheros/docs/architecture/AETHEROS_KERNEL_THREAT_MODEL.md
+?? aetheros/docs/architecture/AETHEROS_MEMORY_ARCHITECTURE.md
+?? aetheros/docs/architecture/AETHEROS_MODEL_RUNTIME.md
+?? aetheros/docs/architecture/AETHEROS_POLICY_ENGINE.md
+?? aetheros/docs/architecture/AETHEROS_PROVENANCE.md
+?? aetheros/docs/architecture/AETHEROS_RECOVERY.md
+?? aetheros/docs/architecture/AETHEROS_RESOURCE_MODEL.md
+?? aetheros/docs/architecture/AETHEROS_RUNTIME_INVARIANTS.md
+?? aetheros/docs/architecture/AETHEROS_SCHEDULER.md
+?? aetheros/docs/architecture/AETHEROS_SECURITY_ARCHITECTURE.md
+?? aetheros/docs/architecture/AETHEROS_SECURITY_BOUNDARY.md
+?? aetheros/docs/architecture/AETHEROS_SELF_IMPROVEMENT.md
+?? aetheros/docs/architecture/AETHEROS_SIMULATION_ENGINE.md
+?? aetheros/docs/architecture/AETHEROS_TASK_MODEL.md
+?? aetheros/docs/architecture/AETHEROS_TOOL_RUNTIME.md
+?? aetheros/docs/architecture/AETHEROS_VERIFICATION.md
+?? aetheros/docs/architecture/AETHEROS_WORLD_MODEL.md
+?? aetheros/docs/architecture/b07f5c36df92.md
+?? aetheros/docs/benchmarks/
+?? aetheros/docs/evals/
+?? aetheros/docs/intelligence/
+?? aetheros/docs/security/AETHEROS_CAPSULE_ESCAPE_TESTS.md
+?? aetheros/docs/security/AETHEROS_CAPSULE_THREAT_MODEL.md
+?? aetheros/docs/security/AETHEROS_MASTER_56_CERTIFICATION.md
+?? aetheros/docs/security/AETHEROS_SECURITY_MODEL.md
+?? aetheros/docs/security/AETHEROS_SELF_IMPROVEMENT_THREAT_MODEL.md
+?? aetheros/docs/security/AETHEROS_TRUST_FABRIC_ARCHITECTURE.md
+?? aetheros/docs/security/AETHEROS_TRUST_FABRIC_CERTIFICATION.md
+?? aetheros/docs/security/AETHEROS_TRUST_FABRIC_DEVELOPER.md
+?? aetheros/docs/security/AETHEROS_TRUST_FABRIC_IMPLEMENTATION_REPORT.md
+?? aetheros/docs/security/AETHEROS_TRUST_FABRIC_INCIDENT_RESPONSE.md
+?? aetheros/docs/security/AETHEROS_TRUST_FABRIC_MIGRATION_REPORT.md
+?? aetheros/docs/security/AETHEROS_TRUST_FABRIC_OPERATIONS.md
+?? aetheros/docs/security/AETHEROS_TRUST_FABRIC_POLICY_MODEL.md
+?? aetheros/docs/security/AETHEROS_TRUST_FABRIC_TESTING.md
+?? aetheros/docs/security/AETHEROS_TRUST_FABRIC_THREAT_MODEL.md
+?? aetheros/docs/testing/
+?? aetheros/docs/update/
+?? aetheros/editops.py
+?? aetheros/enhance_decision.py
+?? aetheros/extensions/facade.py
+?? aetheros/favicon.ico
+?? aetheros/fix_tests.py
+?? aetheros/fix_tests2.py
+?? aetheros/hello.py
+?? aetheros/kernel/benchmark.py
+?? aetheros/kernel/core/
+?? aetheros/kernel/doctor.py
+?? aetheros/knowledge_audit.md
+?? aetheros/memory/memory_constants.py
+?? aetheros/memory/memory_store.py.backup
+?? aetheros/memory/update_init_sqlite.py
+?? aetheros/memory/update_init_sqlite2.py
+?? aetheros/memory/update_init_sqlite3.py
+?? aetheros/memory/update_memory.py
+?? aetheros/memory/update_memory2.py
+?? aetheros/memory/update_save.py
+?? aetheros/memory/update_save2.py
+?? aetheros/memory_manager_original.py
+?? aetheros/optional-skills/productivity/memory-maintenance/
+?? aetheros/plugins/dashboard_auth/aetheros/
+?? aetheros/plugins/model-providers/aetheros/
+?? aetheros/plugins/model-providers/cloudflare/
+?? aetheros/plugins/model-providers/cohere/
+?? aetheros/plugins/model-providers/fireworks/
+?? aetheros/plugins/model-providers/google-vertex-ai/
+?? aetheros/plugins/model-providers/groq/
+?? aetheros/plugins/model-providers/mistral/
+?? aetheros/plugins/model-providers/perplexity/
+?? aetheros/plugins/model-providers/together/
+?? aetheros/pnpm-lock.yaml
+?? aetheros/pnpm-workspace.yaml
+?? aetheros/pnpm_dirs.txt
+?? aetheros/pnpm_dirs2.txt
+?? aetheros/provider_registry_enhanced.py
+?? aetheros/pytest_stderr.txt
+?? aetheros/scripts/benchmark_autonomy.py
+?? aetheros/scripts/benchmark_extensions.py
+?? aetheros/scripts/benchmark_memory2.py
+?? aetheros/scripts/benchmark_swarm.py
+?? aetheros/scripts/linux_desktop_entry_check.py
+?? aetheros/scripts/macos_entitlements_audit.py
+?? aetheros/scripts/qa_collect.py
+?? aetheros/scripts/trust_bypass_audit.py
+?? aetheros/scripts/windows_bench.py
+?? aetheros/sdks/
+?? aetheros/services/
+?? aetheros/skills/research/deep-research/
+?? aetheros/temp_enum_before.txt
+?? aetheros/temp_file.txt
+?? aetheros/temp_lifecycle.py
+?? aetheros/temp_memory_classes.txt
+?? aetheros/temp_store/
+?? aetheros/temp_test.py
+?? aetheros/test.txt
+?? aetheros/test2.txt
+?? aetheros/test3.py
+?? aetheros/test_class.py
+?? aetheros/test_class2.py
+?? aetheros/test_class3.py
+?? aetheros/test_class4.py
+?? aetheros/test_class5.py
+?? aetheros/test_class6.py
+?? aetheros/test_class7.py
+?? aetheros/test_class8.py
+?? aetheros/test_class9.py
+?? aetheros/test_debug/
+?? aetheros/test_enhanced_orchestrator.py
+?? aetheros/test_extract.py
+?? aetheros/test_extract2.py
+?? aetheros/test_fix.txt
+?? aetheros/test_lifecycle.txt
+?? aetheros/test_minimal.py
+?? aetheros/test_output.txt
+?? aetheros/test_partial.py
+?? aetheros/test_planner.py
+?? aetheros/test_read.txt
+?? aetheros/test_results.txt
+?? aetheros/test_return_type.py
+?? aetheros/test_router.py
+?? aetheros/test_runtime_components.py
+?? aetheros/test_store_admin_bypass/
+?? aetheros/test_store_conflict_detection/
+?? aetheros/test_store_consolidate_near_duplicate/
+?? aetheros/test_store_dedup_exact/
+?? aetheros/test_store_dedup_keep_higher_trust/
+?? aetheros/test_store_retention_archiving/
+?? aetheros/test_syntax.py
+?? aetheros/test_trust_func.py
+?? aetheros/test_trust_func2.py
+?? aetheros/test_trust_func3.py
+?? aetheros/tests/aetheros_actions/
+?? aetheros/tests/aetheros_automation/test_agent_engine.py
+?? aetheros/tests/aetheros_automation/test_lifecycle.py
+?? aetheros/tests/aetheros_automation/test_runtime_fixes.py
+?? aetheros/tests/aetheros_automation/test_task_monitor.py
+?? aetheros/tests/aetheros_automation/test_task_queue.py
+?? aetheros/tests/aetheros_autonomy/
+?? aetheros/tests/aetheros_cli/test_api_key_store.py
+?? aetheros/tests/aetheros_cli/test_missions_cli.py
+?? aetheros/tests/aetheros_cli/test_model_registry.py
+?? aetheros/tests/aetheros_cli/test_model_router.py
+?? aetheros/tests/aetheros_cli/test_provider_health.py
+?? aetheros/tests/aetheros_cli/test_security_integration_wiring.py
+?? aetheros/tests/aetheros_cli/test_update_malformed_guard.py
+?? aetheros/tests/aetheros_cli/test_web_security_api.py
+?? aetheros/tests/aetheros_comm/
+?? aetheros/tests/aetheros_comms/
+?? aetheros/tests/aetheros_computer/
+?? aetheros/tests/aetheros_data/
+?? aetheros/tests/aetheros_extensions/
+?? aetheros/tests/aetheros_intelligence/
+?? aetheros/tests/aetheros_knowledge/
+?? aetheros/tests/aetheros_memory_intelligence/
+?? aetheros/tests/aetheros_mesh/
+?? aetheros/tests/aetheros_orchestrator/
+?? aetheros/tests/aetheros_platform/
+?? aetheros/tests/aetheros_runtime/test_ai_runtime.py
+?? aetheros/tests/aetheros_swarm/
+?? aetheros/tests/agent/test_init_security.py
+?? aetheros/tests/agent/test_memory_os_embeddings.py
+?? aetheros/tests/agent/test_memory_os_entities_graph.py
+?? aetheros/tests/agent/test_memory_os_lifecycle.py
+?? aetheros/tests/agent/test_memory_os_models.py
+?? aetheros/tests/agent/test_memory_os_perf.py
+?? aetheros/tests/agent/test_memory_os_redteam.py
+?? aetheros/tests/agent/test_memory_os_retrieval.py
+?? aetheros/tests/agent/test_memory_os_scenarios.py
+?? aetheros/tests/agent/test_memory_os_security.py
+?? aetheros/tests/agent/test_memory_os_store.py
+?? aetheros/tests/agent/test_memory_os_stress.py
+?? aetheros/tests/agent/test_memory_os_volume.py
+?? aetheros/tests/agent/test_operating_layer.py
+?? aetheros/tests/agent/test_research_engine.py
+?? aetheros/tests/agent/test_research_models.py
+?? aetheros/tests/agent/test_research_modules.py
+?? aetheros/tests/agent/test_research_redteam.py
+?? aetheros/tests/agent/test_research_scenarios.py
+?? aetheros/tests/agent/test_research_state.py
+?? aetheros/tests/agent/test_research_store.py
+?? aetheros/tests/agent/test_research_urlnorm.py
+?? aetheros/tests/agent/transports/test_aetheros_tools_mcp_server.py
+?? aetheros/tests/agent_economy/
+?? aetheros/tests/agent_network/
+?? aetheros/tests/automation/
+?? aetheros/tests/benchmark/
+?? aetheros/tests/cli/test_folder_pin_import_commands.py
+?? aetheros/tests/cli/test_memory_os_cmd.py
+?? aetheros/tests/cli/test_research_cmd.py
+?? aetheros/tests/cognitive/
+?? aetheros/tests/control_plane/
+?? aetheros/tests/embodied/
+?? aetheros/tests/extensions/
+?? aetheros/tests/kernel/test_agent_capsule.py
+?? aetheros/tests/kernel/test_agent_capsule_security.py
+?? aetheros/tests/kernel/test_agent_consolidation.py
+?? aetheros/tests/kernel/test_agent_kernel.py
+?? aetheros/tests/kernel/test_agent_kernel_security.py
+?? aetheros/tests/model_tools/
+?? aetheros/tests/multimodal/
+?? aetheros/tests/observability/
+?? aetheros/tests/orchestration/
+?? aetheros/tests/providers/test_gap_fill_providers.py
+?? aetheros/tests/qa/
+?? aetheros/tests/quality/
+?? aetheros/tests/reliability/
+?? aetheros/tests/science/
+?? aetheros/tests/security/test_action_guard.py
+?? aetheros/tests/security/test_authz.py
+?? aetheros/tests/security/test_budget.py
+?? aetheros/tests/security/test_classification.py
+?? aetheros/tests/security/test_filesystem.py
+?? aetheros/tests/security/test_identity.py
+?? aetheros/tests/security/test_kill_switch.py
+?? aetheros/tests/security/test_manifest.py
+?? aetheros/tests/security/test_mcp.py
+?? aetheros/tests/security/test_policy_hierarchy.py
+?? aetheros/tests/security/test_red_team.py
+?? aetheros/tests/security/test_redaction.py
+?? aetheros/tests/security/test_response.py
+?? aetheros/tests/security/test_runtime.py
+?? aetheros/tests/security/test_scorecard.py
+?? aetheros/tests/security/test_tokens.py
+?? aetheros/tests/security/test_tool_authz.py
+?? aetheros/tests/self_improvement/
+?? aetheros/tests/skills/test_memory_maintenance_skill.py
+?? aetheros/tests/tools/test_computer_use_app_actions.py
+?? aetheros/tests/tools/test_computer_use_capabilities.py
+?? aetheros/tests/tools/test_cronjob_tool_automation_fields.py
+?? aetheros/tests/tools/test_master15_browser_transfer.py
+?? aetheros/tests/tools/test_memory_lifecycle.py
+?? aetheros/tests/tools/test_schema_contract.py
+?? aetheros/tests/trust/
+?? aetheros/tools/automation_tool.py
+?? aetheros/tools/browser_form_tools.py
+?? aetheros/tools/browser_transfer_tools.py
+?? aetheros/tools/computer_use/capabilities.py
+?? aetheros/tools/extension_tool.py
+?? aetheros/tools/memory2_tool.py
+?? aetheros/tools/memory_lifecycle.py
+?? aetheros/tools/swarm_tool.py
+?? aetheros/trust/
+?? aetheros/web/public/wolf-favicon.svg
+?? aetheros/web/src/os/
+?? aetheros/web/src/pages/HomePage.tsx
+?? aetheros/web/src/pages/LauncherPage.tsx
+?? aetheros/web/src/pages/WorkspacesPage.tsx
+?? aetheros/website/docs/developer-guide/observability.md
+?? aetheros/website/docs/developer-guide/security-control-plane.md
+?? aetheros/website/docs/guides/memory-maintenance.md
+?? aetheros/website/docs/guides/run-hermes-with-aetheros.md
+?? aetheros/website/docs/integrations/aetheros-portal.md
+?? aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/guides/run-hermes-with-aetheros.md
+?? aetheros/website/i18n/zh-Hans/docusaurus-plugin-content-docs/current/integrations/aetheros-portal.md
+?? modify_memory_manager.py

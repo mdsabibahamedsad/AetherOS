@@ -1,0 +1,7 @@
+{
+  "version": "1.0.0",
+  "mode": "development",
+  "debug": false,
+  "name": "AetherOS",
+  "description": "AetherOS AI Operating System"
+}

@@ -1,0 +1,17 @@
+{
+  "product": "AetherOS",
+  "platform": "linux-x64",
+  "version": "1.0.0-desktop / 0.16.0-backend (UNRELEASED WORKTREE - descriptive only)",
+  "commit": "UNVERIFIED (dirty worktree)",
+  "build_environment": "NOT BUILT HERE - see desktop-release.yml build-linux (ubuntu-latest)",
+  "artifacts": {"appimage": "CONFIGURED", "deb": "CONFIGURED", "rpm": "CONFIGURED", "flatpak": "NOT SUPPORTED"},
+  "artifact_hashes": "NOT PRODUCED",
+  "signing": "N/A (no Linux code-sign gate; hashes + provenance in CI)",
+  "test_results": {
+    "linux_platform_contracts": "12 passed (executed 2026-09-11, cross-platform)",
+    "desktop_entry_check": "PASS (executed 2026-09-11)",
+    "python_regression": "see 64.1 battery (270 passed)",
+    "electron_linux_session": "pass (in prior runs; re-run in CI)"
+  },
+  "known_limitations": ["no Linux runtime verification", "Wayland global capture/input unsupported by design", "no ARM64 target", "no Flatpak", "no updater channel", "tray DE-fragmented", "VM journeys unexecuted"]
+}

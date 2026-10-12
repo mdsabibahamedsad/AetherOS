@@ -1,0 +1,13 @@
+{
+  "commit": "2bdfbfd8ebcf2bb27b06f600c2beb159e723d8b1",
+  "at": "2026-09-12T14:02:00.813Z",
+  "files": {
+    "apps/desktop/src/release/beta-gates.ts": "71b84ecfc7fdc78d9628e9bbde2c2905527acb1d01c2e2aa4494ddf2c2bfb4f3",
+    "apps/desktop/src/release/beta-flags.ts": "9154f79cd840a9bde6396bcc2feb623c221b0071798c7c15df2c2cc1a019b0a8",
+    "apps/desktop/src/release/__tests__/beta-gates.test.ts": "282563af864f176ba8e8f1737b5703b0ef7261a22b4461fbbbd8aa8a0f302ac4",
+    "services/update/scripts/rc-manifest.mjs": "fcaca11856c184500dedf9ee4ff2a34ec4c90bd6a0c3fefe30afb832f1158b82",
+    "services/update/scripts/revoke-release.mjs": "791de5088aad982106261bbe7dcad8db0991581367007c907e3be7fee24618ed",
+    ".github/workflows/update-release.yml": "3c8a97a36dcafdbba112ae02f611737bb1d0408a3ce3a1520f8a605c950d9460",
+    "docs/AETHEROS_MASTER_74_EVIDENCE/rc-aetheros-1.1.0-beta.1.json": "69805d53ec8527bed77036296221fcafc49748c22f1df62a97051365f906f428"
+  }
+}

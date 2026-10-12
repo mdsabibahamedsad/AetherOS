@@ -1,0 +1,8 @@
+{
+  "max_iterations": 90,
+  "timeout_seconds": 300,
+  "max_tokens": 8192,
+  "tool_delay_ms": 0,
+  "enable_subagents": true,
+  "max_concurrent_subagents": 3
+}

@@ -1,0 +1,90 @@
+{
+  "benchmark_id": "PERF-MEMORY-LEAK-001",
+  "name": "Agent Conversation Memory Growth",
+  "category": "load",
+  "status": "MEASURED",
+  "iterations": 1,
+  "warmup_iterations": 0,
+  "metrics": {
+    "leak_detected_mean": 0.0,
+    "leak_detected_median": 0.0,
+    "leak_detected_stdev": 0.0,
+    "leak_detected_min": 0.0,
+    "leak_detected_max": 0.0,
+    "rss_growth_mb_mean": 0,
+    "rss_growth_mb_median": 0,
+    "rss_growth_mb_stdev": 0.0,
+    "rss_growth_mb_min": 0,
+    "rss_growth_mb_max": 0,
+    "heap_growth_mb_mean": 0,
+    "heap_growth_mb_median": 0,
+    "heap_growth_mb_stdev": 0.0,
+    "heap_growth_mb_min": 0,
+    "heap_growth_mb_max": 0,
+    "object_growth_mean": 0,
+    "object_growth_median": 0,
+    "object_growth_stdev": 0.0,
+    "object_growth_min": 0,
+    "object_growth_max": 0,
+    "rss_slope_mean": 0,
+    "rss_slope_median": 0,
+    "rss_slope_stdev": 0.0,
+    "rss_slope_min": 0,
+    "rss_slope_max": 0,
+    "severity_high_mean": 0.0,
+    "severity_high_median": 0.0,
+    "severity_high_stdev": 0.0,
+    "severity_high_min": 0.0,
+    "severity_high_max": 0.0
+  },
+  "units": {
+    "leak_detected": "bool",
+    "rss_growth_mb": "MB",
+    "heap_growth_mb": "MB",
+    "object_growth": "count",
+    "rss_slope": "MB/sample",
+    "severity_high": "bool"
+  },
+  "raw_samples": {
+    "leak_detected": [
+      0.0
+    ],
+    "rss_growth_mb": [
+      0
+    ],
+    "heap_growth_mb": [
+      0
+    ],
+    "object_growth": [
+      0
+    ],
+    "rss_slope": [
+      0
+    ],
+    "severity_high": [
+      0.0
+    ]
+  },
+  "environment": {
+    "benchmark_version": "m71-v1",
+    "timestamp": 1789185817.563573,
+    "os": "Windows 10",
+    "os_platform": "Windows-10-10.0.26200-SP0",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "cpu_count": 12,
+    "ram_gb": 7.4,
+    "gpu": "none-detected",
+    "python_version": "3.11.15",
+    "node_version": "v25.5.0",
+    "electron_version": null,
+    "aetheros_version": null,
+    "build_mode": "unknown",
+    "power_mode": "unknown",
+    "thermal_state": "unknown",
+    "extra": {}
+  },
+  "metadata": {},
+  "timestamp": 1789185821.8255463,
+  "commit_hash": null,
+  "tags": []
+}

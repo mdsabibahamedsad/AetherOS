@@ -1,0 +1,38 @@
+name: macos-platform
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/desktop/**'
+      - 'aetheros_platform/macos_*.py'
+      - 'aetheros_computer/ax.py'
+      - 'scripts/macos_entitlements_audit.py'
+      - '.github/workflows/macos-platform.yml'
+  pull_request:
+    paths:
+      - 'apps/desktop/**'
+      - 'aetheros_platform/macos_*.py'
+      - 'aetheros_computer/ax.py'
+  workflow_dispatch:
+
+jobs:
+  macos-unit:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: macOS platform contract tests
+        run: python -m pytest tests/aetheros_platform/test_macos_platform.py -q
+      - name: Entitlements audit
+        run: python scripts/macos_entitlements_audit.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Electron dependency-free unit tests
+        working-directory: apps/desktop
+        run: >
+          node --test electron/session-windows.test.cjs
+          electron/tray-menu.test.cjs electron/update-manifest.test.cjs

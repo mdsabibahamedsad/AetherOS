@@ -1,0 +1,40 @@
+{
+  "product": "AetherOS",
+  "version": "1.0.0",
+  "commit": "2bdfbfd8ebcf2bb27b06f600c2beb159e723d8b1",
+  "treeState": "DIRTY",
+  "artifacts": [
+    {
+      "artifact": "AetherOS-1.0.0-win-x64.exe",
+      "artifactType": "nsis",
+      "architecture": "x64",
+      "size": 195891460,
+      "sha256": "b86b22f74f1afaa74bc28a304ff13e5bb0b0a6ad8cc42e969d138c34e67f9278"
+    },
+    {
+      "artifact": "AetherOS-1.0.0-win-x64.msi",
+      "artifactType": "msi",
+      "architecture": "x64",
+      "size": 203137784,
+      "sha256": "1069fc6d26ee71810a9131f1383413d51252a3f3ae99c357f054dd1e2a5b031b"
+    },
+    {
+      "artifact": "AetherOS-1.0.0-win-x64-portable.exe",
+      "artifactType": "portable",
+      "architecture": "x64",
+      "size": 162205111,
+      "sha256": "214d425537eb8eea43ca6c3f78f48edc1ccce758817e3fb9425e52ca143cfe3c"
+    }
+  ],
+  "electronVersion": "40.9.3",
+  "electronBuilderVersion": "^26.8.1",
+  "buildTimestamp": "2026-09-15T03:17:22.339Z",
+  "buildEnvironment": {
+    "source": "local",
+    "node": "v25.5.0",
+    "ci": false,
+    "runner": "local-dev-host (NOT clean)"
+  },
+  "generatedAt": "2026-09-15T04:49:10.290Z",
+  "note": "Current release-candidate manifest (Master 79.1 §7). Historical phase manifests immutable; this file describes CURRENT dist-packaged outputs."
+}

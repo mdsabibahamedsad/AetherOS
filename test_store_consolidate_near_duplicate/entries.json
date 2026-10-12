@@ -1,0 +1,40 @@
+{
+  "generation": 1,
+  "entries": {
+    "4485783b-35f9-4a63-9e09-58cd771b6f1d": {
+      "schema_version": 1,
+      "id": "4485783b-35f9-4a63-9e09-58cd771b6f1d",
+      "memory_type": "semantic",
+      "boundary": "user",
+      "origin": "unknown",
+      "state": "active",
+      "content": "The quick brown fox jumps over the lazy dog",
+      "summary": "",
+      "tags": [],
+      "user_id": "user123",
+      "workspace_id": "",
+      "session_id": "",
+      "agent_id": "",
+      "project_id": "",
+      "source": "",
+      "source_uri": "",
+      "confidence": 0.0,
+      "trust": 0.6,
+      "verification": "unverified",
+      "corroborated_by": [],
+      "checksum": "62c39ef4952caee3228fd4443d2332eb4a6a50b8381ffbd35ac29bcd193d8462",
+      "version": 2,
+      "ttl": 0.0,
+      "created_at": 1788528824.49325,
+      "updated_at": 1788528824.4962473,
+      "accessed_at": 1788528824.49325,
+      "access_count": 0,
+      "metadata": {
+        "consolidated_from": [
+          "9510b0b9-6529-499f-a0f7-0d19169ec4a6"
+        ]
+      }
+    }
+  },
+  "quarantined": []
+}

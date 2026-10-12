@@ -1,0 +1,175 @@
+name: AetherOS iOS Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., 1.0.0)'
+        required: true
+        type: string
+      prerelease:
+        description: 'Mark as pre-release'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  # Validate XcodeGen project generation and structure
+  validate-ios-config:
+    name: Validate iOS Project Config
+    runs-on: macos-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+        working-directory: apps/ios
+
+      - name: Validate project structure
+        run: |
+          test -f AetherOS.xcodeproj/project.pbxproj || exit 1
+          # Verify bundle identifier
+          grep -q "com.aetheros.mobile" AetherOS.xcodeproj/project.pbxproj || exit 1
+          # Verify deployment target
+          grep -q "IPHONEOS_DEPLOYMENT_TARGET = 17.0" AetherOS.xcodeproj/project.pbxproj || exit 1
+          # Verify scheme
+          test -d AetherOS.xcodeproj/xcshareddata/xcschemes/ || exit 1
+          ls AetherOS.xcodeproj/xcshareddata/xcschemes/
+
+      - name: List targets
+        run: xcodebuild -list
+        working-directory: apps/ios
+
+  # iOS build and test
+  build-ios:
+    name: Build & Test iOS
+    needs: validate-ios-config
+    runs-on: macos-latest
+    timeout-minutes: 60
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.0.app/Contents/Developer
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+        working-directory: apps/ios
+
+      - name: Build iOS app (unsigned, simulator)
+        run: |
+          xcodebuild \
+            -project AetherOS.xcodeproj \
+            -scheme AetherOS \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            build
+        working-directory: apps/ios
+
+      - name: Run iOS unit tests (XCTest)
+        run: |
+          xcodebuild \
+            -project AetherOS.xcodeproj \
+            -scheme AetherOS \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            test \
+            -resultBundlePath TestResults.xcresult
+        working-directory: apps/ios
+
+      - name: Parse test results
+        run: |
+          xcrun xcresulttool get --format json --path TestResults.xcresult > test-results.json
+          cat test-results.json | jq '.issues.testFailureSummaries | length' || echo "0 failures"
+          cat test-results.json | jq '.issues.testFailureSummaries[]?.message' || echo "No failures"
+
+      - name: Validate test count
+        run: |
+          # Count total tests
+          TOTAL=$(xcrun xcresulttool get --format json --path TestResults.xcresult | jq '[.issues.testCaseSummaries[]?] | length')
+          PASSED=$(xcrun xcresulttool get --format json --path TestResults.xcresult | jq '[.issues.testCaseSummaries[]? | select(.testStatus == "Success")] | length')
+          FAILED=$(xcrun xcresulttool get --format json --path TestResults.xcresult | jq '[.issues.testCaseSummaries[]? | select(.testStatus == "Failure")] | length')
+          echo "Total tests: $TOTAL"
+          echo "Passed: $PASSED"
+          echo "Failed: $FAILED"
+          if [ "$FAILED" -gt 0 ]; then
+            echo "::error::Tests failed: $FAILED out of $TOTAL"
+            exit 1
+          fi
+          echo "TEST_RESULT=$PASSED/$TOTAL" >> $GITHUB_ENV
+
+      - name: Build unsigned archive (for artifact)
+        run: |
+          xcodebuild \
+            -project AetherOS.xcodeproj \
+            -scheme AetherOS \
+            -destination 'generic/platform=iOS' \
+            -configuration Release \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            -archivePath AetherOS.xcarchive \
+            archive
+        working-directory: apps/ios
+
+      - name: Verify archive
+        run: |
+          test -d AetherOS.xcarchive || exit 1
+          test -f AetherOS.xcarchive/Info.plist || exit 1
+          # Verify bundle identifier in archive
+          /usr/libexec/PlistBuddy -c "Print :ApplicationProperties:CFBundleIdentifier" AetherOS.xcarchive/Info.plist
+          /usr/libexec/PlistBuddy -c "Print :ApplicationProperties:CFBundleShortVersionString" AetherOS.xcarchive/Info.plist
+
+      - name: Calculate SHA-256
+        run: |
+          find . -name "AetherOS.xcarchive" -type d | head -1 | xargs -I {} sh -c 'tar -czf aetheros-ios-unsigned.tar.gz -C {} .'
+          sha256sum aetheros-ios-unsigned.tar.gz > ios-artifacts.sha256
+          cat ios-artifacts.sha256
+
+      - name: Upload iOS artifacts
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        with:
+          name: aetheros-ios-artifacts
+          path: |
+            aetheros-ios-unsigned.tar.gz
+            ios-artifacts.sha256
+            TestResults.xcresult
+          retention-days: 30
+
+      - name: Upload iOS artifacts to release
+        if: github.event_name == 'workflow_dispatch'
+        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf339476667e8d4e  # v2
+        with:
+          tag_name: v${{ github.event.inputs.version }}
+          name: AetherOS iOS v${{ github.event.inputs.version }} (Unsigned CI Build)
+          draft: false
+          prerelease: ${{ github.event.inputs.prerelease }}
+          body: |
+            **UNSIGNED CI BUILD** - This is a test build for validation only.
+            
+            Not signed with Apple Developer credentials. Cannot be installed on devices or submitted to TestFlight/App Store.
+            
+            Test Results: ${{ env.TEST_RESULT }} tests passed
+          files: |
+            aetheros-ios-unsigned.tar.gz
+            ios-artifacts.sha256

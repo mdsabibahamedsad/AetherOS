@@ -1,0 +1,8 @@
+HEAD=2bdfbfd8ebcf2bb27b06f600c2beb159e723d8b1
+branch=main (HEAD -> main, docs(marketplace): add architecture and certification)
+repo_root=D:/hermes-agent-main
+porcelain_v1_paths=2786
+system_node=v25.5.0 system_npm=11.8.0
+canonical_node=v22.12.0 (portable, persists from Master 81)
+builder_repo_local=26.8.1 electron_pin=40.9.3 (unchanged, §16/§17)
+RELEASE_SOURCE_COMMIT=UNASSIGNED

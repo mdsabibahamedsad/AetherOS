@@ -1,0 +1,24 @@
+{
+  "crypto": {
+    "sign_verify_50_s": 0.009
+  },
+  "scale": [
+    {
+      "n": 10,
+      "install_s": 1.583,
+      "activation_s": 0.02,
+      "perm_eval_1000_s": 0.0,
+      "registry_search_100_s": 0.0,
+      "shutdown_s": 0.026
+    },
+    {
+      "n": 50,
+      "install_s": 7.281,
+      "activation_s": 0.23,
+      "perm_eval_1000_s": 0.001,
+      "registry_search_100_s": 0.006,
+      "shutdown_s": 0.224
+    }
+  ],
+  "method": "scripts/benchmark_extensions.py 10 50; CPython 3.12 uv venv, Windows; real installs into temp HOME"
+}

@@ -1,0 +1,568 @@
+"""
+Memory Store — core storage backend for the AetherOS memory system.
+
+Provides both in-memory and SQLite-backed storage for memory entries.
+Handles serialization, scoping, and basic CRUD operations.
+"""
+
+from __future__ import annotations
+
+import json
+import logging
+import threading
+import time
+import uuid
+from dataclasses import dataclass, field
+from enum import Enum
+from pathlib import Path
+from .memory_constants import ConfidenceLevel, PrivacyLevel, ProvenanceSource, DEFAULT_CONFIDENCE_LEVEL, DEFAULT_PRIVACY_LEVEL, DEFAULT_PROVENANCE_SOURCE
+from typing import Any, Dict, List, Optional, Set
+
+logger = logging.getLogger(__name__)
+
+
+class MemoryScope(Enum):
+    """Scope/visibility of a memory entry."""
+    GLOBAL = "global"
+    WORKSPACE = "workspace"
+    PROJECT = "project"
+    CONVERSATION = "conversation"
+    AGENT = "agent"
+    USER = "user"
+    SWARM = "swarm"
+    PRIVATE = "private"
+
+
+'@dataclass
+class MemoryEntry:
+    """A single entry in the memory store.
+
+    Attributes:
+        id: Unique entry ID
+        key: Namespaced key for retrieval
+        value: The stored value (JSON-serializable)
+        memory_type: Type of memory (short_term, long_term, episodic, etc.)
+        scope: Visibility scope
+        namespace: Additional namespace for isolation
+        tags: Tags for categorization
+        metadata: Additional metadata
+        importance: Importance score (0.0 - 1.0)
+        confidence_level: Standardized confidence level (ConfidenceLevel enum)
+        privacy_level: Standardized privacy level (PrivacyLevel enum)
+        provenance_source: Standardized provenance source (ProvenanceSource enum)
+        provenance_timestamp: When the provenance was established
+        provenance_agent: Which agent/subsystem created this entry
+        importance_override: Explicit importance score override (if set, overrides importance)
+        version: Version of the memory entry format
+        schema_version: Version of the memory schema used
+        created_at: Creation timestamp
+        updated_at: Last update timestamp
+        expires_at: Optional expiry timestamp
+    """
+    id: str = field(default_factory=lambda: uuid.uuid4().hex[:16])
+    key: str = ""
+    value: Any = None
+    memory_type: str = "general"
+    scope: MemoryScope = MemoryScope.GLOBAL
+    namespace: str = ""
+    tags: List[str] = field(default_factory=list)
+    metadata: Dict[str, Any] = field(default_factory=dict)
+    importance: float = 0.5
+    confidence_level: ConfidenceLevel = field(default_factory=lambda: DEFAULT_CONFIDENCE_LEVEL)
+    privacy_level: PrivacyLevel = field(default_factory=lambda: DEFAULT_PRIVACY_LEVEL)
+    provenance_source: ProvenanceSource = field(default_factory=lambda: DEFAULT_PROVENANCE_SOURCE)
+    provenance_timestamp: float = field(default_factory=time.time)
+    provenance_agent: str = ""
+    importance_override: Optional[float] = None
+    version: str = "1.0"
+    schema_version: str = "1.0"
+    created_at: float = field(default_factory=time.time)
+    updated_at: float = field(default_factory=time.time)
+    expires_at: Optional[float] = None'
+
+
+class MemoryStore:
+    """Core storage backend for memory entries.
+
+    Supports both in-memory (default) and SQLite-backed storage.
+    Entries are scoped by namespace and scope for isolation.
+
+    Usage:
+        store = MemoryStore()
+        entry = store.save("user:preferences", {"theme": "dark"}, scope="user")
+        results = store.search("preferences")
+        entry = store.get(entry.id)
+    """
+
+    def __init__(self, db_path: Optional[str] = None):
+        self._lock = threading.RLock()
+        # In-memory storage
+        self._entries: Dict[str, MemoryEntry] = {}
+        # Indexes
+        self._key_index: Dict[str, Set[str]] = {}  # key -> set of entry IDs
+        self._namespace_index: Dict[str, Set[str]] = {}  # namespace -> entry IDs
+        self._type_index: Dict[str, Set[str]] = {}  # memory_type -> entry IDs
+        self._tag_index: Dict[str, Set[str]] = {}  # tag -> entry IDs
+        self._scope_index: Dict[str, Set[str]] = {}  # scope -> entry IDs
+
+        self._db_path = db_path
+        self._sqlite_conn = None
+        if db_path:
+            self._init_sqlite()
+
+    # ------------------------------------------------------------------
+    # Initialization
+    # ------------------------------------------------------------------
+
+    def _init_sqlite(self) -> None:
+        """Initialize SQLite backend."""
+        try:
+            import sqlite3
+            self._sqlite_conn = sqlite3.connect(self._db_path, check_same_thread=False)
+            self._sqlite_conn.execute("""
+                CREATE TABLE IF NOT EXISTS memory_entries (
+                    id TEXT PRIMARY KEY,
+                    key TEXT NOT NULL,
+                    value TEXT NOT NULL,
+                    memory_type TEXT DEFAULT 'general',
+                    scope TEXT DEFAULT 'global',
+                    namespace TEXT DEFAULT '',
+                    tags TEXT DEFAULT '[]',
+                    metadata TEXT DEFAULT '{}',
+                    importance REAL DEFAULT 0.5,
+                    created_at REAL NOT NULL,
+                    updated_at REAL NOT NULL,
+                    expires_at REAL,
+                    source TEXT DEFAULT 'system'
+                )
+            """)
+            self._sqlite_conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_memory_key ON memory_entries(key)"
+            )
+            self._sqlite_conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_memory_namespace ON memory_entries(namespace)"
+            )
+            self._sqlite_conn.commit()
+            logger.info("MemoryStore: initialized SQLite at %s", self._db_path)
+        except Exception as exc:
+            logger.warning("MemoryStore: SQLite init failed: %s", exc)
+            self._sqlite_conn = None
+
+    # ------------------------------------------------------------------
+    # CRUD
+    # ------------------------------------------------------------------
+
+    def save(self, key: str, value: Any,
+             memory_type: str = "general",
+             scope: MemoryScope = MemoryScope.GLOBAL,
+             namespace: str = "",
+             tags: List[str] = None,
+             metadata: Dict[str, Any] = None,
+             importance: float = 0.5,
+             ttl: Optional[float] = None,
+             confidence_level: ConfidenceLevel = None,
+             privacy_level: PrivacyLevel = None,
+             provenance_source: ProvenanceSource = None,
+             provenance_agent: str = "",
+             importance_override: Optional[float] = None,
+             entry_id: str = None) -> MemoryEntry:
+        """Save a memory entry."""
+
+        Args:
+            key: Namespaced key for retrieval
+            value: The stored value (JSON-serializable)
+            memory_type: Type of memory (short_term, long_term, episodic, etc.)
+            scope: Visibility scope
+            namespace: Additional namespace for isolation
+            tags: Tags for categorization
+            metadata: Additional metadata
+            importance: Importance score (0.0 - 1.0)
+            ttl: Optional time to live in seconds
+            confidence_level: Standardized confidence level (if None, uses default)
+            privacy_level: Standardized privacy level (if None, uses default)
+            provenance_source: Standardized provenance source (if None, uses default)
+            provenance_agent: Which agent/subsystem created this entry
+            importance_override: Explicit importance score override (if set, overrides importance)
+            entry_id: Optional entry ID (if None, generates a new one)
+
+        Returns:
+            The saved memory entry.
+        """
+        # Apply defaults for optional parameters
+        if confidence_level is None:
+            confidence_level = DEFAULT_CONFIDENCE_LEVEL
+        if privacy_level is None:
+            privacy_level = DEFAULT_PRIVACY_LEVEL
+        if provenance_source is None:
+            provenance_source = DEFAULT_PROVENANCE_SOURCE
+        if metadata is None:
+            metadata = {}
+        if tags is None:
+            tags = []
+
+        # Generate entry ID if not provided
+        if entry_id is None:
+            entry_id = uuid.uuid4().hex[:16]
+
+        # Prepare the entry
+        now = time.time()
+        expires_at = None
+        if ttl is not None and ttl > 0:
+            expires_at = now + ttl
+
+        entry = MemoryEntry(
+            id=entry_id,
+            key=key,
+            value=value,
+            memory_type=memory_type,
+            scope=scope,
+            namespace=namespace,
+            tags=tags,
+            metadata=metadata,
+            importance=importance,
+            confidence_level=confidence_level,
+            privacy_level=privacy_level,
+            provenance_source=provenance_source,
+            provenance_timestamp=now,
+            provenance_agent=provenance_agent,
+            importance_override=importance_override,
+            version="1.0",
+            schema_version="1.0",
+            created_at=now,
+            updated_at=now,
+            expires_at=expires_at
+        )
+
+        # Save to memory
+        with self._lock:
+            # In-memory storage
+            self._entries[entry_id] = entry
+            # Update indexes
+            self._add_to_index(self._key_index, key, entry_id)
+            self._add_to_index(self._namespace_index, namespace, entry_id)
+            self._add_to_index(self._type_index, memory_type, entry_id)
+            for tag in tags:
+                self._add_to_index(self._tag_index, tag, entry_id)
+            self._add_to_index(self._scope_index, scope.value, entry_id)
+
+            # SQLite storage
+            if self._sqlite_conn:
+                self._save_to_sqlite(entry)
+
+        return entry
+    def get(self, entry_id: str) -> Optional[MemoryEntry]:
+        """Get an entry by ID."""
+        with self._lock:
+            entry = self._entries.get(entry_id)
+            if entry and self._is_expired(entry):
+                del self._entries[entry_id]
+                return None
+            return entry
+
+    def get_by_key(self, key: str, scope: MemoryScope = MemoryScope.GLOBAL,
+                   namespace: str = "") -> Optional[MemoryEntry]:
+        """Get an entry by its key, scope, and namespace."""
+        entry_id = self._find_by_key_scope(key, scope, namespace)
+        if entry_id:
+            return self.get(entry_id)
+        return None
+
+    def delete(self, entry_id: str) -> bool:
+        """Delete an entry by ID."""
+        with self._lock:
+            entry = self._entries.pop(entry_id, None)
+            if entry:
+                self._remove_from_indexes(entry_id)
+                if self._sqlite_conn:
+                    self._sqlite_conn.execute(
+                        "DELETE FROM memory_entries WHERE id = ?", (entry_id,)
+                    )
+                    self._sqlite_conn.commit()
+                return True
+            return False
+
+    def delete_by_key(self, key: str, scope: MemoryScope = MemoryScope.GLOBAL,
+                      namespace: str = "") -> bool:
+        """Delete an entry by key, scope, and namespace."""
+        entry_id = self._find_by_key_scope(key, scope, namespace)
+        if entry_id:
+            return self.delete(entry_id)
+        return False
+
+    def update(self, entry_id: str, value: Any = None,
+               importance: float = None, tags: List[str] = None,
+               metadata: Dict[str, Any] = None) -> bool:
+        """Update an existing entry's mutable fields."""
+        with self._lock:
+            entry = self._entries.get(entry_id)
+            if entry is None:
+                return False
+
+            if value is not None:
+                entry.value = value
+            if importance is not None:
+                entry.importance = importance
+            if tags is not None:
+                self._remove_from_indexes(entry_id)
+                entry.tags = tags
+                self._add_to_indexes(entry)
+            if metadata is not None:
+                entry.metadata.update(metadata)
+            entry.updated_at = time.time()
+
+        if self._sqlite_conn:
+            self._update_sqlite(entry)
+        return True
+
+    # ------------------------------------------------------------------
+    # Search
+    # ------------------------------------------------------------------
+
+    def search(self, query: str = "",
+               scope: Optional[MemoryScope] = None,
+               namespace: str = "",
+               memory_type: Optional[str] = None,
+               tags: List[str] = None,
+               limit: int = 50) -> List[MemoryEntry]:
+        """Search memory entries with optional filters.
+
+        Args:
+            query: Text to search in keys (substring match)
+            scope: Filter by scope
+            namespace: Filter by namespace
+            memory_type: Filter by memory type
+            tags: Filter by tags (ANY match)
+            limit: Max results
+
+        Returns:
+            List of matching MemoryEntry, sorted by importance desc
+        """
+        with self._lock:
+            results = list(self._entries.values())
+
+        # Apply filters
+    def save_many(self, entries: List[MemoryEntry]) -> int:
+        """Save multiple entries at once. Returns count saved."""
+        count = 0
+        for entry in entries:
+            self.save(
+                key=entry.key, value=entry.value,
+                memory_type=entry.memory_type, scope=entry.scope,
+                namespace=entry.namespace, tags=entry.tags,
+                metadata=entry.metadata, importance=entry.importance,
+                confidence_level=entry.confidence_level,
+                privacy_level=entry.privacy_level,
+                provenance_source=entry.provenance_source,
+                provenance_agent=entry.provenance_agent,
+                importance_override=entry.importance_override,
+                entry_id=entry.id,
+            )
+            count += 1
+        return count
+    def list_by_scope(self, scope: MemoryScope,
+                      namespace: str = "",
+                      limit: int = 100) -> List[MemoryEntry]:
+        """List all entries in a given scope."""
+        return self.search(scope=scope, namespace=namespace, limit=limit)
+
+    def list_by_type(self, memory_type: str,
+                     namespace: str = "",
+                     limit: int = 100) -> List[MemoryEntry]:
+        """List all entries of a given memory type."""
+        return self.search(memory_type=memory_type, namespace=namespace, limit=limit)
+
+    def count(self, namespace: str = "",
+              scope: Optional[MemoryScope] = None) -> int:
+        """Count entries matching optional filters."""
+        results = self.search(namespace=namespace, scope=scope, limit=100000)
+        return len(results)
+
+    # ------------------------------------------------------------------
+    # Bulk operations
+    # ------------------------------------------------------------------
+
+    def save_many(self, entries: List[MemoryEntry]) -> int:
+        """Save multiple entries at once. Returns count saved."""
+        count = 0
+        for entry in entries:
+            self.save(
+                key=entry.key, value=entry.value,
+                memory_type=entry.memory_type, scope=entry.scope,
+                namespace=entry.namespace, tags=entry.tags,
+                metadata=entry.metadata, importance=entry.importance,
+                source=entry.source, entry_id=entry.id,
+            )
+            count += 1
+        return count
+
+    def clear_namespace(self, namespace: str) -> int:
+        """Delete all entries in a namespace. Returns count deleted."""
+        with self._lock:
+            ids = list(self._namespace_index.get(namespace, set()))
+        count = 0
+        for eid in ids:
+            if self.delete(eid):
+                count += 1
+        return count
+
+    def clear_all(self) -> int:
+        """Delete all entries. Returns count deleted."""
+        with self._lock:
+            count = len(self._entries)
+            self._entries.clear()
+            self._key_index.clear()
+            self._namespace_index.clear()
+            self._type_index.clear()
+            self._tag_index.clear()
+            self._scope_index.clear()
+        if self._sqlite_conn:
+            self._sqlite_conn.execute("DELETE FROM memory_entries")
+            self._sqlite_conn.commit()
+        return count
+
+    # ------------------------------------------------------------------
+    # Index management
+    # ------------------------------------------------------------------
+
+    def _find_by_key_scope(self, key: str, scope: MemoryScope,
+                           namespace: str) -> Optional[str]:
+        """Find an entry ID by key + scope + namespace."""
+        ids = self._key_index.get(key, set())
+        for eid in ids:
+            entry = self._entries.get(eid)
+            if entry and entry.scope == scope and entry.namespace == namespace:
+                return eid
+        return None
+
+    def _add_to_indexes(self, entry: MemoryEntry) -> None:
+        """Add an entry to all indexes."""
+        self._key_index.setdefault(entry.key, set()).add(entry.id)
+        if entry.namespace:
+            self._namespace_index.setdefault(entry.namespace, set()).add(entry.id)
+        if entry.memory_type:
+            self._type_index.setdefault(entry.memory_type, set()).add(entry.id)
+        self._scope_index.setdefault(entry.scope.value, set()).add(entry.id)
+        for tag in entry.tags:
+            self._tag_index.setdefault(tag, set()).add(entry.id)
+
+    def _remove_from_indexes(self, entry_id: str) -> None:
+        """Remove an entry from all indexes."""
+        for idx in (self._key_index, self._namespace_index,
+                   self._type_index, self._scope_index):
+            for key_set in idx.values():
+                key_set.discard(entry_id)
+        for tag_set in self._tag_index.values():
+            tag_set.discard(entry_id)
+
+    @staticmethod
+    def _is_expired(entry: MemoryEntry) -> bool:
+        """Check if an entry is expired."""
+        return entry.expires_at is not None and time.time() > entry.expires_at
+
+    # ------------------------------------------------------------------
+    # SQLite persistence
+    # ------------------------------------------------------------------
+
+    def _insert_sqlite(self, entry: MemoryEntry) -> None:
+        if not self._sqlite_conn:
+            return
+        try:
+            self._sqlite_conn.execute(
+                """INSERT OR REPLACE INTO memory_entries
+                   (id, key, value, memory_type, scope, namespace, tags,
+                    metadata, importance, created_at, updated_at, expires_at, source)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                (
+                    entry.id, entry.key, json.dumps(entry.value, default=str),
+                    entry.memory_type, entry.scope.value, entry.namespace,
+                    json.dumps(entry.tags), json.dumps(entry.metadata, default=str),
+                    entry.importance, entry.created_at, entry.updated_at,
+                    entry.expires_at, entry.source,
+                ),
+            )
+            self._sqlite_conn.commit()
+        except Exception as exc:
+            logger.warning("MemoryStore: SQLite insert failed: %s", exc)
+
+    def _update_sqlite(self, entry: MemoryEntry) -> None:
+        if not self._sqlite_conn:
+            return
+        try:
+            self._sqlite_conn.execute(
+                """UPDATE memory_entries SET value=?, tags=?, metadata=?,
+                   importance=?, updated_at=? WHERE id=?""",
+                (
+                    json.dumps(entry.value, default=str),
+                    json.dumps(entry.tags), json.dumps(entry.metadata, default=str),
+                    entry.importance, entry.updated_at, entry.id,
+                ),
+            )
+            self._sqlite_conn.commit()
+        except Exception as exc:
+            logger.warning("MemoryStore: SQLite update failed: %s", exc)
+
+    def load_from_sqlite(self) -> int:
+        """Load all entries from SQLite into memory. Returns count loaded."""
+        if not self._sqlite_conn:
+            return 0
+        count = 0
+        try:
+            cursor = self._sqlite_conn.execute(
+                "SELECT id, key, value, memory_type, scope, namespace, tags, "
+                "metadata, importance, created_at, updated_at, expires_at, source "
+                "FROM memory_entries"
+            )
+            for row in cursor.fetchall():
+                entry = MemoryEntry(
+                    id=row[0], key=row[1], value=json.loads(row[2]),
+                    memory_type=row[3], scope=MemoryScope(row[4]),
+                    namespace=row[5], tags=json.loads(row[6]),
+                    metadata=json.loads(row[7]), importance=row[8],
+                    created_at=row[9], updated_at=row[10],
+                    expires_at=row[11], source=row[12],
+                )
+                with self._lock:
+                    self._entries[entry.id] = entry
+                    self._add_to_indexes(entry)
+                count += 1
+        except Exception as exc:
+            logger.warning("MemoryStore: SQLite load failed: %s", exc)
+        return count
+
+    # ------------------------------------------------------------------
+    # Stats
+    # ------------------------------------------------------------------
+
+    def stats(self) -> Dict[str, Any]:
+        """Return store statistics."""
+        with self._lock:
+            return {
+                "total_entries": len(self._entries),
+                "sqlite_enabled": self._sqlite_conn is not None,
+                "by_type": {
+                    t: len(ids) for t, ids in self._type_index.items()
+                },
+                "by_scope": {
+                    s: len(ids) for s, ids in self._scope_index.items()
+                },
+                "namespaces": len(self._namespace_index),
+                "total_tags": len(self._tag_index),
+            }
+
+    def snapshot(self) -> Dict[str, Any]:
+        """Return a serializable snapshot of all entries."""
+        return {
+            "entries": [
+                {
+                    "id": e.id, "key": e.key, "memory_type": e.memory_type,
+                    "scope": e.scope.value, "namespace": e.namespace,
+                    "tags": e.tags, "importance": e.importance,
+                    "created_at": e.created_at, "updated_at": e.updated_at,
+                    "source": e.source,
+                }
+                for e in self._entries.values()
+            ],
+            "total": len(self._entries),
+        }
+
+

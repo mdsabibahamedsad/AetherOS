@@ -1,0 +1,78 @@
+{
+  "channel": "stable",
+  "platforms": {
+    "linux": {
+      "x64": [
+        {
+          "file": "AetherOS-1.0.0-linux-x64.AppImage",
+          "kind": "appimage",
+          "sha256": "66ab4d6af249a9d7ee66a6dcd9919456bfc3071c5664a33c151d74fad2b095ee",
+          "size": 203221071
+        },
+        {
+          "file": "AetherOS-1.0.0-linux-x64.deb",
+          "kind": "deb",
+          "sha256": "364397e2feceee8fc5666af9e8a00b616ab5733164a18fddc4acb20010cd1e61",
+          "size": 172509332
+        },
+        {
+          "file": "AetherOS-1.0.0-linux-x64.rpm",
+          "kind": "rpm",
+          "sha256": "c5872457af41017c2ea55aeb1762b288fd368dce67b40fde296cbcf0f5d27f99",
+          "size": 139768677
+        }
+      ]
+    },
+    "macos": {
+      "arm64": [
+        {
+          "file": "AetherOS-1.0.0-macOS-arm64.dmg",
+          "kind": "dmg",
+          "sha256": "588a3556a9fbce115790db8f36140a26a7ac996067adafb41185ae08381866d2",
+          "size": 204512391
+        },
+        {
+          "file": "AetherOS-1.0.0-macOS-arm64.zip",
+          "kind": "zip",
+          "sha256": "5b90e948caf71a16fb879a961beebd81992a16ac4ca1dba628f98694731db25d",
+          "size": 202442576
+        }
+      ]
+    },
+    "windows": {
+      "x64": [
+        {
+          "file": "AetherOS-1.0.0-win-x64.exe",
+          "kind": "installer",
+          "sha256": "a46ed24924c10bd646403d203f047d3c7558039a6a6b2665237ffbfb959a0e0a",
+          "size": 166195774
+        },
+        {
+          "file": "AetherOS-1.0.0-win-x64.msi",
+          "kind": "msi",
+          "sha256": "b3e42f0dbfae9ed643776326e70a05afc4043c32c47dd67a39fc9d4beb523777",
+          "size": 169599996
+        },
+        {
+          "file": "AetherOS-1.0.0-win-x64-portable.exe",
+          "kind": "portable",
+          "sha256": "ab31ea89fe626a3527e2ad289ceac96482fcb0e28bf5298d655c4c539a124a15",
+          "size": 166020321
+        }
+      ]
+    }
+  },
+  "product": "AetherOS",
+  "provenance": {
+    "note": "Values verified by Master 85/86 certification: Linux 3/3 + Windows 4/4 hashes re-computed locally from release v1.0.0 bytes (Master 86 evidence 05); macOS hashes from the release macos-artifacts.sha256 manifest downloaded verbatim + CI sha256sum -c PASS in run #16.",
+    "sourceCommit": "c16d126aee55eff7d1667ca23f0bbde04f098df0",
+    "workflowRun": "35186131800"
+  },
+  "productionReady": false,
+  "releaseDate": "2026-09-17T04:08:32Z",
+  "signatures": {
+    "macos": "unsigned",
+    "windows": "unsigned"
+  },
+  "version": "1.0.0"
+}

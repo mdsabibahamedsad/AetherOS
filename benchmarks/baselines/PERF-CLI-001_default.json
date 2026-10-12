@@ -1,0 +1,92 @@
+{
+  "benchmark_id": "PERF-CLI-001",
+  "name": "CLI Cold Startup",
+  "category": "cli",
+  "status": "MEASURED",
+  "iterations": 10,
+  "warmup_iterations": 3,
+  "metrics": {
+    "startup_time_ms_mean": 838.75106,
+    "startup_time_ms_median": 822.8713,
+    "startup_time_ms_stdev": 48.242103225253366,
+    "startup_time_ms_min": 811.4148,
+    "startup_time_ms_max": 974.2122,
+    "exit_code_mean": 0.0,
+    "exit_code_median": 0.0,
+    "exit_code_stdev": 0.0,
+    "exit_code_min": 0.0,
+    "exit_code_max": 0.0,
+    "stdout_bytes_mean": 15345.0,
+    "stdout_bytes_median": 15345.0,
+    "stdout_bytes_stdev": 0.0,
+    "stdout_bytes_min": 15345.0,
+    "stdout_bytes_max": 15345.0
+  },
+  "units": {
+    "startup_time_ms": "ms",
+    "exit_code": "code",
+    "stdout_bytes": "bytes"
+  },
+  "raw_samples": {
+    "startup_time_ms": [
+      974.2122,
+      823.175,
+      835.8113,
+      820.3662,
+      816.296,
+      820.5983,
+      826.0737,
+      822.5676,
+      836.9955,
+      811.4148
+    ],
+    "exit_code": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "stdout_bytes": [
+      15345.0,
+      15345.0,
+      15345.0,
+      15345.0,
+      15345.0,
+      15345.0,
+      15345.0,
+      15345.0,
+      15345.0,
+      15345.0
+    ]
+  },
+  "environment": {
+    "benchmark_version": "m71-v1",
+    "timestamp": 1789184923.348564,
+    "os": "Windows 10",
+    "os_platform": "Windows-10-10.0.26200-SP0",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "cpu_count": 12,
+    "ram_gb": 7.4,
+    "gpu": "none-detected",
+    "python_version": "3.11.15",
+    "node_version": "v25.5.0",
+    "electron_version": null,
+    "aetheros_version": null,
+    "build_mode": "unknown",
+    "power_mode": "unknown",
+    "thermal_state": "unknown",
+    "extra": {}
+  },
+  "metadata": {},
+  "timestamp": 1789184931.8190606,
+  "commit_hash": null,
+  "tags": [],
+  "baseline_name": "default",
+  "saved_at": 1789184931.8351626
+}

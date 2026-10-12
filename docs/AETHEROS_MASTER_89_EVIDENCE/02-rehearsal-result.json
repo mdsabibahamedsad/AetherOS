@@ -1,0 +1,39 @@
+{
+  "rehearsal": "master-89-e2e-rehearsal",
+  "trigger": "manual-local-execution (workflow_dispatch-equivalent; no push-to-main path exercised)",
+  "channel": "beta (test channel; stable production untouched)",
+  "sourceCommit": "380197f7ea0dbd6d08deaad2066783e14d5a2e47",
+  "workflowRun": "local-rehearsal-14972",
+  "note": "payload bytes are synthetic stand-ins for built installers; installer build/sign/install/restart are ENVIRONMENT-BLOCKED and NOT claimed",
+  "releaseA": {
+    "version": "1.0.1-test.1",
+    "releaseId": "b1826a54443c4861b535ee964cd5fc55",
+    "commit": "380197f7ea0dbd6d08deaad2066783e14d5a2e47"
+  },
+  "artifactsA": {
+    "win32-x64": {
+      "file": "rehearsal-bytes",
+      "sha256": "226bbda198432a3c77bde9676e8697b1a77dfb9ec92aaa963accd5064d482375",
+      "size": 65536,
+      "verified": true
+    },
+    "darwin-arm64": {
+      "file": "rehearsal-bytes",
+      "sha256": "830630e7323cfb55116403a3a4089192ecb095552a3be85e6a182e67fdedac5b",
+      "size": 65536,
+      "verified": true
+    },
+    "linux-x64": {
+      "file": "rehearsal-bytes",
+      "sha256": "32f103e877f1019f3f4279a8d2e1edf37e38ce92877a75ebd9d9fbdc718f0845",
+      "size": 65536,
+      "verified": true
+    }
+  },
+  "releaseB": {
+    "version": "1.0.1-test.2",
+    "releaseId": "dc69a80fbbe475fb74e2fec825a9f192"
+  },
+  "previousKnownGoodPostRevoke": null,
+  "failureSafety": "ALL REJECTED: tampered-bytes, forged-manifest, revoked-release, unreachable-server; installed version untouched (no install attempted)"
+}

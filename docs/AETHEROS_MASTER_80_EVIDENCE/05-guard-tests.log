@@ -1,0 +1,27 @@
+Γ£ö T1 stale artifact (wrong source commit) ΓåÆ ARTIFACT_STALE (0.8568ms)
+Γ£ö T2 dirty-tree artifact ΓåÆ ARTIFACT_DIRTY_TREE (0.6285ms)
+Γ£ö T3 dirty tree (untracked file) ΓåÆ RELEASE_BUILD_BLOCKED_DIRTY_TREE (0.2042ms)
+Γ£ö T3b clean tree passes (0.1119ms)
+Γ£ö T4 wrong-version artifact ΓåÆ ARTIFACT_WRONG_VERSION (0.4331ms)
+Γ£ö T5 wrong-arch artifact ΓåÆ ARTIFACT_WRONG_ARCH (0.1841ms)
+Γ£ö T6 legacy branding ΓåÆ PACKAGED_BRANDING_MISMATCH (0.1935ms)
+Γ£ö T6b packaged title mismatch ΓåÆ PACKAGED_BRANDING_MISMATCH (0.1275ms)
+Γ£ö T6c matching AetherOS titles pass (0.1135ms)
+Γ£ö T7 stray exe in output ΓåÆ ARTIFACT_UNEXPECTED/FOREIGN (0.2382ms)
+Γ£ö T7b missing artifact ΓåÆ ARTIFACT_MISSING (0.1535ms)
+Γ£ö T8 lockfile diff non-empty ΓåÆ LOCKFILE_MUTATED (0.1168ms)
+Γ£ö T8b empty diff passes (0.0849ms)
+Γ£ö T9 Node 25 vs canonical 22 ΓåÆ NODE_MAJOR_MISMATCH (0.1392ms)
+Γ£ö T9b Node 22 passes (0.1397ms)
+Γ£ö T10 repo root / home / foreign path rejected (0.8472ms)
+Γ£ö T10b canonical output accepted (0.4822ms)
+Γ£ö T11 linux artifacts noted, windows gate passes (0.5818ms)
+Γ£ö T12 blockmap sidecar ignored (0.0904ms)
+Γä╣ tests 19
+Γä╣ suites 0
+Γä╣ pass 19
+Γä╣ fail 0
+Γä╣ cancelled 0
+Γä╣ skipped 0
+Γä╣ todo 0
+Γä╣ duration_ms 83.5748

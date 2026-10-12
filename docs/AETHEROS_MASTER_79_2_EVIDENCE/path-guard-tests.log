@@ -1,0 +1,6 @@
+Path guard tests — actual output, exit 0
+tests 9 / pass 9 / fail 0 (scanLongPaths 6, owningPackage 1, runCheck 2)
+Suites: scanLongPaths, owningPackage, runCheck — incl. Master 79.1 §17
+checkout-prefix-only excess = warning, projected-path excess = fail,
+bundled-python mapped under resources/, fail-closed on missing dirs.
+GUARD TESTS: 9/9 PASS.

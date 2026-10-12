@@ -1,0 +1,26 @@
+{
+  "run_id": "run_1789185821_321520a6",
+  "timestamp": 1789185821.8275504,
+  "result_count": 1,
+  "benchmark_ids": [
+    "PERF-MEMORY-LEAK-001"
+  ],
+  "environment": {
+    "benchmark_version": "m71-v1",
+    "timestamp": 1789185817.563573,
+    "os": "Windows 10",
+    "os_platform": "Windows-10-10.0.26200-SP0",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "cpu_count": 12,
+    "ram_gb": 7.4,
+    "gpu": "none-detected",
+    "python_version": "3.11.15",
+    "node_version": "v25.5.0",
+    "electron_version": null,
+    "aetheros_version": null,
+    "build_mode": "unknown",
+    "power_mode": "unknown",
+    "thermal_state": "unknown",
+    "extra": {}
+  }
+}

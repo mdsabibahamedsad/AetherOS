@@ -1,0 +1,23 @@
+{
+  "buildId": "AETHEROS-1.0.0-windows-x64-2bdfbfd8ebcf-20260915T13071",
+  "artifacts": [
+    {
+      "target": "nsis",
+      "file": "AetherOS-1.0.0-win-x64.exe",
+      "size": 195891460,
+      "sha256": "b86b22f74f1afaa74bc28a304ff13e5bb0b0a6ad8cc42e969d138c34e67f9278"
+    },
+    {
+      "target": "msi",
+      "file": "AetherOS-1.0.0-win-x64.msi",
+      "size": 203137784,
+      "sha256": "1069fc6d26ee71810a9131f1383413d51252a3f3ae99c357f054dd1e2a5b031b"
+    },
+    {
+      "target": "portable",
+      "file": "AetherOS-1.0.0-win-x64-portable.exe",
+      "size": 162205111,
+      "sha256": "214d425537eb8eea43ca6c3f78f48edc1ccce758817e3fb9425e52ca143cfe3c"
+    }
+  ]
+}

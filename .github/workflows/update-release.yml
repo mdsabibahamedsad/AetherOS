@@ -1,0 +1,336 @@
+name: AetherOS Update Release Pipeline
+
+# Universal auto-update continuous delivery:
+#   test -> typecheck -> lint -> security -> build -> package -> sign
+#   -> hash -> SBOM -> provenance -> publish artifacts -> publish manifest
+#   -> canary -> validation -> stable rollout.
+# A failed stage stops publication. Signing/credential absence is BLOCKED
+# (fail-closed), never faked.
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., 1.2.0)'
+        required: true
+        type: string
+      channel:
+        description: 'Target channel for first publication'
+        required: false
+        default: 'beta'
+        type: choice
+        options:
+          - nightly
+          - dev
+          - alpha
+          - beta
+          - stable
+          - enterprise
+      rollout_percentage:
+        description: 'Initial rollout percentage'
+        required: false
+        default: '5'
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+  attestations: write
+
+env:
+  UPDATE_PROTOCOL_VERSION: 1
+
+jobs:
+  validate:
+    name: Validate release inputs
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      version: ${{ steps.resolve.outputs.version }}
+      channel: ${{ steps.resolve.outputs.channel }}
+      rollout: ${{ steps.resolve.outputs.rollout }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Resolve version and channel
+        id: resolve
+        run: |
+          if [ "${{ github.ref_type }}" = "tag" ]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+            CHANNEL="beta"
+          else
+            VERSION="${{ inputs.version }}"
+            CHANNEL="${{ inputs.channel }}"
+          fi
+          if ! echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$'; then
+            echo "SIGNING=BLOCKED: invalid semver '$VERSION'"
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "channel=$CHANNEL" >> "$GITHUB_OUTPUT"
+          echo "rollout=${{ inputs.rollout_percentage || '5' }}" >> "$GITHUB_OUTPUT"
+
+      - name: Verify tag/package version consistency
+        # Master 88 §23: tag version == package version == desktop app version
+        # == release manifest version. Mismatch stops the release.
+        run: |
+          VERSION="${{ steps.resolve.outputs.version }}"
+          ROOT_V=$(node -p "require('./package.json').version")
+          DESKTOP_V=$(node -p "require('./apps/desktop/package.json').version")
+          echo "release=$VERSION root=$ROOT_V desktop=$DESKTOP_V"
+          if [ "$VERSION" != "$ROOT_V" ] || [ "$VERSION" != "$DESKTOP_V" ]; then
+            echo "BLOCKED: version mismatch (release=$VERSION root=$ROOT_V desktop=$DESKTOP_V)"
+            exit 1
+          fi
+          echo "Version gate PASS: $VERSION"
+
+  test:
+    name: Tests / typecheck / lint
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Updater unit tests
+        run: npm run test:ui -- --run src/updater
+        working-directory: apps/desktop
+
+      - name: Electron platform tests
+        run: npm run test:desktop:platforms
+        working-directory: apps/desktop
+
+      - name: Typecheck
+        run: npm run typecheck
+        working-directory: apps/desktop
+
+      - name: Lint
+        run: npm run lint
+        working-directory: apps/desktop
+
+  security:
+    name: Security gate
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Dependency audit
+        run: npm run security:deps
+        working-directory: apps/desktop
+
+      - name: Secret scan
+        run: npm run security:secrets
+        working-directory: apps/desktop
+
+      - name: Security audit
+        run: npm run security:audit
+        working-directory: apps/desktop
+
+  build:
+    name: Build (${{ matrix.os }})
+    needs: security
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - os: windows-latest
+            target: dist:win
+          - os: macos-latest
+            target: dist:mac
+          - os: ubuntu-latest
+            target: dist:linux
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Package
+        run: npm run ${{ matrix.target }}
+        working-directory: apps/desktop
+
+      - name: Upload packaged artifacts
+        uses: actions/upload-artifact@330a01c490805de604e1ba1ff5ff485230fac0b4  # v4
+        with:
+          name: pkg-${{ matrix.os }}-${{ needs.validate.outputs.version }}
+          path: apps/desktop/dist-packaged/
+          retention-days: 30
+
+  sign:
+    name: Sign artifacts
+    needs:
+      - validate
+      - build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      signing: ${{ steps.gate.outputs.signing }}
+    steps:
+      - name: Signing gate (fail closed)
+        id: gate
+        run: |
+          if [ -z "${{ secrets.WINDOWS_SIGN_CERT }}" ] && [ -z "${{ secrets.APPLE_DEVELOPER_ID }}" ]; then
+            echo "SIGNING=BLOCKED: no code-signing credentials configured"
+            echo "signing=BLOCKED" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+          echo "signing=OK" >> "$GITHUB_OUTPUT"
+
+      - name: Download packaged artifacts
+        uses: actions/download-artifact@379abb0431d04a0d8c5eea77b0c3fdb7ed49dd  # v4
+        with:
+          path: dist-packaged
+
+      - name: Sign Windows artifacts
+        if: env.HAVE_WINDOWS_SIGN == '1'
+        env:
+          HAVE_WINDOWS_SIGN: ${{ secrets.WINDOWS_SIGN_CERT != '' }}
+        run: node apps/desktop/scripts/release/sign-windows.mjs dist-packaged
+
+      - name: Verify macOS notarization inputs
+        if: runner.os == 'macOS'
+        run: node apps/desktop/scripts/release/verify-notarization.mjs dist-packaged
+
+  sbom-provenance:
+    name: SBOM + provenance + hashes
+    needs:
+      - validate
+      - sign
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Download packaged artifacts
+        uses: actions/download-artifact@379abb0431d04a0d8c5eea77b0c3fdb7ed49dd  # v4
+        with:
+          path: dist-packaged
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@7b9c33f0a390a5b881ab09081c392146904e254ac  # v0.20.7
+        with:
+          path: dist-packaged
+          output-file: sbom.spdx.json
+
+      - name: Hash artifacts (SHA-256)
+        run: |
+          find dist-packaged -type f \( -name '*.exe' -o -name '*.msi' -o -name '*.dmg' -o -name '*.pkg' -o -name '*.zip' -o -name '*.AppImage' -o -name '*.deb' -o -name '*.rpm' \) \
+            -exec sha256sum {} \; | tee artifact-hashes.txt
+          test -s artifact-hashes.txt || { echo "BLOCKED: no artifacts hashed"; exit 1; }
+
+      - name: Attest provenance
+        uses: actions/attest-build-provenance@6dcee7dea4aa8412876d82a0748b99470b59962  # v2
+        with:
+          subject-path: 'dist-packaged/**'
+
+      - name: Upload release metadata
+        uses: actions/upload-artifact@330a01c490805de604e1ba1ff5ff485230fac0b4  # v4
+        with:
+          name: release-meta-${{ needs.validate.outputs.version }}
+          path: |
+            sbom.spdx.json
+            artifact-hashes.txt
+          retention-days: 90
+
+  publish-manifest:
+    name: Publish artifacts + manifest (${{ needs.validate.outputs.channel }})
+    needs:
+      - validate
+      - sbom-provenance
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: ${{ needs.validate.outputs.channel }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Download artifacts
+        uses: actions/download-artifact@379abb0431d04a0d8c5eea77b0c3fdb7ed49dd  # v4
+        with:
+          path: dist-packaged
+
+      - name: Publish to object storage (immutable URLs)
+        run: node services/update/scripts/publish-release.mjs
+        env:
+          RELEASE_VERSION: ${{ needs.validate.outputs.version }}
+          RELEASE_CHANNEL: ${{ needs.validate.outputs.channel }}
+          ROLLOUT_PERCENTAGE: ${{ needs.validate.outputs.rollout }}
+          ARTIFACT_BASE_URL: ${{ secrets.ARTIFACT_BASE_URL }}
+
+      - name: Publish update manifest
+        run: node services/update/scripts/publish-manifest.mjs
+        env:
+          RELEASE_VERSION: ${{ needs.validate.outputs.version }}
+          RELEASE_CHANNEL: ${{ needs.validate.outputs.channel }}
+          ROLLOUT_PERCENTAGE: ${{ needs.validate.outputs.rollout }}
+          UPDATE_MANIFEST_URL: ${{ secrets.UPDATE_MANIFEST_URL }}
+
+  canary:
+    name: Canary validation
+    needs:
+      - validate
+      - publish-manifest
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Verify published manifest
+        run: node services/update/scripts/verify-manifest.mjs
+        env:
+          RELEASE_VERSION: ${{ needs.validate.outputs.version }}
+          RELEASE_CHANNEL: ${{ needs.validate.outputs.channel }}
+          UPDATE_MANIFEST_URL: ${{ secrets.UPDATE_MANIFEST_URL }}
+
+      - name: Canary install smoke (Linux)
+        run: node apps/desktop/scripts/release/canary-install.mjs
+        env:
+          RELEASE_VERSION: ${{ needs.validate.outputs.version }}
+          RELEASE_CHANNEL: ${{ needs.validate.outputs.channel }}
+
+  promote-stable:
+    name: Promote to stable rollout
+    needs:
+      - validate
+      - canary
+    if: needs.validate.outputs.channel == 'stable'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: stable
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - name: Open stable rollout to 100%
+        run: node services/update/scripts/set-rollout.mjs --percentage 100
+        env:
+          RELEASE_VERSION: ${{ needs.validate.outputs.version }}
+          RELEASE_CHANNEL: stable

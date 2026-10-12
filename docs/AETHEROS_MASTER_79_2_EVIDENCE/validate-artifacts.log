@@ -1,0 +1,17 @@
+AetherOS artifact self-check (Master 77 §54) — actual output, exit 0
+  root     : D:\hermes-agent-main\aetheros\apps\desktop
+  dist     : D:\hermes-agent-main\aetheros\apps\desktop\dist-packaged
+  version  : 1.0.0
+  manifest : D:\hermes-agent-main\aetheros\docs\AETHEROS_MASTER_79_RELEASE_ARTIFACT_MANIFEST.json
+  ok: AetherOS-1.0.0-linux-x64.AppImage (176855362 bytes, sha256 20093a08b4ed8b24…)
+  ok: AetherOS-1.0.0-linux-x64.deb (140407144 bytes, sha256 939fb2480287bf52…)
+  ok: AetherOS-1.0.0-linux-x64.rpm (121074205 bytes, sha256 820c4d8dc2a27c45…)
+  ok: AetherOS-1.0.0-win-x64-portable.exe (162205111 bytes, sha256 214d425537eb8eea…)
+  ok: AetherOS-1.0.0-win-x64.exe (195891460 bytes, sha256 b86b22f74f1afaa7…)
+  ok: AetherOS-1.0.0-win-x64.exe.blockmap (202867 bytes, sha256 d365386b24b8366d…)
+  ok: AetherOS-1.0.0-win-x64.msi (203137784 bytes, sha256 1069fc6d26ee7181…)
+  skip (builder byproduct): builder-debug.yml
+  skip (builder byproduct): latest.yml
+  manifest: cross-checked 7 entries
+
+VALID — all artifact checks passed

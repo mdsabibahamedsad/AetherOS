@@ -1,0 +1,122 @@
+﻿
+> aetheros@1.0.0 test:ui
+> vitest run --run
+
+
+ RUN  v4.1.5 D:/hermes-agent-main/aetheros/apps/desktop
+
+ Γ¥» src/themes/design-tokens.test.ts (8 tests | 3 failed) 27ms
+     ├ù type ramp covers displayΓåÆstatus hierarchy exactly once each 12ms
+     ├ù motion durations stay subtle (Γëñ260ms) per P37 anti-decorative rule 2ms
+     ├ù spacing scale covers the standard step ladder in rem units 4ms
+ Γ¥» src/updater/__tests__/health.test.ts (8 tests | 1 failed) 185ms
+     ├ù expires metadata and enforces artifact budget 66ms
+node.exe : 
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ» Failed Tests 4 ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+
+ FAIL  src/themes/design-tokens.test.ts > design tokens (Master 22 P5) > type ramp covers displayΓåÆstatus hierarchy 
+exactly once each
+AssertionError: expected [ 'display', 'heading', ΓÇª(7) ] to deeply equal [ 'display', 'heading', ΓÇª(5) ]
+
+- Expected
++ Received
+
+@@ -4,6 +4,8 @@
+    "subheading",
+    "body",
+    "caption",
+    "metadata",
+    "code",
++   "label",
++   "button",
+  ]
+
+ Γ¥» src/themes/design-tokens.test.ts:23:35
+     21|
+     22|   it('type ramp covers displayΓåÆstatus hierarchy exactly once each', ()ΓÇª
+     23|     expect(Object.keys(fontSize)).toEqual([
+       |                                   ^
+     24|       'display',
+     25|       'heading',
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[1/4]ΓÄ»
+
+ FAIL  src/themes/design-tokens.test.ts > design tokens (Master 22 P5) > motion durations stay subtle (Γëñ260ms) per 
+P37 anti-decorative rule
+AssertionError: expected 320 to be less than or equal to 260
+ Γ¥» src/themes/design-tokens.test.ts:45:19
+     43|       ...Object.values(duration).map((d) => parseInt(d, 10)),
+     44|     );
+     45|     expect(maxMs).toBeLessThanOrEqual(260);
+       |                   ^
+     46|   });
+     47|
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[2/4]ΓÄ»
+
+ FAIL  src/themes/design-tokens.test.ts > design tokens (Master 22 P5) > spacing scale covers the standard step ladder 
+in rem units
+AssertionError: expected [ 0.5, 1, 2, 3, 4, 5, 6, 8, 10, ΓÇª(5) ] to deeply equal [ 0.5, 1, 2, 3, 4, 5, 6, 8, 10, 
+ΓÇª(3) ]
+
+- Expected
++ Received
+
+@@ -9,6 +9,8 @@
+    8,
+    10,
+    12,
+    16,
+    20,
++   24,
++   32,
+  ]
+
+ Γ¥» src/themes/design-tokens.test.ts:65:19
+     63|       .map(Number)
+     64|       .sort((a, b) => a - b);
+     65|     expect(steps).toEqual([0.5, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20]);
+       |                   ^
+     66|     for (const [k, v] of Object.entries(spacing)) {
+     67|       if (k === 'px') {
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[3/4]ΓÄ»
+
+ FAIL  src/updater/__tests__/health.test.ts > telemetry + cache > expires metadata and enforces artifact budget
+AssertionError: expected null to be '{"v":1}' // Object.is equality
+
+- Expected:
+"{\"v\":1}"
+
++ Received:
+null
+
+ Γ¥» src/updater/__tests__/health.test.ts:111:56
+    109|     const cache = new UpdateCache(root, { metadataTtlMs: 10, maxArtifaΓÇª
+    110|     await cache.setMetadata('manifest:stable', '{"v":1}');
+    111|     expect(await cache.getMetadata('manifest:stable')).toBe('{"v":1}');
+       |                                                        ^
+    112|     await new Promise((r) => setTimeout(r, 20));
+    113|     expect(await cache.getMetadata('manifest:stable')).toBeNull();
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[4/4]ΓÄ»
+
+
+ Test Files  2 failed | 117 passed (119)
+      Tests  4 failed | 807 passed (811)
+   Start at  20:46:31
+   Duration  53.82s (transform 21.57s, setup 2.96s, import 134.67s, tests 42.69s, environment 328.82s)
+
+npm error Lifecycle script `test:ui` failed with error:
+npm error code 1
+npm error path D:\hermes-agent-main\aetheros\apps\desktop
+npm error workspace aetheros@1.0.0
+npm error location D:\hermes-agent-main\aetheros\apps\desktop
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c vitest run --run

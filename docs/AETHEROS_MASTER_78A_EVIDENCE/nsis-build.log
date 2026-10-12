@@ -1,0 +1,25 @@
+
+> aetheros@1.0.0 builder
+> cross-env NODE_OPTIONS=--max-old-space-size=16384 electron-builder --win nsis
+
+  ΓÇó electron-builder  version=26.8.1 os=10.0.26200
+  ΓÇó loaded configuration  file=package.json ("build" field)
+[before-build] staged license.txt from LICENSE
+  ΓÇó packaging       platform=win32 arch=x64 electron=40.9.3 appOutDir=dist-packaged\win-unpacked
+  ΓÇó downloading     url=https://github.com/electron/electron/releases/download/v40.9.3/electron-v40.9.3-win32-x64.zip size=138 MB parts=8
+  ΓÇó downloaded      url=https://github.com/electron/electron/releases/download/v40.9.3/electron-v40.9.3-win32-x64.zip duration=1m4.443s
+  ΓÇó packageManager not detected by file, falling back to environment detection  resolvedPackageManager=npm detected=D:\hermes-agent-main\aetheros\apps\desktop
+  ΓÇó detected workspace root for project using process environment  pm=npm config=undefined resolved=undefined projectDir=D:\hermes-agent-main\aetheros\apps\desktop
+  ΓÇó updating asar integrity executable resource  executablePath=dist-packaged\win-unpacked\AetherOS.exe
+[set-exe-identity] stamping D:\hermes-agent-main\aetheros\apps\desktop\dist-packaged\win-unpacked\AetherOS.exe
+[set-exe-identity] icon: D:\hermes-agent-main\aetheros\apps\desktop\assets\icon.ico
+[set-exe-identity] done ΓÇö AetherOS icon + identity stamped
+  ΓÇó skipping "afterSign" hook as no signing occurred, perhaps you intended "afterPack"?
+  ΓÇó building        target=nsis file=dist-packaged\AetherOS-1.0.0-win-x64.exe archs=x64 oneClick=false perMachine=true
+  ΓÇó downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-3.0.4.1/nsis-3.0.4.1.7z size=1.3 MB parts=1
+  ΓÇó downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-3.0.4.1/nsis-3.0.4.1.7z duration=1.605s
+  ΓÇó downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-resources-3.4.1/nsis-resources-3.4.1.7z size=731 kB parts=1
+  ΓÇó downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-resources-3.4.1/nsis-resources-3.4.1.7z duration=1.201s
+  ΓÇó signing with signtool.exe  path=dist-packaged\AetherOS-1.0.0-win-x64.__uninstaller.exe
+  ΓÇó signing with signtool.exe  path=dist-packaged\AetherOS-1.0.0-win-x64.exe
+  ΓÇó building block map  blockMapFile=dist-packaged\AetherOS-1.0.0-win-x64.exe.blockmap

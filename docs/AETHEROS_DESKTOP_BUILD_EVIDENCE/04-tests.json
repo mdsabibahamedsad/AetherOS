@@ -1,0 +1,1 @@
+{"electronPlatformTests":"not re-run this execution (CLOSED: passing in CI + Master 88/89 sessions; unchanged code)","lint":"not run (no lint-relevant source changes this execution)","typecheck":"PASS (tsc -p . --noEmit clean, apps/desktop)","updaterVitest":"PASS 6 files / 37 tests (Master 89 session; code unchanged since)"}

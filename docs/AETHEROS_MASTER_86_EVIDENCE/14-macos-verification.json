@@ -1,0 +1,1 @@
+{"codesignVerify":"BLOCKED_BY_ENVIRONMENT (no macOS host)","gatekeeperAssess":"BLOCKED_BY_ENVIRONMENT (spctl requires macOS)","status":"MACOS_VERIFICATION = BLOCKED (no signed/notarized bytes exist to verify; no Apple verification tools available on this host)","staplerValidate":"BLOCKED_BY_ENVIRONMENT (xcrun requires macOS)"}

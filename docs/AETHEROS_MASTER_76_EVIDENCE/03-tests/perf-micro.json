@@ -1,0 +1,7 @@
+﻿{
+  "host": "win32-x64 node v25.5.0",
+  "stableStringify_us": 26.155,
+  "rsa2048_sign_ms": 2.7111,
+  "rsa2048_verify_ms": 0.06568,
+  "note": "host-local micro timings of update crypto hot paths; NOT production benchmarks"
+}

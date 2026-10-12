@@ -1,0 +1,6 @@
+Host launch probe (dirty dev host, NON-clean evidence — actual 2026-09-15):
+target: apps/desktop/dist-packaged/win-unpacked/AetherOS.exe --no-sandbox --disable-gpu --version
+result: process STARTED (pid 4936), still alive at 15s (Electron GUI app ignores --version),
+action: Stop-Process -Force (kill-after-probe), follow-up Get-Process AetherOS = absent (clean).
+Interpretation: launch-capable ONLY. NOT a runtime PASS, NOT a GUI PASS, NOT IPC evidence.
+Clean-environment launch/shutdown remains BLOCKED (VM_REQUIRED).

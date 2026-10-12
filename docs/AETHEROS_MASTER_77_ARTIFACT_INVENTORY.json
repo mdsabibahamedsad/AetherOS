@@ -1,0 +1,73 @@
+{
+  "generatedAt": "2026-09-13T00:00:00Z",
+  "sourceCommit": "2bdfbfd8ebcf2bb27b06f600c2beb159e723d8b1",
+  "version": "1.0.0",
+  "outputDir": "apps/desktop/dist-packaged",
+  "artifacts": [
+    {
+      "filename": "AetherOS-1.0.0-win-x64.exe",
+      "path": "apps/desktop/dist-packaged/AetherOS-1.0.0-win-x64.exe",
+      "size": 195739994,
+      "mtime": "2026-09-13T19:51:56+06:00",
+      "sha256": "87091be02683aa8295c399a8f2b28545944add05d02e54f4419ebc0dedfa1f68",
+      "type": "nsis-installer",
+      "platform": "win",
+      "arch": "x64",
+      "version": "1.0.0",
+      "commitBinding": "VERIFIED-LOCAL (install-stamp 2bdfbfd == HEAD, same build invocation 2026-09-13)",
+      "buildCommand": "npm run dist:win:nsis",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "filename": "AetherOS-1.0.0-win-x64.msi",
+      "path": "apps/desktop/dist-packaged/AetherOS-1.0.0-win-x64.msi",
+      "size": 196571899,
+      "mtime": "2026-08-22T21:34:18.3268220+06:00",
+      "sha256": "6fe65eb4bbbe057d3c1e3b0d333cdcd4a49aea77e10fc39dcb1e10629c3df2f3",
+      "type": "msi-installer",
+      "platform": "win",
+      "arch": "x64",
+      "version": "1.0.0",
+      "commitBinding": "UNVERIFIED",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "filename": "AetherOS-1.0.0-win-x64-portable.exe",
+      "path": "apps/desktop/dist-packaged/AetherOS-1.0.0-win-x64-portable.exe",
+      "size": 187240131,
+      "mtime": "2026-08-22T21:34:16.8476237+06:00",
+      "sha256": "cce16c07b326dab150aa6d493c1ded0141c9ce701193b37405463cde1893c9cf",
+      "type": "portable-exe",
+      "platform": "win",
+      "arch": "x64",
+      "version": "1.0.0",
+      "commitBinding": "UNVERIFIED",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "filename": "AetherOS-1.0.0-win-x64.exe.blockmap",
+      "path": "apps/desktop/dist-packaged/AetherOS-1.0.0-win-x64.exe.blockmap",
+      "size": 202557,
+      "mtime": "2026-09-13T19:51:57+06:00",
+      "sha256": "37c1e6619106d366694e5b493e56264a3de6358ecd8602552cc9b6105cd6a7ec",
+      "type": "nsis-differential-blockmap",
+      "platform": "win",
+      "arch": "x64",
+      "version": "1.0.0",
+      "commitBinding": "VERIFIED-LOCAL (same build invocation as NSIS exe, 2026-09-13)",
+      "status": "IMPLEMENTED"
+    }
+  ],
+  "missingArtifacts": [
+    "AetherOS-1.0.0-linux-x64.AppImage",
+    "AetherOS-1.0.0-linux-x64.deb",
+    "AetherOS-1.0.0-linux-x64.rpm"
+  ],
+  "staleOutputs": [
+    {
+      "path": "apps/desktop/release/",
+      "reason": "Previous builder output directory (effective config says 'output: release'); superseded by dist-packaged/. Retain for evidence; do not publish from it.",
+      "recommendation": "Archive, do not delete yet"
+    }
+  ]
+}

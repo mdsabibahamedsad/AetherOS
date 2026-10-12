@@ -1,0 +1,16 @@
+# Master 77 build evidence notes (2026-09-13, Windows host)
+- typecheck: tsc -p . --noEmit → exit 0
+- electron platform tests: node --test electron/*.test.cjs → 176 pass / 0 fail
+- dist:linux:validate → VALID (static config check, any host)
+- release:validate-artifacts → VALID, manifest cross-check 4 entries
+- npm run dist:win → FAILED at MSI/WiX light.exe LGHT0103 (over-long elevenlabs filename
+  under dist-packaged\win-unpacked\resources\py\...; Windows MAX_PATH). NSIS/MSI/portable from
+  2026-08-22 left untouched (mtimes verified).
+- npm run dist:win:nsis → EXIT 0. Fresh exe (195739994 bytes) + blockmap from HEAD 2bdfbfd;
+  install-stamp commit == HEAD, builtAt 2026-09-13T13:49:19Z.
+- Fresh unpacked AetherOS.exe spawn probe: alive after 20s, then terminated; host clean.
+  No GUI/window assertion possible headless → launch UNVERIFIED (not claimed as PASS).
+- Installer execution (NSIS/MSI) on dev host: deliberately NOT attempted (machine mutation +
+  elevation). Clean-VM commands in BLOCKED_TESTS.
+- Signing: no CSC material → UNSIGNED, stated as BLOCKED.
+- SBOM/provenance: CI-only (desktop-release.yml); none produced locally, none faked.

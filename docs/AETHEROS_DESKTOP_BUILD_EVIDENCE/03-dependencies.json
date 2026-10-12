@@ -1,0 +1,1 @@
+{"electronBuilder":"26.8.1 (root node_modules; apps/desktop has no local electron dir — root-hoist model enforced by assert-root-install.cjs)","lockfiles":"package-lock.json present (npm); uv.lock present (python)","model":"root install + workspace hoisting; apps/desktop consumes hoisted deps; verified by assert-root-install during build"}

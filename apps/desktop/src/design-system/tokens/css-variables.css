@@ -1,0 +1,798 @@
+/**
+ * AetherOS Design System — CSS Variable Definitions
+ * Generated from design tokens. Import this in styles.css.
+ *
+ * This file defines all design tokens as CSS custom properties
+ * that can be consumed by Tailwind v4's @theme directive.
+ */
+
+@layer base {
+  :root {
+    /* ============================================================
+       COLOR TOKENS — Light Mode (Default)
+       ============================================================ */
+
+    /* Brand */
+    --color-brand-blue: #0066FF;
+    --color-brand-cyan: #00D4FF;
+    --color-brand-purple: #9933FF;
+
+    /* Backgrounds */
+    --color-bg: #F8FAFF;
+    --color-bg-surface: #FFFFFF;
+    --color-bg-surface-elevated: #FFFFFF;
+    --color-bg-surface-hover: #F3F7FF;
+    --color-bg-surface-active: #EBF1FF;
+
+    /* Foregrounds */
+    --color-fg: #17171A;
+    --color-fg-muted: #71717A;
+    --color-fg-subtle: #A1A1AA;
+
+    /* Borders */
+    --color-border: #E4E4E7;
+    --color-border-strong: #D4D4D8;
+    --color-border-focus: #0066FF;
+
+    /* Primary */
+    --color-primary: #0053FD;
+    --color-primary-hover: #0045CC;
+    --color-primary-active: #0038A3;
+    --color-primary-fg: #FFFFFF;
+
+    /* Secondary */
+    --color-secondary: #F3F7FF;
+    --color-secondary-hover: #EBF1FF;
+    --color-secondary-active: #D6E4FF;
+    --color-secondary-fg: #0053FD;
+
+    /* Accent */
+    --color-accent: #00D4FF;
+    --color-accent-hover: #00B8E6;
+    --color-accent-active: #009CCC;
+    --color-accent-fg: #17171A;
+
+    /* Destructive */
+    --color-destructive: #CF2D56;
+    --color-destructive-hover: #B02548;
+    --color-destructive-active: #911D3B;
+    --color-destructive-fg: #FFFFFF;
+
+    /* Success */
+    --color-success: #1F8A65;
+    --color-success-hover: #1A7655;
+    --color-success-active: #156245;
+    --color-success-fg: #FFFFFF;
+    --color-success-bg: #ECFDF3;
+
+    /* Warning */
+    --color-warning: #C08532;
+    --color-warning-hover: #A6732C;
+    --color-warning-active: #8C6126;
+    --color-warning-fg: #FFFFFF;
+    --color-warning-bg: #FFFAEB;
+
+    /* Info */
+    --color-info: #0053FD;
+    --color-info-hover: #0045CC;
+    --color-info-active: #0038A3;
+    --color-info-fg: #FFFFFF;
+    --color-info-bg: #EFF8FF;
+
+    /* Overlay */
+    --color-overlay: rgba(0, 0, 0, 0.4);
+    --color-overlay-strong: rgba(0, 0, 0, 0.6);
+
+    /* Glass */
+    --color-glass-bg: rgba(255, 255, 255, 0.03);
+    --color-glass-border: rgba(255, 255, 255, 0.08);
+
+    /* Sidebar */
+    --color-sidebar-bg: #F3F7FF;
+    --color-sidebar-border: #E4E4E7;
+    --color-sidebar-fg: #17171A;
+
+    /* Chat */
+    --color-chat-bg: #F8FAFF;
+    --color-user-bubble: #EFF8FF;
+    --color-assistant-bubble: #FFFFFF;
+
+    /* Code */
+    --color-code-bg: #F4F4F5;
+    --color-code-border: #E4E4E7;
+    --color-code-fg: #18181B;
+
+    /* Selection */
+    --color-selection-bg: #FFD24A;
+    --color-selection-fg: #17171A;
+
+    /* Focus */
+    --color-focus-ring: rgba(0, 102, 255, 0.5);
+    --color-focus-ring-shadow: 0 0 0 2px rgba(0, 102, 255, 0.3);
+
+    /* Status */
+    --color-status-running: #4F8CFF;
+    --color-status-pending: #DB704B;
+    --color-status-success: #55A583;
+    --color-status-error: #E75E78;
+    --color-status-warning: #DB704B;
+    --color-status-idle: #71717A;
+    --color-status-paused: #C08532;
+    --color-status-blocked: #E75E78;
+    --color-status-offline: #52525B;
+
+    /* Risk */
+    --color-risk-low: #55A583;
+    --color-risk-medium: #DB704B;
+    --color-risk-high: #E75E78;
+    --color-risk-critical: #CF2D56;
+
+    /* Trust */
+    --color-trust-verified: #55A583;
+    --color-trust-trusted: #4F8CFF;
+    --color-trust-pending: #DB704B;
+    --color-trust-untrusted: #E75E78;
+    --color-trust-blocked: #CF2D56;
+
+    /* Classification */
+    --color-class-public: #55A583;
+    --color-class-internal: #4F8CFF;
+    --color-class-private: #DB704B;
+    --color-class-sensitive: #E75E78;
+    --color-class-restricted: #CF2D56;
+
+    /* ============================================================
+       SPACING TOKENS (8pt grid)
+       ============================================================ */
+
+    --space-0: 0;
+    --space-px: 1px;
+    --space-0_5: 0.125rem;   /* 2px */
+    --space-1: 0.25rem;      /* 4px */
+    --space-1_5: 0.375rem;   /* 6px */
+    --space-2: 0.5rem;       /* 8px */
+    --space-2_5: 0.625rem;   /* 10px */
+    --space-3: 0.75rem;      /* 12px */
+    --space-3_5: 0.875rem;   /* 14px */
+    --space-4: 1rem;         /* 16px */
+    --space-5: 1.25rem;      /* 20px */
+    --space-6: 1.5rem;       /* 24px */
+    --space-7: 1.75rem;      /* 28px */
+    --space-8: 2rem;         /* 32px */
+    --space-9: 2.25rem;      /* 36px */
+    --space-10: 2.5rem;      /* 40px */
+    --space-11: 2.75rem;     /* 44px */
+    --space-12: 3rem;        /* 48px */
+    --space-14: 3.5rem;      /* 56px */
+    --space-16: 4rem;        /* 64px */
+    --space-20: 5rem;        /* 80px */
+    --space-24: 6rem;        /* 96px */
+    --space-28: 7rem;        /* 112px */
+    --space-32: 8rem;        /* 128px */
+    --space-36: 9rem;        /* 144px */
+    --space-40: 10rem;       /* 160px */
+    --space-44: 11rem;       /* 176px */
+    --space-48: 12rem;       /* 192px */
+    --space-52: 13rem;       /* 208px */
+    --space-56: 14rem;       /* 224px */
+    --space-60: 15rem;       /* 240px */
+    --space-64: 16rem;       /* 256px */
+    --space-72: 18rem;       /* 288px */
+    --space-80: 20rem;       /* 320px */
+    --space-96: 24rem;       /* 384px */
+
+    /* Semantic spacing */
+    --space-none: 0;
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --space-4xl: 6rem;
+
+    /* Component spacing */
+    --space-button-gap: 0.5rem;
+    --space-button-padding-x: 1rem;
+    --space-button-padding-y: 0.5rem;
+    --space-input-padding-x: 0.75rem;
+    --space-input-padding-y: 0.5rem;
+    --space-card-padding: 1.5rem;
+    --space-card-gap: 1rem;
+    --space-section-gap: 2rem;
+    --space-page-padding: 1.5rem;
+    --space-page-gap: 2rem;
+
+    /* Layout */
+    --space-sidebar-width: 14.8125rem;
+    --space-composer-width: 48.75rem;
+
+    /* ============================================================
+       TYPOGRAPHY TOKENS
+       ============================================================ */
+
+    /* Font Families */
+    --font-sans: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", "SF Mono", "Cascadia Code", ui-monospace, Menlo, Consolas, monospace;
+    --font-display: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+    /* Font Sizes (with line heights) */
+    --text-display: 2.5rem;
+    --text-display-line-height: 1.1;
+    --text-display-weight: 600;
+    --text-display-letter-spacing: -0.02em;
+
+    --text-display-sm: 2rem;
+    --text-display-sm-line-height: 1.15;
+    --text-display-sm-weight: 600;
+    --text-display-sm-letter-spacing: -0.01em;
+
+    --text-h1: 1.875rem;
+    --text-h1-line-height: 1.2;
+    --text-h1-weight: 600;
+    --text-h1-letter-spacing: -0.01em;
+
+    --text-h2: 1.5rem;
+    --text-h2-line-height: 1.3;
+    --text-h2-weight: 600;
+    --text-h2-letter-spacing: -0.01em;
+
+    --text-h3: 1.25rem;
+    --text-h3-line-height: 1.35;
+    --text-h3-weight: 600;
+    --text-h3-letter-spacing: -0.005em;
+
+    --text-h4: 1.125rem;
+    --text-h4-line-height: 1.4;
+    --text-h4-weight: 600;
+
+    --text-h5: 1rem;
+    --text-h5-line-height: 1.45;
+    --text-h5-weight: 600;
+
+    --text-h6: 0.875rem;
+    --text-h6-line-height: 1.5;
+    --text-h6-weight: 600;
+
+    --text-body-lg: 1.125rem;
+    --text-body-lg-line-height: 1.6;
+    --text-body-lg-weight: 400;
+
+    --text-body: 1rem;
+    --text-body-line-height: 1.6;
+    --text-body-weight: 400;
+
+    --text-body-sm: 0.875rem;
+    --text-body-sm-line-height: 1.6;
+    --text-body-sm-weight: 400;
+
+    --text-body-xs: 0.8125rem;
+    --text-body-xs-line-height: 1.55;
+    --text-body-xs-weight: 400;
+
+    --text-label: 0.875rem;
+    --text-label-line-height: 1.5;
+    --text-label-weight: 500;
+
+    --text-label-sm: 0.8125rem;
+    --text-label-sm-line-height: 1.5;
+    --text-label-sm-weight: 500;
+
+    --text-button: 0.875rem;
+    --text-button-line-height: 1.25;
+    --text-button-weight: 600;
+
+    --text-button-sm: 0.8125rem;
+    --text-button-sm-line-height: 1.25;
+    --text-button-sm-weight: 600;
+
+    --text-caption: 0.75rem;
+    --text-caption-line-height: 1.5;
+    --text-caption-weight: 400;
+
+    --text-caption-sm: 0.6875rem;
+    --text-caption-sm-line-height: 1.4;
+    --text-caption-sm-weight: 400;
+
+    --text-metadata: 0.6875rem;
+    --text-metadata-line-height: 1.4;
+    --text-metadata-weight: 400;
+
+    --text-code: 0.8125rem;
+    --text-code-line-height: 1.55;
+    --text-code-weight: 450;
+
+    --text-code-sm: 0.75rem;
+    --text-code-sm-line-height: 1.5;
+    --text-code-sm-weight: 450;
+
+    --text-code-lg: 0.875rem;
+    --text-code-lg-line-height: 1.6;
+    --text-code-lg-weight: 450;
+
+    /* Font Weights */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Line Heights */
+    --leading-none: 1;
+    --leading-tight: 1.1;
+    --leading-snug: 1.25;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+
+    /* Letter Spacing */
+    --tracking-tighter: -0.02em;
+    --tracking-tight: -0.01em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.01em;
+    --tracking-wider: 0.02em;
+    --tracking-widest: 0.04em;
+
+    /* ============================================================
+       RADIUS TOKENS
+       ============================================================ */
+
+    --radius-none: 0;
+    --radius-xs: 0.125rem;      /* 2px */
+    --radius-sm: 0.25rem;       /* 4px */
+    --radius-md: 0.375rem;      /* 6px */
+    --radius-lg: 0.5rem;        /* 8px */
+    --radius-xl: 0.75rem;       /* 12px */
+    --radius-2xl: 1rem;         /* 16px */
+    --radius-3xl: 1.5rem;       /* 24px */
+    --radius-4xl: 2rem;         /* 32px */
+    --radius-full: 9999px;
+
+    /* Semantic */
+    --radius-button: 0.375rem;
+    --radius-button-sm: 0.25rem;
+    --radius-input: 0.375rem;
+    --radius-card: 0.75rem;
+    --radius-card-sm: 0.5rem;
+    --radius-dialog: 0.875rem;
+    --radius-popover: 0.75rem;
+    --radius-tooltip: 0.375rem;
+    --radius-badge: 9999px;
+    --radius-avatar: 9999px;
+    --radius-focus-ring: 0.125rem;
+
+    /* ============================================================
+       ELEVATION / SHADOW TOKENS (Light Mode)
+       ============================================================ */
+
+    --shadow-level0: none;
+    --shadow-level1: 0 1px 2px rgb(0 0 0 / 0.05), 0 1px 3px rgb(0 0 0 / 0.1);
+    --shadow-level2: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-level3: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-level4: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-level5: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+    --shadow-focus-ring: 0 0 0 2px rgb(0 102 255 / 0.5);
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+    /* Semantic shadows */
+    --shadow-card: var(--shadow-level1);
+    --shadow-card-hover: var(--shadow-level2);
+    --shadow-dropdown: var(--shadow-level3);
+    --shadow-popover: var(--shadow-level3);
+    --shadow-tooltip: var(--shadow-level2);
+    --shadow-modal: var(--shadow-level5);
+    --shadow-drawer: var(--shadow-level4);
+    --shadow-sidebar: var(--shadow-level2);
+    --shadow-header: var(--shadow-level1);
+    --shadow-composer: var(--shadow-level2);
+    --shadow-notification: var(--shadow-level4);
+    --shadow-command-palette: var(--shadow-level5);
+    --shadow-approval: var(--shadow-level5);
+    --shadow-agent-working: var(--shadow-level3);
+
+    /* Glow shadows */
+    --shadow-glow-blue: 0 0 20px rgba(0, 102, 255, 0.3);
+    --shadow-glow-cyan: 0 0 20px rgba(0, 212, 255, 0.3);
+    --shadow-glow-purple: 0 0 20px rgba(153, 51, 255, 0.3);
+    --shadow-glow-success: 0 0 20px rgba(85, 165, 131, 0.3);
+    --shadow-glow-warning: 0 0 20px rgba(219, 112, 75, 0.3);
+    --shadow-glow-error: 0 0 20px rgba(231, 94, 120, 0.3);
+
+    /* ============================================================
+       MOTION TOKENS
+       ============================================================ */
+
+    /* Durations */
+    --duration-instant: 60ms;
+    --duration-fast: 120ms;
+    --duration-normal: 180ms;
+    --duration-slow: 260ms;
+    --duration-slower: 320ms;
+    --duration-modal: 320ms;
+    --duration-page: 400ms;
+
+    /* Easings */
+    --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+    --ease-enter: cubic-bezier(0, 0, 0.2, 1);
+    --ease-modal: cubic-bezier(0.0, 0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring-gentle: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+
+    /* ============================================================
+       BREAKPOINTS
+       ============================================================ */
+
+    --breakpoint-desktop-sm: 1024px;
+    --breakpoint-desktop-md: 1440px;
+    --breakpoint-desktop-lg: 1920px;
+    --breakpoint-desktop-xl: 2560px;
+    --breakpoint-ultrawide: 2560px;
+    --breakpoint-full-hd: 1920px;
+
+    /* Container max widths */
+    --container-sm: 640px;
+    --container-md: 768px;
+    --container-lg: 1024px;
+    --container-xl: 1280px;
+    --container-2xl: 1440px;
+    --container-full: 100%;
+
+    --container-content: 48.75rem;
+    --container-content-wide: 64rem;
+    --container-content-full: 80rem;
+    --container-composer: 48.75rem;
+    --container-sidebar: 14.8125rem;
+    --container-sidebar-max: 22rem;
+    --container-sidebar-min: 12rem;
+    --container-preview: 28rem;
+    --container-preview-max: 36rem;
+    --container-preview-min: 20rem;
+    --container-file-browser: 18rem;
+    --container-file-browser-max: 28rem;
+    --container-file-browser-min: 14rem;
+
+    /* ============================================================
+       Z-INDEX TOKENS
+       ============================================================ */
+
+    --z-base: 0;
+    --z-background: -1;
+    --z-content: 10;
+    --z-raised: 20;
+    --z-sticky: 100;
+    --z-dropdown: 200;
+    --z-popover: 300;
+    --z-tooltip: 400;
+    --z-drawer: 500;
+    --z-modal-overlay: 550;
+    --z-modal: 600;
+    --z-command-palette: 700;
+    --z-agent-working: 800;
+    --z-approval: 900;
+    --z-emergency: 1000;
+    --z-toast: 1100;
+    --z-tour: 1200;
+    --z-debug: 9999;
+
+    /* ============================================================
+       OPACITY TOKENS
+       ============================================================ */
+
+    --opacity-0: 0;
+    --opacity-5: 0.05;
+    --opacity-10: 0.1;
+    --opacity-15: 0.15;
+    --opacity-20: 0.2;
+    --opacity-25: 0.25;
+    --opacity-30: 0.3;
+    --opacity-35: 0.35;
+    --opacity-40: 0.4;
+    --opacity-45: 0.45;
+    --opacity-50: 0.5;
+    --opacity-55: 0.55;
+    --opacity-60: 0.6;
+    --opacity-65: 0.65;
+    --opacity-70: 0.7;
+    --opacity-75: 0.75;
+    --opacity-80: 0.8;
+    --opacity-85: 0.85;
+    --opacity-90: 0.9;
+    --opacity-95: 0.95;
+    --opacity-100: 1;
+
+    --opacity-transparent: 0;
+    --opacity-translucent: 0.15;
+    --opacity-semi-transparent: 0.5;
+    --opacity-opaque: 1;
+
+    --opacity-disabled: 0.4;
+    --opacity-muted: 0.5;
+    --opacity-subtle: 0.6;
+    --opacity-hover: 0.8;
+    --opacity-active: 0.9;
+    --opacity-focus: 1;
+
+    --opacity-overlay-light: 0.3;
+    --opacity-overlay: 0.4;
+    --opacity-overlay-strong: 0.6;
+    --opacity-overlay-modal: 0.5;
+    --opacity-overlay-drawer: 0.4;
+
+    --opacity-glass-bg: 0.03;
+    --opacity-glass-border: 0.08;
+    --opacity-glass-border-strong: 0.12;
+
+    --opacity-text-primary: 0.94;
+    --opacity-text-secondary: 0.74;
+    --opacity-text-tertiary: 0.54;
+    --opacity-text-quaternary: 0.36;
+    --opacity-text-disabled: 0.38;
+
+    --opacity-border-subtle: 0.06;
+    --opacity-border-default: 0.12;
+    --opacity-border-strong: 0.18;
+    --opacity-border-focus: 0.5;
+
+    --opacity-shadow-ambient: 0.04;
+    --opacity-shadow-direct: 0.08;
+    --opacity-shadow-strong: 0.12;
+    --opacity-shadow-modal: 0.25;
+
+    /* ============================================================
+       DENSITY TOKENS (Default: Comfortable)
+       ============================================================ */
+
+    --density-multiplier: 1;
+    --density-button-padding-x: 1rem;
+    --density-button-padding-y: 0.5rem;
+    --density-input-padding-x: 0.75rem;
+    --density-input-padding-y: 0.5rem;
+    --density-card-padding: 1.5rem;
+    --density-card-gap: 1rem;
+    --density-list-gap: 0.5rem;
+    --density-section-gap: 2rem;
+    --density-page-padding: 1.5rem;
+    --density-button-height: 2.25rem;
+    --density-button-height-sm: 1.875rem;
+    --density-input-height: 2.25rem;
+    --density-input-height-sm: 1.875rem;
+    --density-avatar-size: 2.5rem;
+    --density-avatar-size-sm: 1.5rem;
+    --density-icon-size: 1.25rem;
+    --density-icon-size-sm: 1rem;
+    --density-body-line-height: 1.6;
+    --density-heading-line-height: 1.3;
+  }
+
+  /* ============================================================
+     DARK MODE OVERRIDES
+     ============================================================ */
+
+  .dark {
+    /* Backgrounds */
+    --color-bg: #0D0D0E;
+    --color-bg-surface: #161618;
+    --color-bg-surface-elevated: #1C1C1F;
+    --color-bg-surface-hover: #1A1A1D;
+    --color-bg-surface-active: #242427;
+
+    /* Foregrounds */
+    --color-fg: #FAFAFA;
+    --color-fg-muted: #A1A1AA;
+    --color-fg-subtle: #71717A;
+
+    /* Borders */
+    --color-border: #27272A;
+    --color-border-strong: #3F3F46;
+    --color-border-focus: #0066FF;
+
+    /* Primary */
+    --color-primary: #4F8CFF;
+    --color-primary-hover: #6BA3FF;
+    --color-primary-active: #3D7AE6;
+    --color-primary-fg: #FFFFFF;
+
+    /* Secondary */
+    --color-secondary: #1A1A1D;
+    --color-secondary-hover: #242427;
+    --color-secondary-active: #2D2D30;
+    --color-secondary-fg: #4F8CFF;
+
+    /* Accent */
+    --color-accent: #00D4FF;
+    --color-accent-hover: #33DDFF;
+    --color-accent-active: #00B8E6;
+    --color-accent-fg: #0D0D0E;
+
+    /* Destructive */
+    --color-destructive: #E75E78;
+    --color-destructive-hover: #ED7A8F;
+    --color-destructive-active: #D64A62;
+    --color-destructive-fg: #FFFFFF;
+
+    /* Success */
+    --color-success: #55A583;
+    --color-success-hover: #6BC097;
+    --color-success-active: #488F71;
+    --color-success-fg: #0D0D0E;
+    --color-success-bg: #0A2D1F;
+
+    /* Warning */
+    --color-warning: #DB704B;
+    --color-warning-hover: #E18663;
+    --color-warning-active: #D05C35;
+    --color-warning-fg: #0D0D0E;
+    --color-warning-bg: #3D2A0F;
+
+    /* Info */
+    --color-info: #4F8CFF;
+    --color-info-hover: #6BA3FF;
+    --color-info-active: #3D7AE6;
+    --color-info-fg: #FFFFFF;
+    --color-info-bg: #0F1F3D;
+
+    /* Overlay */
+    --color-overlay: rgba(0, 0, 0, 0.6);
+    --color-overlay-strong: rgba(0, 0, 0, 0.8);
+
+    /* Glass */
+    --color-glass-bg: rgba(0, 0, 0, 0.3);
+    --color-glass-border: rgba(255, 255, 255, 0.06);
+
+    /* Sidebar */
+    --color-sidebar-bg: #0A0A0B;
+    --color-sidebar-border: #27272A;
+    --color-sidebar-fg: #FAFAFA;
+
+    /* Chat */
+    --color-chat-bg: #0D0D0E;
+    --color-user-bubble: #1A1A1D;
+    --color-assistant-bubble: #161618;
+
+    /* Code */
+    --color-code-bg: #1C1C1F;
+    --color-code-border: #27272A;
+    --color-code-fg: #E4E4E7;
+
+    /* Selection */
+    --color-selection-bg: #FFD24A;
+    --color-selection-fg: #0D0D0E;
+
+    /* Focus */
+    --color-focus-ring: rgba(0, 212, 255, 0.5);
+    --color-focus-ring-shadow: 0 0 0 2px rgba(0, 212, 255, 0.3);
+
+    /* Shadows */
+    --shadow-level1: 0 1px 2px rgb(0 0 0 / 0.3), 0 1px 3px rgb(0 0 0 / 0.4);
+    --shadow-level2: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --shadow-level3: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --shadow-level4: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+    --shadow-level5: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+
+    --shadow-focus-ring: 0 0 0 2px rgb(0 212 255 / 0.5);
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+    /* Semantic shadows (inherit from level tokens) */
+    --shadow-card: var(--shadow-level1);
+    --shadow-card-hover: var(--shadow-level2);
+    --shadow-dropdown: var(--shadow-level3);
+    --shadow-popover: var(--shadow-level3);
+    --shadow-tooltip: var(--shadow-level2);
+    --shadow-modal: var(--shadow-level5);
+    --shadow-drawer: var(--shadow-level4);
+    --shadow-sidebar: var(--shadow-level2);
+    --shadow-header: var(--shadow-level1);
+    --shadow-composer: var(--shadow-level2);
+    --shadow-notification: var(--shadow-level4);
+    --shadow-command-palette: var(--shadow-level5);
+    --shadow-approval: var(--shadow-level5);
+    --shadow-agent-working: var(--shadow-level3);
+
+    /* Glow shadows (same in dark) */
+    --shadow-glow-blue: 0 0 20px rgba(0, 102, 255, 0.3);
+    --shadow-glow-cyan: 0 0 20px rgba(0, 212, 255, 0.3);
+    --shadow-glow-purple: 0 0 20px rgba(153, 51, 255, 0.3);
+    --shadow-glow-success: 0 0 20px rgba(85, 165, 131, 0.3);
+    --shadow-glow-warning: 0 0 20px rgba(219, 112, 75, 0.3);
+    --shadow-glow-error: 0 0 20px rgba(231, 94, 120, 0.3);
+  }
+
+  /* ============================================================
+     DENSITY OVERRIDES
+     ============================================================ */
+
+  [data-density='compact'] {
+    --density-multiplier: 0.75;
+    --density-button-padding-x: 0.75rem;
+    --density-button-padding-y: 0.375rem;
+    --density-input-padding-x: 0.625rem;
+    --density-input-padding-y: 0.375rem;
+    --density-card-padding: 1rem;
+    --density-card-gap: 0.75rem;
+    --density-list-gap: 0.375rem;
+    --density-section-gap: 1.5rem;
+    --density-page-padding: 1rem;
+    --density-button-height: 2rem;
+    --density-button-height-sm: 1.625rem;
+    --density-input-height: 2rem;
+    --density-input-height-sm: 1.625rem;
+    --density-avatar-size: 2rem;
+    --density-avatar-size-sm: 1.25rem;
+    --density-icon-size: 1rem;
+    --density-icon-size-sm: 0.875rem;
+    --density-body-line-height: 1.5;
+    --density-heading-line-height: 1.25;
+  }
+
+  [data-density='cozy'] {
+    --density-multiplier: 1.25;
+    --density-button-padding-x: 1.25rem;
+    --density-button-padding-y: 0.625rem;
+    --density-input-padding-x: 1rem;
+    --density-input-padding-y: 0.625rem;
+    --density-card-padding: 2rem;
+    --density-card-gap: 1.25rem;
+    --density-list-gap: 0.75rem;
+    --density-section-gap: 2.5rem;
+    --density-page-padding: 2rem;
+    --density-button-height: 2.5rem;
+    --density-button-height-sm: 2.125rem;
+    --density-input-height: 2.5rem;
+    --density-input-height-sm: 2.125rem;
+    --density-avatar-size: 3rem;
+    --density-avatar-size-sm: 1.75rem;
+    --density-icon-size: 1.5rem;
+    --density-icon-size-sm: 1.25rem;
+    --density-body-line-height: 1.7;
+    --density-heading-line-height: 1.35;
+  }
+
+  /* ============================================================
+     REDUCED MOTION
+     ============================================================ */
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --duration-instant: 0ms;
+      --duration-fast: 0ms;
+      --duration-normal: 0ms;
+      --duration-slow: 0ms;
+      --duration-slower: 0ms;
+      --duration-modal: 0ms;
+      --duration-page: 0ms;
+    }
+  }
+}
+
+/**
+ * AetherOS canonical `--aether-*` aliases (Master 63 §4).
+ * Single public naming surface; every alias points at the mode-aware
+ * `--color-*` token above so light/dark/high-contrast follow automatically.
+ * Components MUST consume `--aether-*`; `--color-*` remains as the backing store.
+ */
+@layer base {
+  :root,
+  .dark {
+    --aether-bg: var(--color-bg);
+    --aether-surface: var(--color-bg-surface);
+    --aether-surface-elevated: var(--color-bg-surface-elevated);
+    --aether-border: var(--color-border);
+    --aether-text: var(--color-fg);
+    --aether-text-secondary: var(--color-fg-muted);
+    --aether-text-muted: var(--color-fg-muted);
+    --aether-accent: var(--color-primary);
+    --aether-accent-secondary: var(--color-accent);
+    --aether-success: var(--color-success);
+    --aether-warning: var(--color-warning);
+    --aether-danger: var(--color-destructive);
+    --aether-info: var(--color-info);
+    /* Control metrics (density-aware via the backing store). */
+    --aether-control-height: var(--density-button-height);
+    --aether-control-height-sm: var(--density-button-height-sm);
+    --aether-icon-size: var(--density-icon-size);
+    --aether-icon-size-sm: var(--density-icon-size-sm);
+  }
+}

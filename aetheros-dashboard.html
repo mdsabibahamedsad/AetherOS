@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AetherOS - Autonomous AI Operating System</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #050816;
+            --bg-secondary: #0A1020;
+            --bg-tertiary: #0F1729;
+            --bg-card: rgba(15, 23, 41, 0.7);
+            --bg-glass: rgba(255, 255, 255, 0.03);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-light: rgba(255, 255, 255, 0.1);
+            --text-primary: #E2E8F0;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --accent-blue: #4FD1FF;
+            --accent-purple: #7C5CFF;
+            --accent-green: #00E5A8;
+            --accent-indigo: #8AA4FF;
+            --accent-violet: #B18CFF;
+            --warning: #FFC857;
+            --error: #FF5C7A;
+            --glow-blue: rgba(79, 209, 255, 0.15);
+            --glow-purple: rgba(124, 92, 255, 0.15);
+            --glow-green: rgba(0, 229, 168, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Subtle particle background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        /* Main layout */
+        .container {
+            display: grid;
+            grid-template-columns: 260px 1fr 280px;
+            grid-template-rows: 60px 1fr auto;
+            height: 100vh;
+            gap: 1px;
+            background: var(--border-subtle);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Glass panel base */
+        .glass {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-subtle);
+        }
+
+        /* Top Header */
+        .header {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            background: rgba(5, 8, 22, 0.9);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: white;
+            box-shadow: 0 0 20px var(--glow-blue);
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .header-info {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-left: 40px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .info-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .stat-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: var(--bg-tertiary);
+            border-radius: 20px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .stat-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            box-shadow: 0 0 8px var(--accent-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .stat-label {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        .stat-value {
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-primary);
+        }
+
+        /* Left Sidebar */
+        .sidebar-left {
+            background: rgba(5, 8, 22, 0.95);
+            border-right: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+        }
+
+        .nav-section {
+            padding: 0 16px;
+            margin-bottom: 24px;
+        }
+
+        .nav-title {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            padding: 0 12px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 2px;
+        }
+
+        .nav-item:hover {
+            background: var(--bg-glass);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, rgba(79, 209, 255, 0.1), rgba(124, 92, 255, 0.1));
+            border: 1px solid rgba(79, 209, 255, 0.2);
+        }
+
+        .nav-icon {
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        .nav-item.active .nav-icon {
+            color: var(--accent-blue);
+        }
+
+        .nav-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .nav-item.active .nav-label {
+            color: var(--text-primary);
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        .session-card {
+            margin: auto 16px 16px;
+            padding: 16px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .session-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .session-title {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .session-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            box-shadow: 0 0 8px var(--accent-green);
+        }
+
+        .session-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .session-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .session-label {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .session-value {
+            font-size: 11px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-secondary);
+        }
+
+        /* Main Dashboard */
+        .main {
+            background: var(--bg-primary);
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .main::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .main::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .main::-webkit-scrollbar-thumb {
+            background: var(--border-light);
+            border-radius: 3px;
+        }
+
+        /* Welcome Card */
+        .welcome-card {
+            background: linear-gradient(135deg, rgba(79, 209, 255, 0.05), rgba(124, 92, 255, 0.05));
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--glow-blue), transparent 70%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .welcome-logo {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 0 40px var(--glow-blue);
+            position: relative;
+            z-index: 1;
+            animation: glow-pulse 3s infinite ease-in-out;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 40px var(--glow-blue); }
+            50% { box-shadow: 0 0 60px var(--glow-blue), 0 0 80px var(--glow-purple); }
+        }
+
+        .welcome-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .status-pills {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .status-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(0, 229, 168, 0.1);
+            border: 1px solid rgba(0, 229, 168, 0.2);
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--accent-green);
+        }
+
+        .status-check {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            color: var(--bg-primary);
+        }
+
+        /* Statistics Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 20px var(--glow-blue);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .section-action {
+            font-size: 12px;
+            color: var(--accent-blue);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .section-action:hover {
+            color: var(--accent-purple);
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .tool-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .tool-icon.blue { background: linear-gradient(135deg, rgba(79, 209, 255, 0.2), rgba(79, 209, 255, 0.1)); color: var(--accent-blue); }
+        .tool-icon.purple { background: linear-gradient(135deg, rgba(124, 92, 255, 0.2), rgba(124, 92, 255, 0.1)); color: var(--accent-purple); }
+        .tool-icon.green { background: linear-gradient(135deg, rgba(0, 229, 168, 0.2), rgba(0, 229, 168, 0.1)); color: var(--accent-green); }
+        .tool-icon.indigo { background: linear-gradient(135deg, rgba(138, 164, 255, 0.2), rgba(138, 164, 255, 0.1)); color: var(--accent-indigo); }
+
+        .tool-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .tool-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-category {
+            font-size: 10px;
+            color: var(--accent-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .skill-count {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Right Sidebar */
+        .sidebar-right {
+            background: rgba(5, 8, 22, 0.95);
+            border-left: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 16px;
+        }
+
+        .health-section {
+            margin-bottom: 24px;
+        }
+
+        .health-title {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .health-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .health-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .health-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--accent-green);
+        }
+
+        .health-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            box-shadow: 0 0 6px var(--accent-green);
+        }
+
+        .activity-section {
+            margin-bottom: 24px;
+        }
+
+        .activity-title {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .activity-dot.blue { background: var(--accent-blue); }
+        .activity-dot.green { background: var(--accent-green); }
+        .activity-dot.purple { background: var(--accent-purple); }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+
+        .activity-time {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        .notifications-section {
+            margin-bottom: 24px;
+        }
+
+        .notifications-title {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .notification-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .notification-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .notification-icon.warning {
+            background: rgba(255, 200, 87, 0.15);
+            color: var(--warning);
+        }
+
+        .notification-icon.info {
+            background: rgba(79, 209, 255, 0.15);
+            color: var(--accent-blue);
+        }
+
+        .notification-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            flex: 1;
+        }
+
+        /* Bottom Command Bar */
+        .command-bar {
+            grid-column: 1 / -1;
+            background: rgba(5, 8, 22, 0.95);
+            border-top: 1px solid var(--border-subtle);
+            padding: 16px 24px;
+        }
+
+        .command-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+        }
+
+        .command-input-wrapper:focus-within {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 20px var(--glow-blue);
+        }
+
+        .command-prefix {
+            font-size: 14px;
+            color: var(--accent-blue);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .command-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .command-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .command-send {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .command-send:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--glow-blue);
+        }
+
+        .command-suggestions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .suggestion {
+            padding: 6px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            font-size: 11px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .suggestion:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        /* Diagnostics Panel */
+        .diagnostics {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            left: 280px;
+            right: 300px;
+            background: rgba(255, 92, 122, 0.1);
+            border: 1px solid rgba(255, 92, 122, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+            backdrop-filter: blur(20px);
+            z-index: 100;
+        }
+
+        .diagnostics.show {
+            display: block;
+        }
+
+        .diagnostics-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .diagnostics-title {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--error);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .diagnostics-close {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: rgba(255, 92, 122, 0.2);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--error);
+            font-size: 14px;
+        }
+
+        .diagnostics-stack {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+
+        .diagnostics-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .diagnostics-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            font-size: 11px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .diagnostics-btn:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .diagnostics-btn.primary {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border: none;
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .tools-grid, .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 220px 1fr 240px;
+            }
+            .tools-grid, .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Top Header -->
+        <header class="header glass">
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-icon">A</div>
+                    <div>
+                        <div class="logo-text">AetherOS</div>
+                        <div class="logo-subtitle">Autonomous AI Operating System</div>
+                    </div>
+                </div>
+                <div class="header-info">
+                    <div class="info-item">
+                        <span class="info-label">Version</span>
+                        <span class="info-value">v0.16.0</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Model</span>
+                        <span class="info-value">claude-4-opus</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Workspace</span>
+                        <span class="info-value">/aetheros</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Profile</span>
+                        <span class="info-value">default</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Mode</span>
+                        <span class="info-value">Interactive</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Connection</span>
+                        <span class="info-value" style="color: var(--accent-green);">● Connected</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="stat-pill">
+                    <div class="stat-dot"></div>
+                    <span class="stat-label">CPU</span>
+                    <span class="stat-value">12%</span>
+                </div>
+                <div class="stat-pill">
+                    <div class="stat-dot"></div>
+                    <span class="stat-label">RAM</span>
+                    <span class="stat-value">2.4 GB</span>
+                </div>
+                <div class="stat-pill">
+                    <div class="stat-dot"></div>
+                    <span class="stat-label">GPU</span>
+                    <span class="stat-value">45%</span>
+                </div>
+                <div class="stat-pill">
+                    <div class="stat-dot"></div>
+                    <span class="stat-label">Network</span>
+                    <span class="stat-value">120 Mbps</span>
+                </div>
+                <div class="stat-pill">
+                    <div class="stat-dot"></div>
+                    <span class="stat-label">Cluster</span>
+                    <span class="stat-value">3 Nodes</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Left Sidebar -->
+        <aside class="sidebar-left">
+            <div class="nav-section">
+                <div class="nav-title">Navigation</div>
+                <div class="nav-item active">
+                    <div class="nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <span class="nav-label">Home</span>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <span class="nav-label">Agents</span>
+                    <span class="nav-badge">12</span>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="9" y1="3" x2="9" y2="21"></line>
+                        </svg>
+                    </div>
+                    <span class="nav-label">Tasks</span>
+                    <span class="nav-badge">4</span>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                    <span class="nav-label">Memory</span>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <span class="nav-label">Workspace</span>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                    </div>
+                    <span class="nav-label">Engineering</span>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <span class="nav-label">Plugins</span>
+                    <span class="nav-badge">8</span>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                        </svg>
+                    </div>
+                    <span class="nav-label">Cluster</span>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <span class="nav-label">Enterprise</span>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </div>
+                    <span class="nav-label">Settings</span>
+                </div>
+            </div>
+
+            <div class="session-card">
+                <div class="session-header">
+                    <span class="session-title">Current Session</span>
+                    <div class="session-status"></div>
+                </div>
+                <div class="session-info">
+                    <div class="session-row">
+                        <span class="session-label">Session ID</span>
+                        <span class="session-value">20260712_210019</span>
+                    </div>
+                    <div class="session-row">
+                        <span class="session-label">Runtime</span>
+                        <span class="session-value">14m 32s</span>
+                    </div>
+                    <div class="session-row">
+                        <span class="session-label">Model</span>
+                        <span class="session-value">claude-4-opus</span>
+                    </div>
+                    <div class="session-row">
+                        <span class="session-label">Platform</span>
+                        <span class="session-value">Windows</span>
+                    </div>
+                    <div class="session-row">
+                        <span class="session-label">Memory</span>
+                        <span class="session-value">128 MB</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard -->
+        <main class="main">
+            <!-- Welcome Card -->
+            <div class="welcome-card fade-in">
+                <div class="welcome-logo">A</div>
+                <h1 class="welcome-title">Welcome to AetherOS</h1>
+                <p class="welcome-subtitle">Modular AI Operating System</p>
+                <div class="status-pills">
+                    <div class="status-pill">
+                        <div class="status-check">✓</div>
+                        <span>Kernel Ready</span>
+                    </div>
+                    <div class="status-pill">
+                        <div class="status-check">✓</div>
+                        <span>Swarm Active</span>
+                    </div>
+                    <div class="status-pill">
+                        <div class="status-check">✓</div>
+                        <span>Memory Online</span>
+                    </div>
+                    <div class="status-pill">
+                        <div class="status-check">✓</div>
+                        <span>Cluster Connected</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats-grid fade-in">
+                <div class="stat-card">
+                    <div class="stat-number">28</div>
+                    <div class="stat-label">Tools</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">62</div>
+                    <div class="stat-label">Skills</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Active Agents</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Running Tasks</div>
+                </div>
+            </div>
+
+            <!-- Available Tools -->
+            <div class="fade-in">
+                <div class="section-header">
+                    <h2 class="section-title">Available Tools</h2>
+                    <span class="section-action">View All →</span>
+                </div>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon blue">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                        </div>
+                        <div class="tool-name">browser</div>
+                        <div class="tool-desc">Navigate & interact with web</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon purple">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                        <div class="tool-name">execute-code</div>
+                        <div class="tool-desc">Run Python & shell code</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon green">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                        </div>
+                        <div class="tool-name">computer-use</div>
+                        <div class="tool-desc">Control desktop GUI</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon indigo">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="tool-name">delegate-task</div>
+                        <div class="tool-desc">Spawn sub-agents</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon blue">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </div>
+                        <div class="tool-name">filesystem</div>
+                        <div class="tool-desc">Read & write files</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon purple">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                            </svg>
+                        </div>
+                        <div class="tool-name">docker</div>
+                        <div class="tool-desc">Container management</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon green">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                        </div>
+                        <div class="tool-name">github</div>
+                        <div class="tool-desc">Git operations</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon indigo">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
+                        <div class="tool-name">search</div>
+                        <div class="tool-desc">Web & file search</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available Skills -->
+            <div class="fade-in">
+                <div class="section-header">
+                    <h2 class="section-title">Available Skills</h2>
+                    <span class="section-action">View All →</span>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-category">Category</div>
+                        <div class="skill-name">Software Engineering</div>
+                        <div class="skill-count">14 skills</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-category">Category</div>
+                        <div class="skill-name">Research</div>
+                        <div class="skill-count">8 skills</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-category">Category</div>
+                        <div class="skill-name">DevOps</div>
+                        <div class="skill-count">6 skills</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-category">Category</div>
+                        <div class="skill-name">Data Science</div>
+                        <div class="skill-count">5 skills</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-category">Category</div>
+                        <div class="skill-name">Security</div>
+                        <div class="skill-count">4 skills</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-category">Category</div>
+                        <div class="skill-name">Memory</div>
+                        <div class="skill-count">3 skills</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-category">Category</div>
+                        <div class="skill-name">Autonomous Agents</div>
+                        <div class="skill-count">6 skills</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-category">Category</div>
+                        <div class="skill-name">Creative</div>
+                        <div class="skill-count">8 skills</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="sidebar-right">
+            <div class="health-section">
+                <div class="health-title">System Health</div>
+                <div class="health-item">
+                    <span class="health-label">Kernel</span>
+                    <div class="health-status">
+                        <div class="health-dot"></div>
+                        <span>Operational</span>
+                    </div>
+                </div>
+                <div class="health-item">
+                    <span class="health-label">Swarm</span>
+                    <div class="health-status">
+                        <div class="health-dot"></div>
+                        <span>Active</span>
+                    </div>
+                </div>
+                <div class="health-item">
+                    <span class="health-label">Memory</span>
+                    <div class="health-status">
+                        <div class="health-dot"></div>
+                        <span>Online</span>
+                    </div>
+                </div>
+                <div class="health-item">
+                    <span class="health-label">Engineering</span>
+                    <div class="health-status">
+                        <div class="health-dot"></div>
+                        <span>Ready</span>
+                    </div>
+                </div>
+                <div class="health-item">
+                    <span class="health-label">Marketplace</span>
+                    <div class="health-status">
+                        <div class="health-dot"></div>
+                        <span>Connected</span>
+                    </div>
+                </div>
+                <div class="health-item">
+                    <span class="health-label">Enterprise</span>
+                    <div class="health-status">
+                        <div class="health-dot"></div>
+                        <span>Active</span>
+                    </div>
+                </div>
+                <div class="health-item">
+                    <span class="health-label">Cluster</span>
+                    <div class="health-status">
+                        <div class="health-dot"></div>
+                        <span>3 Nodes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-section">
+                <div class="activity-title">Recent Activity</div>
+                <div class="activity-item">
+                    <div class="activity-dot green"></div>
+                    <div class="activity-content">
+                        <div class="activity-text">Agent started</div>
+                        <div class="activity-time">2 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-dot blue"></div>
+                    <div class="activity-content">
+                        <div class="activity-text">Repository indexed</div>
+                        <div class="activity-time">5 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-dot purple"></div>
+                    <div class="activity-content">
+                        <div class="activity-text">Task completed</div>
+                        <div class="activity-time">12 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-dot green"></div>
+                    <div class="activity-content">
+                        <div class="activity-text">Memory updated</div>
+                        <div class="activity-time">18 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-dot blue"></div>
+                    <div class="activity-content">
+                        <div class="activity-text">Plugin loaded</div>
+                        <div class="activity-time">24 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-dot purple"></div>
+                    <div class="activity-content">
+                        <div class="activity-text">Deployment finished</div>
+                        <div class="activity-time">1 hour ago</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notifications-section">
+                <div class="notifications-title">Notifications</div>
+                <div class="notification-item">
+                    <div class="notification-icon warning">⚠</div>
+                    <div class="notification-text">Memory usage at 78%</div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-icon info">ℹ</div>
+                    <div class="notification-text">Update available: v0.17.0</div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-icon info">ℹ</div>
+                    <div class="notification-text">New skill installed</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Bottom Command Bar -->
+        <div class="command-bar">
+            <div class="command-input-wrapper">
+                <span class="command-prefix">❯</span>
+                <input type="text" class="command-input" placeholder="Ask AetherOS..." id="commandInput">
+                <button class="command-send" id="sendBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+            <div class="command-suggestions">
+                <span class="suggestion">/help</span>
+                <span class="suggestion">/agents</span>
+                <span class="suggestion">/tasks</span>
+                <span class="suggestion">/workspace</span>
+                <span class="suggestion">/cluster</span>
+                <span class="suggestion">/memory</span>
+                <span class="suggestion">/status</span>
+                <span class="suggestion">/plugins</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diagnostics Panel -->
+    <div class="diagnostics" id="diagnostics">
+        <div class="diagnostics-header">
+            <div class="diagnostics-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                Error Detected
+            </div>
+            <button class="diagnostics-close" id="closeDiagnostics">×</button>
+        </div>
+        <div class="diagnostics-stack">
+            File "run_agent.py", line 1234, in run_conversation<br>
+            response = client.chat.completions.create(...)<br>
+            ConnectionError: API endpoint unreachable
+        </div>
+        <div class="diagnostics-actions">
+            <button class="diagnostics-btn primary">Retry</button>
+            <button class="diagnostics-btn">Copy Error</button>
+            <button class="diagnostics-btn">Open Logs</button>
+            <button class="diagnostics-btn">Report Bug</button>
+            <button class="diagnostics-btn">AI Fix</button>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Command input handling
+        const commandInput = document.getElementById('commandInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const diagnostics = document.getElementById('diagnostics');
+        const closeDiagnostics = document.getElementById('closeDiagnostics');
+
+        sendBtn.addEventListener('click', () => {
+            if (commandInput.value.trim()) {
+                // Show diagnostics panel for demo
+                diagnostics.classList.add('show');
+                commandInput.value = '';
+            }
+        });
+
+        commandInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && commandInput.value.trim()) {
+                diagnostics.classList.add('show');
+                commandInput.value = '';
+            }
+        });
+
+        closeDiagnostics.addEventListener('click', () => {
+            diagnostics.classList.remove('show');
+        });
+
+        // Suggestion clicks
+        document.querySelectorAll('.suggestion').forEach(s => {
+            s.addEventListener('click', () => {
+                commandInput.value = s.textContent;
+                commandInput.focus();
+            });
+        });
+
+        // Nav item clicks
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+
+        // Update runtime
+        function updateRuntime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            document.querySelector('.session-value').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateRuntime, 1000);
+    </script>
+</body>
+</html>

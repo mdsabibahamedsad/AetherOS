@@ -1,0 +1,310 @@
+/**
+ * AetherOS — Custom Docusaurus Theme
+ * Premium AI Operating System branding
+ * Blue → Cyan → Purple gradient accents
+ */
+
+/* Import AetherOS brand fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  /* AetherOS Brand Colors - Light Mode */
+  --ifm-color-primary: #0066FF;
+  --ifm-color-primary-dark: #0052CC;
+  --ifm-color-primary-darker: #0047B3;
+  --ifm-color-primary-darkest: #003080;
+  --ifm-color-primary-light: #1A75FF;
+  --ifm-color-primary-lighter: #3385FF;
+  --ifm-color-primary-lightest: #66A3FF;
+
+  --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+
+  --ifm-code-font-size: 90%;
+  --ifm-heading-font-weight: 600;
+
+  --ifm-link-color: #0066FF;
+  --ifm-link-hover-color: #0052CC;
+
+  /* AetherOS Brand Tokens */
+  --brand-blue: #0066FF;
+  --brand-cyan: #00D4FF;
+  --brand-purple: #9933FF;
+  --brand-gradient: linear-gradient(135deg, #0066FF 0%, #00D4FF 50%, #9933FF 100%);
+}
+
+/* Dark mode — AetherOS Premium Dark Theme */
+[data-theme='dark'] {
+  --ifm-color-primary: #00D4FF;
+  --ifm-color-primary-dark: #00BFE6;
+  --ifm-color-primary-darker: #00B2D9;
+  --ifm-color-primary-darkest: #008FB3;
+  --ifm-color-primary-light: #1ADAFF;
+  --ifm-color-primary-lighter: #33E0FF;
+  --ifm-color-primary-lightest: #66E8FF;
+
+  --ifm-background-color: #060816;
+  --ifm-background-surface-color: #0B1020;
+  --ifm-navbar-background-color: rgba(6, 8, 22, 0.95);
+  --ifm-footer-background-color: #050810;
+  --ifm-color-emphasis-100: #121826;
+  --ifm-color-emphasis-200: #1A2233;
+
+  --ifm-font-color-base: #E8ECF4;
+  --ifm-font-color-secondary: #8B95A8;
+
+  --ifm-link-color: #00D4FF;
+  --ifm-link-hover-color: #00E5FF;
+
+  --ifm-code-background: #0B1020;
+
+  --ifm-toc-border-color: rgba(0, 212, 255, 0.08);
+  --ifm-hr-border-color: rgba(0, 212, 255, 0.08);
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 212, 255, 0.08);
+
+  /* AetherOS Brand Tokens - Dark Mode */
+  --brand-blue: #0066FF;
+  --brand-cyan: #00D4FF;
+  --brand-purple: #9933FF;
+  --brand-gradient: linear-gradient(135deg, #0066FF 0%, #00D4FF 50%, #9933FF 100%);
+}
+
+/* Subtle dot grid background - AetherOS Premium */
+[data-theme='dark'] .main-wrapper {
+  background-image: radial-gradient(rgba(0, 212, 255, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* AetherOS Premium Navbar */
+.navbar {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.08);
+  background: rgba(6, 8, 22, 0.85);
+}
+
+/* backdrop-filter creates a stacking context that hides
+   .navbar-sidebar menu content (Docusaurus #6996). Remove it
+   while the mobile sidebar is open — both classes live on the
+   same <nav> element. */
+.navbar.navbar-sidebar--show {
+  backdrop-filter: none;
+}
+
+.navbar__title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #0066FF, #00D4FF, #9933FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* AetherOS Sidebar */
+[data-theme='dark'] .menu {
+  background-color: transparent;
+}
+
+[data-theme='dark'] .menu__link--active:not(.menu__link--sublist) {
+  background: linear-gradient(90deg, rgba(0, 102, 255, 0.12) 0%, rgba(0, 212, 255, 0.06) 100%);
+  border-left: 3px solid #00D4FF;
+  padding-left: calc(var(--ifm-menu-link-padding-horizontal) - 3px);
+}
+
+/* Light mode sidebar active */
+[data-theme='light'] .menu__link--active:not(.menu__link--sublist) {
+  background: linear-gradient(90deg, rgba(0, 102, 255, 0.08) 0%, rgba(0, 212, 255, 0.04) 100%);
+  border-left: 3px solid #0066FF;
+  padding-left: calc(var(--ifm-menu-link-padding-horizontal) - 3px);
+}
+
+/* AetherOS Code Blocks */
+[data-theme='dark'] .prism-code {
+  background-color: #0B1020 !important;
+  border: 1px solid rgba(0, 212, 255, 0.06);
+  border-radius: 8px;
+}
+
+/* Text diagrams: preserve spacing, disable ligatures, and prefer box-drawing-safe fonts */
+pre.prism-code.language-text,
+pre.prism-code.language-plaintext,
+pre.prism-code.language-txt,
+pre.prism-code.language-ascii {
+  white-space: pre;
+  overflow-x: auto;
+  line-height: 1.35;
+  font-family: 'JetBrains Mono', 'Cascadia Mono', 'Cascadia Code', 'Fira Code', 'SFMono-Regular', 'DejaVu Sans Mono', 'Liberation Mono', monospace;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+  text-rendering: optimizeSpeed;
+}
+
+pre.prism-code.language-text code,
+pre.prism-code.language-plaintext code,
+pre.prism-code.language-txt code,
+pre.prism-code.language-ascii code {
+  white-space: pre;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+.theme-mermaid {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.theme-mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.docs-terminal-figure {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  margin: 1.25rem auto 0.5rem;
+  border: 1px solid rgba(0, 212, 255, 0.08);
+  border-radius: 12px;
+  background: #0B1020;
+}
+
+.docs-figure-caption {
+  margin-top: 0.35rem;
+  text-align: center;
+  color: var(--ifm-font-color-secondary);
+  font-size: 0.95rem;
+}
+
+/* AetherOS Admonitions */
+[data-theme='dark'] .alert--info {
+  --ifm-alert-background-color: rgba(0, 102, 255, 0.08);
+  --ifm-alert-border-color: rgba(0, 212, 255, 0.15);
+  border-radius: 8px;
+}
+
+/* AetherOS Table Styling */
+[data-theme='dark'] table {
+  border-collapse: collapse;
+}
+
+[data-theme='dark'] table th {
+  background: linear-gradient(90deg, rgba(0, 102, 255, 0.08) 0%, rgba(0, 212, 255, 0.04) 100%);
+  border-color: rgba(0, 212, 255, 0.12);
+}
+
+[data-theme='dark'] table td {
+  border-color: rgba(0, 212, 255, 0.06);
+}
+
+/* Light mode table styling */
+[data-theme='light'] table th {
+  background: linear-gradient(90deg, rgba(0, 102, 255, 0.06) 0%, rgba(0, 212, 255, 0.03) 100%);
+  border-color: rgba(0, 102, 255, 0.15);
+}
+
+[data-theme='light'] table td {
+  border-color: rgba(0, 102, 255, 0.10);
+}
+
+/* AetherOS Footer */
+.footer {
+  border-top: 1px solid rgba(0, 212, 255, 0.08);
+  background: #050810;
+}
+
+.footer a {
+  color: #8B95A8;
+  transition: color 0.2s;
+}
+
+[data-theme='dark'] .footer a:hover {
+  color: #00D4FF;
+  text-decoration: none;
+}
+
+[data-theme='light'] .footer a:hover {
+  color: #0066FF;
+  text-decoration: none;
+}
+
+/* AetherOS Scrollbar */
+[data-theme='dark'] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-track {
+  background: #060816;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: #1A2233;
+  border-radius: 4px;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+  background: #253040;
+}
+
+/* AetherOS Search */
+[data-theme='dark'] .DocSearch-Button {
+  background-color: #0B1020;
+  border: 1px solid rgba(0, 212, 255, 0.08);
+  border-radius: 8px;
+}
+
+/* ─── Mobile sidebar improvements ─────────────────────────────────────────── */
+
+/* Larger touch targets on mobile */
+@media (max-width: 996px) {
+  .menu__link {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .menu__list-item-collapsible > .menu__link {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem 0.75rem;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.06);
+  }
+
+  /* Category caret — more visible */
+  .menu__caret::before {
+    background-size: 1.5rem 1.5rem;
+  }
+
+  /* Indent subcategories clearly */
+  .menu__list .menu__list {
+    padding-left: 0.75rem;
+    border-left: 1px solid rgba(0, 212, 255, 0.06);
+    margin-left: 0.5rem;
+  }
+
+  /* Sidebar overlay — slightly more opaque for readability */
+  .navbar-sidebar__backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+  }
+
+  /* Sidebar width on mobile — use more of the screen */
+  .navbar-sidebar {
+    width: 85vw;
+    max-width: 360px;
+    background: rgba(6, 8, 22, 0.98);
+    backdrop-filter: blur(24px);
+  }
+}
+
+/* AetherOS Hero Banner */
+.hero--aetheros {
+  background: linear-gradient(135deg, #060816 0%, #0B1020 50%, #121826 100%);
+  padding: 4rem 0;
+}
+
+/* Legacy hero class */
+.hero--hermes {
+  background: linear-gradient(135deg, #060816 0%, #0B1020 50%, #121826 100%);
+  padding: 4rem 0;
+}

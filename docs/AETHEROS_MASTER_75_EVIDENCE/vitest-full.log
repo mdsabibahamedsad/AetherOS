@@ -1,0 +1,101 @@
+﻿
+> aetheros@1.0.0 test:ui
+> vitest run --run
+
+
+ RUN  v4.1.5 D:/hermes-agent-main/aetheros/apps/desktop
+
+ Γ¥» src/themes/design-tokens.test.ts (8 tests | 3 failed) 37ms
+     ├ù type ramp covers displayΓåÆstatus hierarchy exactly once each 12ms
+     ├ù motion durations stay subtle (Γëñ260ms) per P37 anti-decorative rule 3ms
+     ├ù spacing scale covers the standard step ladder in rem units 3ms
+node.exe : 
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ» Failed Tests 3 ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+
+ FAIL  src/themes/design-tokens.test.ts > design tokens (Master 22 P5) > type ramp covers displayΓåÆstatus hierarchy 
+exactly once each
+AssertionError: expected [ 'display', 'heading', ΓÇª(7) ] to deeply equal [ 'display', 'heading', ΓÇª(5) ]
+
+- Expected
++ Received
+
+@@ -4,6 +4,8 @@
+    "subheading",
+    "body",
+    "caption",
+    "metadata",
+    "code",
++   "label",
++   "button",
+  ]
+
+ Γ¥» src/themes/design-tokens.test.ts:23:35
+     21|
+     22|   it('type ramp covers displayΓåÆstatus hierarchy exactly once each', ()ΓÇª
+     23|     expect(Object.keys(fontSize)).toEqual([
+       |                                   ^
+     24|       'display',
+     25|       'heading',
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[1/3]ΓÄ»
+
+ FAIL  src/themes/design-tokens.test.ts > design tokens (Master 22 P5) > motion durations stay subtle (Γëñ260ms) per 
+P37 anti-decorative rule
+AssertionError: expected 320 to be less than or equal to 260
+ Γ¥» src/themes/design-tokens.test.ts:45:19
+     43|       ...Object.values(duration).map((d) => parseInt(d, 10)),
+     44|     );
+     45|     expect(maxMs).toBeLessThanOrEqual(260);
+       |                   ^
+     46|   });
+     47|
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[2/3]ΓÄ»
+
+ FAIL  src/themes/design-tokens.test.ts > design tokens (Master 22 P5) > spacing scale covers the standard step ladder 
+in rem units
+AssertionError: expected [ 0.5, 1, 2, 3, 4, 5, 6, 8, 10, ΓÇª(5) ] to deeply equal [ 0.5, 1, 2, 3, 4, 5, 6, 8, 10, 
+ΓÇª(3) ]
+
+- Expected
++ Received
+
+@@ -9,6 +9,8 @@
+    8,
+    10,
+    12,
+    16,
+    20,
++   24,
++   32,
+  ]
+
+ Γ¥» src/themes/design-tokens.test.ts:65:19
+     63|       .map(Number)
+     64|       .sort((a, b) => a - b);
+     65|     expect(steps).toEqual([0.5, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20]);
+       |                   ^
+     66|     for (const [k, v] of Object.entries(spacing)) {
+     67|       if (k === 'px') {
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[3/3]ΓÄ»
+
+
+ Test Files  1 failed | 118 passed (119)
+      Tests  3 failed | 808 passed (811)
+   Start at  20:05:10
+   Duration  54.21s (transform 18.82s, setup 2.67s, import 139.33s, tests 42.73s, environment 328.64s)
+
+npm error Lifecycle script `test:ui` failed with error:
+npm error code 1
+npm error path D:\hermes-agent-main\aetheros\apps\desktop
+npm error workspace aetheros@1.0.0
+npm error location D:\hermes-agent-main\aetheros\apps\desktop
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c vitest run --run

@@ -1,0 +1,1 @@
+{"AETHEROS_DESKTOP_BUILD_PARTIALLY_GREEN":"source build, tests, python bundle, NSIS + portable packaging, hashes, updater metadata, security all green; MSI/macOS/Linux did not execute on this host","distribution":"LOCAL_ONLY (artifacts in apps/desktop/dist-packaged/, gitignored; nothing published)"}

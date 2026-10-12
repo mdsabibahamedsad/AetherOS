@@ -1,0 +1,8 @@
+source=https://nodejs.org/dist/v22.12.0/node-v22.12.0-win-x64.zip
+bytes=34872043
+sha256_local=2b8f2256382f97ad51e29ff71f702961af466c4616393f767455501e6aece9b8
+sha256_official=2b8f2256382f97ad51e29ff71f702961af466c4616393f767455501e6aece9b8 (SHASUMS256.txt)
+verification=MATCH
+node_version=v22.12.0 (exact .nvmrc)
+location=%TEMP%\node22\node-v22.12.0-win-x64\ (outside repo; system Node untouched)
+scope=toolchain bootstrap only — no source modified

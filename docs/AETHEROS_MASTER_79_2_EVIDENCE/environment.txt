@@ -1,0 +1,13 @@
+Master 79.2 host environment (actual, 2026-09-15)
+commit=2bdfbfd8ebcf2bb27b06f600c2beb159e723d8b1
+tree=DIRTY (2763 changed/untracked paths; CI checkout would be clean)
+local-node=v25.5.0
+local-npm=11.8.0
+ci-node=22 (authoritative for release reproducibility; .nvmrc=22.12.0)
+venv-python=Python 3.12.13 (repo .venv; system python absent)
+os=Windows Pro build 26200 (25H2), 64-bit
+privilege=NON-ADMIN (BUILTIN\Administrators = deny-only)
+sandbox=ABSENT (WindowsSandbox.exe unavailable)
+hyperv/vmware/virtualbox=UNAVAILABLE
+electron-packaged=40.9.3 (build.electronVersion, verified in package.json)
+electron-dev=^40.10.6 (devDependency; intentional, do NOT modify)

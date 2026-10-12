@@ -1,0 +1,27 @@
+{
+  "environment_id": "windows-x64",
+  "description": "Windows x64 development environment",
+  "hardware": {
+    "cpu_model": "Auto-detected at runtime",
+    "logical_cores": "Auto-detected",
+    "physical_cores": "Auto-detected",
+    "ram_gb": "Auto-detected",
+    "gpu": "Auto-detected",
+    "storage_type": "SSD/HDD - Auto-detected"
+  },
+  "software": {
+    "os": "Windows 10/11",
+    "os_version": "Auto-detected",
+    "python_version": "Auto-detected",
+    "node_version": "Auto-detected",
+    "electron_version": "From package.json",
+    "browser_version": "Chromium (Playwright)",
+    "aetheros_version": "From git describe"
+  },
+  "benchmark_config": {
+    "power_mode": "High performance",
+    "thermal_state": "Nominal",
+    "background_apps": "Minimal",
+    "network": "Localhost only"
+  }
+}

@@ -1,0 +1,1 @@
+{"artifact":null,"note":"Workflow pin anchore/sbom-action@7b9c33f0a390a5b881ab09081c392146904e254ac (# v0.20.7) matches the pin used by update-release.yml in the same repo. No SBOM was generated because no CI run executed.","pin_verified_against":"aetheros/.github/workflows/update-release.yml line 223","status":"BLOCKED","verdict":"BLOCKED"}

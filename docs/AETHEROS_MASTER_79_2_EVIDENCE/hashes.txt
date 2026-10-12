@@ -1,0 +1,5 @@
+SHA-256 (Get-FileHash, local host 2026-09-15) — all MATCH Master 78A baseline §3:
+NSIS     b86b22f74f1afaa74bc28a304ff13e5bb0b0a6ad8cc42e969d138c34e67f9278  AetherOS-1.0.0-win-x64.exe (195891460 bytes)
+MSI      1069fc6d26ee71810a9131f1383413d51252a3f3ae99c357f054dd1e2a5b031b  AetherOS-1.0.0-win-x64.msi (203137784 bytes)
+PORTABLE 214d425537eb8eea43ca6c3f78f48edc1ccce758817e3fb9425e52ca143cfe3c  AetherOS-1.0.0-win-x64-portable.exe (162205111 bytes)
+Provenance: dirty-tree local build (NOT clean); CI-clean provenance requires a CI rebuild.

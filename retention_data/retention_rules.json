@@ -1,0 +1,47 @@
+[
+  {
+    "id": "ret_temporary",
+    "entity_type": "temporary_memory",
+    "max_age_days": 1,
+    "action": "delete",
+    "enabled": true,
+    "description": "Temporary memories expire after 1 day",
+    "created_at": ""
+  },
+  {
+    "id": "ret_conversation",
+    "entity_type": "conversation_memory",
+    "max_age_days": 90,
+    "action": "archive",
+    "enabled": true,
+    "description": "Conversation memories archive after 90 days",
+    "created_at": ""
+  },
+  {
+    "id": "ret_search",
+    "entity_type": "search_history",
+    "max_age_days": 30,
+    "action": "delete",
+    "enabled": true,
+    "description": "Search history deleted after 30 days",
+    "created_at": ""
+  },
+  {
+    "id": "ret_agent",
+    "entity_type": "agent_memory",
+    "max_age_days": 365,
+    "action": "archive",
+    "enabled": true,
+    "description": "Agent memories archive after 1 year",
+    "created_at": ""
+  },
+  {
+    "id": "ret_activity",
+    "entity_type": "activity_log",
+    "max_age_days": 90,
+    "action": "delete",
+    "enabled": true,
+    "description": "Activity log deleted after 90 days",
+    "created_at": ""
+  }
+]

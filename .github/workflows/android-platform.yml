@@ -1,0 +1,24 @@
+name: android-platform
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/android/**'
+      - 'aetheros_platform/android_contract.py'
+      - '.github/workflows/android-platform.yml'
+  pull_request:
+    paths:
+      - 'apps/android/**'
+  workflow_dispatch:
+
+jobs:
+  android-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Android contract tests
+        run: python -m pytest tests/aetheros_platform/test_android_contract.py -q

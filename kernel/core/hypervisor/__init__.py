@@ -1,0 +1,122 @@
+"""
+AetherOS Agent Hypervisor 1.0 — capsule runtime package.
+
+An agent does not receive the machine. An agent receives a capsule.
+"""
+
+from kernel.core.hypervisor.types import (
+    SNAPSHOT_VERSION,
+    AgentCapsule,
+    AgentCapsuleContract,
+    AutonomyLevel,
+    BlastRadius,
+    CapabilityManifest,
+    CapsuleHealth,
+    CapsuleLifecycleState,
+    CapsuleProfileName,
+    CapsuleReceipt,
+    CapsuleSnapshot,
+    CircuitState,
+    ForensicSnapshot,
+    IsolationLevel,
+    IsolationStatus,
+    MemoryScopeKind,
+    MountType,
+    NetworkMode,
+    NetworkPolicy,
+    PlacementDecision,
+    ReplayMode,
+    RiskAssessment,
+    TerminationMode,
+    CapsuleMount,
+    CAPSULE_TRANSITIONS,
+)
+from kernel.core.hypervisor.profiles import (
+    CapsuleProfile,
+    PROFILES,
+    get_profile,
+    list_profiles,
+)
+from kernel.core.hypervisor.guards import (
+    PathEscapeError,
+    check_egress_url,
+    domain_matches_allowlist,
+    is_prohibited_ip_literal,
+    normalize_domain,
+    parse_host_ips,
+    validate_capsule_path,
+    validate_mount_host_path,
+)
+from kernel.core.hypervisor.isolation import (
+    IsolationProvider,
+    IsolationReport,
+    NativeProcessIsolation,
+    detect_isolation_support,
+    select_provider,
+    strongest_available_level,
+)
+from kernel.core.hypervisor.filesystem import CapsuleFilesystem, capsule_base_dir
+from kernel.core.hypervisor.secrets import SecretBroker, SecretBinding
+from kernel.core.hypervisor.risk import assess_capsule, blast_radius_for
+from kernel.core.hypervisor.hypervisor import (
+    AgentHypervisor,
+    CircuitBreaker,
+    RateBucket,
+)
+from kernel.core.hypervisor.api import CapsuleAPI
+
+__all__ = [
+    "SNAPSHOT_VERSION",
+    "AgentCapsule",
+    "AgentCapsuleContract",
+    "AutonomyLevel",
+    "BlastRadius",
+    "CapabilityManifest",
+    "CapsuleHealth",
+    "CapsuleLifecycleState",
+    "CapsuleProfileName",
+    "CapsuleReceipt",
+    "CapsuleSnapshot",
+    "CircuitState",
+    "ForensicSnapshot",
+    "IsolationLevel",
+    "IsolationStatus",
+    "MemoryScopeKind",
+    "MountType",
+    "NetworkMode",
+    "NetworkPolicy",
+    "PlacementDecision",
+    "ReplayMode",
+    "RiskAssessment",
+    "TerminationMode",
+    "CapsuleMount",
+    "CAPSULE_TRANSITIONS",
+    "CapsuleProfile",
+    "PROFILES",
+    "get_profile",
+    "list_profiles",
+    "PathEscapeError",
+    "check_egress_url",
+    "domain_matches_allowlist",
+    "is_prohibited_ip_literal",
+    "normalize_domain",
+    "parse_host_ips",
+    "validate_capsule_path",
+    "validate_mount_host_path",
+    "IsolationProvider",
+    "IsolationReport",
+    "NativeProcessIsolation",
+    "detect_isolation_support",
+    "select_provider",
+    "strongest_available_level",
+    "CapsuleFilesystem",
+    "capsule_base_dir",
+    "SecretBroker",
+    "SecretBinding",
+    "assess_capsule",
+    "blast_radius_for",
+    "AgentHypervisor",
+    "CircuitBreaker",
+    "RateBucket",
+    "CapsuleAPI",
+]
